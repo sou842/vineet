@@ -1,0 +1,67 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.home_01{
+    width: 80%;
+    margin: 1cm auto;
+    border: 1px solid rgb(0, 140, 255);
+    background-color: rgba(48, 162, 255, 0.447);
+    text-align: center;
+    padding: 1cm;
+    border-radius: 20px;
+}
+.home_01 > h1{
+    margin: 0 auto 1cm auto;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+.home_01 > div{
+    width: 80%;
+    margin: 10px auto;
+}
+.home_01 > div > p{
+    color: rgb(59, 59, 59);
+    font-size: 17px;
+    margin: 10px;
+    font-weight: lighter;
+}
+/* home_02 */
+.home_02{
+    margin-bottom: 2cm;
+}
+.home_02 > h1{
+    width: 85%;
+    text-align: center;
+    margin: auto;
+    font-size: 25px;
+    color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 15px;
+    padding: 5px;
+    background-color: rgb(0, 98, 202);
+}
+.home_02 > div{
+    width: 85%;
+    margin: 1cm auto;
+    padding: 10px;
+    background-color: rgba(48, 162, 255, 0.447);
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10px;
+    border-radius: 7px;
+}
+.home_02 > div > div{
+    background-color: white;
+    text-align: center;
+    padding: 15px 10px;
+    border-radius: 5px;
+}
+.home_02 > div > div > a{
+    text-decoration: none;
+    color: rgb(31, 31, 31);
+    transition: 0.4s ease;
+}
+.home_02 > div > div > a:hover{
+    color: rgb(0, 140, 255);
+}

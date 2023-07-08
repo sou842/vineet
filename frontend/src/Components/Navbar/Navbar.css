@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.navbar_1{
+    padding: 7px 1.5cm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(30, 212, 253);
+}
+.navbar_1 > div{
+    /* border: 1px solid red; */
+    font-size: 30px;
+    /* color: white; */
+}
+.navbar_1 > div > img{
+    width: 80px;
+}
+.navbar_2{
+    background-color: rgb(0, 119, 230);
+    display: flex;
+    justify-content: space-evenly;
+    padding: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.navbar_2 > div > a{
+    text-decoration: none;
+}
+.navbar_2 > div > a > p{
+    color: whitesmoke;
+}
