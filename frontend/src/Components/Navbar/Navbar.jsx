@@ -21,9 +21,9 @@ return (
         <div className='navbar_2'>
         <div><a href="/"><p>HOME</p></a></div>
         <div><a href="/About"><p>ABOUT</p></a></div>
-        <div><a href="#"><p>SERVICES</p></a></div>
+        <div><a href="/Services"><p>SERVICES</p></a></div>
         <div><a href="#"><p>PRIVACY POLICY</p></a></div>
-        <div><a href="#"><p>CONTACT US</p></a></div>
+        <div><a href="/Contact"><p>CONTACT US</p></a></div>
         <div><a href="#"><p>LOGIN</p></a></div>
 
         </div>
