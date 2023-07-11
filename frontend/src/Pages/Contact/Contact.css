@@ -50,3 +50,15 @@
     color: rgba(23, 151, 255, 0.822);
     background-color: white;
 }
+/* contact_2 */
+
+.contact_2{
+    width: 90%;
+    border-radius: 15px;
+    margin: 1cm auto;
+    padding: 20px 10px;
+    border: 1.3px solid rgba(23, 151, 255, 0.822);
+}
+.contact_2 > p{
+    text-align: center;
+}

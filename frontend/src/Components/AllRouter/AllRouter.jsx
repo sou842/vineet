@@ -3,6 +3,7 @@ import { Home } from '../../Pages/Home/Home';
 import { About } from '../../Pages/About/About';
 import { Services } from '../../Pages/Services/Services';
 import { Contact } from '../../Pages/Contact/Contact';
+import { Privacy } from '../../Pages/Privacy/Privacy';
 
 
 export const AllRouter = () =>{
@@ -13,6 +14,7 @@ return (
         <Route path={'/About'} element={<About/>}></Route>
         <Route path={'/Services'} element={<Services/>}></Route>
         <Route path={'Contact'} element={<Contact/>}></Route>
+        <Route path={'/Privacy'} element={<Privacy/>}></Route>
     </Routes>
 )
 }

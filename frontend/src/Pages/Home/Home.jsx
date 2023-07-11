@@ -7,7 +7,7 @@ export const Home = () =>{
 
 return (
     <div>
-        <Navbar />
+        <div><Navbar /></div>
         <div className='home_0'>
         <div className="home_01">
             <h1>WELCOME TO VINEET INDIA PORTAL</h1>
@@ -31,7 +31,7 @@ return (
             </div>
         </div>
         </div>
-        <Footer />
+        <div><Footer /></div>
     </div>
 )
 }

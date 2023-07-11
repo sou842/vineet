@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.privacy_0{
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+    padding: 10px;
+}
+.privacy_0 > h1{
+    margin: 10px 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(59, 59, 59);
+}
+.privacy_0 > p{
+    margin: 10px;
+    color: rgb(109, 109, 109);
+}
