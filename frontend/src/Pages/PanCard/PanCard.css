@@ -2,34 +2,34 @@
     margin: 0;
     padding: 0;
 }
-.dashboard_0{
+.pancard_0{
     display: flex;
     justify-content: space-between;
     background-color: rgb(10, 156, 248);
     color: white;
 }
-.dashboard_0 > div{
+.pancard_0 > div{
     display: flex;
     margin: 0 10px;
 }
-.dashboard_0 > div > div{
+.pancard_0 > div > div{
     display: flex;
     align-items: center;
     margin: 10px;
 }
-.dashboard_0 > div > div > select{
+.pancard_0 > div > div > select{
     background-color: rgb(10, 156, 248);
     display: flex;
     align-items: center;
     width: 80px;
 }
-.dashboard_0 > div > div > select > option{
+.pancard_0 > div > div > select > option{
     background-color: white;
     color: rgb(45, 45, 45);
 }
-/* dashboard_1 */
+/* pancard_1 */
 
-.dashboard_1{
+.pancard_1{
     background-color: rgba(48, 162, 255, 0.447);
     width: 80%;
     margin: 1cm auto;
@@ -37,26 +37,27 @@
     text-align: center;
     border-radius: 15px;
 }
-.dashboard_1 > p{
+.pancard_1 > p{
     margin: 5px 0;
 }
-/* dashboard_2 */
 
-.dashboard_2{
-    display: grid;
+.pancard_2{
     width: 80%;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
     margin: auto;
-    grid-template-columns: repeat(3,1fr);
-    gap: 15px;
 }
-.dashboard_2 > div{
-    padding: 15px 10px;
-    text-align: center;
+.pancard_2 > div{
     background-color: rgb(10, 156, 248);
+    text-align: center;
+    padding: 15px 10px;
     color: white;
-    border-radius: 10px;
+    border: 1.5px solid rgb(47, 175, 255);;
+    border-radius: 7px;
     transition: 0.4s ease;
 }
-.dashboard_2 > div:hover{
-    background-color: rgb(81, 188, 255);
+.pancard_2 > div:hover{
+    background-color: white;
+    color: rgb(0, 155, 251);;
 }

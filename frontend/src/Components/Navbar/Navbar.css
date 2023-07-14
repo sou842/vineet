@@ -7,7 +7,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(30, 212, 253);
+    /* background-color: rgb(30, 212, 253); */
 }
 .navbar_1 > div{
     /* border: 1px solid red; */

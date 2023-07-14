@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.dashboardFooter_0{
+    background-color: rgb(53, 53, 53);
+    color: white;
+    display: flex;
+    justify-content: space-around;
+}
+.dashboardFooter_0 > a > p{
+    margin: 7px;
+}

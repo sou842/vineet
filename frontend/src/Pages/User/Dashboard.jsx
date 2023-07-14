@@ -1,27 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Dashboard.css'
 import { DashboardNav } from '../../Components/DashboradNav/DashboardNav'
+import { DashboardFooter } from '../../Components/DashboradFooter/DashboradFooter';
+import {useNavigate} from "react-router-dom"
 
 export const Dashboard = () => {
+  const navigate = useNavigate()
+
+  const handleOptionChange = (event) => {
+    const selectedValue = event.target.value;
+
+    console.log(selectedValue)
+    navigate(selectedValue)
+  };
+
   return (
     <div>
       <div>
         <DashboardNav />
       </div>
-      <div className='dashboard_1'>
+      <div className='dashboard_0'>
         <div>
-          <div><a href="#"><p>Dashboard</p></a></div>
+          <div><a href="/Dashboard"><p>Dashboard</p></a></div>
           <div>
-          <select>
-            <option value=""><a href="#">Services</a></option>  
-            <option value=""><a href="#">Pan Card</a></option>  
-            <option value=""><a href="#">Electricity</a></option>
-            <option value=""><a href="#">Mobile Recharge</a></option>  
-            <option value=""><a href="#">DTH Recharge</a></option>  
-            <option value=""><a href="#">ITR</a></option>  
-            <option value=""><a href="#">GST</a></option>  
-            <option value=""><a href="#">Online Job Portal</a></option>  
-          </select>  
+            <select onChange={handleOptionChange}>
+              <option value="">Services</option>
+              <option value="/PanCard">Pan Card</option>
+              <option value="">Electricity</option>
+              <option value="">Mobile Recharge</option>
+              <option value="">DTH Recharge</option>
+              <option value="">ITR</option>
+              <option value="">GST</option>
+              <option value="">Online Job Portal</option>
+            </select>
           </div>
           <div><a href="#"><p>Traning Manual</p></a></div>
           <div><a href="#"><p>Downloads</p></a></div>
@@ -29,17 +40,44 @@ export const Dashboard = () => {
           <div><a href="#"><p>Add Money</p></a></div>
         </div>
         <div>
-        <div><a href="#"><p>PCW: Rs.0</p></a></div>
-        <div><a href="#"><p>OCW: Rs.0</p></a></div>
-        <div>
-        <select>
-            <option value=""><a href="#">Profile</a></option>  
-            <option value=""><a href="#">Change Password</a></option>  
-            <option value=""><a href="#">Logout</a></option>
-          </select>  
-        </div>
+          <div><a href="#"><p>PCW: Rs.0</p></a></div>
+          <div><a href="#"><p>OCW: Rs.0</p></a></div>
+          <div>
+            <select onChange={handleOptionChange}>
+            <option value="">Vineet</option>
+              <option value="/Profile">Profile</option>
+              <option value="/ChangePassword">Change Password</option>
+              <option value="/Logout">Logout</option>
+            </select>
+          </div>
         </div>
       </div>
+
+      <div>
+        <div className='dashboard_1'>
+          <p> Email:- helpdigitalindiaportal@gmail.com</p>
+          <p> Phones:- 9368372889</p>
+          <p> Time:- (10am to 5pm रविवार अवकाश/Lunch Time:- 2:00PM TO 2:30PM)</p>
+        </div>
+
+        <div className='dashboard_2'>
+          <div><a href="/PanCard">PAN CARD</a></div>
+          <div><a href="#">Electricity</a></div>
+          <div><a href="#">MOBILE Recharge</a></div>
+          <div><a href="#">DTH Recharge</a></div>
+          <div><a href="#">Income Tax Return</a></div>
+          <div><a href="#">GST</a></div>
+          <div><a href="#">DIGITAL JOB Portal</a></div>
+          <div><a href="#">Social Services</a></div>
+          <div><a href="#">NATIONAL PENSION SYSTEM</a></div>
+        </div>
+      </div>
+
+      <div className='dashboard_1'>
+        <p>हम आपसे अनुरोध करते हैं कि डिजिटल इंडिया पोर्टल द्वारा प्रदान की जा रही अन्य सुविधाएं जैसे बिजली बिल का भुगतान, मोबाइल रिचार्ज, डीटीएच रिचार्ज, GST रजिस्ट्रेशन, ITR फाइलिंग जैसी अन्य सुविधाओं का भी आप लाभ उठाएं और हम आपको भरोसा दिलाते हैं कि भविष्य में डिजिटल इंडिया पोर्टल आपको और भी सुविधाएं प्रदान करेगा डिजिटल इंडिया पोर्टल के साथ जुड़े रहने के लिए धन्यवाद</p>
+      </div>
+
+      <div><DashboardFooter /></div>
     </div>
   )
 }

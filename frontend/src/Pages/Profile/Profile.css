@@ -1,0 +1,70 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.profile_0{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(10, 156, 248);
+    color: white;
+}
+.profile_0 > div{
+    display: flex;
+    margin: 0 10px;
+}
+.profile_0 > div > div{
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+.profile_0 > div > div > select{
+    background-color: rgb(10, 156, 248);
+    display: flex;
+    align-items: center;
+    width: 80px;
+}
+.profile_0 > div > div > select > option{
+    background-color: white;
+    color: rgb(45, 45, 45);
+}
+.profile_1{
+    background-color: rgba(48, 162, 255, 0.447);
+    width: 80%;
+    margin: 1cm auto;
+    padding: 20px 15px;
+    text-align: center;
+    border-radius: 15px;
+}
+/* profile_2 */
+
+.profile_2{
+    /* border: 1px solid red; */
+    width: 70%;
+    margin: 1cm auto;
+    background-color: rgba(95, 95, 95, 0.155);
+    border-radius: 20px;
+    padding: 10px;
+}
+.profile_2 > h1{
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 10px;
+}
+.profile_2 > div{
+    display: flex;
+}
+.profile_2 > div > p,b{
+    width: 50%;
+    padding: 5px 0 5px 30px;
+    /* border: 1px solid blue; */
+}
+.profile_2 > button{
+    background-color: rgb(0, 179, 229);
+    display: block;
+    margin: 15px auto;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}
