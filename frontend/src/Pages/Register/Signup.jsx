@@ -89,11 +89,11 @@ const handleNo=()=>{
             <Box display={"flex"} flexDirection={['column','column','row']} justifyContent={"space-around"} gap={"10px"}>
               <FormControl>
                 <FormLabel>Name</FormLabel>
-                <Input type="text" placeholder="Enter your name" name="name" onChange={handleChange}/>
+                <Input type="text" placeholder="Enter your name" name="name" onChange={handleChange} required/>
               </FormControl>
               <FormControl>
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" placeholder="Enter your Email Address" name="email" onChange={handleChange}/>
+                <Input type="email" placeholder="Enter your Email Address" name="email" onChange={handleChange} required/>
               </FormControl>
             </Box>
           
@@ -102,11 +102,11 @@ const handleNo=()=>{
             <Box  display={"flex"} flexDirection={['column','column','row']} justifyContent={"space-around"} gap={"10px"}>
               <FormControl>
                 <FormLabel>Mobile No</FormLabel>
-                <Input type="number" placeholder="Enter your mobile number" name="mobileNumber" onChange={handleChange}/>
+                <Input type="number" placeholder="Enter your mobile number" name="mobileNumber" onChange={handleChange} required/>
               </FormControl>
               <FormControl>
                 <FormLabel>Address</FormLabel>
-                <Input type="text" placeholder="Enter your address Address" name="address" onChange={handleChange}/>
+                <Input type="text" placeholder="Enter your address Address" name="address" onChange={handleChange} required/>
               </FormControl>
             </Box>
           
@@ -115,11 +115,11 @@ const handleNo=()=>{
             <Box  display={"flex"} flexDirection={['column','column','row']} justifyContent={"space-around"} gap={"10px"}>
               <FormControl>
                 <FormLabel>City</FormLabel>
-                <Input type="text" placeholder="Enter your city" name="city" onChange={handleChange} />
+                <Input type="text" placeholder="Enter your city" name="city" onChange={handleChange} required />
               </FormControl>
               <FormControl>
                 <FormLabel>Pin Code</FormLabel>
-                <Input type="number" placeholder="Enter your pin code" name="pincode" onChange={handleChange} />
+                <Input type="number" placeholder="Enter your pin code" name="pincode" onChange={handleChange} required />
               </FormControl>
             </Box>
           
@@ -128,7 +128,7 @@ const handleNo=()=>{
             <Box  display={"flex"} flexDirection={['column','column','row']} justifyContent={"space-around"} gap={"10px"}>
               <FormControl>
                 <FormLabel>State</FormLabel>
-                <Select name="state" onChange={handleChange}>
+                <Select name="state" onChange={handleChange} required>
                   <option value={""}>Select your state</option>
                   {state.map((el, i) => {
                     return (
@@ -143,7 +143,7 @@ const handleNo=()=>{
                 <FormLabel>Retailer Shop Name</FormLabel>
                 <Input
                   type="text"
-                  placeholder="Enter your retailer shop name" name="shopeName" onChange={handleChange}
+                  placeholder="Enter your retailer shop name" name="shopeName" onChange={handleChange} required
                 />
               </FormControl>
             </Box>
@@ -153,13 +153,13 @@ const handleNo=()=>{
             <Box  display={"flex"} flexDirection={['column','column','row']} justifyContent={"space-around"} gap={"10px"}>
               <FormControl>
                 <FormLabel>Pan card Number</FormLabel>
-                <Input type="text" style={{textTransform:'uppercase'}} placeholder="Enter your pan card number"  name="panNumber" onChange={handleChange}/>
+                <Input type="text" style={{textTransform:'uppercase'}} placeholder="Enter your pan card number"  name="panNumber" onChange={handleChange} required/>
               </FormControl>
               <FormControl>
                 <FormLabel>Addhaar card Number</FormLabel>
                 <Input
                   type="text"
-                  placeholder="Enter your aadhaar card number" name="aadharNumber" onChange={handleChange}
+                  placeholder="Enter your aadhaar card number" name="aadharNumber" onChange={handleChange} required
                 />
               </FormControl>
             </Box>
