@@ -4,6 +4,8 @@ import { About } from '../../Pages/About/About';
 import { Services } from '../../Pages/Services/Services';
 import { Contact } from '../../Pages/Contact/Contact';
 import { Privacy } from '../../Pages/Privacy/Privacy';
+import Signup from '../../Pages/Register/Signup';
+import Signin from '../../Pages/Login/Signin';
 
 
 export const AllRouter = () =>{
@@ -15,6 +17,9 @@ return (
         <Route path={'/Services'} element={<Services/>}></Route>
         <Route path={'Contact'} element={<Contact/>}></Route>
         <Route path={'/Privacy'} element={<Privacy/>}></Route>
+        <Route path='/signup' element={<Signup/>}></Route>
+        <Route path='/signin' element={<Signin/>}></Route>
+       
     </Routes>
 )
 }
