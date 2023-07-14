@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.dashboardNav_100{
+    padding: 7px 1.5cm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(30, 212, 253);
+}
+.dashboardNav_100 > div{
+    /* border: 1px solid red; */
+    font-size: 30px;
+    /* color: white; */
+}
+.dashboardNav_100 > div > img{
+    width: 80px;
+}

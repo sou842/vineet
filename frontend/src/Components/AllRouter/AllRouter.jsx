@@ -6,6 +6,7 @@ import { Contact } from '../../Pages/Contact/Contact';
 import { Privacy } from '../../Pages/Privacy/Privacy';
 import Signup from '../../Pages/Register/Signup';
 import Signin from '../../Pages/Login/Signin';
+import { Dashboard } from '../../Pages/User/Dashboard';
 
 
 export const AllRouter = () =>{
@@ -17,9 +18,9 @@ return (
         <Route path={'/Services'} element={<Services/>}></Route>
         <Route path={'Contact'} element={<Contact/>}></Route>
         <Route path={'/Privacy'} element={<Privacy/>}></Route>
-        <Route path='/signup' element={<Signup/>}></Route>
-        <Route path='/signin' element={<Signin/>}></Route>
-       
+        <Route path={'/Signup'} element={<Signup/>}></Route>
+        <Route path={'/Signin'} element={<Signin/>}></Route>
+        <Route path={'/Dashboard'} element={<Dashboard/>}></Route>
     </Routes>
 )
 }
