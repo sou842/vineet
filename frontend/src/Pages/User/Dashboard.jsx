@@ -3,16 +3,31 @@ import './Dashboard.css'
 import { DashboardNav } from '../../Components/DashboradNav/DashboardNav'
 import { DashboardFooter } from '../../Components/DashboradFooter/DashboradFooter';
 import {useNavigate} from "react-router-dom"
-
+import { Button, Menu, MenuButton, MenuItem, MenuList, useToast } from '@chakra-ui/react';
+import { ChevronDownIcon } from "@chakra-ui/icons";
 export const Dashboard = () => {
   const navigate = useNavigate()
-
+  const portalData=JSON.parse(localStorage.getItem("digitalPortal"))||null
+const toast=useToast()
   const handleOptionChange = (event) => {
     const selectedValue = event.target.value;
 
     console.log(selectedValue)
     navigate(selectedValue)
   };
+
+  //logout localstorage data will be delete
+  const handleLogout=()=>{
+    localStorage.removeItem("digitalPortal")
+   
+    toast({
+      title: 'Logout Succesfull.',
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+    })
+    window.location='/'
+  }
 
   return (
     <div>
@@ -43,12 +58,20 @@ export const Dashboard = () => {
           <div><a href="#"><p>PCW: Rs.0</p></a></div>
           <div><a href="#"><p>OCW: Rs.0</p></a></div>
           <div>
-            <select onChange={handleOptionChange}>
-            <option value="">Vineet</option>
-              <option value="/Profile">Profile</option>
-              <option value="/ChangePassword">Change Password</option>
-              <option value="/Logout">Logout</option>
-            </select>
+            <Menu >
+              <MenuButton
+                as={Button}
+                rightIcon={<ChevronDownIcon />}
+                colorScheme="#0a9cf8"
+              >
+               {portalData.username.toUpperCase()}
+              </MenuButton>
+              <MenuList color={"black"} >
+                <MenuItem onClick={()=>navigate('/profile')}>Profile</MenuItem>
+                <MenuItem  onClick={()=>navigate('/ChangePassword')}>Change Password</MenuItem>
+                <MenuItem  onClick={handleLogout}>Logout</MenuItem>
+              </MenuList>
+            </Menu>
           </div>
         </div>
       </div>

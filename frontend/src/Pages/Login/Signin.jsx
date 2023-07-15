@@ -8,8 +8,11 @@ import { Box, Heading ,  FormControl,
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from "react-redux";
+import { loginFun } from '../../redux/authReducer/action';
 
 export default function Signin() {
+    const dispatch=useDispatch()
     const toast=useToast()
     const navigate=useNavigate()
     const handleHome=()=>{
@@ -30,32 +33,28 @@ const handleChange=(e)=>{
 
 const handleSubmit=(e)=>{
     e.preventDefault()
-    axios.post("http://localhost:8080/api/login",loginData)
-    .then((res)=>{
-        if(res.data.msg=="login successful"){
+    dispatch(loginFun(loginData)).then((res)=>{
+        if(res=="login successful"){
             toast({
-                title: res.data.msg,
+                title: res,
                 status: 'success',
                 duration: 5000,
                 isClosable: true,
               })
-              navigate("/")
-
+             window.location='/Dashboard'
         }
         else{
             toast({
-                title: res.data.msg,
+                title: res,
                 status: 'error',
                 duration: 5000,
                 isClosable: true,
               })
-
+              
         }
-
+        
     })
-    .catch((err)=>{
-        console.log(err);
-    })
+   
 }
 
    

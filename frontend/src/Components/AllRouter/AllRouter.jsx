@@ -12,6 +12,8 @@ import { PanCard } from '../../Pages/PanCard/PanCard';
 
 
 export const AllRouter = () =>{
+    const portalData=JSON.parse(localStorage.getItem("digitalPortal"))
+    // console.log(portalData);
 
 return (
     <Routes>
@@ -22,9 +24,10 @@ return (
         <Route path={'/Privacy'} element={<Privacy/>}></Route>
         <Route path={'/Signup'} element={<Signup/>}></Route>
         <Route path={'/Signin'} element={<Signin/>}></Route>
-        <Route path={'/Dashboard'} element={<Dashboard/>}></Route>
-        <Route path={'/Profile'} element={<Profile/>}></Route>
+        <Route path={'/Dashboard'} element={portalData?<Dashboard/>:<Signin/>}></Route>
+        <Route path={'/Profile'} element={portalData?<Profile/>:<Signin/>}></Route>
         <Route path={'/PanCard'} element={<PanCard/>}></Route>
+        <Route path={'*'} element={<h1>404 Page Not Found</h1>}></Route>
     </Routes>
 )
 }

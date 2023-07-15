@@ -2,13 +2,15 @@ import './Navbar.css'
 
 
 export const Navbar = () =>{
-
+    const portalData=JSON.parse(localStorage.getItem("digitalPortal"))||null
 
 return (
     <nav>
         <div className='navbar_1'>
         <div>
-            <img src="https://digitalindiaportal.co.in/images/logo.png" alt="logo_1" />
+           
+            <img  src="https://digitalindiaportal.co.in/images/logo.png" alt="logo_1" />
+           
         </div>
         <div>
             VINEET DIGITAL PORTAL
@@ -24,7 +26,9 @@ return (
         <div><a href="/Services"><p>SERVICES</p></a></div>
         <div><a href="/Privacy"><p>PRIVACY POLICY</p></a></div>
         <div><a href="/Contact"><p>CONTACT US</p></a></div>
-        <div><a href="/Signin"><p>LOGIN</p></a></div>
+        {
+            portalData?<div><a href="/Dashboard"><p>DASHBOARD</p></a></div>:<div><a href="/signin"><p>LOGIN</p></a></div>
+        }
 
         </div>
 

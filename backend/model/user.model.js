@@ -14,6 +14,7 @@ const userSchema=mongoose.Schema({
     aadharNumber:{type: String, required: true},
     password:{type: String, required: true},
     vendorID:{type: String, required: true},
+    joindate:{type: String, required: true},
 
 })
 const UserModel = mongoose.model("user", userSchema);

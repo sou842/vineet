@@ -1,15 +1,17 @@
 const express=require("express")
 const generator = require('generate-password');
 const nodemailer = require("nodemailer");
+const date = require('date-and-time');
 const prandom = require('prandom');
 const jwt = require('jsonwebtoken');
 const {UserModel}=require("../model/user.model")
 const bcrypt = require('bcrypt');
 const Mailgen = require("mailgen");
+const { auth } = require("../middleware/auth.middleware");
 const userRoute=express.Router()
 
 
-
+const now = new Date();
 
 // register
 userRoute.post("/register",async(req,res)=>{
@@ -19,9 +21,11 @@ userRoute.post("/register",async(req,res)=>{
             numbers: true
         });
         const randomNumber = prandom.number(7)
-        bcrypt.hash(password, 5, async(err, hash) =>{
+        bcrypt.hash(password, 5, async(err, hash) =>{        
+           
             req.body.password=hash
             req.body.vendorID="VDP"+randomNumber
+           req.body.joindate=date.format(now, 'YYYY/MM/DD HH:mm:ss'); 
             const user= new UserModel(req.body)
             user.save();
            
@@ -54,34 +58,6 @@ let config = {
 }
 let transporter = nodemailer.createTransport(config);
 
-// let MailGenerator = new Mailgen({
-//     theme: "default",
-//     product : {
-//         name: "Vineet India Portal",
-//         link : 'https://mailgen.js/'
-//     }
-// })
-
-// let response = {
-//     body: {
-//         greeting:"Dear",
-//         name : req.body.name,
-//         intro: "Your vendorID and Password here",
-//         action: {
-//             intro: `vendorID: ${"VDP"+randomNumber}`,
-//             instructions: `Password: ${password}`,
-//             button: {
-//                 color: 'green',
-//                 text: 'Confirm Your Account',
-//                 link: 'https://mailgen.js/confirm?s=d9729feb74992cc3482b350163a1a010'
-//             },
-        
-//         },
-//         outro: "Please note: Don't share anyone your password"
-//     }
-// }
-
-// let mail = MailGenerator.generate(response)
 
 let message = {
     from : "animeshghoroi2000@gmail.com",
@@ -129,8 +105,8 @@ userRoute.post("/login",async(req,res)=>{
             try {
                 bcrypt.compare(password, user.password, function(err, result) {
                     if(result){
-                        const token = jwt.sign({vendorID:user.vendorID}, 'vdp');
-                        res.send({"msg":"login successful","token":token})
+                        const token = jwt.sign({vendorID:user.vendorID,userID:user._id,username:user.name}, 'vdp');
+                        res.send({"msg":"login successful","token":token,"username":user.name})
                     }
                     else{
                         res.send({"msg":"Invalid Credentials"})
@@ -146,6 +122,34 @@ userRoute.post("/login",async(req,res)=>{
             res.send({"msg":"User not found!"})
         }
    
+})
+
+// user profile
+
+// 1. get all user details
+userRoute.use(auth)
+userRoute.get("/profile-detail",async(req,res)=>{
+    const {vendorID,userID,username}=req.body
+try {
+    const user=await UserModel.find({vendorID})
+    res.send(user)
+    
+} catch (error) {
+    res.send(error)
+}
+})
+
+// 2. update single user details
+userRoute.use(auth)
+userRoute.patch("/profile-update",async(req,res)=>{
+    const {vendorID,userID,username}=req.body
+try {
+    await UserModel.findByIdAndUpdate({_id:userID},req.body)
+    res.send("Successfully updated")
+    
+} catch (error) {
+    res.send(error)
+}
 })
 
 
