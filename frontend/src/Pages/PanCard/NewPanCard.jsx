@@ -12,7 +12,6 @@ export const NewPanCard = () => {
   return (
     <div>
       <div>
-        <DashboardNav />
         <PanCardNav/>
       </div>
 

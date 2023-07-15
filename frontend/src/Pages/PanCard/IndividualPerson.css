@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* dashboard_1 */
+
+.individualPerson_1{
+    background-color: rgba(48, 162, 255, 0.447);
+    width: 80%;
+    margin: 1cm auto;
+    padding: 20px 15px;
+    text-align: center;
+    border-radius: 15px;
+}
+.individualPerson_1 > p{
+    margin: 5px 0;
+}
+.individualPerson_head{
+    text-align: center;
+    width: 50%;
+    border: 1.5px solid rgb(10, 156, 248);;
+    margin: 1cm auto;
+    color: rgb(10, 156, 248);;
+    padding: 10px 0;
+    border-radius: 25px;
+}

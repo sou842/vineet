@@ -25,11 +25,9 @@ export const NewPanCardAllState = () => {
     return (
         <div>
             <div>
-                <DashboardNav />
                 <PanCardNav/>
             </div>
             
-
             <div>
                 <div className='newPanCardAllState_1'>
                     <p> Email:- helpdigitalindiaportal@gmail.com</p>
@@ -40,15 +38,15 @@ export const NewPanCardAllState = () => {
                 <h1 className='newPanCardAllState_head'>NEW PANCARD</h1>
 
                 <div className='newPanCardAllState_2'>
-                    <div><a href="#">Individual Person</a></div>
-                    <div><a href="#">Artificial Judicial Person</a></div>
-                    <div><a href="#">Associatio of Person</a></div>
-                    <div><a href="#">Trust</a></div>
-                    <div><a href="#">Body of Individual</a></div>
-                    <div><a href="#">Flim</a></div>
-                    <div><a href="#">Government</a></div>
-                    <div><a href="#">Limited Liability Partnership</a></div>
-                    <div><a href="#">Local Authority</a></div>
+                    <div><a href="/IndividualPerson"><p>Individual Person</p></a></div>
+                    <div><a href="#"><p>Artificial Judicial Person</p></a></div>
+                    <div><a href="#"><p>Associatio of Person</p></a></div>
+                    <div><a href="#"><p>Trust</p></a></div>
+                    <div><a href="#"><p>Body of Individual</p></a></div>
+                    <div><a href="#"><p>Flim</p></a></div>
+                    <div><a href="#"><p>Government</p></a></div>
+                    <div><a href="#"><p>Limited Liability Partnership</p></a></div>
+                    <div><a href="#"><p>Local Authority</p></a></div>
                 </div>
             </div>
 
