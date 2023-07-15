@@ -11,6 +11,7 @@ import { Profile } from '../../Pages/Profile/Profile';
 import { PanCard } from '../../Pages/PanCard/PanCard';
 import { NewPanCard } from '../../Pages/PanCard/NewPanCard';
 import { NewPanCardAllState } from '../../Pages/PanCard/NewPanCardAllState';
+import { IndividualPerson } from '../../Pages/PanCard/IndividualPerson';
 
 
 export const AllRouter = () =>{
@@ -32,6 +33,7 @@ return (
         <Route path={'*'} element={<h1>404 Page Not Found</h1>}></Route>
         <Route path={'/NewPanCard'} element={<NewPanCard/>}></Route>
         <Route path={'/NewPanCardAllState'} element={<NewPanCardAllState/>}></Route>
+        <Route path={'/IndividualPerson'} element={<IndividualPerson/>}></Route>
     </Routes>
 )
 }
