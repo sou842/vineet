@@ -3,11 +3,21 @@ import { DashboardNav } from "../../Components/DashboradNav/DashboardNav.jsx";
 import { DashboardFooter } from "../../Components/DashboradFooter/DashboradFooter.jsx";
 import { useNavigate } from "react-router-dom";
 import { PanCardNav } from "../../Components/PanCardNav/PanCardNav";
+import { ModalOverlay, Modal,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton, useDisclosure,Button, Heading} from "@chakra-ui/react";
+import { useEffect } from "react";
+import axios from "axios";
 
 export const PanCard = () => {
   const navigate = useNavigate();
-
-
+  const { isOpen, onOpen, onClose } = useDisclosure()
+useEffect(()=>{
+onOpen()
+},[])
   return (
     <div>
       <div>
@@ -52,6 +62,20 @@ export const PanCard = () => {
           फार्म निश्चित तौर पर निरस्त कर दिया जाएगा
         </p>
       </div>
+
+{/* initial instruction modal */}
+<Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
+        <ModalOverlay  />
+        <ModalContent>
+          <ModalHeader>Please Note :</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Heading size={'sm'}>संचालक भाइयों अब आप इसी पेज पर नीचे दिए गए Download slip by acknow पर click करके अपनी सब पुरानी स्लिप डाउनलोड कर सकते है </Heading>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+
+
 
       <div>
         <DashboardFooter />

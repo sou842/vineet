@@ -14,7 +14,7 @@
     font-size: 30px;
     /* color: white; */
 }
-.navbar_1 > div > img{
+.navbar_1 > div >a> img{
     width: 80px;
 }
 .navbar_2{

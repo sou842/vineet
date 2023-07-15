@@ -10,7 +10,7 @@ if(token){
             req.body.username=decoded.username
             req.body.userID=decoded.userID
             req.body.vendorID=decoded.vendorID
-            console.log(decoded.vendorID);
+            // console.log(decoded.vendorID);
         next()
        }
 

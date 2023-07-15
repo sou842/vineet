@@ -14,6 +14,6 @@
     font-size: 30px;
     /* color: white; */
 }
-.dashboardNav_100 > div > img{
+.dashboardNav_100 > div > a>img{
     width: 80px;
 }

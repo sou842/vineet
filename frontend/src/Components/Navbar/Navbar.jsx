@@ -8,9 +8,9 @@ return (
     <nav>
         <div className='navbar_1'>
         <div>
-           
+           <a href="/">
             <img  src="https://digitalindiaportal.co.in/images/logo.png" alt="logo_1" />
-           
+            </a>
         </div>
         <div>
             VINEET DIGITAL PORTAL
