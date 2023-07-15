@@ -50,15 +50,15 @@
     margin: auto;
 }
 .pancard_2 > div{
-    background-color: #272C4C;
+    background-color: rgb(10, 156, 248);
     text-align: center;
     padding: 15px 10px;
     color: white;
-    border: 1.5px solid #272C4C;
+    border: 1.5px solid rgb(10, 156, 248);
     border-radius: 7px;
     transition: 0.4s ease;
 }
 .pancard_2 > div:hover{
     background-color: white;
-    color: #272C4C;
+    color: rgb(10, 156, 248);
 }
