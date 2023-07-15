@@ -11,6 +11,7 @@ import { Box, Button, Heading, MenuButton, Spinner, Text,Menu,MenuItem,MenuList,
   ModalFooter,
   ModalBody,
   ModalCloseButton,Input,FormControl,FormLabel,useDisclosure} from '@chakra-ui/react';
+import { PanCardNav } from '../../Components/PanCardNav/PanCardNav';
 
 
 export const Profile = () =>{
@@ -99,49 +100,7 @@ useEffect(()=>{
 
 return (
     <div>
-        <div><DashboardNav /></div>
-
-        <div className='profile_0'>
-        <div>
-          <div><a href="/Dashboard"><p>Dashboard</p></a></div>
-          <div>
-            <select>
-              <option value=""><a href="#">Services</a></option>
-              <option value=""><a href="#">Pan Card</a></option>
-              <option value=""><a href="#">Electricity</a></option>
-              <option value=""><a href="#">Mobile Recharge</a></option>
-              <option value=""><a href="#">DTH Recharge</a></option>
-              <option value=""><a href="#">ITR</a></option>
-              <option value=""><a href="#">GST</a></option>
-              <option value=""><a href="#">Online Job Portal</a></option>
-            </select>
-          </div>
-          <div><a href="#"><p>Traning Manual</p></a></div>
-          <div><a href="#"><p>Downloads</p></a></div>
-          <div><a href="#"><p>Ledger</p></a></div>
-          <div><a href="#"><p>Add Money</p></a></div>
-        </div>
-        <div>
-          <div><a href="#"><p>PCW: Rs.0</p></a></div>
-          <div><a href="#"><p>OCW: Rs.0</p></a></div>
-          <div>
-          <Menu >
-              <MenuButton
-                as={Button}
-                rightIcon={<ChevronDownIcon />}
-                colorScheme="#0a9cf8"
-              >
-               {portalData.username.toUpperCase()}
-              </MenuButton>
-              <MenuList color={"black"} >
-                <MenuItem onClick={()=>navigate('/profile')}>Profile</MenuItem>
-                <MenuItem  onClick={()=>navigate('/ChangePassword')}>Change Password</MenuItem>
-                <MenuItem  onClick={handleLogout}>Logout</MenuItem>
-              </MenuList>
-            </Menu>
-          </div>
-        </div>
-      </div>
+        <div><PanCardNav /></div>
 
         <div className='profile_1'>
           <p> Email:- helpdigitalindiaportal@gmail.com</p>

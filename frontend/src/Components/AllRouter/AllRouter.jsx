@@ -36,8 +36,7 @@ return (
         <Route path={'/NewPanCardAllState'} element={<NewPanCardAllState/>}></Route>
         <Route path={'/user/change-password'} element={<ChangePassword/>}></Route>
         <Route path={'*'} element={<h1>404 Page Not Found</h1>}></Route>
-        <Route path={'/IndividualPerson'} element={<IndividualPerson/>}></Route>
-
+        <Route path={'/IndividualPerson/:catagory'} element={<IndividualPerson/>}></Route>
     </Routes>
 )
 }

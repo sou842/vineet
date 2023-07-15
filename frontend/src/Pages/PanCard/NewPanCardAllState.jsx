@@ -38,15 +38,15 @@ export const NewPanCardAllState = () => {
                 <h1 className='newPanCardAllState_head'>NEW PANCARD</h1>
 
                 <div className='newPanCardAllState_2'>
-                    <div><a href="/IndividualPerson"><p>Individual Person</p></a></div>
-                    <div><a href="#"><p>Artificial Judicial Person</p></a></div>
-                    <div><a href="#"><p>Associatio of Person</p></a></div>
-                    <div><a href="#"><p>Trust</p></a></div>
-                    <div><a href="#"><p>Body of Individual</p></a></div>
-                    <div><a href="#"><p>Flim</p></a></div>
-                    <div><a href="#"><p>Government</p></a></div>
-                    <div><a href="#"><p>Limited Liability Partnership</p></a></div>
-                    <div><a href="#"><p>Local Authority</p></a></div>
+                    <div><a href="/IndividualPerson/individual"><p>Individual Person</p></a></div>
+                    <div><a href="/IndividualPerson/:catagory"><p>Artificial Judicial Person</p></a></div>
+                    <div><a href="/IndividualPerson/:catagory"><p>Associatio of Person</p></a></div>
+                    <div><a href="/IndividualPerson/:catagory"><p>Trust</p></a></div>
+                    <div><a href="/IndividualPerson/:catagory"><p>Body of Individual</p></a></div>
+                    <div><a href="/IndividualPerson/:catagory"><p>Flim</p></a></div>
+                    <div><a href="/IndividualPerson/:catagory"><p>Government</p></a></div>
+                    <div><a href="/IndividualPerson/:catagory"><p>Limited Liability Partnership</p></a></div>
+                    <div><a href="/IndividualPerson/:catagory"><p>Local Authority</p></a></div>
                 </div>
             </div>
 
