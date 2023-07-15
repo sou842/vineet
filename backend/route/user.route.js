@@ -23,7 +23,7 @@ userRoute.post("/register",async(req,res)=>{
         const randomNumber = prandom.number(7)
         bcrypt.hash(password, 5, async(err, hash) =>{        
            
-            req.body.password=hash
+            req.body.password= hash
             req.body.vendorID="VDP"+randomNumber
            req.body.joindate=date.format(now, 'YYYY/MM/DD HH:mm:ss'); 
             const user= new UserModel(req.body)
@@ -151,6 +151,26 @@ try {
     res.send(error)
 }
 })
+
+// 3. update single user details
+userRoute.use(auth)
+userRoute.patch('/user/change-password',async(req,res)=>{
+    const {userID,password}=req.body
+    try {
+        bcrypt.hash(password, 5, async(err, hash)=> {
+           
+                await UserModel.findByIdAndUpdate({_id:userID},{password:hash})
+            
+            
+                res.send("Your password has been upadated")
+        });
+
+        
+    } catch (error) {
+        res.send(error)
+    }
+})
+
 
 
 

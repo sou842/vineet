@@ -11,6 +11,7 @@ import { Profile } from '../../Pages/Profile/Profile';
 import { PanCard } from '../../Pages/PanCard/PanCard';
 import { NewPanCard } from '../../Pages/PanCard/NewPanCard';
 import { NewPanCardAllState } from '../../Pages/PanCard/NewPanCardAllState';
+import ChangePassword from '../../Pages/ChangePassword/ChangePassword';
 
 
 export const AllRouter = () =>{
@@ -29,9 +30,10 @@ return (
         <Route path={'/Dashboard'} element={portalData?<Dashboard/>:<Signin/>}></Route>
         <Route path={'/Profile'} element={portalData?<Profile/>:<Signin/>}></Route>
         <Route path={'/PanCard'} element={<PanCard/>}></Route>
-        <Route path={'*'} element={<h1>404 Page Not Found</h1>}></Route>
         <Route path={'/NewPanCard'} element={<NewPanCard/>}></Route>
         <Route path={'/NewPanCardAllState'} element={<NewPanCardAllState/>}></Route>
+        <Route path={'/user/change-password'} element={<ChangePassword/>}></Route>
+        <Route path={'*'} element={<h1>404 Page Not Found</h1>}></Route>
     </Routes>
 )
 }
