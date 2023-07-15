@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.newpancard_2{
+    width: 80%;
+    margin: 1cm auto;
+    text-align: center;
+}
+.newpancard_2 > div{
+    background-color: rgb(10, 156, 248);
+    color: white;
+    margin: 15px 0px;
+    padding: 17px 10px;
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+.newpancard_2 > div:hover{
+    background-color: rgb(87, 191, 255);
+}

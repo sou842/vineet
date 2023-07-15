@@ -1,0 +1,26 @@
+.pancardnav_1{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(10, 156, 248);
+    /* background-color: #272C4C; */
+    color: white;
+}
+.pancardnav_1 > div{
+    display: flex;
+    margin: 0 10px;
+}
+.pancardnav_1 > div > div{
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+.pancardnav_1 > div > div > select{
+    background-color: rgb(10, 156, 248);
+    display: flex;
+    align-items: center;
+    width: 80px;
+}
+.pancardnav_1 > div > div > select > option{
+    background-color: white;
+    color: rgb(45, 45, 45);
+}

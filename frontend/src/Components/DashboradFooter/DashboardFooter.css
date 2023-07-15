@@ -3,11 +3,15 @@
     padding: 0;
 }
 .dashboardFooter_0{
-    background-color: rgb(53, 53, 53);
-    color: white;
+    width: 80%;
+    color: grey;
     display: flex;
     justify-content: space-around;
+    margin: 10px auto;
 }
 .dashboardFooter_0 > a > p{
-    margin: 7px;
+    margin: 10px;
+}
+.dashboardFooter_0 > a > p:hover{
+    color: rgb(10, 156, 248);
 }

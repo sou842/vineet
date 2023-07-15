@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* dashboard_1 */
+
+.newPanCardAllState_1{
+    background-color: rgba(48, 162, 255, 0.447);
+    width: 80%;
+    margin: 1cm auto;
+    padding: 20px 15px;
+    text-align: center;
+    border-radius: 15px;
+}
+.newPanCardAllState_1 > p{
+    margin: 5px 0;
+}
+/* dashboard_2 */
+
+.newPanCardAllState_2{
+    display: grid;
+    width: 80%;
+    margin: auto;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+}
+.newPanCardAllState_head{
+    text-align: center;
+    width: 50%;
+    border: 1.5px solid rgb(10, 156, 248);;
+    margin: 1cm auto;
+    color: rgb(10, 156, 248);;
+    padding: 10px 0;
+    border-radius: 25px;
+}
+.newPanCardAllState_2 > div{
+    padding: 15px 10px;
+    text-align: center;
+    background-color: rgb(10, 156, 248);
+    color: white;
+    border-radius: 10px;
+    transition: 0.4s ease;
+}
+.newPanCardAllState_2 > div:hover{
+    background-color: rgb(81, 188, 255);
+}
