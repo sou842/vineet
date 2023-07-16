@@ -21,7 +21,6 @@ onOpen()
   return (
     <div>
       <div>
-        <DashboardNav />
         <PanCardNav />
       </div>
 
@@ -33,18 +32,18 @@ onOpen()
       </div>
 
       <div className="pancard_2">
-        <div><a href="#">New Pan Form Download</a></div>
-        <div><a href="#">Update Pan Form Download</a></div>
-        <div><a href="/NewPanCard">New Pan Card</a></div>
-        <div><a href="#">Update Pan Card</a></div>
-        <div><a href="#">Upload Pan Docs</a></div>
-        <div><a href="#">Cancel Pan Card</a></div>
-        <div><a href="#">Complete All PanCard</a></div>
-        <div><a href="#">Check Pan Status</a></div>
-        <div><a href="#">Link Aadhar to Pan</a></div>
-        <div><a href="#">Download E-Pan</a></div>
-        <div><a href="#">Download Slip By Acknow</a></div>
-        <div><a href="#">Dispensary Letter Case</a></div>
+        <div><a href="#"><p>New Pan Form Download</p></a></div>
+        <div><a href="#"><p>Update Pan Form Download</p></a></div>
+        <div><a href="/NewPanCard"><p>New Pan Card</p></a></div>
+        <div><a href="#"><p>Update Pan Card</p></a></div>
+        <div><a href="#"><p>Upload Pan Docs</p></a></div>
+        <div><a href="#"><p>Cancel Pan Card</p></a></div>
+        <div><a href="#"><p>Complete All PanCard</p></a></div>
+        <div><a href="#"><p>Check Pan Status</p></a></div>
+        <div><a href="#"><p>Link Aadhar to Pan</p></a></div>
+        <div><a href="#"><p>Download E-Pan</p></a></div>
+        <div><a href="#"><p>Download Slip By Acknow</p></a></div>
+        <div><a href="#"><p>Dispensary Letter Case</p></a></div>
       </div>
 
       <div className="pancard_1">

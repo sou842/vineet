@@ -25,11 +25,9 @@ export const NewPanCardAllState = () => {
     return (
         <div>
             <div>
-                <DashboardNav />
                 <PanCardNav/>
             </div>
             
-
             <div>
                 <div className='newPanCardAllState_1'>
                     <p> Email:- helpdigitalindiaportal@gmail.com</p>
@@ -40,15 +38,15 @@ export const NewPanCardAllState = () => {
                 <h1 className='newPanCardAllState_head'>NEW PANCARD</h1>
 
                 <div className='newPanCardAllState_2'>
-                    <div><a href="#">Individual Person</a></div>
-                    <div><a href="#">Artificial Judicial Person</a></div>
-                    <div><a href="#">Associatio of Person</a></div>
-                    <div><a href="#">Trust</a></div>
-                    <div><a href="#">Body of Individual</a></div>
-                    <div><a href="#">Flim</a></div>
-                    <div><a href="#">Government</a></div>
-                    <div><a href="#">Limited Liability Partnership</a></div>
-                    <div><a href="#">Local Authority</a></div>
+                    <div><a href="/IndividualPerson/individual"><p>Individual Person</p></a></div>
+                    <div><a href="/IndividualPerson/:catagory"><p>Artificial Judicial Person</p></a></div>
+                    <div><a href="/IndividualPerson/:catagory"><p>Associatio of Person</p></a></div>
+                    <div><a href="/IndividualPerson/:catagory"><p>Trust</p></a></div>
+                    <div><a href="/IndividualPerson/:catagory"><p>Body of Individual</p></a></div>
+                    <div><a href="/IndividualPerson/:catagory"><p>Flim</p></a></div>
+                    <div><a href="/IndividualPerson/:catagory"><p>Government</p></a></div>
+                    <div><a href="/IndividualPerson/:catagory"><p>Limited Liability Partnership</p></a></div>
+                    <div><a href="/IndividualPerson/:catagory"><p>Local Authority</p></a></div>
                 </div>
             </div>
 

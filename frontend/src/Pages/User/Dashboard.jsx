@@ -88,15 +88,15 @@ export const Dashboard = () => {
         </div>
 
         <div className='dashboard_2'>
-          <div><a href="/PanCard">PAN CARD</a></div>
-          <div><a href="#">Electricity</a></div>
-          <div><a href="#">MOBILE Recharge</a></div>
-          <div><a href="#">DTH Recharge</a></div>
-          <div><a href="#">Income Tax Return</a></div>
-          <div><a href="#">GST</a></div>
-          <div><a href="#">DIGITAL JOB Portal</a></div>
-          <div><a href="#">Social Services</a></div>
-          <div><a href="#">NATIONAL PENSION SYSTEM</a></div>
+          <div><a href="/PanCard"><p>PAN CARD</p></a></div>
+          <div><a href="#"><p>Electricity</p></a></div>
+          <div><a href="#"><p>MOBILE Recharge</p></a></div>
+          <div><a href="#"><p>DTH Recharge</p></a></div>
+          <div><a href="#"><p>Income Tax Return</p></a></div>
+          <div><a href="#"><p>GST</p></a></div>
+          <div><a href="#"><p>DIGITAL JOB Portal</p></a></div>
+          <div><a href="#"><p>Social Services</p></a></div>
+          <div><a href="#"><p>NATIONAL PENSION SYSTEM</p></a></div>
         </div>
       </div>
 

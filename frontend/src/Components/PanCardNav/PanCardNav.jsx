@@ -2,6 +2,7 @@ import './PanCardNav.css'
 import { Button, Menu, MenuButton, MenuItem, MenuList, useToast } from '@chakra-ui/react';
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useNavigate } from 'react-router-dom';
+import { DashboardNav } from '../DashboradNav/DashboardNav';
 
 
 export const PanCardNav = () => {
@@ -22,6 +23,7 @@ export const PanCardNav = () => {
       }
 
     return (
+        <div><DashboardNav/>
         <div className="pancardnav_1">
             <div>
                 <div>
@@ -104,6 +106,7 @@ export const PanCardNav = () => {
                     </Menu>
                 </div>
             </div>
+        </div>
         </div>
     )
 }
