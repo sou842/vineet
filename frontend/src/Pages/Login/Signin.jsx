@@ -98,7 +98,7 @@ const handleSubmit=(e)=>{
                 <Button onClick={handleRegister}  size={'sm'} colorScheme={'green'}>REGISTER</Button>
             </Box>
             <Box textAlign={'center'}>
-                <Button size={'xs'} colorScheme={'yellow'} >FORGET PASSWORD</Button>
+                <Button size={'xs'} colorScheme={'yellow'} onClick={()=>navigate("/user/change-password")}>FORGET PASSWORD</Button>
             </Box>
 
 

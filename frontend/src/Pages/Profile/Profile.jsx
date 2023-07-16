@@ -101,7 +101,6 @@ useEffect(()=>{
 return (
     <div>
         <div><PanCardNav /></div>
-
         <div className='profile_1'>
           <p> Email:- helpdigitalindiaportal@gmail.com</p>
           <p> Phones:- 9368372889</p>
