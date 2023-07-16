@@ -1,3 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.pancardnav_0{
+    padding: 7px 1.5cm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: rgb(30, 212, 253); */
+}
+.pancardnav_0 > div{
+    /* border: 1px solid red; */
+    font-size: 30px;
+    /* color: white; */
+}
+.pancardnav_0 > div > a>img{
+    width: 80px;
+}
+
 .pancardnav_1{
     display: flex;
     justify-content: space-between;
