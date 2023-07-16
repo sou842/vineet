@@ -4,35 +4,37 @@
     /* background-color: rgba(201, 201, 201, 0.053); */
 }
 .home_01{
-    width: 80%;
+    width: 85%;
     margin: 1cm auto;
-    border: 1px solid rgb(0, 140, 255);
-    background-color: rgba(48, 162, 255, 0.447);
+    border: 1.5px solid rgb(10, 156, 248);
     text-align: center;
-    padding: 1cm;
+    padding: 0.7cm;
     border-radius: 20px;
 }
 .home_01 > h1{
     margin: 0 auto 1cm auto;
-    color: rgb(255, 255, 255);
     font-weight: bold;
+    font-size: 25px;
+    color: red;
+    letter-spacing: 0.7px;
 }
 .home_01 > div{
-    width: 80%;
+    width: 100%;
     margin: 10px auto;
 }
 .home_01 > div > p{
     color: rgb(59, 59, 59);
     font-size: 17px;
     margin: 10px;
-    font-weight: lighter;
 }
 /* home_02 */
 .home_02{
+    width: 85%;
+    margin: auto;
     margin-bottom: 2cm;
 }
 .home_02 > h1{
-    width: 85%;
+    width: 100%;
     text-align: center;
     margin: auto;
     font-size: 25px;
@@ -40,10 +42,10 @@
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 15px;
     padding: 5px;
-    background-color: rgb(0, 98, 202);
+    background-color: rgb(10, 156, 248);
 }
 .home_02 > div{
-    width: 85%;
+    width: 100%;
     margin: 1cm auto;
     padding: 10px;
     background-color: rgba(48, 162, 255, 0.447);
@@ -54,7 +56,9 @@
 }
 .home_02 > div > div{
     background-color: white;
-    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     padding: 15px 10px;
     border-radius: 5px;
 }
@@ -63,6 +67,67 @@
     color: rgb(31, 31, 31);
     transition: 0.4s ease;
 }
+.home_02 > div > div > a > p{
+    font-size: 15px;
+    color: rgb(85, 85, 85);
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
 .home_02 > div > div > a:hover{
     color: rgb(0, 140, 255);
+}
+
+@media screen and (min-width:0px) and (max-width:1000px){
+    .home_01{
+        padding: 0.5cm;
+    }
+    .home_01 > h1{
+        font-size: 23px;
+    }
+    .home_01 > div{
+        width: 100%;
+        margin: 10px auto;
+    }
+    .home_01 > div > p{
+        color: rgb(59, 59, 59);
+        font-size: 16px;
+        margin: 10px 0;
+    }
+    .home_01{
+        width: 90%;
+    }   
+    .home_02{
+        width: 93%;
+    }
+    .home_02 > div > div > a > p{
+        font-size: 13px;
+        color: rgb(31, 31, 31);
+    }
+}
+
+@media screen and (min-width:0px) and (max-width:500px){
+    .home_01{
+        padding: 0.7cm 0.5cm;
+    }
+    .home_01 > h1{
+        font-size: 18px;
+    }
+    .home_01 > div{
+        width: 100%;
+        margin: 10px auto;
+    }
+    .home_01 > div > p{
+        font-size: 15px;
+        margin: 10px 0;
+    }
+    .home_01{
+        width: 95%;
+    }   
+    .home_02{
+        width: 90%;
+    }
+    .home_02 > div{
+        background-color: rgba(48, 162, 255, 0.447);
+        grid-template-columns: repeat(1,1fr);
+        gap: 15px;
+    }
 }
