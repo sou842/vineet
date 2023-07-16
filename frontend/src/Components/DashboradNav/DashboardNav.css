@@ -2,6 +2,31 @@
     margin: 0;
     padding: 0;
 }
+.dashboard_0{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(10, 156, 248);
+    color: white;
+}
+.dashboard_0 > div{
+    display: flex;
+    margin: 0 10px;
+}
+.dashboard_0 > div > div{
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+.dashboard_0 > div > div > select{
+    background-color: rgb(10, 156, 248);
+    display: flex;
+    align-items: center;
+    width: 80px;
+}
+.dashboard_0 > div > div > select > option{
+    background-color: white;
+    color: rgb(45, 45, 45);
+}
 .dashboardNav_100{
     padding: 7px 1.5cm;
     display: flex;

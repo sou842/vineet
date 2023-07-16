@@ -11,9 +11,6 @@ export const IndividualPerson = () => {
     const { catagory } = useParams();
     const now = new Date();
 
-
-    // console.log(city_data);
-
     let currentDate = date.format(now, 'YYYY-MMM-DD');
 
     const [formData, setFormData] = useState({
@@ -67,6 +64,7 @@ export const IndividualPerson = () => {
             setFormData((prevData) => ({...prevData,['aoNo']: city_data[value]['AO Number']}))
         }
 
+        
         setFormData((prevData) => ({...prevData,[name]: value}));
     };
 
@@ -477,8 +475,8 @@ export const IndividualPerson = () => {
                                 <input type="number" placeholder='AADHAAR Number' required name='aadhaarNumber' value={formData.aadhaarNumber} onChange={handleChange}/>
                             </div>
                             <div>
-                                <p>Name as per AADHAAR/AADHAAR Enrolment ID</p>
-                                <input type="text" placeholder='Name as per AADHAAR/AADHAAR Enrolment ID' required name='aadhaarName' value={formData.aadhaarName} onChange={handleChange}/>
+                                <p>Name as per AADHAAR</p>
+                                <input type="text" placeholder={formData.firstName?`${formData.firstName} ${formData.middleName} ${formData.lastName}`:'Name as per AADHAAR'} disabled name='aadhaarName' value={formData.aadhaarName} onChange={handleChange}/>
                             </div>
                         </div>
                     </div>
