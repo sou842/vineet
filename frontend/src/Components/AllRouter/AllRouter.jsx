@@ -32,7 +32,7 @@ return (
         <Route path={'/PanCard'} element={<PanCard/>}></Route>
         <Route path={'/NewPanCard'} element={<NewPanCard/>}></Route>
         <Route path={'/NewPanCardAllState'} element={<NewPanCardAllState/>}></Route>
-        <Route path={'/user/change-password'} element={<ChangePassword/>}></Route>
+        <Route path={'/user/change-password'} element={portalData?<ChangePassword/>:<Signin/>}></Route>
         <Route path={'*'} element={<h1>404 Page Not Found</h1>}></Route>
     </Routes>
 )

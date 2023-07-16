@@ -5,9 +5,21 @@ import { useNavigate } from 'react-router-dom';
 
 
 export const PanCardNav = () => {
+    const toast=useToast()
     const navigate = useNavigate();
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null
 
+    const handleLogout = () => {
+        localStorage.removeItem("digitalPortal")
+    
+        toast({
+          title: 'Logout Succesfull.',
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        })
+        window.location = '/'
+      }
 
     return (
         <div className="pancardnav_1">
@@ -86,8 +98,8 @@ export const PanCardNav = () => {
                         </MenuButton>
                         <MenuList color={"black"} >
                             <MenuItem onClick={() => navigate('/profile')}>Profile</MenuItem>
-                            <MenuItem onClick={() => navigate('/ChangePassword')}>Change Password</MenuItem>
-                            <MenuItem onClick={() => navigate('/profile')}>Logout</MenuItem>
+                            <MenuItem onClick={() => navigate('/user/change-password')}>Change Password</MenuItem>
+                            <MenuItem onClick={handleLogout}>Logout</MenuItem>
                         </MenuList>
                     </Menu>
                 </div>

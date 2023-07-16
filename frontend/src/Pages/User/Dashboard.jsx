@@ -72,7 +72,7 @@ export const Dashboard = () => {
               </MenuButton>
               <MenuList color={"black"} >
                 <MenuItem onClick={() => navigate('/profile')}>Profile</MenuItem>
-                <MenuItem onClick={() => navigate('/ChangePassword')}>Change Password</MenuItem>
+                <MenuItem onClick={() => navigate('/user/change-password')}>Change Password</MenuItem>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </MenuList>
             </Menu>
