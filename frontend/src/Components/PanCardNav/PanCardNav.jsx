@@ -34,7 +34,33 @@ export const PanCardNav = () => {
                     VINEET DIGITAL PORTAL
                 </div>
                 <div>
+
+                    <a href="#">
+                        <p>Receipt</p>
+                    </a>
+                </div>
+                <div>
+                    <a href="/user/upload">
+                        <p>Upload</p>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <p>Reject Pan by NSDL</p>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <p>Complite</p>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <p>Check Pan Status</p>
+                    </a>
+
                     LOGO
+
                 </div>
             </div>
             <div className="pancardnav_1">

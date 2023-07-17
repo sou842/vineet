@@ -2,12 +2,14 @@ const express=require("express");
 const cors = require("cors");
 const { connection } = require("./db");
 const { userRoute } = require('./route/user.route');
+const { newPanRoute } = require("./route/newPan.route");
 
 require('dotenv').config();
 const app=express()
 app.use(express.json())
 app.use(cors())
 app.use('/api',userRoute)
+app.use('/user',newPanRoute)
 
 
 

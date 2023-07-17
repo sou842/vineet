@@ -145,7 +145,7 @@ return (
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Update you details</ModalHeader>
+          <ModalHeader>Update your details</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>

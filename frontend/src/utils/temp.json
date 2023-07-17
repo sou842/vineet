@@ -2,18 +2,18 @@
     "city":[
        {
         "name":"kolkata",
-        "aotype":"",
-        "aono":"",
-        "aocode":"",
-        "rangecode":""
+        "aotype":"ca",
+        "aono":"1",
+        "aocode":"dlc",
+        "rangecode":"112"
 
        },
        {
-        "name":"jahsi",
-        "aotype":"",
-        "aono":"",
-        "aocode":"",
-        "rangecode":""
+        "name":"midnapur",
+        "aotype":"w",
+        "aono":"91",
+        "aocode":"wbg",
+        "rangecode":"139"
 
        }
 

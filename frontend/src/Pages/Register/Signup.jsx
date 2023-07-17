@@ -17,6 +17,7 @@ import {
   useDisclosure,
   useToast
 } from "@chakra-ui/react";
+import './Signup.css'
 import React, { useEffect, useState } from "react";
 import { state } from "../../utils/state";
 import { useNavigate } from "react-router-dom";
@@ -83,11 +84,11 @@ const handleNo=()=>{
       <Heading textAlign={"center"} size={"md"} p={'30px 0'}>
         Contact Franchise Forms With Register
       </Heading>
-      <Box w={['90%','90%',"60%"]} m={"auto"} shadow={'md'} p={'50px'} borderRadius={'10px'} bg={'white'}>
-        <form onSubmit={handleSubmit}>
-          <Box>
-            <Box display={"flex"} flexDirection={['column','column','row']} justifyContent={"space-around"} gap={"10px"}>
-              <FormControl>
+      <Box w={['90%','80%',"60%"]} m={"auto"} shadow={'md'} p={'50px'} borderRadius={'10px'} bg={'white'} >
+        <form onSubmit={handleSubmit} >
+          <Box >
+            <Box display={"flex"} flexDirection={['column','column','row']} justifyContent={"space-around"} gap={"10px"} bg={'white'} >
+              <FormControl >
                 <FormLabel>Name</FormLabel>
                 <Input type="text" placeholder="Enter your name" name="name" onChange={handleChange} required/>
               </FormControl>
@@ -99,10 +100,11 @@ const handleNo=()=>{
           
 
           
-            <Box  display={"flex"} flexDirection={['column','column','row']} justifyContent={"space-around"} gap={"10px"}>
+            <Box  display={"flex"} flexDirection={['column','column','row']} justifyContent={"space-around"} gap={"10px"} bg={'white'}>
               <FormControl>
                 <FormLabel>Mobile No</FormLabel>
-                <Input type="number" placeholder="Enter your mobile number" name="mobileNumber" onChange={handleChange} required/>
+                <Input type="number"  placeholder="Enter your mobile number" name="mobileNumber" 
+                onChange={handleChange} required/>
               </FormControl>
               <FormControl>
                 <FormLabel>Address</FormLabel>
@@ -112,7 +114,7 @@ const handleNo=()=>{
           
 
          
-            <Box  display={"flex"} flexDirection={['column','column','row']} justifyContent={"space-around"} gap={"10px"}>
+            <Box  display={"flex"} flexDirection={['column','column','row']} justifyContent={"space-around"} gap={"10px"} bg={'white'}>
               <FormControl>
                 <FormLabel>City</FormLabel>
                 <Input type="text" placeholder="Enter your city" name="city" onChange={handleChange} required />
@@ -125,7 +127,7 @@ const handleNo=()=>{
           
 
          
-            <Box  display={"flex"} flexDirection={['column','column','row']} justifyContent={"space-around"} gap={"10px"}>
+            <Box  display={"flex"} flexDirection={['column','column','row']} justifyContent={"space-around"} gap={"10px"} bg={'white'}>
               <FormControl>
                 <FormLabel>State</FormLabel>
                 <Select name="state" onChange={handleChange} required>
@@ -150,16 +152,16 @@ const handleNo=()=>{
          
 
          
-            <Box  display={"flex"} flexDirection={['column','column','row']} justifyContent={"space-around"} gap={"10px"}>
+            <Box  display={"flex"} flexDirection={['column','column','row']} justifyContent={"space-around"} gap={"10px"} bg={'white'}>
               <FormControl>
                 <FormLabel>Pan card Number</FormLabel>
-                <Input type="text" style={{textTransform:'uppercase'}} placeholder="Enter your pan card number"  name="panNumber" onChange={handleChange} required/>
+                <Input type="text" maxLength={'10'} value={regData.panNumber.toUpperCase()} placeholder="Enter your pan card number"  name="panNumber" onChange={handleChange} required/>
               </FormControl>
               <FormControl>
                 <FormLabel>Addhaar card Number</FormLabel>
                 <Input
                   type="text"
-                  placeholder="Enter your aadhaar card number" name="aadharNumber" onChange={handleChange} required
+                  placeholder="Enter your aadhaar card number" value={regData.aadharNumber} name="aadharNumber" onChange={handleChange} required
                 />
               </FormControl>
             </Box>

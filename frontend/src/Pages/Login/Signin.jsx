@@ -77,7 +77,7 @@ const handleSubmit=(e)=>{
             <Box >
             <FormControl>
             <FormLabel>Vendor ID</FormLabel>
-            <Input type='text' placeholder='Vendor ID' name='vendorID' onChange={handleChange}/>
+            <Input type='text' placeholder='Vendor ID' name='vendorID' maxLength={10} value={loginData.vendorID.toUpperCase()} onChange={handleChange}/>
             </FormControl>
             <FormControl>
             <FormLabel>Password</FormLabel>
