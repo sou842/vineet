@@ -87,6 +87,7 @@ const handleUploadAadharCard=(e)=>{
 
 
 
+
     useEffect(()=>{
         setLoading(true)
         axios.get(`http://localhost:8080/user/upload-pan-card/${id}`,{
