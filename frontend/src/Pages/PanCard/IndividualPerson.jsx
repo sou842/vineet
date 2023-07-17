@@ -6,6 +6,10 @@ import { useState } from 'react';
 import date from 'date-and-time';
 import axios from 'axios';
 
+import {city, city_data} from  '../../city.js'
+
+
+
 export const IndividualPerson = () => {
     const portalData=JSON.parse(localStorage.getItem('digitalPortal'))||null
     const { catagory } = useParams();
@@ -58,8 +62,19 @@ export const IndividualPerson = () => {
 
     const handleChange = (event) => {
         const { name, value } = event.target;
+
+        if(name=='city' && value!=''){
+            setFormData((prevData) => ({...prevData,['areaCode']: city_data[value]['Area Code']}))
+            setFormData((prevData) => ({...prevData,['aotype']: city_data[value]['AO Type']}))
+            setFormData((prevData) => ({...prevData,['rangeCode']: city_data[value]['Range Code']}))
+            setFormData((prevData) => ({...prevData,['aoNo']: city_data[value]['AO Number']}))
+        }
+
+        
         setFormData((prevData) => ({...prevData,[name]: value}));
     };
+
+
     console.log(formData);
 
     const handleSubmit = (event) => {
@@ -107,25 +122,26 @@ export const IndividualPerson = () => {
                                 <p>City*</p>
                                 <select name="city" required value={formData.city} onChange={handleChange}>
                                     <option value="">City</option>
-                                    <option value="kolkata">kolkata</option>
-                                    <option value="Goa">Goa</option>
+                                    {city.map((ele,index)=>(
+                                        <option key={index} value={ele}>{ele}</option>
+                                    ))}
                                 </select>
                             </div>
                             <div>
                                 <p>Area code*</p>
-                                <input type="text" placeholder='Area code' disabled />
+                                <input type="text" value={formData.areaCode} placeholder='Area code' disabled />
                             </div>
                             <div>
                                 <p>AOType*</p>
-                                <input type="text" placeholder='AOType' disabled />
+                                <input type="text" value={formData.aotype} placeholder='AOType' disabled />
                             </div>
                             <div>
                                 <p>Range Code*</p>
-                                <input type="text" placeholder='Range Code' disabled />
+                                <input type="text" value={formData.rangeCode} placeholder='Range Code' disabled />
                             </div>
                             <div>
                                 <p>AO No*</p>
-                                <input type="text" placeholder='AO No' disabled />
+                                <input type="text" value={formData.aoNo} placeholder='AO No' disabled />
                             </div>
                         </div>
                     </div>
@@ -160,7 +176,7 @@ export const IndividualPerson = () => {
                         </div>
                         <div>
                             <div>
-                                <p>Gender*</p>
+                                <p>Gender<i>*</i></p>
                                 <select required name='gender' value={formData.gender} onChange={handleChange} >
                                     <option value="">Gender</option>
                                     <option value="Male">Male</option>
@@ -170,7 +186,7 @@ export const IndividualPerson = () => {
                             </div>
 
                             <div>
-                                <p>Date of Birth*</p>
+                                <p>Date of Birth<i>*</i></p>
                                 <select required name='dateOfBirth' value={formData.dateOfBirth} onChange={handleChange}>
                                     <option value="">Date of Birth</option>
                                     <option value="1">1</option>
@@ -208,7 +224,7 @@ export const IndividualPerson = () => {
                             </div>
 
                             <div>
-                                <p>Month*</p>
+                                <p>Month<i>*</i></p>
                                 <select required name='monthOfBirth' value={formData.monthOfBirth} onChange={handleChange}>
                                     <option value="">Month</option>
                                     <option value="January">January</option>
@@ -227,7 +243,7 @@ export const IndividualPerson = () => {
                             </div>
 
                             <div>
-                                <p>Year*</p>
+                                <p>Year<i>*</i></p>
                                 <select required name='yearOfBirth' value={formData.yearOfBirth} onChange={handleChange}>
                                     <option value="">Year</option>
                                     <option value="1894">1894</option>
@@ -489,8 +505,8 @@ export const IndividualPerson = () => {
                                 <input type="number" placeholder='AADHAAR Number' required name='aadhaarNumber' value={formData.aadhaarNumber} onChange={handleChange}/>
                             </div>
                             <div>
-                                <p>Name as per AADHAAR/AADHAAR Enrolment ID</p>
-                                <input type="text" placeholder='Name as per AADHAAR/AADHAAR Enrolment ID' required name='aadhaarName' value={formData.aadhaarName} onChange={handleChange}/>
+                                <p>Name as per AADHAAR</p>
+                                <input type="text" placeholder={formData.firstName?`${formData.firstName} ${formData.middleName} ${formData.lastName}`:'Name as per AADHAAR'} disabled name='aadhaarName' value={formData.aadhaarName} onChange={handleChange}/>
                             </div>
                         </div>
                     </div>
