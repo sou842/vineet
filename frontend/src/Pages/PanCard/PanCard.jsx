@@ -70,7 +70,7 @@ onOpen()
           <ModalHeader>Please Note :</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Heading size={'sm'}>संचालक भाइयों अब आप इसी पेज पर नीचे दिए गए Download slip by acknow पर click करके अपनी सब पुरानी स्लिप डाउनलोड कर सकते है </Heading>
+            <Heading size={'sm'}>संचालक भाइयों अब आप इसी पेज पर नीचे दिए गए <Heading size={'sm'} color={'red'} as={'span'}> Download slip by acknow पर click </Heading> करके अपनी सब पुरानी स्लिप डाउनलोड कर सकते है </Heading>
           </ModalBody>
         </ModalContent>
       </Modal>

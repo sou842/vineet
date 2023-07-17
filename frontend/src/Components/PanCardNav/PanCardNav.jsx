@@ -58,7 +58,7 @@ export const PanCardNav = () => {
                     </a>
                 </div>
                 <div>
-                    <a href="#">
+                    <a href="/user/upload">
                         <p>Upload</p>
                     </a>
                 </div>

@@ -19,7 +19,18 @@ userRoute.post("/register", async (req, res) => {
       length: 10,
       numbers: true,
     });
+    // while(true){
     const randomNumber = prandom.number(7);
+    //   const existUser= await UserModel.findOne({vendorID:randomNumber})
+    //   if(existUser.vendorID==randomNumber){
+    //     continue
+    //   }
+    //   else{
+    //     break
+    //   }
+    // }
+
+
     bcrypt.hash(password, 5, async (err, hash) => {
       req.body.password = hash;
       req.body.vendorID = "VDP"+randomNumber

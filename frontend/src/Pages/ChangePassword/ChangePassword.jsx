@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, FormLabel, Heading, Input,useToast } from '@chakra-ui/react'
+import { Box, Button, Checkbox, FormControl, FormHelperText, FormLabel, Heading, Input,useToast } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
@@ -45,6 +45,11 @@ const ChangePassword = () => {
         
     }
 
+    const handleCancel=()=>{
+        window.location='/Dashboard'
+    }
+  
+
     useEffect(()=>{
         document.title = "change password"
     },[])
@@ -54,18 +59,23 @@ const ChangePassword = () => {
     <Box w={['90%','90%','40%']} m={'auto'} shadow={'md'} p={'30px'}  bg={'white'} borderRadius={'10px'}>
         <Heading size={'md'} textAlign={'center'}>Change Password</Heading>
         <form onSubmit={handlepasswordSubmit}>
-            <Box>
+            <Box bg={'white'}>
 
-            <FormControl>
+            <FormControl bg={'white'}>
             <FormLabel>Old Password:</FormLabel>
             <Input type='password' placeholder='Enter your old password' name='oldPassword' onChange={handlePasswordChange}/>
             </FormControl>
 
-            <FormControl>
+            <FormControl bg={'white'}>
             <FormLabel>New Password:</FormLabel>
-            <Input type='password' placeholder='Enter your new password' name='newPassword' onChange={handlePasswordChange}/>
+            <Input type='password' placeholder='Enter your new password' id='newPass' value={changePassword.newPassword} name='newPassword' onChange={handlePasswordChange}/>
+            <FormControl mt={'5px'}>
+            <Checkbox >Show password</Checkbox>
             </FormControl>
-            <Button mt={'15px'} size={'sm'} colorScheme='yellow' type='submit'>UPDATE</Button>
+            <FormHelperText color={'red'}>Please enter minimum password length 8.</FormHelperText>
+            </FormControl>
+            <Button mt={'15px'} size={'xs'} colorScheme='yellow' type='submit' mr={'5px'} isDisabled={changePassword.newPassword.length<=7}>UPDATE</Button>
+            <Button mt={'15px'} size={'xs'} colorScheme='red' type='submit' onClick={handleCancel}>CANCEL</Button>
             </Box>
         </form>
     </Box>

@@ -4,8 +4,10 @@ import { PanCardNav } from '../../Components/PanCardNav/PanCardNav'
 import { useParams } from 'react-router-dom'
 import { useState } from 'react';
 import date from 'date-and-time';
+import axios from 'axios';
 
 export const IndividualPerson = () => {
+    const portalData=JSON.parse(localStorage.getItem('digitalPortal'))||null
     const { catagory } = useParams();
     const now = new Date();
 
@@ -22,6 +24,7 @@ export const IndividualPerson = () => {
         firstName: '',
         middleName: '',
         lastName: '',
+        title:"",
         gender: '',
         dateOfBirth: '',
         monthOfBirth: '',
@@ -49,6 +52,7 @@ export const IndividualPerson = () => {
         verifierPlace: '',
         verificationDate: currentDate,
         requiredOption: '',
+        documents:[],
         PanFee: 107
     });
 
@@ -60,7 +64,18 @@ export const IndividualPerson = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // console.log(formData);
+        console.log(formData);
+       axios.post("http://localhost:8080/user/new-pan-card",formData,{
+        headers: {
+            "Authorization": portalData.token
+          }
+    
+       }).then((res)=>{
+        console.log(res.data);
+       })
+       .catch((err)=>{
+        console.log(err);
+       })
     };
     return (
         <div>
@@ -117,6 +132,19 @@ export const IndividualPerson = () => {
 
                     <div className="individualPerson_2">
                         <div>
+                        <div>
+                                <p>Title<i>*</i></p>
+                                <select required name='title' value={formData.title} onChange={handleChange} >
+                                    <option value="">Select</option>
+                                    <option value="Shri">Shri</option>
+                                    <option value="Smt">Smt</option>
+                                    <option value="Kumari">Kumari</option>
+                                </select>
+                            </div>
+
+
+
+
                             <div>
                                 <p>First name<i>*</i></p>
                                 <input type="text" placeholder='First Name' required name='firstName' value={formData.firstName} onChange={handleChange}/>
@@ -344,7 +372,7 @@ export const IndividualPerson = () => {
                             <div>
                                 <p>Residence Address<i>*</i></p>
                                 <select required name='residenceAddress' value={formData.residenceAddress} onChange={handleChange}>
-                                    <option value="">Address</option>
+                                    {/* <option value="">Address</option> */}
                                     <option value="Residence Address">Residence Address</option>
                                 </select>
                             </div>
@@ -489,7 +517,7 @@ export const IndividualPerson = () => {
                             <div>
                                 <p>Which of these documents are you submitting as an Identity Proof<i>*</i></p>
                                 <select required name='identityProof' value={formData.identityProof} onChange={handleChange}>
-                                    <option value={''}>Select</option>
+                                    {/* <option value={''}>Select</option> */}
                                     <option value="AADHAR Card issued by UIDAL (In Copy)">AADHAR Card issued by UIDAL (In Copy)</option>
                                 </select>
                             </div>
@@ -498,7 +526,7 @@ export const IndividualPerson = () => {
                             <div>
                                 <p>Which of these documents are you submitting as an Address Proof<i>*</i></p>
                                 <select required name='addressProof' value={formData.addressProof} onChange={handleChange}>
-                                    <option value={''}>Select</option>
+                                    {/* <option value={''}>Select</option> */}
                                     <option value="AADHAR Card issued by UIDAL (In Copy)">AADHAR Card issued by UIDAL (In Copy)</option>
                                 </select>
                             </div>
@@ -507,7 +535,7 @@ export const IndividualPerson = () => {
                             <div>
                                 <p>Which of these documents are you submitting as a DOB Proof<i>*</i></p>
                                 <select required name='dobProof' value={formData.dobProof} onChange={handleChange}>
-                                    <option value={''}>Select</option>
+                                    {/* <option value={''}>Select</option> */}
                                     <option value="AADHAR Card issued by UIDAL (In Copy)">AADHAR Card issued by UIDAL (In Copy)</option>
                                 </select>
                             </div>
@@ -547,7 +575,7 @@ export const IndividualPerson = () => {
                             <div>
                                 <p>Select the required option<i>*</i></p>
                                 <select required name='requiredOption' value={formData.requiredOption} onChange={handleChange}>
-                                    <option value="">Select</option>
+                                    {/* <option value="">Select</option> */}
                                     <option value="Both Physical PAN Card and e-PAN">Both Physical PAN Card and e-PAN</option>
                                 </select>
                             </div>
