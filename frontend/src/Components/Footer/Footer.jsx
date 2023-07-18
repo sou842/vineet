@@ -17,14 +17,17 @@ return (
                 </div>
             </div>
             <div>
+                <form >
                 <input type="text" placeholder='Name' />
                 <input type="text" placeholder='Email' />
                 <input type="text" placeholder='Number'/>
                 {/* <input type="text" placeholder='Massage'/> */}
                 <textarea placeholder='Massage'></textarea>
+                <button type='sibmit'>SEND</button>
+                </form>
             </div>
         </div>
-        <div className="footer_1">© 2017-2023 Digital India Portal. All rights reserved</div>
+        <div className="footer_1">© 2017-2023 Vineet India Portal. All rights reserved</div>
     </footer>
 )
 }

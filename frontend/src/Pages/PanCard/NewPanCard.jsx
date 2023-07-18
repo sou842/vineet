@@ -3,6 +3,7 @@ import { DashboardNav } from "../../Components/DashboradNav/DashboardNav.jsx";
 import { DashboardFooter } from "../../Components/DashboradFooter/DashboradFooter.jsx";
 import {PanCardNav} from '../../Components/PanCardNav/PanCardNav.jsx'
 import { useNavigate } from "react-router-dom";
+import { Footer } from "../../Components/Footer/Footer";
 
 
 export const NewPanCard = () => {
@@ -44,7 +45,7 @@ export const NewPanCard = () => {
       </div>
 
       <div>
-        <DashboardFooter />
+        <Footer />
       </div>
     </div>
   );
