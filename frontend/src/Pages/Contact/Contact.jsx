@@ -11,7 +11,7 @@ return (
 
 
         <div className='contact_0'>
-            <h1>Contact Us</h1>
+            <h1>CONTECT US</h1>
             <div className='contact_1'>
                 <div>
                 <input type="text" placeholder='Name'/>

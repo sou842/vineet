@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import './Dashboard.css'
 import { DashboardNav } from '../../Components/DashboradNav/DashboardNav'
-import { DashboardFooter } from '../../Components/DashboradFooter/DashboradFooter';
-import { Button, Menu, MenuButton, MenuItem, MenuList, useToast } from '@chakra-ui/react';
 import { Footer } from '../../Components/Footer/Footer';
 
 
 export const Dashboard = () => {
-
 
 
   return (
@@ -25,15 +22,15 @@ export const Dashboard = () => {
         </div>
 
         <div className='dashboard_2'>
-          <div><a href="/PanCard"><p>PAN CARD</p></a></div>
+          <div><a href="/PanCard"><p>Pan Card</p></a></div>
           <div><a href="#"><p>Electricity</p></a></div>
-          <div><a href="#"><p>MOBILE Recharge</p></a></div>
+          <div><a href="#"><p>Mobile Recharge</p></a></div>
           <div><a href="#"><p>DTH Recharge</p></a></div>
           <div><a href="#"><p>Income Tax Return</p></a></div>
           <div><a href="#"><p>GST</p></a></div>
-          <div><a href="#"><p>DIGITAL JOB Portal</p></a></div>
+          <div><a href="#"><p>Digital Job Portal</p></a></div>
           <div><a href="#"><p>Social Services</p></a></div>
-          <div><a href="#"><p>NATIONAL PENSION SYSTEM</p></a></div>
+          <div><a href="#"><p>National Pension System</p></a></div>
         </div>
       </div>
 

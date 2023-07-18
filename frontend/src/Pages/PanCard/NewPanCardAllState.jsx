@@ -1,6 +1,4 @@
 import './NewPanCardAllState.css';
-import { DashboardNav } from '../../Components/DashboradNav/DashboardNav'
-import { DashboardFooter } from '../../Components/DashboradFooter/DashboradFooter';
 import { useNavigate } from "react-router-dom"
 import { PanCardNav } from '../../Components/PanCardNav/PanCardNav';
 import { useToast } from '@chakra-ui/react';

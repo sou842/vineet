@@ -2,46 +2,20 @@
     margin: 0;
     padding: 0;
 }
-.pancard_0{
-    display: flex;
-    justify-content: space-between;
-    background-color: rgb(10, 156, 248);
-    /* background-color: #272C4C; */
-    color: white;
-}
-.pancard_0 > div{
-    display: flex;
-    margin: 0 10px;
-}
-.pancard_0 > div > div{
-    display: flex;
-    align-items: center;
-    margin: 10px;
-}
-.pancard_0 > div > div > select{
-    background-color: rgb(10, 156, 248);
-    display: flex;
-    align-items: center;
-    width: 80px;
-}
-.pancard_0 > div > div > select > option{
-    background-color: white;
-    color: rgb(45, 45, 45);
-}
-/* pancard_1 */
 
+/* pancard_1 */
 .pancard_1{
-    background-color: rgba(48, 162, 255, 0.447);
+    /* background-color: rgba(48, 162, 255, 0.447); */
+    border: 1.5px solid rgb(10, 156, 248);
     width: 80%;
     margin: 1cm auto;
-    padding: 20px 15px;
+    padding: 20px;
     text-align: center;
     border-radius: 15px;
 }
 .pancard_1 > p{
     margin: 5px 0;
 }
-
 .pancard_2{
     width: 80%;
     display: grid;
@@ -58,7 +32,29 @@
     border-radius: 7px;
     transition: 0.4s ease;
 }
+.pancard_2 > div > a > p{
+    font-size: 15px;
+}
 .pancard_2 > div:hover{
     background-color: white;
     color: rgb(10, 156, 248);
+}
+
+@media screen and (min-width:0px) and (max-width:700px){
+.pancard_1{
+    width: 93%;
+}
+.pancard_2{
+    width: 93%;
+}
+}
+@media screen and (min-width:0px) and (max-width:550px){
+.pancard_1{
+    width: 90%;
+    text-align: start;
+}
+.pancard_2{
+    width: 90%;
+    grid-template-columns: repeat(1,1fr);
+}
 }

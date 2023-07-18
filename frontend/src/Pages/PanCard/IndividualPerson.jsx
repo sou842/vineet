@@ -106,11 +106,11 @@ export const IndividualPerson = () => {
             <div><PanCardNav /></div>
 
             <div >
-                <div className='individualPerson_1'>
+                {/* <div className='individualPerson_1'>
                     <p> Email:- helpdigitalindiaportal@gmail.com</p>
                     <p> Phones:- 9368372889</p>
                     <p> Time:- (10am to 5pm रविवार अवकाश/Lunch Time:- 2:00PM TO 2:30PM)</p>
-                </div>
+                </div> */}
 
                 <h1 className='individualPerson_head'>NEW PANCARD</h1>
 

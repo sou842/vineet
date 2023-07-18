@@ -15,6 +15,30 @@
     border-radius: 10px;
     transition: 0.3s ease;
 }
+.newpancard_2 > div > a > p{
+    font-size: 18px;
+}
+.newpancard_2 > div > a > p > i{
+    font-size: 15px;
+    font-weight: lighter;
+    color: rgb(236, 236, 236);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .newpancard_2 > div:hover{
     background-color: rgb(87, 191, 255);
+}
+
+@media screen and (min-width:0px) and (max-width:700px){
+.newpancard_2{
+    width: 93%;
+}
+}
+@media screen and (min-width:0px) and (max-width:550px){
+.newpancard_2{
+    width: 90%;
+}
+.newpancard_2 > div > a > p > i{
+    font-size: 13px;
+}
 }

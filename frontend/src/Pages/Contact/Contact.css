@@ -11,7 +11,8 @@
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(64, 64, 64);
-    margin: 1cm 0;
+    font-size: 25px;
+    margin: 0.7cm 0;
 }
 .contact_1 > div{
     display: flex;
@@ -20,11 +21,15 @@
     /* border: 1px solid blue; */
 }
 .contact_1 > div > input{
-    width: 45%;
-    height: 35px;
+    border: 1.2px solid grey;
+    border-radius: 10px;
+    width: 47%;
+    height: 45px;
     padding-left: 15px;
 }
 .contact_1 > div > textarea{
+    border: 1px solid grey;
+    border-radius: 10px;
     width: 100%;
     height: 80px;
     padding-left: 15px;
@@ -38,27 +43,48 @@
     padding-top: 10px;
 }
 .contact_1 > div > button{
-    width: 250px;
+    width: 280px;
     height: 50px;
-    background-color: rgba(23, 151, 255, 0.587);
+    background-color: rgba(10, 157, 248, 0.893);
+    border: 1.3px solid rgb(10, 156, 248);
     color: white;
-    border: 0;
     transition: 0.4s ease;
+    border-radius: 5px;
 }
 .contact_1 > div > button:hover{
-    border: 1.4px solid rgba(23, 151, 255, 0.587);
     color: rgba(23, 151, 255, 0.822);
     background-color: white;
 }
 /* contact_2 */
 
 .contact_2{
-    width: 90%;
+    width: 100%;
     border-radius: 15px;
     margin: 1cm auto;
     padding: 20px 10px;
-    border: 1.3px solid rgba(23, 151, 255, 0.822);
+    border: 1.5px solid rgba(23, 151, 255, 0.822);
 }
 .contact_2 > p{
     text-align: center;
+}
+
+@media screen and (min-width:0px) and (max-width:1000px){
+.contact_0{
+    width: 90%;
+}
+}
+@media screen and (min-width:0px) and (max-width:800px){
+.contact_1 > div{
+    display: block;
+    margin: 0;
+}
+.contact_1 > div > input{
+    width: 100%;
+    height: 45px;
+    margin: 10px 0;
+
+}
+.contact_1 > div > textarea{
+    margin: 10px 0;
+}
 }
