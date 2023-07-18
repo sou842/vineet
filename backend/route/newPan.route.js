@@ -1,5 +1,6 @@
 const express=require("express")
 const prandom = require("prandom");
+const fs=require('fs')
 const multer=require('multer')
 const path = require('path');
 const { auth } = require("../middleware/auth.middleware")
@@ -73,6 +74,7 @@ const upload=multer({
 //FrontForm49A
 newPanRoute.patch('/upload-pan-document/:id',upload.single(`file`),async(req,res)=>{
     const {id}=req.params
+    
     try {
         await NewPanModel.updateMany({_id:id},{$push:{documents:{name:req.file.fieldname,image:req.file.filename}}})
          res.send("Document upload succesfull")

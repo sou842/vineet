@@ -4,6 +4,7 @@ const { connection } = require("./db");
 const { userRoute } = require('./route/user.route');
 const { newPanRoute } = require("./route/newPan.route");
 
+
 require('dotenv').config();
 const app=express()
 app.use(express.json())
