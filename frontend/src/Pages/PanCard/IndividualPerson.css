@@ -75,7 +75,6 @@
     text-align: center;
     font-size: 25px;
 }
-
 .individualPerson_3{
     display: block;
     width: 40%;
@@ -90,4 +89,29 @@
 .individualPerson_3:hover{
     background-color: white;
     color: rgb(10, 156, 248);
+}
+
+@media screen and (min-width:0px) and (max-width:1000px){
+.individualPerson_1{
+    width: 90%;
+}
+.individualPerson_2{
+    width: 90%;
+}
+}
+
+@media screen and (min-width:0px) and (max-width:850px){
+.individualPerson_1{
+    text-align: start;
+}
+.individualPerson_2{
+    margin: 0.5cm auto;
+}
+.individualPerson_2 > div{
+    display: block;
+    margin: 15px 0;
+}
+.individualPerson_3{
+    width: 60%;
+}
 }

@@ -1,8 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import './DashboardNav.css'
+import user from '../../assets/user.png';
+import { useNavigate } from 'react-router-dom';
 import { Button, Menu, MenuButton, MenuItem, MenuList, MenuGroup, useToast, useMediaQuery } from '@chakra-ui/react';
 import { ChevronDownIcon } from "@chakra-ui/icons";
-
 
 
 export const DashboardNav = () => {
@@ -36,7 +36,9 @@ export const DashboardNav = () => {
                     VINEET DIGITAL PORTAL
                 </div>
                 <div>
-                    LOGO
+                    <a href="/">
+                        <img src={user} alt="user" />
+                    </a>
                 </div>
             </div>
 
@@ -44,7 +46,7 @@ export const DashboardNav = () => {
                 {isSmallerThan1000 ?
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Menu>
-                            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} colorScheme="#0a9cf8" margin={0}>
+                            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} colorScheme="#0a9cf8" margin={0} fontSize={['10px', '15px', '15px']}> 
                                 Menu
                             </MenuButton>
                             <MenuList color={"black"}>
@@ -54,7 +56,7 @@ export const DashboardNav = () => {
                                 <MenuItem onClick={() => navigate('/profile')}>Ledger</MenuItem>
                                 <MenuItem onClick={() => navigate('/profile')}>Add Money</MenuItem>
                                 <Menu placement="right-start">
-                                    <MenuButton colorScheme='white' color={'black'} as={Button} rightIcon={<ChevronDownIcon />} bg={'white'} margin={0}>Services</MenuButton>
+                                    <MenuButton colorScheme='white' color={'black'} fontSize={['10px', '15px', '15px']} as={Button} rightIcon={<ChevronDownIcon />} bg={'white'} margin={0}>Services</MenuButton>
                                     <MenuList>
                                         <MenuItem onClick={() => navigate('/PanCard')}>Pan Card</MenuItem>
                                         <MenuItem onClick={() => navigate('/ChangePassword')}>Electricity</MenuItem>
@@ -97,14 +99,15 @@ export const DashboardNav = () => {
                         <div><a href="#"><p>Add Money</p></a></div>
                     </div>}
                 <div>
-                    <div><a href="#"><p>PCW: Rs.0</p></a></div>
-                    <div><a href="#"><p>OCW: Rs.0</p></a></div>
+                    <div><a href="#"><p>PCW: 1000 ₹</p></a></div>
+                    <div><a href="#"><p>OCW: 10000 ₹</p></a></div>
                     <div>
                         <Menu >
                             <MenuButton
                                 as={Button}
                                 rightIcon={<ChevronDownIcon />}
                                 colorScheme="#0a9cf8"
+                                fontSize={['10px', '15px', '15px']}
                             >
                                 {portalData.username.toUpperCase()}
                             </MenuButton>
