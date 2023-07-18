@@ -34,33 +34,7 @@ export const PanCardNav = () => {
                     VINEET DIGITAL PORTAL
                 </div>
                 <div>
-
-                    <a href="#">
-                        <p>Receipt</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="/user/upload">
-                        <p>Upload</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="#">
-                        <p>Reject Pan by NSDL</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="#">
-                        <p>Complite</p>
-                    </a>
-                </div>
-                <div>
-                    <a href="#">
-                        <p>Check Pan Status</p>
-                    </a>
-
                     LOGO
-
                 </div>
             </div>
             <div className="pancardnav_1">
@@ -73,7 +47,7 @@ export const PanCardNav = () => {
                             <MenuList color={"black"}>
                                 <MenuItem onClick={() => navigate('/Dashboard')}>Dashboard</MenuItem>
                                 <MenuItem onClick={() => navigate('#')}>Receipt</MenuItem>
-                                <MenuItem onClick={() => navigate('#')}>Upload</MenuItem>
+                                <MenuItem onClick={() => navigate('/user/upload')}>Upload</MenuItem>
                                 <MenuItem onClick={() => navigate('#')}>Reject Pan by NSDL</MenuItem>
                                 <MenuItem onClick={() => navigate('#')}>Complite</MenuItem>
                                 <MenuItem onClick={() => navigate('#')}>Check Pan Status</MenuItem>
@@ -104,7 +78,7 @@ export const PanCardNav = () => {
                             </a>
                         </div>
                         <div>
-                            <a href="#">
+                            <a href="/user/upload">
                                 <p>Upload</p>
                             </a>
                         </div>
