@@ -67,7 +67,7 @@ export const PanCardNav = () => {
                 {isSmallerThan1150 ?
                     <div  style={{ display: 'flex', alignItems: 'center' }}>
                         <Menu>
-                            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} colorScheme="#0a9cf8" margin={0}>
+                            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} colorScheme="#0a9cf8" margin={0} fontSize={['10px','15px','15px']}>
                                 Menu
                             </MenuButton>
                             <MenuList color={"black"}>
@@ -97,27 +97,7 @@ export const PanCardNav = () => {
                                 <p>Dashboard</p>
                             </a>
                         </div>
-                        <div>
-                            <Menu >
-                                <MenuButton
-                                    as={Button}
-                                    rightIcon={<ChevronDownIcon />}
-                                    colorScheme="#0a9cf8"
-                                >
-                                    Services
-                                </MenuButton>
-                                <MenuList color={"black"} >
-                                    <MenuItem onClick={() => navigate('/PanCard')}>Pan Card</MenuItem>
-                                    <MenuItem onClick={() => navigate('/ChangePassword')}>Electricity</MenuItem>
-                                    <MenuItem onClick={() => navigate('/profile')}>Mobile Recharge</MenuItem>
-                                    <MenuItem onClick={() => navigate('/profile')}>DTH Recharge</MenuItem>
-                                    <MenuItem onClick={() => navigate('/profile')}>ITR</MenuItem>
-                                    <MenuItem onClick={() => navigate('/profile')}>GST</MenuItem>
-                                    <MenuItem onClick={() => navigate('/profile')}>Online Job Portal</MenuItem>
 
-                                </MenuList>
-                            </Menu>
-                        </div>
                         <div>
                             <a href="#">
                                 <p>Receipt</p>
@@ -143,18 +123,36 @@ export const PanCardNav = () => {
                                 <p>Check Pan Status</p>
                             </a>
                         </div>
+                        <div>
+                            <Menu >
+                                <MenuButton
+                                    as={Button}
+                                    rightIcon={<ChevronDownIcon />}
+                                    colorScheme="#0a9cf8"
+                                    fontSize={'15px'}
+                                >
+                                    Services
+                                </MenuButton>
+                                <MenuList color={"black"} >
+                                    <MenuItem onClick={() => navigate('/PanCard')}>Pan Card</MenuItem>
+                                    <MenuItem onClick={() => navigate('/ChangePassword')}>Electricity</MenuItem>
+                                    <MenuItem onClick={() => navigate('/profile')}>Mobile Recharge</MenuItem>
+                                    <MenuItem onClick={() => navigate('/profile')}>DTH Recharge</MenuItem>
+                                    <MenuItem onClick={() => navigate('/profile')}>ITR</MenuItem>
+                                    <MenuItem onClick={() => navigate('/profile')}>GST</MenuItem>
+                                    <MenuItem onClick={() => navigate('/profile')}>Online Job Portal</MenuItem>
+
+                                </MenuList>
+                            </Menu>
+                        </div>
                     </div>
                 }
                 <div>
                     <div>
-                        <a href="#">
-                            <p>PCW: Rs.0</p>
-                        </a>
+                        <a href="#"><p>PCW:0 ₹</p></a>
                     </div>
                     <div>
-                        <a href="#">
-                            <p>OCW: Rs.0</p>
-                        </a>
+                        <a href="#"><p>OCW:0 ₹</p></a>
                     </div>
                     <div>
                         <Menu >
@@ -162,6 +160,7 @@ export const PanCardNav = () => {
                                 as={Button}
                                 rightIcon={<ChevronDownIcon />}
                                 colorScheme="#0a9cf8"
+                                fontSize={['10px','15px','15px']}
                             >
                                 {portalData.username.toUpperCase()}
                             </MenuButton>
