@@ -11,6 +11,7 @@ import { ModalOverlay, Modal,
   ModalCloseButton, useDisclosure,Button, Heading} from "@chakra-ui/react";
 import { useEffect } from "react";
 import axios from "axios";
+import { Footer } from "../../Components/Footer/Footer";
 
 export const PanCard = () => {
   const navigate = useNavigate();
@@ -78,7 +79,7 @@ onOpen()
 
 
       <div>
-        <DashboardFooter />
+        <Footer />
       </div>
     </div>
   );

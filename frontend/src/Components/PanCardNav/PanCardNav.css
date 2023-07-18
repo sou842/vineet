@@ -25,7 +25,7 @@
 }
 .pancardnav_1 > div{
     display: flex;
-    /* margin: 0 10px; */
+    margin: 0 15px;
     /* border: 1px solid red; */
 }
 .pancardnav_1 > div > div{
@@ -35,6 +35,27 @@
 }
 .pancardnav_1 > div > div > a > p{
     font-size: 15px;
+}
+@media screen and (min-width:0px) and (max-width:700px){
+.pancardnav_0{
+    display: flex;
+    justify-content: space-between;
+    padding: 7px;
+}
+.pancardnav_0 > div > a > p{
+    color: whitesmoke;
+    font-size: 13.5px;
+}
+.pancardnav_0{
+    padding: 10px;
+}
+.pancardnav_0 > div{
+    font-size: 16px;
+    font-weight: bold;
+}
+.pancardnav_0 > div >a> img{
+    width: 50px;
+}
 }
 
 @media screen and (min-width:0px) and (max-width:600px){

@@ -4,6 +4,7 @@ import { DashboardFooter } from '../../Components/DashboradFooter/DashboradFoote
 import { useNavigate } from "react-router-dom"
 import { PanCardNav } from '../../Components/PanCardNav/PanCardNav';
 import { useToast } from '@chakra-ui/react';
+import { Footer } from '../../Components/Footer/Footer';
 
 
 export const NewPanCardAllState = () => {
@@ -54,7 +55,7 @@ export const NewPanCardAllState = () => {
                 <p>हम आपसे अनुरोध करते हैं कि डिजिटल इंडिया पोर्टल द्वारा प्रदान की जा रही अन्य सुविधाएं जैसे बिजली बिल का भुगतान, मोबाइल रिचार्ज, डीटीएच रिचार्ज, GST रजिस्ट्रेशन, ITR फाइलिंग जैसी अन्य सुविधाओं का भी आप लाभ उठाएं और हम आपको भरोसा दिलाते हैं कि भविष्य में डिजिटल इंडिया पोर्टल आपको और भी सुविधाएं प्रदान करेगा डिजिटल इंडिया पोर्टल के साथ जुड़े रहने के लिए धन्यवाद</p>
             </div>
 
-            <div><DashboardFooter /></div>
+            <div><Footer /></div>
         </div>
     )
 }
