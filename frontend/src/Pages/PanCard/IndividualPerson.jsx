@@ -6,12 +6,13 @@ import { useState } from 'react';
 import date from 'date-and-time';
 import axios from 'axios';
 
-import {city, city_data} from  '../../city.js'
+import { city, city_data } from '../../city.js'
+import { Footer } from '../../Components/Footer/Footer';
 
 
 
 export const IndividualPerson = () => {
-    const portalData=JSON.parse(localStorage.getItem('digitalPortal'))||null
+    const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
     const { catagory } = useParams();
     const now = new Date();
 
@@ -28,12 +29,12 @@ export const IndividualPerson = () => {
         firstName: '',
         middleName: '',
         lastName: '',
-        title:"",
+        title: "",
         gender: '',
         dateOfBirth: '',
         monthOfBirth: '',
         yearOfBirth: '',
-        residenceAddress: '',
+        residenceAddress: 'Residence Address',
         flatNumber: '',
         premisesName: '',
         roadName: '',
@@ -48,30 +49,38 @@ export const IndividualPerson = () => {
         aadhaarNumber: '',
         aadhaarName: '',
         sourceOfIncome: '',
-        identityProof: '',
-        addressProof: '',
-        dobProof: '',
+        identityProof: 'AADHAR Card issued by UIDAL (In Copy)',
+        addressProof: 'AADHAR Card issued by UIDAL (In Copy)',
+        dobProof: 'AADHAR Card issued by UIDAL (In Copy)',
         declarationCapacity: '',
         verifierName: '',
         verifierPlace: '',
         verificationDate: currentDate,
-        requiredOption: '',
-        documents:[],
+        requiredOption: 'Both Physical PAN Card and e-PAN',
+        documents: [],
         PanFee: 107
     });
 
     const handleChange = (event) => {
         const { name, value } = event.target;
 
-        if(name=='city' && value!=''){
-            setFormData((prevData) => ({...prevData,['areaCode']: city_data[value]['Area Code']}))
-            setFormData((prevData) => ({...prevData,['aotype']: city_data[value]['AO Type']}))
-            setFormData((prevData) => ({...prevData,['rangeCode']: city_data[value]['Range Code']}))
-            setFormData((prevData) => ({...prevData,['aoNo']: city_data[value]['AO Number']}))
+        if (name == 'city' && value != '') {
+            setFormData((prevData) => ({ ...prevData, ['areaCode']: city_data[value]['Area Code'] }))
+            setFormData((prevData) => ({ ...prevData, ['aotype']: city_data[value]['AO Type'] }))
+            setFormData((prevData) => ({ ...prevData, ['rangeCode']: city_data[value]['Range Code'] }))
+            setFormData((prevData) => ({ ...prevData, ['aoNo']: city_data[value]['AO Number'] }))
+        }
+        if (name == 'title' && value == 'Shri' && value != '') {
+            setFormData((prevData) => ({ ...prevData, ['gender']: 'Male' }));
+        }
+        if (name == 'title' && value == 'Smt' && value != '') {
+            setFormData((prevData) => ({ ...prevData, ['gender']: 'Female' }));
+        }
+        if (name == 'title' && value == 'Kumari' && value != '') {
+            setFormData((prevData) => ({ ...prevData, ['gender']: 'Female' }));
         }
 
-        
-        setFormData((prevData) => ({...prevData,[name]: value}));
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
 
@@ -93,10 +102,10 @@ export const IndividualPerson = () => {
        })
     };
     return (
-        <div>
+        <div style={{ backgroundColor: 'rgba(201, 201, 201, 0.249)' }}>
             <div><PanCardNav /></div>
 
-            <div>
+            <div >
                 <div className='individualPerson_1'>
                     <p> Email:- helpdigitalindiaportal@gmail.com</p>
                     <p> Phones:- 9368372889</p>
@@ -114,7 +123,7 @@ export const IndividualPerson = () => {
                             </div>
                             <div>
                                 <p>Category of Applicant<i>*</i></p>
-                                <input type="text" placeholder={currentDate} disabled name='date' value={formData.date} onChange={handleChange}/>
+                                <input type="text" placeholder={currentDate} disabled name='date' value={formData.date} onChange={handleChange} />
                             </div>
                         </div>
                         <div>
@@ -122,7 +131,7 @@ export const IndividualPerson = () => {
                                 <p>City*</p>
                                 <select name="city" required value={formData.city} onChange={handleChange}>
                                     <option value="">City</option>
-                                    {city.map((ele,index)=>(
+                                    {city.map((ele, index) => (
                                         <option key={index} value={ele}>{ele}</option>
                                     ))}
                                 </select>
@@ -148,40 +157,41 @@ export const IndividualPerson = () => {
 
                     <div className="individualPerson_2">
                         <div>
-                        <div>
+                            <div>
                                 <p>Title<i>*</i></p>
                                 <select required name='title' value={formData.title} onChange={handleChange} >
-                                    <option value="">Select</option>
+                                    <option value="" disabled>Title</option>
                                     <option value="Shri">Shri</option>
                                     <option value="Smt">Smt</option>
                                     <option value="Kumari">Kumari</option>
                                 </select>
                             </div>
-
-
-
-
                             <div>
                                 <p>First name<i>*</i></p>
-                                <input type="text" placeholder='First Name' required name='firstName' value={formData.firstName} onChange={handleChange}/>
+                                <input type="text" placeholder='First Name' required name='firstName' value={formData.firstName} onChange={handleChange} />
                             </div>
                             <div>
                                 <p>Middle Name</p>
-                                <input type="text" placeholder='Middle Name' name='middleName' value={formData.middleName} onChange={handleChange}/>
+                                <input type="text" placeholder='Middle Name' name='middleName' value={formData.middleName} onChange={handleChange} />
                             </div>
                             <div>
                                 <p>Last Name<i>*</i></p>
-                                <input type="text" placeholder='Last Name' required name='lastName' value={formData.lastName} onChange={handleChange}/>
+                                <input type="text" placeholder='Last Name' required name='lastName' value={formData.lastName} onChange={handleChange} />
                             </div>
                         </div>
                         <div>
                             <div>
                                 <p>Gender<i>*</i></p>
                                 <select required name='gender' value={formData.gender} onChange={handleChange} >
-                                    <option value="">Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Transgender">Transgender</option>
+                                    <option value="" disabled>Gender</option>
+                                    {formData.gender ?
+                                        <>
+                                            <option value={formData.gender}>{formData.gender}</option>
+                                            <option value="Transgender">Transgender</option>
+                                        </>
+                                        :
+                                        <></>
+                                    }
                                 </select>
                             </div>
 
@@ -397,11 +407,11 @@ export const IndividualPerson = () => {
                         <div>
                             <div>
                                 <p>Flat/Door/Block Number<i>*</i></p>
-                                <input type="text" placeholder='Flat/Door/Block Number' required  name='flatNumber' value={formData.flatNumber} onChange={handleChange}/>
+                                <input type="text" placeholder='Flat/Door/Block Number' required name='flatNumber' value={formData.flatNumber} onChange={handleChange} />
                             </div>
                             <div>
                                 <p>Name of Premises/Building/Village<i>*</i></p>
-                                <input type="text" placeholder='Name of Premises/Building/Village' required name='premisesName' value={formData.premisesName} onChange={handleChange}/>
+                                <input type="text" placeholder='Name of Premises/Building/Village' required name='premisesName' value={formData.premisesName} onChange={handleChange} />
                             </div>
                         </div>
                         <div>
@@ -417,7 +427,7 @@ export const IndividualPerson = () => {
                         <div>
                             <div>
                                 <p>Town/City/District<i>*</i></p>
-                                <input type="text" placeholder='Town/City/District' required name='cityDistrict' value={formData.cityDistrict} onChange={handleChange}/>
+                                <input type="text" placeholder='Town/City/District' required name='cityDistrict' value={formData.cityDistrict} onChange={handleChange} />
                             </div>
                             <div>
                                 <p>State/Union Territory<i>*</i></p>
@@ -466,7 +476,7 @@ export const IndividualPerson = () => {
                         <div>
                             <div>
                                 <p>Zip Code<i>*</i></p>
-                                <input type="number" placeholder='Zip Code' required  name='zipCode' value={formData.zipCode} onChange={handleChange}/>
+                                <input type="number" placeholder='Zip Code' required name='zipCode' value={formData.zipCode} onChange={handleChange} />
                             </div>
                             <div>
                                 <p>Country<i>*</i></p>
@@ -489,11 +499,11 @@ export const IndividualPerson = () => {
                             </div>
                             <div>
                                 <p>Telephone/Mobile number<i>*</i></p>
-                                <input type="text" placeholder='Telephone/Mobile number' required  name='telephoneNumber' value={formData.telephoneNumber} onChange={handleChange}/>
+                                <input type="text" placeholder='Telephone/Mobile number' required name='telephoneNumber' value={formData.telephoneNumber} onChange={handleChange} />
                             </div>
                             <div>
                                 <p>Email Id<i>*</i></p>
-                                <input type="text" placeholder='Email ID' required name='email' value={formData.email} onChange={handleChange}/>
+                                <input type="text" placeholder='Email ID' required name='email' value={formData.email} onChange={handleChange} />
                             </div>
                         </div>
                     </div>
@@ -502,11 +512,11 @@ export const IndividualPerson = () => {
                         <div>
                             <div>
                                 <p>AADHAAR Number<i>*</i></p>
-                                <input type="number" placeholder='AADHAAR Number' required name='aadhaarNumber' value={formData.aadhaarNumber} onChange={handleChange}/>
+                                <input type="number" placeholder='AADHAAR Number' required name='aadhaarNumber' value={formData.aadhaarNumber} onChange={handleChange} />
                             </div>
                             <div>
                                 <p>Name as per AADHAAR</p>
-                                <input type="text" placeholder={formData.firstName?`${formData.firstName} ${formData.middleName} ${formData.lastName}`:'Name as per AADHAAR'} disabled name='aadhaarName' value={formData.aadhaarName} onChange={handleChange}/>
+                                <input type="text" placeholder={'Name as per AADHAAR'} required name='aadhaarName' value={formData.aadhaarName} onChange={handleChange} />
                             </div>
                         </div>
                     </div>
@@ -572,15 +582,15 @@ export const IndividualPerson = () => {
                         <div>
                             <div>
                                 <p>Verifier Name<i>*</i></p>
-                                <input type="text" placeholder='Verifier Name' required name='verifierName' value={formData.verifierName} onChange={handleChange}/>
+                                <input type="text" placeholder='Verifier Name' required name='verifierName' value={formData.verifierName} onChange={handleChange} />
                             </div>
                             <div>
                                 <p>Verifier Place<i>*</i></p>
-                                <input type="text" placeholder='Verifier Place' required name='verifierPlace' value={formData.verifierPlace} onChange={handleChange}/>
+                                <input type="text" placeholder='Verifier Place' required name='verifierPlace' value={formData.verifierPlace} onChange={handleChange} />
                             </div>
                             <div>
                                 <p>Verification Date<i>*</i></p>
-                                <input type="text" placeholder={currentDate} disabled name='verificationDate' value={formData.verificationDate} onChange={handleChange}/>
+                                <input type="text" placeholder={currentDate} disabled name='verificationDate' value={formData.verificationDate} onChange={handleChange} />
                             </div>
                         </div>
                     </div>
@@ -613,7 +623,7 @@ export const IndividualPerson = () => {
                 <p>हम आपसे अनुरोध करते हैं कि डिजिटल इंडिया पोर्टल द्वारा प्रदान की जा रही अन्य सुविधाएं जैसे बिजली बिल का भुगतान, मोबाइल रिचार्ज, डीटीएच रिचार्ज, GST रजिस्ट्रेशन, ITR फाइलिंग जैसी अन्य सुविधाओं का भी आप लाभ उठाएं और हम आपको भरोसा दिलाते हैं कि भविष्य में डिजिटल इंडिया पोर्टल आपको और भी सुविधाएं प्रदान करेगा डिजिटल इंडिया पोर्टल के साथ जुड़े रहने के लिए धन्यवाद</p>
             </div>
 
-            <div><DashboardFooter /></div>
+            <div><Footer /></div>
         </div>
     )
 }

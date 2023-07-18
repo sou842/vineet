@@ -2,6 +2,7 @@ import './PanCardNav.css'
 import { Button, Menu, MenuButton, MenuItem, MenuList, useMediaQuery, useToast } from '@chakra-ui/react';
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useNavigate } from 'react-router-dom';
+import user from '../../assets/user.png'
 
 
 export const PanCardNav = () => {
@@ -34,14 +35,16 @@ export const PanCardNav = () => {
                     VINEET DIGITAL PORTAL
                 </div>
                 <div>
-                    LOGO
+                    <a href="/">
+                        <img src={user} alt="logo_1" />
+                    </a>
                 </div>
             </div>
             <div className="pancardnav_1">
                 {isSmallerThan1150 ?
-                    <div  style={{ display: 'flex', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Menu>
-                            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} colorScheme="#0a9cf8" margin={0} fontSize={['10px','15px','15px']}>
+                            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} colorScheme="#0a9cf8" margin={0} fontSize={['10px', '15px', '15px']}>
                                 Menu
                             </MenuButton>
                             <MenuList color={"black"}>
@@ -134,7 +137,7 @@ export const PanCardNav = () => {
                                 as={Button}
                                 rightIcon={<ChevronDownIcon />}
                                 colorScheme="#0a9cf8"
-                                fontSize={['10px','15px','15px']}
+                                fontSize={['10px', '15px', '15px']}
                             >
                                 {portalData.username.toUpperCase()}
                             </MenuButton>
