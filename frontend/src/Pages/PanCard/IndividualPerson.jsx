@@ -93,18 +93,20 @@ export const IndividualPerson = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // console.log(formData);
-       axios.post("http://localhost:8080/user/new-pan-card",formData,{
-        headers: {
-            "Authorization": portalData.token
-          }
-    
-       }).then((res)=>{
-        console.log(res.data);
-       })
-       .catch((err)=>{
-        console.log(err);
-       })
+        dispatch(PAN_INDIVIDUAL(formData))
+
+        axios.post("http://localhost:8080/user/new-pan-card", formData, {
+            headers: {
+                "Authorization": portalData.token
+            }
+
+        }).then((res) => {
+            console.log(res.data);
+        })
+            .catch((err) => {
+                console.log(err);
+            })
+
     };
 
     const { Pan_data } = useSelector((state) => state.panIndividualReducer)
