@@ -2,7 +2,7 @@ import './IndividualPerson.css';
 import { DashboardFooter } from '../../Components/DashboradFooter/DashboradFooter'
 import { PanCardNav } from '../../Components/PanCardNav/PanCardNav'
 import { useParams } from 'react-router-dom'
-import { useState } from 'react';
+import { useState, useRef  } from 'react';
 import date from 'date-and-time';
 import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux"
@@ -17,7 +17,6 @@ export const IndividualPerson = () => {
     const { catagory } = useParams();
     const now = new Date();
     const dispatch = useDispatch()
-
     let currentDate = date.format(now, 'YYYY-MMM-DD');
 
     const [formData, setFormData] = useState({
@@ -44,8 +43,8 @@ export const IndividualPerson = () => {
         cityDistrict: '',
         state: '',
         zipCode: '',
-        country: '',
-        telephoneISDCode: '',
+        country: 'India',
+        telephoneISDCode: 'India',
         telephoneNumber: '',
         email: '',
         aadhaarNumber: '',
@@ -59,11 +58,15 @@ export const IndividualPerson = () => {
         verifierPlace: '',
         verificationDate: currentDate,
         requiredOption: 'Both Physical PAN Card and e-PAN',
-        isUploadDocs:false,
-        aadharCardDocs:"",
-        backForm:"",
-        frontForm:"",
-        PanFee: 107
+        isUploadDocs: false,
+        aadharCardDocs: "",
+        backForm: "",
+        frontForm: "",
+        PanFee: 107,
+        father_FName: '',
+        father_MName: '',
+        father_LName: '',
+        NameOnCard: ''
     });
 
     const handleChange = (event) => {
@@ -85,44 +88,47 @@ export const IndividualPerson = () => {
             setFormData((prevData) => ({ ...prevData, ['gender']: 'Female' }));
         }
 
-        setFormData((prevData) => ({ ...prevData, [name]: value }));
-    };
+        setFormData((prevData) => ({ ...prevData, [name]: value.charAt(0).toUpperCase() + value.slice(1) }));
+    }
+
+    const handleBlur = () => {
+        if(formData.middleName){
+            setFormData((prevData) => ({ ...prevData, ['aadhaarName']: formData.firstName+' '+formData.middleName+' '+formData.lastName }))
+            setFormData((prevData) => ({ ...prevData, ['NameOnCard']: formData.firstName+' '+formData.middleName+' '+formData.lastName }))
+        }else{
+            setFormData((prevData) => ({ ...prevData, ['aadhaarName']: formData.firstName+' '+formData.lastName }))
+            setFormData((prevData) => ({ ...prevData, ['NameOnCard']: formData.firstName+' '+formData.lastName }));
+        }
+        console.log('false')
+    }
 
 
-    // console.log(formData);
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        
         dispatch(PAN_INDIVIDUAL(formData))
 
         axios.post("http://localhost:8080/user/new-pan-card", formData, {
-            headers: {
-                "Authorization": portalData.token
-            }
-
+        headers: { "Authorization": portalData.token }
         }).then((res) => {
             console.log(res.data);
+        }) .catch((err) => {
+            console.log(err);
         })
-            .catch((err) => {
-                console.log(err);
-            })
 
     };
 
     const { Pan_data } = useSelector((state) => state.panIndividualReducer)
 
-    console.log(Pan_data)
+    console.log(formData)
 
     return (
         <div style={{ backgroundColor: 'rgba(201, 201, 201, 0.249)' }}>
             <div><PanCardNav /></div>
 
             <div >
-                {/* <div className='individualPerson_1'>
-                    <p> Email:- helpdigitalindiaportal@gmail.com</p>
-                    <p> Phones:- 9368372889</p>
-                    <p> Time:- (10am to 5pm रविवार अवकाश/Lunch Time:- 2:00PM TO 2:30PM)</p>
-                </div> */}
 
                 <h1 className='individualPerson_head'>NEW PANCARD</h1>
 
@@ -142,7 +148,7 @@ export const IndividualPerson = () => {
                             <div>
                                 <p>City*</p>
                                 <select name="city" required value={formData.city} onChange={handleChange}>
-                                    <option value="">City</option>
+                                    <option value="" disabled>City</option>
                                     {city.map((ele, index) => (
                                         <option key={index} value={ele}>{ele}</option>
                                     ))}
@@ -180,15 +186,21 @@ export const IndividualPerson = () => {
                             </div>
                             <div>
                                 <p>First name<i>*</i></p>
-                                <input type="text" placeholder='First Name' required name='firstName' value={formData.firstName} onChange={handleChange} />
+                                <input type="text" placeholder='First Name' onBlur={handleBlur} required name='firstName' value={formData.firstName} onChange={handleChange} />
                             </div>
                             <div>
                                 <p>Middle Name</p>
-                                <input type="text" placeholder='Middle Name' name='middleName' value={formData.middleName} onChange={handleChange} />
+                                <input type="text" placeholder='Middle Name' onBlur={handleBlur}  name='middleName' value={formData.middleName} onChange={handleChange} />
                             </div>
                             <div>
                                 <p>Last Name<i>*</i></p>
-                                <input type="text" placeholder='Last Name' required name='lastName' value={formData.lastName} onChange={handleChange} />
+                                <input type="text" placeholder='Last Name' onBlur={handleBlur} required name='lastName' value={formData.lastName} onChange={handleChange} />
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p>Name on Card</p>
+                                <input type="text" placeholder='Name on Card' name='NameOnCard' disabled value={formData.NameOnCard} onChange={handleChange}/>
                             </div>
                         </div>
                         <div>
@@ -210,7 +222,7 @@ export const IndividualPerson = () => {
                             <div>
                                 <p>Date of Birth<i>*</i></p>
                                 <select required name='dateOfBirth' value={formData.dateOfBirth} onChange={handleChange}>
-                                    <option value="">Date of Birth</option>
+                                    <option value="" disabled>Date of Birth</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -248,7 +260,7 @@ export const IndividualPerson = () => {
                             <div>
                                 <p>Month<i>*</i></p>
                                 <select required name='monthOfBirth' value={formData.monthOfBirth} onChange={handleChange}>
-                                    <option value="">Month</option>
+                                    <option value="" disabled>Month</option>
                                     <option value="January">January</option>
                                     <option value="February">February</option>
                                     <option value="March">March</option>
@@ -267,7 +279,7 @@ export const IndividualPerson = () => {
                             <div>
                                 <p>Year<i>*</i></p>
                                 <select required name='yearOfBirth' value={formData.yearOfBirth} onChange={handleChange}>
-                                    <option value="">Year</option>
+                                    <option value="" disabled>Year</option>
                                     <option value="1894">1894</option>
                                     <option value="1895">1895</option>
                                     <option value="1896">1896</option>
@@ -405,12 +417,43 @@ export const IndividualPerson = () => {
                     </div>
 
                     <div className="individualPerson_2">
+                        <h2>Details of Parents ( applicable only for Individual applicants )</h2>
+                        <div>
+                            <div>
+                                <p>If yes, please fill in mother's name in the appropriate space provide below.</p>
+                                <select>
+                                    <option>NO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <p>Gudiance</p>
+                                <select>
+                                    <option>Father</option>
+                                </select>
+                            </div>
+                            <div>
+                                <p>Father's First Name<i>*</i></p>
+                                <input type="text" required placeholder='first Name' name='father_FName' value={formData.father_FName} onChange={handleChange} />
+                            </div>
+                            <div>
+                                <p>Father's Middle Name</p>
+                                <input type="text" placeholder='middle Name' name='father_MName' value={formData.father_MName} onChange={handleChange} />
+                            </div>
+                            <div>
+                                <p>Father's Last Name<i>*</i></p>
+                                <input type="text" required placeholder='last Name' name='father_LName' value={formData.father_LName} onChange={handleChange} />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="individualPerson_2">
                         <h2>Address for Communication(If you want to selected Office Address then Required Office Address Proof)</h2>
                         <div>
                             <div>
                                 <p>Residence Address<i>*</i></p>
                                 <select required name='residenceAddress' value={formData.residenceAddress} onChange={handleChange}>
-                                    {/* <option value="">Address</option> */}
                                     <option value="Residence Address">Residence Address</option>
                                 </select>
                             </div>
@@ -444,7 +487,7 @@ export const IndividualPerson = () => {
                             <div>
                                 <p>State/Union Territory<i>*</i></p>
                                 <select required name='state' value={formData.state} onChange={handleChange}>
-                                    <option value="">State/Union Territory</option>
+                                    <option value="" disabled>State/Union Territory</option>
                                     <option value="Andhra Pradesh">Andhra Pradesh</option>
                                     <option value="Arunachal Pradesh">Arunachal Pradesh</option>
                                     <option value="Assam">Assam</option>
@@ -493,7 +536,7 @@ export const IndividualPerson = () => {
                             <div>
                                 <p>Country<i>*</i></p>
                                 <select required name='country' value={formData.country} onChange={handleChange}>
-                                    <option value="">Country</option>
+                                    <option value="" disabled>Country</option>
                                     <option value="India">India</option>
                                 </select>
                             </div>
@@ -505,7 +548,7 @@ export const IndividualPerson = () => {
                             <div>
                                 <p>Telephone ISD Code<i>*</i></p>
                                 <select required name='telephoneISDCode' value={formData.telephoneISDCode} onChange={handleChange}>
-                                    <option value="">Telephone ISD Code</option>
+                                    <option value="" disabled>Telephone ISD Code</option>
                                     <option value="India">India</option>
                                 </select>
                             </div>
@@ -528,7 +571,7 @@ export const IndividualPerson = () => {
                             </div>
                             <div>
                                 <p>Name as per AADHAAR</p>
-                                <input type="text" placeholder={'Name as per AADHAAR'} required name='aadhaarName' value={formData.aadhaarName} onChange={handleChange} />
+                                <input type="text" placeholder={'Name as per AADHAAR'} disabled name='aadhaarName' value={formData.aadhaarName} onChange={handleChange} />
                             </div>
                         </div>
                     </div>
@@ -585,7 +628,7 @@ export const IndividualPerson = () => {
                             <div>
                                 <p>You do hereby declare that whatever stated above is true in the capacity of<i>*</i></p>
                                 <select required name='declarationCapacity' value={formData.declarationCapacity} onChange={handleChange}>
-                                    <option value="">Select</option>
+                                    <option value="" disabled>Select</option>
                                     <option value="HIMSELF/HERSELF">HIMSELF / HERSELF</option>
                                     <option value="salaried Employee">REPRESENTATIVE ASSESSEE</option>
                                 </select>
