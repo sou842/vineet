@@ -47,7 +47,11 @@ const newPanSchema=mongoose.Schema({
     userID: {type: String, required: true},
     vendorID: {type: String, required: true},
     tokenNumber: {type: String, required: true},
-    documents: [documenstSchema],
+    // documents: [documenstSchema],
+    backForm:{type:String},
+    frontForm:{type:String},
+    aadharCardDocs:{type:String},
+    isUploadDocs:{type:Boolean},
     PanFee: {type: Number, required: true}
 })
 

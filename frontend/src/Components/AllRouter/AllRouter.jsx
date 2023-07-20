@@ -15,6 +15,9 @@ import ChangePassword from '../../Pages/ChangePassword/ChangePassword';
 import { IndividualPerson } from '../../Pages/PanCard/IndividualPerson';
 import Upload from '../../Pages/upload/Upload';
 import UploadDocument from '../../Pages/upload document/UploadDocument';
+import FinalApplyConfirm from '../../Pages/finalApply/FinalApplyConfirm';
+
+
 
 
 
@@ -39,6 +42,7 @@ return (
         <Route path={'/user/change-password'} element={portalData?<ChangePassword/>:<Signin/>}></Route>
         <Route path={'/user/upload'} element={portalData?<Upload/>:<Signin/>}></Route>
         <Route path={'/user/upload-document/:id'} element={portalData?<UploadDocument/>:<Signin/>}></Route>
+        <Route path={'/user/final-confirm-apply/:id'} element={portalData?<FinalApplyConfirm/>:<Signin/>}></Route>
         <Route path={'*'} element={<h1>404 Page Not Found</h1>}></Route>
         <Route path={'/IndividualPerson/:catagory'} element={<IndividualPerson/>}></Route>
     </Routes>

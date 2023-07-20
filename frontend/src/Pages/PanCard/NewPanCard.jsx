@@ -23,8 +23,8 @@ export const NewPanCard = () => {
       </div>
 
       <div className="newpancard_2">
-        <div><a href="/NewPanCardAllState"><p>New Pan Card With Aadhaar (All States)</p></a></div>
-        <div><a href="#"><p>New Pan Card Without Aadhaar (Only ASSAM, JAMMU AND KASHMIR, MEGHALAYA)</p></a></div>
+        <div><a href="/NewPanCardAllState"><p>New Pan Card With Aadhaar <br /> <i>(All States)</i></p></a></div>
+        <div><a href="#"><p>New Pan Card Without Aadhaar <br /><i>(Only ASSAM, JAMMU AND KASHMIR, MEGHALAYA)</i></p></a></div>
       </div>
 
       <div className="pancard_1">

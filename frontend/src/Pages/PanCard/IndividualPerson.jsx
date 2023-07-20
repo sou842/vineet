@@ -5,9 +5,10 @@ import { useParams } from 'react-router-dom'
 import { useState } from 'react';
 import date from 'date-and-time';
 import axios from 'axios';
-
+import { useDispatch, useSelector } from "react-redux"
 import { city, city_data } from '../../city.js'
 import { Footer } from '../../Components/Footer/Footer';
+import { PAN_INDIVIDUAL } from '../../redux/panIndividualReducer/action';
 
 
 
@@ -15,6 +16,7 @@ export const IndividualPerson = () => {
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
     const { catagory } = useParams();
     const now = new Date();
+    const dispatch = useDispatch()
 
     let currentDate = date.format(now, 'YYYY-MMM-DD');
 
@@ -57,7 +59,10 @@ export const IndividualPerson = () => {
         verifierPlace: '',
         verificationDate: currentDate,
         requiredOption: 'Both Physical PAN Card and e-PAN',
-        documents: [],
+        isUploadDocs:false,
+        aadharCardDocs:"",
+        backForm:"",
+        frontForm:"",
         PanFee: 107
     });
 
@@ -84,7 +89,7 @@ export const IndividualPerson = () => {
     };
 
 
-    console.log(formData);
+    // console.log(formData);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -101,16 +106,21 @@ export const IndividualPerson = () => {
         console.log(err);
        })
     };
+
+    const { Pan_data } = useSelector((state) => state.panIndividualReducer)
+
+    console.log(Pan_data)
+
     return (
         <div style={{ backgroundColor: 'rgba(201, 201, 201, 0.249)' }}>
             <div><PanCardNav /></div>
 
             <div >
-                <div className='individualPerson_1'>
+                {/* <div className='individualPerson_1'>
                     <p> Email:- helpdigitalindiaportal@gmail.com</p>
                     <p> Phones:- 9368372889</p>
                     <p> Time:- (10am to 5pm रविवार अवकाश/Lunch Time:- 2:00PM TO 2:30PM)</p>
-                </div>
+                </div> */}
 
                 <h1 className='individualPerson_head'>NEW PANCARD</h1>
 
@@ -499,11 +509,11 @@ export const IndividualPerson = () => {
                             </div>
                             <div>
                                 <p>Telephone/Mobile number<i>*</i></p>
-                                <input type="text" placeholder='Telephone/Mobile number' required name='telephoneNumber' value={formData.telephoneNumber} onChange={handleChange} />
+                                <input type="number" placeholder='Telephone/Mobile number' required name='telephoneNumber' value={formData.telephoneNumber} onChange={handleChange} />
                             </div>
                             <div>
                                 <p>Email Id<i>*</i></p>
-                                <input type="text" placeholder='Email ID' required name='email' value={formData.email} onChange={handleChange} />
+                                <input type="email" placeholder='Email ID' required name='email' value={formData.email} onChange={handleChange} />
                             </div>
                         </div>
                     </div>
