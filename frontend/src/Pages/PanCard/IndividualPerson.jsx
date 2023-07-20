@@ -58,15 +58,17 @@ export const IndividualPerson = () => {
         verifierPlace: '',
         verificationDate: currentDate,
         requiredOption: 'Both Physical PAN Card and e-PAN',
-        isUploadDocs: false,
-        aadharCardDocs: "",
-        backForm: "",
-        frontForm: "",
+        isUploadDocs:false,
+        aadharCardDocs:"",
+        backForm:"",
+        frontForm:"",
+        isDoneFromUser:false,
         PanFee: 107,
         father_FName: '',
         father_MName: '',
         father_LName: '',
         NameOnCard: ''
+
     });
 
     const handleChange = (event) => {

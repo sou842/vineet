@@ -49,7 +49,7 @@ export const PanCardNav = () => {
                             </MenuButton>
                             <MenuList color={"black"}>
                                 <MenuItem onClick={() => navigate('/Dashboard')}>Dashboard</MenuItem>
-                                <MenuItem onClick={() => navigate('#')}>Receipt</MenuItem>
+                                <MenuItem onClick={() => navigate('/user/pan-receipt')}>Receipt</MenuItem>
                                 <MenuItem onClick={() => navigate('/user/upload')}>Upload</MenuItem>
                                 <MenuItem onClick={() => navigate('#')}>Reject Pan by NSDL</MenuItem>
                                 <MenuItem onClick={() => navigate('#')}>Complite</MenuItem>
@@ -76,7 +76,7 @@ export const PanCardNav = () => {
                         </div>
 
                         <div>
-                            <a href="#">
+                            <a href="/user/pan-receipt">
                                 <p>Receipt</p>
                             </a>
                         </div>

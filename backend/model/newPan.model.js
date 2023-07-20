@@ -52,6 +52,7 @@ const newPanSchema=mongoose.Schema({
     frontForm:{type:String},
     aadharCardDocs:{type:String},
     isUploadDocs:{type:Boolean},
+    isDoneFromUser:{type:Boolean},
     PanFee: {type: Number, required: true}
 })
 
