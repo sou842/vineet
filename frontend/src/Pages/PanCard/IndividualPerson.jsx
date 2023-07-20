@@ -63,6 +63,7 @@ export const IndividualPerson = () => {
         aadharCardDocs:"",
         backForm:"",
         frontForm:"",
+        isDoneFromUser:false,
         PanFee: 107
     });
 

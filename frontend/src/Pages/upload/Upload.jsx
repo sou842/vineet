@@ -20,7 +20,7 @@ const Upload = () => {
         
         }).then((res)=>{
             setLoading(false)
-            setPans(res.data)
+            setPans(res.data.reverse())
         }).catch((err)=>{
             setLoading(false)
             console.log(err);
@@ -53,7 +53,8 @@ const Upload = () => {
                 </Thead>
                 <Tbody>
                     {
-                     loading?<Box h={'50vh'} display={'flex'} justifyContent={'center'} alignItems={'center'} ><Spinner/></Box>:   pans.map((el,i)=>{
+                     loading?<Box h={'50vh'} display={'flex'} justifyContent={'center'} alignItems={'center'} ><Spinner/></Box>:   pans.filter((el,i)=>{
+                        if(!el.isUploadDocs){
                             return <Tr key={i} bg={'white'}>
                                 <Td>{i+1}</Td>
                                 <Td>{el.tokenNumber}</Td>
@@ -64,6 +65,7 @@ const Upload = () => {
                                 <Td><Button size={'xs'} colorScheme={'green'}  onClick={()=> navigate(`/user/upload-document/${el._id}`)}>Upload</Button></Td>
                                
                             </Tr>
+                        }
                         })
                     }
                 </Tbody>

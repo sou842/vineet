@@ -16,6 +16,8 @@ import { IndividualPerson } from '../../Pages/PanCard/IndividualPerson';
 import Upload from '../../Pages/upload/Upload';
 import UploadDocument from '../../Pages/upload document/UploadDocument';
 import FinalApplyConfirm from '../../Pages/finalApply/FinalApplyConfirm';
+import PanApplySuccess from '../../Pages/PanCard/PanApplySuccess';
+import Receipt from '../../Pages/PanCard/Receipt/Receipt';
 
 
 
@@ -43,6 +45,8 @@ return (
         <Route path={'/user/upload'} element={portalData?<Upload/>:<Signin/>}></Route>
         <Route path={'/user/upload-document/:id'} element={portalData?<UploadDocument/>:<Signin/>}></Route>
         <Route path={'/user/final-confirm-apply/:id'} element={portalData?<FinalApplyConfirm/>:<Signin/>}></Route>
+        <Route path={'/user/applied-success'} element={portalData?<PanApplySuccess/>:<Signin/>}></Route>
+        <Route path={'/user/pan-receipt'} element={portalData?<Receipt/>:<Signin/>}></Route>
         <Route path={'*'} element={<h1>404 Page Not Found</h1>}></Route>
         <Route path={'/IndividualPerson/:catagory'} element={<IndividualPerson/>}></Route>
     </Routes>

@@ -93,8 +93,21 @@ newPanRoute.get('/final-confirm-apply/:id',async(req,res)=>{
     const {id}=req.params
     try {
        
-        const user=await NewPanModel.find({_id:id})
+        const user=await NewPanModel.findOne({_id:id})
          res.send(user)
+        
+    } catch (error) {
+        res.send(error)
+    }
+})
+
+
+newPanRoute.patch('/apply-confirm-from/:id',async(req,res)=>{
+    const {id}=req.params
+    try {
+       
+        const user=await NewPanModel.findByIdAndUpdate({_id:id},{isDoneFromUser:true})
+         res.send('Apply Successfull')
         
     } catch (error) {
         res.send(error)
