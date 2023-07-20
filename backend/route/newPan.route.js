@@ -1,5 +1,6 @@
 const express=require("express")
 const prandom = require("prandom");
+const fs=require('fs')
 const multer=require('multer')
 const path = require('path');
 const { auth } = require("../middleware/auth.middleware")
@@ -53,29 +54,47 @@ newPanRoute.get("/upload-pan-card/:id",async(req,res)=>{
 })
 
 
-// upload document under login user
+// upload document under login user using multer 
 
-const storage=multer.diskStorage({
-    destination:(req,file,cb)=>{
-        cb(null,'./public/documents')
-    },
-    filename:(req,file,cb)=>{
-        cb(null,file.fieldname+"_"+Date.now()+path.extname(file.originalname))
+// const storage=multer.diskStorage({
+//     destination:(req,file,cb)=>{
+//         cb(null,'./public/documents')
+//     },
+//     filename:(req,file,cb)=>{
+//         cb(null,file.fieldname+"_"+Date.now()+path.extname(file.originalname))
+//     }
+// })
+// const upload=multer({
+//     storage:storage
+// })
+// upload.single(<file name from frontend>)
+
+
+
+
+//upload image data base
+
+newPanRoute.patch('/upload-pan-document/:id',async(req,res)=>{
+    const {id}=req.params
+    const {aadharCardDocs,frontForm,backForm}=req.body
+    try {
+        // await NewPanModel.updateMany({_id:id},{$push:{documents:{name:req.file.fieldname,image:req.file.filename}}})
+        await NewPanModel.findByIdAndUpdate({_id:id},{aadharCardDocs,frontForm,backForm,isUploadDocs:true})
+         res.send("Document upload succesfull")
+        
+    } catch (error) {
+        res.send(error)
     }
 })
-const upload=multer({
-    storage:storage
-})
 
+// final confirm stem api
 
-
-
-//FrontForm49A
-newPanRoute.patch('/upload-pan-document/:id',upload.single(`file`),async(req,res)=>{
+newPanRoute.get('/final-confirm-apply/:id',async(req,res)=>{
     const {id}=req.params
     try {
-        await NewPanModel.updateMany({_id:id},{$push:{documents:{name:req.file.fieldname,image:req.file.filename}}})
-         res.send("Document upload succesfull")
+       
+        const user=await NewPanModel.find({_id:id})
+         res.send(user)
         
     } catch (error) {
         res.send(error)

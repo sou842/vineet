@@ -34,7 +34,7 @@ const newPanSchema=mongoose.Schema({
     telephoneNumber: {type: String, required: true},
     email: {type: String, required: true},
     aadhaarNumber: {type: String, required: true},
-    aadhaarName: {type: String, required: true},
+    aadhaarName: {type: String},
     sourceOfIncome: {type: String, required: true},
     identityProof: {type: String},
     addressProof: {type: String},
@@ -47,7 +47,11 @@ const newPanSchema=mongoose.Schema({
     userID: {type: String, required: true},
     vendorID: {type: String, required: true},
     tokenNumber: {type: String, required: true},
-    documents: [documenstSchema],
+    // documents: [documenstSchema],
+    backForm:{type:String},
+    frontForm:{type:String},
+    aadharCardDocs:{type:String},
+    isUploadDocs:{type:Boolean},
     PanFee: {type: Number, required: true}
 })
 

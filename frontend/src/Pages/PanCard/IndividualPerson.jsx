@@ -59,7 +59,10 @@ export const IndividualPerson = () => {
         verifierPlace: '',
         verificationDate: currentDate,
         requiredOption: 'Both Physical PAN Card and e-PAN',
-        documents: [],
+        isUploadDocs:false,
+        aadharCardDocs:"",
+        backForm:"",
+        frontForm:"",
         PanFee: 107
     });
 
@@ -90,7 +93,6 @@ export const IndividualPerson = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
         dispatch(PAN_INDIVIDUAL(formData))
 
         axios.post("http://localhost:8080/user/new-pan-card", formData, {
@@ -104,6 +106,7 @@ export const IndividualPerson = () => {
             .catch((err) => {
                 console.log(err);
             })
+
     };
 
     const { Pan_data } = useSelector((state) => state.panIndividualReducer)
