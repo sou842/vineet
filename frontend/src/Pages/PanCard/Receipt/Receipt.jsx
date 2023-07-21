@@ -1,4 +1,4 @@
-import { Box, Table, TableContainer, Tbody, Td, Th,Tr, Thead, Spinner, Button } from '@chakra-ui/react'
+import { Box, Table, TableContainer, Tbody, Td, Th,Tr, Thead, Spinner } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import ContactUs from '../../contact us with time/ContactUs'
@@ -61,7 +61,7 @@ useEffect(()=>{
                                     <Td>{el.tokenNumber}</Td>
                                     <Td>{el.date}</Td>
                                     <Td>
-                                        <Button size={'xs'} colorScheme='yellow'>Dounload Receipt</Button>
+                                        {/* <Button size={'xs'} colorScheme='yellow'>Dounload Receipt</Button> */}
                                     </Td>
                                     <Td>{el.firstName+" "+el.middleName+" "+el.lastName}</Td>
                                     <Td>{el.dateOfBirth+"-"+el.monthOfBirth+"-"+el.yearOfBirth}</Td>

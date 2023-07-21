@@ -18,6 +18,7 @@ import UploadDocument from '../../Pages/upload document/UploadDocument';
 import FinalApplyConfirm from '../../Pages/finalApply/FinalApplyConfirm';
 import PanApplySuccess from '../../Pages/PanCard/PanApplySuccess';
 import Receipt from '../../Pages/PanCard/Receipt/Receipt';
+import EditPan from '../../Pages/PanCard/EditPan/EditPan';
 
 
 
@@ -47,6 +48,7 @@ return (
         <Route path={'/user/final-confirm-apply/:id'} element={portalData?<FinalApplyConfirm/>:<Signin/>}></Route>
         <Route path={'/user/applied-success'} element={portalData?<PanApplySuccess/>:<Signin/>}></Route>
         <Route path={'/user/pan-receipt'} element={portalData?<Receipt/>:<Signin/>}></Route>
+        <Route path={'/user/pan-edit'} element={portalData?<EditPan/>:<Signin/>}></Route>
         <Route path={'*'} element={<h1>404 Page Not Found</h1>}></Route>
         <Route path={'/IndividualPerson/:catagory'} element={<IndividualPerson/>}></Route>
     </Routes>
