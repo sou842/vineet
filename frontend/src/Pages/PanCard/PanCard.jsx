@@ -12,10 +12,20 @@ import { ModalOverlay, Modal,
 import { useEffect } from "react";
 import axios from "axios";
 import { Footer } from "../../Components/Footer/Footer";
+import form49A from '../../assets/Form49A.pdf'
 
 export const PanCard = () => {
   const navigate = useNavigate();
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handleForm49A= (e) =>{
+
+    window.open('https://digitalindiaportal.co.in/users/pancard/Form49A.pdf')
+  }
+
+
+
+
 useEffect(()=>{
 onOpen()
 },[])
@@ -33,7 +43,7 @@ onOpen()
       </div>
 
       <div className="pancard_2">
-        <div><a href="#"><p>New Pan Form Download</p></a></div>
+        <div><a target='_blank' onClick={handleForm49A}  href={form49A}  download="form49A" ><p>New Pan Form Download</p></a></div>
         <div><a href="#"><p>Update Pan Form Download</p></a></div>
         <div><a href="/NewPanCard"><p>New Pan Card</p></a></div>
         <div><a href="#"><p>Update Pan Card</p></a></div>
