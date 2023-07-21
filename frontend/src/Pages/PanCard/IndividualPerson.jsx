@@ -1,7 +1,7 @@
 import './IndividualPerson.css';
 import { DashboardFooter } from '../../Components/DashboradFooter/DashboradFooter'
 import { PanCardNav } from '../../Components/PanCardNav/PanCardNav'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useState, useRef  } from 'react';
 import date from 'date-and-time';
 import axios from 'axios';
@@ -18,6 +18,7 @@ export const IndividualPerson = () => {
     const now = new Date();
     const dispatch = useDispatch()
     let currentDate = date.format(now, 'YYYY-MMM-DD');
+    const navigate=useNavigate()
 
     const [formData, setFormData] = useState({
         category: catagory,
@@ -111,6 +112,7 @@ export const IndividualPerson = () => {
         event.preventDefault();
         
         dispatch(PAN_INDIVIDUAL(formData))
+        // navigate('/user/pan-edit')
 
         axios.post("http://localhost:8080/user/new-pan-card", formData, {
         headers: { "Authorization": portalData.token }

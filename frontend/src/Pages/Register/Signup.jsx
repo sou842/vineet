@@ -38,6 +38,7 @@ const [regData,setRegData]=useState({
     shopeName:"",
     panNumber:"",
     aadharNumber:"",
+    avtar:""
 })
 
 const handleChange=(e)=>{

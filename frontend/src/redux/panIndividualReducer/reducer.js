@@ -13,7 +13,7 @@ switch (type) {
 case PANINDIVIDUAL_REQUEST:
     return { ...state, isLoading: true }
 case PANINDIVIDUAL_SUCCESS:
-    return { ...state, isLoading: false, isError: false, Pan_data: payload }
+    return { ...state, isLoading: false, isError: false, Pan_data:payload }
 case PANINDIVIDUAL_FAILURE:
     return { ...state, isLoading: false, isError: true }
 default:
