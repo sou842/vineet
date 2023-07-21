@@ -110,23 +110,23 @@ export const IndividualPerson = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        
-        dispatch(PAN_INDIVIDUAL(formData))
-        // navigate('/user/pan-edit')
 
-        axios.post("http://localhost:8080/user/new-pan-card", formData, {
-        headers: { "Authorization": portalData.token }
-        }).then((res) => {
-            console.log(res.data);
-        }) .catch((err) => {
-            console.log(err);
-        })
+        localStorage.setItem("form_data",JSON.stringify(formData))
 
-    };
+        // // dispatch(PAN_INDIVIDUAL(formData))
+
+        // axios.post("http://localhost:8080/user/new-pan-card", formData, {
+        // headers: { "Authorization": portalData.token }
+        // }).then((res) => {
+        //     console.log(res.data);
+        // }) .catch((err) => {
+        //     console.log(err);
+        // })
+        navigate('/user/pan-edit')
+    }
 
     const { Pan_data } = useSelector((state) => state.panIndividualReducer)
 
-    console.log(formData)
 
     return (
         <div style={{ backgroundColor: 'rgba(201, 201, 201, 0.249)' }}>

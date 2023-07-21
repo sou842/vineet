@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 export const PanCardNav = () => {
-    const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null
+    const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
     const [isSmallerThan1150] = useMediaQuery("(max-width: 1150px)")
     const [profile,setProfile] = useState(null)
     const toast = useToast()
@@ -37,6 +37,8 @@ export const PanCardNav = () => {
         })
     }
     
+
+    // console.log(profile[0].avtar)
     useEffect(()=>{
         profileAvater();
     },[])
@@ -56,7 +58,7 @@ export const PanCardNav = () => {
                     <a href="/profile">
                         <Wrap>
                             <WrapItem>
-                                <Avatar color={'white'} bg='blue.200' size={['md','md','lg']} name={profile&&profile[0].name} src='' />
+                                <Avatar color={'white'} bg='blue.200' size={['md','md','lg']} name={profile&&profile[0].name} src={profile&&profile[0].avtar} />
                             </WrapItem>
                         </Wrap>
                     </a>
@@ -150,9 +152,9 @@ export const PanCardNav = () => {
                     <div>
                         <a href="#"><p>PCW:0 ₹</p></a>
                     </div>
-                    <div>
+                    {/* <div>
                         <a href="#"><p>OCW:0 ₹</p></a>
-                    </div>
+                    </div> */}
                     <div>
                         <Menu >
                             <MenuButton

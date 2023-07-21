@@ -58,7 +58,7 @@ export const DashboardNav = () => {
                     <a href="/profile">
                         <Wrap>
                             <WrapItem>
-                                <Avatar color={'white'} bg='blue.200' size={['md', 'md', 'lg']} name={profile && profile[0].name} src='' />
+                                <Avatar color={'white'} bg='blue.200' size={['md', 'md', 'lg']} name={profile && profile[0].name} src={profile&&profile[0].avtar} />
                             </WrapItem>
                         </Wrap>
                     </a>
@@ -123,7 +123,7 @@ export const DashboardNav = () => {
                     </div>}
                 <div>
                     <div><a href="#"><p>PCW: 1000 ₹</p></a></div>
-                    <div><a href="#"><p>OCW: 10000 ₹</p></a></div>
+                    {/* <div><a href="#"><p>OCW: 10000 ₹</p></a></div> */}
                     <div>
                         <Menu >
                             <MenuButton
