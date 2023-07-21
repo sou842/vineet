@@ -2,23 +2,22 @@ import './IndividualPerson.css';
 import { DashboardFooter } from '../../Components/DashboradFooter/DashboradFooter'
 import { PanCardNav } from '../../Components/PanCardNav/PanCardNav'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useState, useRef  } from 'react';
+import { useState } from 'react';
 import date from 'date-and-time';
 import axios from 'axios';
-import { useDispatch, useSelector } from "react-redux"
 import { city, city_data } from '../../city.js'
 import { Footer } from '../../Components/Footer/Footer';
-import { PAN_INDIVIDUAL } from '../../redux/panIndividualReducer/action';
-
+import { useToast, Box } from "@chakra-ui/react";
 
 
 export const IndividualPerson = () => {
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
     const { catagory } = useParams();
     const now = new Date();
-    const dispatch = useDispatch()
     let currentDate = date.format(now, 'YYYY-MMM-DD');
     const navigate=useNavigate()
+    const toast = useToast()
+
 
     const [formData, setFormData] = useState({
         category: catagory,
@@ -91,7 +90,11 @@ export const IndividualPerson = () => {
             setFormData((prevData) => ({ ...prevData, ['gender']: 'Female' }));
         }
 
-        setFormData((prevData) => ({ ...prevData, [name]: value.charAt(0).toUpperCase() + value.slice(1) }));
+        if(name=='firstName'||name=='middleName'||name=='lastName'||name=='father_FName'||name=='father_MName'||name=='father_LName'){
+            setFormData((prevData) => ({ ...prevData, [name]: value.charAt(0).toUpperCase() + value.slice(1) }));
+        } else{
+            setFormData((prevData) => ({ ...prevData, [name]: value }));
+        }
     }
 
     const handleBlur = () => {
@@ -105,13 +108,39 @@ export const IndividualPerson = () => {
         console.log('false')
     }
 
+    console.log(formData)
 
 
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        localStorage.setItem("VDP_form_data",JSON.stringify(formData))
+        console.log(formData.aadhaarNumber.length)
+        console.log(formData.zipCode.length)
+        
+        if(formData.aadhaarNumber.length!=12){
+        toast({
+            title: 'Aadhaar Number',
+            description: "Aadhaar Number should have 12 Charecter",
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+            position: 'top-center',
+          })
+        } else if(formData.zipCode.length!=6){
+        toast({
+            title: 'Zip Code',
+            description: "PIN Code Number should have 6 Charecter",
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+            position: 'top-center',
+          })
+        } else{
+            localStorage.setItem("VDP_form_data",JSON.stringify(formData))
+            navigate('/user/pan-edit')
+        }
+
 
         // // dispatch(PAN_INDIVIDUAL(formData))
 
@@ -122,10 +151,7 @@ export const IndividualPerson = () => {
         // }) .catch((err) => {
         //     console.log(err);
         // })
-        navigate('/user/pan-edit')
     }
-
-    const { Pan_data } = useSelector((state) => state.panIndividualReducer)
 
 
     return (
@@ -585,7 +611,7 @@ export const IndividualPerson = () => {
                             <div>
                                 <p>Source Of Income<i>*</i></p>
                                 <select required name='sourceOfIncome' value={formData.sourceOfIncome} onChange={handleChange}>
-                                    <option value="">Source Of Income</option>
+                                    <option value="" disabled>Source Of Income</option>
                                     <option value="No Income">No Income</option>
                                     <option value="salaried Employee">salaried Employee</option>
                                     <option value="Income from House Property">Income from House Property</option>
@@ -602,7 +628,6 @@ export const IndividualPerson = () => {
                             <div>
                                 <p>Which of these documents are you submitting as an Identity Proof<i>*</i></p>
                                 <select required name='identityProof' value={formData.identityProof} onChange={handleChange}>
-                                    {/* <option value={''}>Select</option> */}
                                     <option value="AADHAR Card issued by UIDAL (In Copy)">AADHAR Card issued by UIDAL (In Copy)</option>
                                 </select>
                             </div>
@@ -611,7 +636,6 @@ export const IndividualPerson = () => {
                             <div>
                                 <p>Which of these documents are you submitting as an Address Proof<i>*</i></p>
                                 <select required name='addressProof' value={formData.addressProof} onChange={handleChange}>
-                                    {/* <option value={''}>Select</option> */}
                                     <option value="AADHAR Card issued by UIDAL (In Copy)">AADHAR Card issued by UIDAL (In Copy)</option>
                                 </select>
                             </div>
@@ -620,7 +644,6 @@ export const IndividualPerson = () => {
                             <div>
                                 <p>Which of these documents are you submitting as a DOB Proof<i>*</i></p>
                                 <select required name='dobProof' value={formData.dobProof} onChange={handleChange}>
-                                    {/* <option value={''}>Select</option> */}
                                     <option value="AADHAR Card issued by UIDAL (In Copy)">AADHAR Card issued by UIDAL (In Copy)</option>
                                 </select>
                             </div>
@@ -680,7 +703,7 @@ export const IndividualPerson = () => {
             </div>
             <div className='dashboard_1'>
                 <p>हम आपसे अनुरोध करते हैं कि डिजिटल इंडिया पोर्टल द्वारा प्रदान की जा रही अन्य सुविधाएं जैसे बिजली बिल का भुगतान, मोबाइल रिचार्ज, डीटीएच रिचार्ज, GST रजिस्ट्रेशन, ITR फाइलिंग जैसी अन्य सुविधाओं का भी आप लाभ उठाएं और हम आपको भरोसा दिलाते हैं कि भविष्य में डिजिटल इंडिया पोर्टल आपको और भी सुविधाएं प्रदान करेगा डिजिटल इंडिया पोर्टल के साथ जुड़े रहने के लिए धन्यवाद</p>
-            </div>
+            </div>  
 
             <div><Footer /></div>
         </div>
