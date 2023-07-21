@@ -111,7 +111,7 @@ export const IndividualPerson = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        localStorage.setItem("form_data",JSON.stringify(formData))
+        localStorage.setItem("VDP_form_data",JSON.stringify(formData))
 
         // // dispatch(PAN_INDIVIDUAL(formData))
 
