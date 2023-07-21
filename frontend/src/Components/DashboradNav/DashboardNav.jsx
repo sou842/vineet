@@ -1,13 +1,15 @@
 import './DashboardNav.css'
-import user from '../../assets/user.png';
 import { useNavigate } from 'react-router-dom';
-import { Button, Menu, MenuButton, MenuItem, MenuList, MenuGroup, useToast, useMediaQuery } from '@chakra-ui/react';
+import { Button, Menu, MenuButton, MenuItem, MenuList, useMediaQuery, useToast, Wrap, Avatar, WrapItem, AvatarBadge, AvatarGroup } from '@chakra-ui/react';
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 
 export const DashboardNav = () => {
     const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)");
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null
+    const [profile,setProfile] = useState(null)
     const navigate = useNavigate()
     const toast = useToast()
 
@@ -23,6 +25,23 @@ export const DashboardNav = () => {
         })
         window.location = '/'
     }
+    const profileAvater = () =>{
+        axios.get('http://localhost:8080/api/profile-detail',{
+            headers: { "Authorization": portalData.token }
+        })
+        .then((res)=>{
+            // console.log(res.data)
+            setProfile(res.data)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+    
+    useEffect(()=>{
+        profileAvater();
+    },[])
+
 
     return (
         <div>
@@ -36,8 +55,12 @@ export const DashboardNav = () => {
                     VINEET DIGITAL PORTAL
                 </div>
                 <div>
-                    <a href="/">
-                        <img src={user} alt="user" />
+                    <a href="/profile">
+                        <Wrap>
+                            <WrapItem>
+                                <Avatar color={'white'} bg='blue.200' size={['md', 'md', 'lg']} name={profile && profile[0].name} src='' />
+                            </WrapItem>
+                        </Wrap>
                     </a>
                 </div>
             </div>
@@ -46,7 +69,7 @@ export const DashboardNav = () => {
                 {isSmallerThan1000 ?
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Menu>
-                            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} colorScheme="#0a9cf8" margin={0} fontSize={['10px', '15px', '15px']}> 
+                            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} colorScheme="#0a9cf8" margin={0} fontSize={['10px', '15px', '15px']}>
                                 Menu
                             </MenuButton>
                             <MenuList color={"black"}>
@@ -109,7 +132,7 @@ export const DashboardNav = () => {
                                 colorScheme="#0a9cf8"
                                 fontSize={['10px', '15px', '15px']}
                             >
-                                {portalData.username.toUpperCase()}
+                                {portalData && portalData.username.trim().split(' ')[0].toUpperCase()}
                             </MenuButton>
                             <MenuList color={"black"} >
                                 <MenuItem onClick={() => navigate('/profile')}>Profile</MenuItem>

@@ -1,13 +1,14 @@
 import './PanCardNav.css'
-import { Button, Menu, MenuButton, MenuItem, MenuList, useMediaQuery, useToast } from '@chakra-ui/react';
+import { Button, Menu, MenuButton, MenuItem, MenuList, useMediaQuery, useToast, Wrap, Avatar, WrapItem, AvatarBadge, AvatarGroup } from '@chakra-ui/react';
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useNavigate } from 'react-router-dom';
-import user from '../../assets/user.png'
-
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 export const PanCardNav = () => {
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null
-    const [isSmallerThan1150] = useMediaQuery("(max-width: 1150px)");
+    const [isSmallerThan1150] = useMediaQuery("(max-width: 1150px)")
+    const [profile,setProfile] = useState(null)
     const toast = useToast()
     const navigate = useNavigate();
 
@@ -23,6 +24,23 @@ export const PanCardNav = () => {
         window.location = '/'
     }
 
+    const profileAvater = () =>{
+        axios.get('http://localhost:8080/api/profile-detail',{
+            headers: { "Authorization": portalData.token }
+        })
+        .then((res)=>{
+            // console.log(res.data)
+            setProfile(res.data)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
+    
+    useEffect(()=>{
+        profileAvater();
+    },[])
+
     return (
         <div>
             <div className='pancardnav_0'>
@@ -35,8 +53,12 @@ export const PanCardNav = () => {
                     VINEET DIGITAL PORTAL
                 </div>
                 <div>
-                    <a href="/">
-                        <img src={user} alt="logo_1" />
+                    <a href="/profile">
+                        <Wrap>
+                            <WrapItem>
+                                <Avatar color={'white'} bg='blue.200' size={['md','md','lg']} name={profile&&profile[0].name} src='' />
+                            </WrapItem>
+                        </Wrap>
                     </a>
                 </div>
             </div>
@@ -139,7 +161,7 @@ export const PanCardNav = () => {
                                 colorScheme="#0a9cf8"
                                 fontSize={['10px', '15px', '15px']}
                             >
-                                {portalData.username.toUpperCase()}
+                                {portalData&&portalData.username.trim().split(' ')[0].toUpperCase()}
                             </MenuButton>
                             <MenuList color={"black"} >
                                 <MenuItem onClick={() => navigate('/profile')}>Profile</MenuItem>
