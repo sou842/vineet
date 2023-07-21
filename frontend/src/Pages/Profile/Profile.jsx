@@ -72,7 +72,19 @@ useEffect(()=>{
   }
   //change edit data
   const handleChangeEdit=(e)=>{
-    setEditdata({...editdata,[e.target.name]:e.target.value})
+    if(e.target.name=="avtar"){
+      let reader=new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload=()=>{
+        setEditdata({...editdata,[e.target.name]:reader.result})
+          console.log(reader.result);
+         
+      }
+    }
+    else{
+
+      setEditdata({...editdata,[e.target.name]:e.target.value})
+    }
   }
   const handleUpdate=()=>{
     axios.patch("http://localhost:8080/api/profile-update",editdata,{
@@ -161,6 +173,10 @@ return (
             <FormControl mt={4}>
               <FormLabel>Shop Name</FormLabel>
               <Input placeholder='Shop Name' name='shopeName' value={editdata.shopeName} onChange={handleChangeEdit}/>
+            </FormControl>
+            <FormControl mt={4}>
+              <FormLabel>Upload your image</FormLabel>
+              <Input type='file' name='avtar' onChange={handleChangeEdit} accept="image/*"/>
             </FormControl>
           </ModalBody>
 

@@ -27,17 +27,42 @@ const Signup = () => {
   const navigate = useNavigate();
   const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [regData, setRegData] = useState({
-    name: "",
-    email: "",
-    mobileNumber: "",
-    address: "",
-    city: "",
-    pincode: "",
-    state: "",
-    shopeName: "",
-    panNumber: "",
-    aadharNumber: "",
+
+const [regData,setRegData]=useState({
+   name:"",
+   email:"",
+   mobileNumber:"",
+    address:"",
+    city:"",
+    pincode:"",
+    state:"",
+    shopeName:"",
+    panNumber:"",
+    aadharNumber:"",
+    avtar:""
+})
+
+const handleChange=(e)=>{
+  setRegData({...regData,[e.target.name]:e.target.value})
+}
+
+const handleSubmit=(e)=>{
+  e.preventDefault()
+  axios.post("http://localhost:8080/api/register",regData)
+  .then((res)=>{
+    toast({
+      title: 'Account created.',
+      description: "Check your console ",
+      status: 'success',
+      duration: 5000,
+      isClosable: true,
+    })
+    console.log(res.data);
+    navigate("/signin")
+
+  })
+  .catch((err)=>{
+    console.log(err);
   })
 
   const handleChange = (e) => {
