@@ -17,8 +17,8 @@
 /* editpan_2 */
 
 .editpan_2{
-    background-color: white;
-    border-radius: 10px;
+    background-color: rgba(242, 242, 242, 0.847);
+    border-radius: 20px;
     width: 80%;
     margin: 1cm auto;
     padding: 20px 20px;
@@ -73,6 +73,16 @@
     padding: 15px 10px;
     color: white;
     border: 1.3px solid rgb(10, 156, 248);
+    border-radius: 7px;
+    transition: 0.4s ease;
+}
+.editpan_3 > p{
+    text-align: center;
+    margin: 10px auto;
+    width: 60%;
+    padding: 15px 10px;
+    color: white;
+    border: 1.3px solid #ffb731;
     border-radius: 7px;
     transition: 0.4s ease;
 }
