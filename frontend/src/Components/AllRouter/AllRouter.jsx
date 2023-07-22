@@ -8,17 +8,17 @@ import Signup from '../../Pages/Register/Signup';
 import Signin from '../../Pages/Login/Signin';
 import { Dashboard } from '../../Pages/User/Dashboard';
 import { Profile } from '../../Pages/Profile/Profile';
-import { PanCard } from '../../Pages/PanCard/PanCard';
-import { NewPanCard } from '../../Pages/PanCard/NewPanCard';
-import { NewPanCardAllState } from '../../Pages/PanCard/NewPanCardAllState';
+import { PanCard } from '../../Pages/PanCard/PanCard/PanCard';
+import { NewPanCard } from '../../Pages/PanCard/NewPanCard/NewPanCard';
+import { NewPanCardAllState } from '../../Pages/PanCard/NewPanCardAllState/NewPanCardAllState';
 import ChangePassword from '../../Pages/ChangePassword/ChangePassword';
 import Upload from '../../Pages/upload/Upload';
 import UploadDocument from '../../Pages/upload document/UploadDocument';
 import FinalApplyConfirm from '../../Pages/finalApply/FinalApplyConfirm';
-import PanApplySuccess from '../../Pages/PanCard/PanApplySuccess';
+import PanApplySuccess from '../../Pages/PanCard/PanApplySuccess/PanApplySuccess';
 import Receipt from '../../Pages/PanCard/Receipt/Receipt';
-import EditPan from '../../Pages/PanCard/EditPan/EditPan';
-import { PanCardForm } from '../../Pages/PanCard/PanCardForm';
+import { EditPan } from '../../Pages/PanCard/EditPan/EditPan';
+import { PanCardForm } from '../../Pages/PanCard/PanCardForm/PanCardForm';
 
 
 
