@@ -12,13 +12,13 @@ import { PanCard } from '../../Pages/PanCard/PanCard';
 import { NewPanCard } from '../../Pages/PanCard/NewPanCard';
 import { NewPanCardAllState } from '../../Pages/PanCard/NewPanCardAllState';
 import ChangePassword from '../../Pages/ChangePassword/ChangePassword';
-import { IndividualPerson } from '../../Pages/PanCard/IndividualPerson';
 import Upload from '../../Pages/upload/Upload';
 import UploadDocument from '../../Pages/upload document/UploadDocument';
 import FinalApplyConfirm from '../../Pages/finalApply/FinalApplyConfirm';
 import PanApplySuccess from '../../Pages/PanCard/PanApplySuccess';
 import Receipt from '../../Pages/PanCard/Receipt/Receipt';
 import EditPan from '../../Pages/PanCard/EditPan/EditPan';
+import { PanCardForm } from '../../Pages/PanCard/PanCardForm';
 
 
 
@@ -50,7 +50,7 @@ return (
         <Route path={'/user/pan-receipt'} element={portalData?<Receipt/>:<Signin/>}></Route>
         <Route path={'/user/pan-edit'} element={portalData?<EditPan/>:<Signin/>}></Route>
         <Route path={'*'} element={<h1>404 Page Not Found</h1>}></Route>
-        <Route path={'/IndividualPerson/:catagory'} element={<IndividualPerson/>}></Route>
+        <Route path={'/PanCardForm/:catagory'} element={<PanCardForm/>}></Route>
     </Routes>
     
 )

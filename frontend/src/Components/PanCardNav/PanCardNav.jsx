@@ -133,6 +133,7 @@ export const PanCardNav = () => {
                                     rightIcon={<ChevronDownIcon />}
                                     colorScheme="#0a9cf8"
                                     fontSize={'15px'}
+                                    color={'white'}
                                 >
                                     Services
                                 </MenuButton>
@@ -166,6 +167,7 @@ export const PanCardNav = () => {
                                 rightIcon={<ChevronDownIcon />}
                                 colorScheme="#0a9cf8"
                                 fontSize={['10px', '15px', '15px']}
+                                color={'white'}
                             >
                                 {portalData && portalData.username.trim().split(' ')[0].toUpperCase()}
                             </MenuButton>
