@@ -47,7 +47,7 @@
     background-color: white;
     /* border: 1px solid red; */
 }
-.individualPerson_2 > div > div > p,span{
+.individualPerson_2 > div > div > p{
     font-size: 13px;
     color: rgb(71, 71, 71);
     margin: 7px;

@@ -1060,7 +1060,7 @@ export const PanCardForm = () => {
 
                         <div>
                             <div>
-                                <span style={{ display: 'flex' }}>
+                                <span style={{ display: 'flex', color:'rgb(71, 71, 71)',margin:'10px', fontSize:'13px'}}>
                                     <input type="checkbox" name="sourceIncome" onClick={() => setSourceIncome(!sourceIncome)} />
                                     <p style={{ marginLeft: '15px' }}>Are you are engaged in a business / profession?</p>
                                 </span>
