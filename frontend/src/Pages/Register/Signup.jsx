@@ -38,7 +38,9 @@ const [regData,setRegData]=useState({
     shopeName:"",
     panNumber:"",
     aadharNumber:"",
-    avtar:""
+    avtar:"",
+    allOrders:[],
+    balance:0
 })
 
 const handleChange=(e)=>{
