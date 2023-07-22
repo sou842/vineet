@@ -1,4 +1,5 @@
-import './PanCardNav.css'
+import './PanCardNav.css';
+import menu from '../../assets/menu.png';
 import { Button, Menu, MenuButton, MenuItem, MenuList, useMediaQuery, useToast, Wrap, Avatar, WrapItem, AvatarBadge, AvatarGroup, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useDisclosure, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useNavigate } from 'react-router-dom';
@@ -7,9 +8,9 @@ import { useEffect, useState } from 'react';
 
 export const PanCardNav = () => {
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
-   
+
     const [isSmallerThan1150] = useMediaQuery("(max-width: 1150px)")
-    const [profile,setProfile] = useState(null)
+    const [profile, setProfile] = useState(null)
     const toast = useToast()
     const navigate = useNavigate();
 
@@ -25,24 +26,24 @@ export const PanCardNav = () => {
         window.location = '/'
     }
 
-    const profileAvater = () =>{
-        axios.get('http://localhost:8080/api/profile-detail',{
+    const profileAvater = () => {
+        axios.get('http://localhost:8080/api/profile-detail', {
             headers: { "Authorization": portalData.token }
         })
-        .then((res)=>{
-            // console.log(res.data)
-            setProfile(res.data)
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
+            .then((res) => {
+                // console.log(res.data)
+                setProfile(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
-    
+
 
     // console.log(profile[0].avtar)
-    useEffect(()=>{
+    useEffect(() => {
         profileAvater();
-    },[])
+    }, [])
 
     return (
         <div>
@@ -59,7 +60,7 @@ export const PanCardNav = () => {
                     <a href="/profile">
                         <Wrap>
                             <WrapItem>
-                                <Avatar color={'white'} bg='blue.200' size={['md','md','lg']} name={profile&&profile[0].name} src={profile&&profile[0].avtar} />
+                                <Avatar color={'white'} bg='blue.200' size={['md', 'md', 'lg']} name={profile && profile[0].name} src={profile && profile[0].avtar} />
                             </WrapItem>
                         </Wrap>
                     </a>
@@ -69,8 +70,8 @@ export const PanCardNav = () => {
                 {isSmallerThan1150 ?
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Menu>
-                            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} colorScheme="#0a9cf8" margin={0} fontSize={['10px', '15px', '15px']}>
-                                Menu
+                            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} colorScheme="#0a9cf8" margin={0}>
+                                <img width={'22px'} src={menu} alt="" />
                             </MenuButton>
                             <MenuList color={"black"}>
                                 <MenuItem onClick={() => navigate('/Dashboard')}>Dashboard</MenuItem>
@@ -166,7 +167,7 @@ export const PanCardNav = () => {
                                 colorScheme="#0a9cf8"
                                 fontSize={['10px', '15px', '15px']}
                             >
-                                {portalData&&portalData.username.trim().split(' ')[0].toUpperCase()}
+                                {portalData && portalData.username.trim().split(' ')[0].toUpperCase()}
                             </MenuButton>
                             <MenuList color={"black"} >
                                 <MenuItem onClick={() => navigate('/profile')}>Profile</MenuItem>
@@ -177,7 +178,7 @@ export const PanCardNav = () => {
                     </div>
                 </div>
             </div>
-          
+
         </div>
     )
 }
