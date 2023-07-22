@@ -1,8 +1,8 @@
 import './NewPanCardAllState.css';
 import { useNavigate } from "react-router-dom"
-import { PanCardNav } from '../../Components/PanCardNav/PanCardNav';
+import { PanCardNav } from '../../../Components/PanCardNav/PanCardNav';
 import { useToast } from '@chakra-ui/react';
-import { Footer } from '../../Components/Footer/Footer';
+import { Footer } from '../../../Components/Footer/Footer';
 
 
 export const NewPanCardAllState = () => {
@@ -38,14 +38,14 @@ export const NewPanCardAllState = () => {
 
                 <div className='newPanCardAllState_2'>
                     <div><a href="/PanCardForm/Individual"><p>Individual Person</p></a></div>
-                    <div><a href="/PanCardForm/Artificial"><p>Artificial Judicial Person</p></a></div>
-                    <div><a href="/PanCardForm/:catagory"><p>Associatio of Person</p></a></div>
-                    <div><a href="/PanCardForm/:catagory"><p>Trust</p></a></div>
-                    <div><a href="/PanCardForm/:catagory"><p>Body of Individual</p></a></div>
-                    <div><a href="/PanCardForm/:catagory"><p>Flim</p></a></div>
-                    <div><a href="/PanCardForm/:catagory"><p>Government</p></a></div>
-                    <div><a href="/PanCardForm/:catagory"><p>Limited Liability Partnership</p></a></div>
-                    <div><a href="/PanCardForm/:catagory"><p>Local Authority</p></a></div>
+                    <div><a href="/PanCardForm/Artificial-Judicial-Person"><p>Artificial Judicial Person</p></a></div>
+                    <div><a href="/PanCardForm/Association-of-Person"><p>Association of Person</p></a></div>
+                    <div><a href="/PanCardForm/Trust"><p>Trust</p></a></div>
+                    <div><a href="/PanCardForm/Body-of-Individual"><p>Body of Individual</p></a></div>
+                    <div><a href="/PanCardForm/Firm"><p>Firm</p></a></div>
+                    <div><a href="/PanCardForm/Government"><p>Government</p></a></div>
+                    <div><a href="/PanCardForm/Limited-Liability-Partnership"><p>Limited Liability Partnership</p></a></div>
+                    <div><a href="/PanCardForm/Local-Authority"><p>Local Authority</p></a></div>
                 </div>
             </div>
 

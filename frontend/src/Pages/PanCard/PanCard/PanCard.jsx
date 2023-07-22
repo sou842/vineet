@@ -1,35 +1,35 @@
 import "./PanCard.css";
-import { DashboardNav } from "../../Components/DashboradNav/DashboardNav.jsx";
-import { DashboardFooter } from "../../Components/DashboradFooter/DashboradFooter.jsx";
 import { useNavigate } from "react-router-dom";
-import { PanCardNav } from "../../Components/PanCardNav/PanCardNav";
-import { ModalOverlay, Modal,
+import { PanCardNav } from "../../../Components/PanCardNav/PanCardNav";
+import {
+  ModalOverlay, Modal,
   ModalContent,
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton, useDisclosure,Button, Heading} from "@chakra-ui/react";
+  ModalCloseButton, useDisclosure, Button, Heading
+} from "@chakra-ui/react";
 import { useEffect } from "react";
 import axios from "axios";
-import { Footer } from "../../Components/Footer/Footer";
-import form49A from '../../assets/Form49A.pdf'
+import { Footer } from "../../../Components/Footer/Footer";
+import form49A from '../../../assets/Form49A.pdf'
 
 export const PanCard = () => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handleForm49A= (e) =>{
+  const handleForm49A = (e) => {
 
     window.open('https://digitalindiaportal.co.in/users/pancard/Form49A.pdf')
   }
 
 
-  
 
 
-useEffect(()=>{
-onOpen()
-},[])
+
+  useEffect(() => {
+    onOpen()
+  }, [])
   return (
     <div>
       <div>
@@ -44,7 +44,7 @@ onOpen()
       </div>
 
       <div className="pancard_2">
-        <div><a target='_blank' onClick={handleForm49A}  href={form49A}  download="form49A" ><p>New Pan Form Download</p></a></div>
+        <div><a target='_blank' onClick={handleForm49A} href={form49A} download="form49A" ><p>New Pan Form Download</p></a></div>
         <div><a href="#"><p>Update Pan Form Download</p></a></div>
         <div><a href="/NewPanCard"><p>New Pan Card</p></a></div>
         <div><a href="#"><p>Update Pan Card</p></a></div>
@@ -75,9 +75,9 @@ onOpen()
         </p>
       </div>
 
-{/* initial instruction modal */}
-<Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
-        <ModalOverlay  />
+      {/* initial instruction modal */}
+      <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
+        <ModalOverlay />
         <ModalContent>
           <ModalHeader>Please Note :</ModalHeader>
           <ModalCloseButton />
