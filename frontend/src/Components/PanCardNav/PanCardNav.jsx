@@ -1,5 +1,5 @@
 import './PanCardNav.css'
-import { Button, Menu, MenuButton, MenuItem, MenuList, useMediaQuery, useToast, Wrap, Avatar, WrapItem, AvatarBadge, AvatarGroup } from '@chakra-ui/react';
+import { Button, Menu, MenuButton, MenuItem, MenuList, useMediaQuery, useToast, Wrap, Avatar, WrapItem, AvatarBadge, AvatarGroup, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useDisclosure, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 
 export const PanCardNav = () => {
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
+   
     const [isSmallerThan1150] = useMediaQuery("(max-width: 1150px)")
     const [profile,setProfile] = useState(null)
     const toast = useToast()
@@ -149,9 +150,11 @@ export const PanCardNav = () => {
                     </div>
                 }
                 <div>
-                    <div>
-                        <a href="#"><p>PCW:0 ₹</p></a>
-                    </div>
+                    {/* <div>
+                        <a href="#"><p>Wallet Balance:₹ 1000</p></a>
+                       
+                      
+                    </div> */}
                     {/* <div>
                         <a href="#"><p>OCW:0 ₹</p></a>
                     </div> */}
@@ -174,6 +177,7 @@ export const PanCardNav = () => {
                     </div>
                 </div>
             </div>
+          
         </div>
     )
 }

@@ -16,6 +16,16 @@ const userSchema=mongoose.Schema({
     vendorID:{type: String, required: true},
     joindate:{type: String, required: true},
     avtar:{type: String},
+    balance:{type: Number},
+    allOrders:[
+        {
+            razorpay_order_id:{type:String},
+            razorpay_payment_id:{type:String},
+            razorpay_signature:{type:String},
+            date:{type:String}
+
+
+    }]
 
 })
 const UserModel = mongoose.model("user", userSchema);

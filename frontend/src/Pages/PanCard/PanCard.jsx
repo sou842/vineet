@@ -24,6 +24,7 @@ export const PanCard = () => {
   }
 
 
+  
 
 
 useEffect(()=>{

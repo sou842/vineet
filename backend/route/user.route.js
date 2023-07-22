@@ -225,6 +225,28 @@ userRoute.patch("/user/change-password", async (req, res) => {
   }
 });
 
+//balance update and save all payment id
+userRoute.use(auth);
+userRoute.patch("/add-balance",async(req,res)=>{
+  const { userID,amount,razorpay_payment_id,razorpay_signature,razorpay_order_id,date } = req.body;
+  try {
+    const user=await UserModel.findOne({_id:userID})
+    await UserModel.findByIdAndUpdate({ _id: userID },{balance:Number(user.balance)+Number(amount)});
+     await UserModel.updateMany({_id:userID},{$push:{allOrders:{razorpay_signature,razorpay_payment_id,razorpay_order_id,date }}})
+res.send(`${amount} add successfull`)
+
+    
+  } catch (error) {
+    res.send(error)
+  }
+})
+
+
+
+
+
+
+
 module.exports = {
   userRoute,
 };
