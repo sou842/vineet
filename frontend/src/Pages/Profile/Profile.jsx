@@ -77,7 +77,7 @@ useEffect(()=>{
       reader.readAsDataURL(e.target.files[0]);
       reader.onload=()=>{
         setEditdata({...editdata,[e.target.name]:reader.result})
-          console.log(reader.result);
+          // console.log(reader.result);
          
       }
     }

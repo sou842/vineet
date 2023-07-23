@@ -188,7 +188,7 @@ rzp.open()
                     </div>}
                 <div>
                     <div><a href="#"><p>Wallet Balance:₹ {balance} </p></a>
-                    <Button onClick={onOpen}  ml={'5px'} size={'sm'} colorScheme='green'>Add money</Button>
+                    <Button onClick={onOpen}   ml={'5px'} size={'sm'} colorScheme='green'>Add money</Button>
                     </div>
                     {/* <div><a href="#"><p>OCW: 10000 ₹</p></a></div> */}
                     <div>
@@ -224,10 +224,10 @@ rzp.open()
           </ModalBody>
 
           <ModalFooter bg={'white'}>
-            <Button colorScheme='blue' size={'sm'} mr={3} onClick={onClose}>
+            <Button size={'sm'} mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant='ghost' size={'sm'} onClick={handelPay}>Add</Button>
+            <Button colorScheme='blue'  size={'sm'} onClick={handelPay}>Add</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
