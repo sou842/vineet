@@ -16,6 +16,10 @@
     border: 1px solid #ccc;
     padding: 9px 8px;
 }
+.form_details_1 td:nth-child(2){
+    /* font-weight: bold; */
+    color: rgb(127, 127, 127);
+}
 .form_details_1 th {
     background-color: #f2f2f2;
   }
