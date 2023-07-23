@@ -189,13 +189,11 @@ export const DashboardNav = () => {
                         <div><a href="#"><p>Traning Manual</p></a></div>
                         <div><a href="#"><p>Downloads</p></a></div>
                         <div><a href="#"><p>Ledger</p></a></div>
-                        <div><Button onClick={onOpen} ml={'5px'} size={'sm'} colorScheme='blue'>Add money</Button></div>
+                        <div><Button onClick={onOpen} ml={'5px'} size={'sm'} colorScheme='blue.100'>Add money</Button></div>
                     </div>}
                 <div>
-                    <div><a href="#"><p>Wallet Balance:₹ {balance} </p></a>
-                    <Button onClick={onOpen}   ml={'5px'} size={'sm'} colorScheme='green'>Add money</Button>
+                    <div><a href="#"><p>Balance:₹ {balance} </p></a>
                     </div>
-                    {/* <div><a href="#"><p>OCW: 10000 ₹</p></a></div> */}
                     <div>
                         <Menu >
                             <MenuButton
