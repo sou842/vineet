@@ -8,230 +8,230 @@ import axios from 'axios';
 import { city, city_data } from '../../../city.js'
 import { Footer } from '../../../Components/Footer/Footer';
 import { useToast, Box } from "@chakra-ui/react";
-import {array1To31, monthsArray, yearsArray } from '../../../FromElement.js'
+import { array1To31, monthsArray, yearsArray } from '../../../FromElement.js'
 
 
 export const PanCardForm = () => {
-    const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
-    const [sourceIncome, setSourceIncome] = useState(false);
-    const { catagory } = useParams();
-    const now = new Date();
-    let currentDate = date.format(now, 'YYYY-MMM-DD');
-    const navigate = useNavigate()
-    const toast = useToast()
+  const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
+  const [sourceIncome, setSourceIncome] = useState(false);
+  const { catagory } = useParams();
+  const now = new Date();
+  let currentDate = date.format(now, 'YYYY-MMM-DD');
+  const navigate = useNavigate()
+  const toast = useToast()
 
 
-    const [formData, setFormData] = useState({
-        category: catagory.replace(/-/g, ' '),
-        date: currentDate,
-        city: '',
-        areaCode: '',
-        aotype: '',
-        rangeCode: '',
-        aoNo: '',
-        firstName: '',
-        middleName: '',
-        lastName: '',
-        title: "",
-        gender: '',
-        dateOfBirth: '',
-        monthOfBirth: '',
-        yearOfBirth: '',
-        Address: '',
-        flatNumber: '',
-        premisesName: '',
-        roadName: '',
-        area: '',
-        cityDistrict: '',
-        state: '',
-        zipCode: '',
-        country: 'India',
-        telephoneISDCode: 'India',
-        telephoneNumber: '',
-        email: '',
-        aadhaarNumber: '',
-        aadhaarName: '',
-        sourceOfIncome: '',
-        identityProof: '',
-        addressProof: '',
-        dobProof: '',
-        declarationCapacity: '',
-        verifierName: '',
-        verifierPlace: '',
-        verificationDate: currentDate,
-        requiredOption: 'Both Physical PAN Card and e-PAN',
-        isUploadDocs: false,
-        aadharCardDocs: "",
-        backForm: "",
-        frontForm: "",
-        isDoneFromUser: false,
-        PanFee: 107,
-        father_FName: '',
-        father_MName: '',
-        father_LName: '',
-        NameOnCard: '',
-        // newly added
-        organization: '',
-        officeName: '',
-        registrationNumber: '',
-        officetitle: '',
-        officeflatNumber: '',
-        officepremisesName: '',
-        officeroadName: '',
-        officearea: '',
-        officecityDistrict: '',
-        officestate: '',
-        officezipCode: '',
-        officecountry: 'India',
+  const [formData, setFormData] = useState({
+    category: catagory.replace(/-/g, ' '),
+    date: currentDate,
+    city: '',
+    areaCode: '',
+    aotype: '',
+    rangeCode: '',
+    aoNo: '',
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    title: "",
+    gender: '',
+    dateOfBirth: '',
+    monthOfBirth: '',
+    yearOfBirth: '',
+    Address: '',
+    flatNumber: '',
+    premisesName: '',
+    roadName: '',
+    area: '',
+    cityDistrict: '',
+    state: '',
+    zipCode: '',
+    country: 'India',
+    telephoneISDCode: 'India',
+    telephoneNumber: '',
+    email: '',
+    aadhaarNumber: '',
+    aadhaarName: '',
+    sourceOfIncome: '',
+    identityProof: '',
+    addressProof: '',
+    dobProof: '',
+    declarationCapacity: '',
+    verifierName: '',
+    verifierPlace: '',
+    verificationDate: currentDate,
+    requiredOption: 'Both Physical PAN Card and e-PAN',
+    isUploadDocs: false,
+    aadharCardDocs: "",
+    backForm: "",
+    frontForm: "",
+    isDoneFromUser: false,
+    PanFee: 107,
+    father_FName: '',
+    father_MName: '',
+    father_LName: '',
+    NameOnCard: '',
+    // newly added
+    organization: '',
+    officeName: '',
+    registrationNumber: '',
+    officetitle: '',
+    officeflatNumber: '',
+    officepremisesName: '',
+    officeroadName: '',
+    officearea: '',
+    officecityDistrict: '',
+    officestate: '',
+    officezipCode: '',
+    officecountry: 'India',
 
-    })
+  })
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-        if (name == 'city' && value != '') {
-            setFormData((prevData) => ({ ...prevData, ['areaCode']: city_data[value]['Area Code'] }))
-            setFormData((prevData) => ({ ...prevData, ['aotype']: city_data[value]['AO Type'] }))
-            setFormData((prevData) => ({ ...prevData, ['rangeCode']: city_data[value]['Range Code'] }))
-            setFormData((prevData) => ({ ...prevData, ['aoNo']: city_data[value]['AO Number'] }))
-        }
-        if (name == 'title' && value == 'Shri' && value != '') {
-            setFormData((prevData) => ({ ...prevData, ['gender']: 'Male' }));
-        }
-        if (name == 'title' && value == 'Smt' && value != '') {
-            setFormData((prevData) => ({ ...prevData, ['gender']: 'Female' }));
-        }
-        if (name == 'title' && value == 'Kumari' && value != '') {
-            setFormData((prevData) => ({ ...prevData, ['gender']: 'Female' }));
-        }
-
-        if (name == 'firstName' || name == 'middleName' || name == 'lastName' || name == 'father_FName' || name == 'father_MName' || name == 'father_LName') {
-            setFormData((prevData) => ({ ...prevData, [name]: value.charAt(0).toUpperCase() + value.slice(1) }));
-        } else {
-            setFormData((prevData) => ({ ...prevData, [name]: value }));
-        }
+    if (name == 'city' && value != '') {
+      setFormData((prevData) => ({ ...prevData, ['areaCode']: city_data[value]['Area Code'] }))
+      setFormData((prevData) => ({ ...prevData, ['aotype']: city_data[value]['AO Type'] }))
+      setFormData((prevData) => ({ ...prevData, ['rangeCode']: city_data[value]['Range Code'] }))
+      setFormData((prevData) => ({ ...prevData, ['aoNo']: city_data[value]['AO Number'] }))
+    }
+    if (name == 'title' && value == 'Shri' && value != '') {
+      setFormData((prevData) => ({ ...prevData, ['gender']: 'Male' }));
+    }
+    if (name == 'title' && value == 'Smt' && value != '') {
+      setFormData((prevData) => ({ ...prevData, ['gender']: 'Female' }));
+    }
+    if (name == 'title' && value == 'Kumari' && value != '') {
+      setFormData((prevData) => ({ ...prevData, ['gender']: 'Female' }));
     }
 
-    const handleBlur = () => {
-        if (formData.middleName) {
-            setFormData((prevData) => ({ ...prevData, ['aadhaarName']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
-            setFormData((prevData) => ({ ...prevData, ['NameOnCard']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
-        } else {
-            setFormData((prevData) => ({ ...prevData, ['aadhaarName']: formData.firstName + ' ' + formData.lastName }))
-            setFormData((prevData) => ({ ...prevData, ['NameOnCard']: formData.firstName + ' ' + formData.lastName }));
-        }
-        console.log('false')
+    if (name == 'firstName' || name == 'middleName' || name == 'lastName' || name == 'father_FName' || name == 'father_MName' || name == 'father_LName') {
+      setFormData((prevData) => ({ ...prevData, [name]: value.charAt(0).toUpperCase() + value.slice(1) }));
+    } else {
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
+  }
+
+  const handleBlur = () => {
+    if (formData.middleName) {
+      setFormData((prevData) => ({ ...prevData, ['aadhaarName']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
+      setFormData((prevData) => ({ ...prevData, ['NameOnCard']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
+    } else {
+      setFormData((prevData) => ({ ...prevData, ['aadhaarName']: formData.firstName + ' ' + formData.lastName }))
+      setFormData((prevData) => ({ ...prevData, ['NameOnCard']: formData.firstName + ' ' + formData.lastName }));
+    }
+    console.log('false')
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+
+    if (catagory == 'Individual' && formData.aadhaarNumber.length != 12) {
+      toast({
+        title: 'Aadhaar Number',
+        description: "Aadhaar Number should have 12 Charecter",
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        position: 'top-center',
+      })
+    } else if (formData.zipCode.length != 6) {
+      toast({
+        title: 'Zip Code',
+        description: "PIN Code Number should have 6 Charecter",
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        position: 'top-center',
+      })
+    } else {
+      localStorage.setItem("VDP_form_data", JSON.stringify(formData))
+      navigate('/user/pan-edit')
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+
+    // // dispatch(PAN_INDIVIDUAL(formData))
+
+    // axios.post("http://localhost:8080/user/new-pan-card", formData, {
+    // headers: { "Authorization": portalData.token }
+    // }).then((res) => {
+    //     console.log(res.data);
+    // }) .catch((err) => {
+    //     console.log(err);
+    // })
+  }
+
+  // console.log(formData)
 
 
-        if (catagory == 'Individual' && formData.aadhaarNumber.length != 12) {
-            toast({
-                title: 'Aadhaar Number',
-                description: "Aadhaar Number should have 12 Charecter",
-                status: 'error',
-                duration: 5000,
-                isClosable: true,
-                position: 'top-center',
-            })
-        } else if (formData.zipCode.length != 6) {
-            toast({
-                title: 'Zip Code',
-                description: "PIN Code Number should have 6 Charecter",
-                status: 'error',
-                duration: 5000,
-                isClosable: true,
-                position: 'top-center',
-            })
-        } else {
-            localStorage.setItem("VDP_form_data", JSON.stringify(formData))
-            navigate('/user/pan-edit')
-        }
-
-
-        // // dispatch(PAN_INDIVIDUAL(formData))
-
-        // axios.post("http://localhost:8080/user/new-pan-card", formData, {
-        // headers: { "Authorization": portalData.token }
-        // }).then((res) => {
-        //     console.log(res.data);
-        // }) .catch((err) => {
-        //     console.log(err);
-        // })
+  useEffect(() => {
+    if (catagory != "Individual") {
+      setFormData((prevData) => ({ ...prevData, ['officetitle']: 'M/S' }))
+      setFormData((prevData) => ({ ...prevData, ['Address']: 'OFFICE' }))
     }
+    if (catagory == 'Individual') {
+      setFormData((prevData) => ({ ...prevData, ['Address']: 'RESIDENCE ADDRESS' }))
+      setFormData((prevData) => ({ ...prevData, ['identityProof']: 'AADHAR Card issued by UIDAL (In Copy)' }))
+      setFormData((prevData) => ({ ...prevData, ['addressProof']: 'AADHAR Card issued by UIDAL (In Copy)' }))
+      setFormData((prevData) => ({ ...prevData, ['dobProof']: 'AADHAR Card issued by UIDAL (In Copy)' }))
 
-    // console.log(formData)
-
-
-    useEffect(() => {
-        if (catagory != "Individual") {
-            setFormData((prevData) => ({ ...prevData, ['officetitle']: 'M/S' }))
-            setFormData((prevData) => ({ ...prevData, ['Address']: 'OFFICE' }))
-        }
-        if (catagory == 'Individual') {
-            setFormData((prevData) => ({ ...prevData, ['Address']: 'RESIDENCE ADDRESS' }))
-            setFormData((prevData) => ({ ...prevData, ['identityProof']: 'AADHAR Card issued by UIDAL (In Copy)' }))
-            setFormData((prevData) => ({ ...prevData, ['addressProof']: 'AADHAR Card issued by UIDAL (In Copy)' }))
-            setFormData((prevData) => ({ ...prevData, ['dobProof']: 'AADHAR Card issued by UIDAL (In Copy)' }))
-
-        }
-    }, [])
+    }
+  }, [])
 
 
-    return (
-        <div style={{ backgroundColor: 'rgba(201, 201, 201, 0.249)' }}>
-            <div><PanCardNav /></div>
+  return (
+    <div style={{ backgroundColor: 'rgba(201, 201, 201, 0.249)' }}>
+      <div><PanCardNav /></div>
 
-            <div >
+      <div >
 
-                <h1 className='individualPerson_head'>NEW PANCARD</h1>
+        <h1 className='individualPerson_head'>NEW PANCARD</h1>
 
-                <form onSubmit={handleSubmit}>
-                    {/* all */}
-                    <div className="individualPerson_2">
-                        <div>
-                            <div>
-                                <p>Category of Applicant<i>*</i></p>
-                                <input type="text" placeholder={catagory} disabled name='category' value={formData.category} onChange={handleChange} />
-                            </div>
-                            <div>
-                                <p>Category of Applicant<i>*</i></p>
-                                <input type="text" placeholder={currentDate} disabled name='date' value={formData.date} onChange={handleChange} />
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <p>City<i>*</i></p>
-                                <select name="city" required value={formData.city} onChange={handleChange}>
-                                    <option value="" disabled>City</option>
-                                    {city.map((ele, index) => (
-                                        <option key={index} value={ele}>{ele}</option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div>
-                                <p>Area code<i>*</i></p>
-                                <input type="text" value={formData.areaCode} placeholder='Area code' disabled />
-                            </div>
-                            <div>
-                                <p>AOType<i>*</i></p>
-                                <input type="text" value={formData.aotype} placeholder='AOType' disabled />
-                            </div>
-                            <div>
-                                <p>Range Code<i>*</i></p>
-                                <input type="text" value={formData.rangeCode} placeholder='Range Code' disabled />
-                            </div>
-                            <div>
-                                <p>AO No<i>*</i></p>
-                                <input type="text" value={formData.aoNo} placeholder='AO No' disabled />
-                            </div>
-                        </div>
-                    </div>
+        <form onSubmit={handleSubmit}>
+          {/* all */}
+          <div className="individualPerson_2">
+            <div>
+              <div>
+                <p>Category of Applicant<i>*</i></p>
+                <input type="text" placeholder={catagory} disabled name='category' value={formData.category} onChange={handleChange} />
+              </div>
+              <div>
+                <p>Category of Applicant<i>*</i></p>
+                <input type="text" placeholder={currentDate} disabled name='date' value={formData.date} onChange={handleChange} />
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>City<i>*</i></p>
+                <select name="city" required value={formData.city} onChange={handleChange}>
+                  <option value="" disabled>City</option>
+                  {city.map((ele, index) => (
+                    <option key={index} value={ele}>{ele}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <p>Area code<i>*</i></p>
+                <input type="text" value={formData.areaCode} placeholder='Area code' disabled />
+              </div>
+              <div>
+                <p>AOType<i>*</i></p>
+                <input type="text" value={formData.aotype} placeholder='AOType' disabled />
+              </div>
+              <div>
+                <p>Range Code<i>*</i></p>
+                <input type="text" value={formData.rangeCode} placeholder='Range Code' disabled />
+              </div>
+              <div>
+                <p>AO No<i>*</i></p>
+                <input type="text" value={formData.aoNo} placeholder='AO No' disabled />
+              </div>
+            </div>
+          </div>
 
-                    {/* Individual */}
-                    {catagory == "Individual" ? <div className="individualPerson_2">
+          {/* Individual */}
+          {catagory == "Individual" ? <div className="individualPerson_2">
             <div>
               <div>
                 <p>Title<i>*</i></p>
@@ -281,7 +281,7 @@ export const PanCardForm = () => {
                 <p>Date of Birth<i>*</i></p>
                 <select required name='dateOfBirth' value={formData.dateOfBirth} onChange={handleChange}>
                   <option value="" disabled>Date of Birth</option>
-                  {array1To31&&array1To31?.map((ele,index)=>(
+                  {array1To31 && array1To31?.map((ele, index) => (
                     <option key={index} value={ele}>{ele}</option>
                   ))}
                 </select>
@@ -291,9 +291,9 @@ export const PanCardForm = () => {
                 <p>Month<i>*</i></p>
                 <select required name='monthOfBirth' value={formData.monthOfBirth} onChange={handleChange}>
                   <option value="" disabled>Month</option>
-                  {monthsArray&&monthsArray?.map((ele,index)=>(
+                  {monthsArray && monthsArray?.map((ele, index) => (
                     <option key={index} value={ele}>{ele}</option>
-                    ))}
+                  ))}
                 </select>
               </div>
 
@@ -301,7 +301,7 @@ export const PanCardForm = () => {
                 <p>Year<i>*</i></p>
                 <select required name='yearOfBirth' value={formData.yearOfBirth} onChange={handleChange}>
                   <option value="" disabled>Year</option>
-                  {yearsArray&&yearsArray?.map((ele,index)=>(
+                  {yearsArray && yearsArray?.map((ele, index) => (
                     <option key={index} value={ele}>{ele}</option>
                   ))}
                 </select>
@@ -569,7 +569,7 @@ export const PanCardForm = () => {
                 <p>Date of Birth<i>*</i></p>
                 <select required name='dateOfBirth' value={formData.dateOfBirth} onChange={handleChange}>
                   <option value="" disabled>Date of Birth</option>
-                  {array1To31&&array1To31?.map((ele,index)=>(
+                  {array1To31 && array1To31?.map((ele, index) => (
                     <option key={index} value={ele}>{ele}</option>
                   ))}
                 </select>
@@ -578,18 +578,18 @@ export const PanCardForm = () => {
               <div>
                 <p>Month<i>*</i></p>
                 <select required name='monthOfBirth' value={formData.monthOfBirth} onChange={handleChange}>
-                <option value="" disabled>Month</option>
-                  {monthsArray&&monthsArray?.map((ele,index)=>(
+                  <option value="" disabled>Month</option>
+                  {monthsArray && monthsArray?.map((ele, index) => (
                     <option key={index} value={ele}>{ele}</option>
-                    ))}
+                  ))}
                 </select>
               </div>
 
               <div>
                 <p>Year<i>*</i></p>
                 <select required name='yearOfBirth' value={formData.yearOfBirth} onChange={handleChange}>
-                <option value="" disabled>Year</option>
-                  {yearsArray&&yearsArray?.map((ele,index)=>(
+                  <option value="" disabled>Year</option>
+                  {yearsArray && yearsArray?.map((ele, index) => (
                     <option key={index} value={ele}>{ele}</option>
                   ))}
                 </select>
@@ -928,37 +928,37 @@ export const PanCardForm = () => {
 
 
 
-                    {/* all */}
-                    <div className="individualPerson_2">
-                        <h2>Note : Physical PAN card will be delivered to applicant's address. e-PAN will be sent to applicant's e-mail.</h2>
-                        <div>
-                            <div>
-                                <p>Select the required option<i>*</i></p>
-                                <select required name='requiredOption' value={formData.requiredOption} onChange={handleChange}>
-                                    <option value="Both Physical PAN Card and e-PAN">Both Physical PAN Card and e-PAN</option>
-                                </select>
-                            </div>
-                            <div>
-                                <p>PAN Fee</p>
-                                <input type="number" placeholder='₹ 107' disabled />
-                            </div>
-                        </div>
-                    </div>
-
-                    <button className='individualPerson_3' type='submit'>SUBMIT</button>
-                </form>
+          {/* all */}
+          <div className="individualPerson_2">
+            <h2>Note : Physical PAN card will be delivered to applicant's address. e-PAN will be sent to applicant's e-mail.</h2>
+            <div>
+              <div>
+                <p>Select the required option<i>*</i></p>
+                <select required name='requiredOption' value={formData.requiredOption} onChange={handleChange}>
+                  <option value="Both Physical PAN Card and e-PAN">Both Physical PAN Card and e-PAN</option>
+                </select>
+              </div>
+              <div>
+                <p>PAN Fee</p>
+                <input type="number" placeholder='₹ 107' disabled />
+              </div>
             </div>
+          </div>
 
-            <div className='dashboard_1'>
-                <p>आपका वॉलेट बैलेंस कम है. Balance : Rs. 0. पैन कार्ड अप्लाई करने के लिए कम से कम वॉलेट में Rs.107/- होना अनिवार्य है</p>
-            </div>
-            <div className='dashboard_1'>
-                <p>हम आपसे अनुरोध करते हैं कि डिजिटल इंडिया पोर्टल द्वारा प्रदान की जा रही अन्य सुविधाएं जैसे बिजली बिल का भुगतान, मोबाइल रिचार्ज, डीटीएच रिचार्ज, GST रजिस्ट्रेशन, ITR फाइलिंग जैसी अन्य सुविधाओं का भी आप लाभ उठाएं और हम आपको भरोसा दिलाते हैं कि भविष्य में डिजिटल इंडिया पोर्टल आपको और भी सुविधाएं प्रदान करेगा डिजिटल इंडिया पोर्टल के साथ जुड़े रहने के लिए धन्यवाद</p>
-            </div>
+          <button className='individualPerson_3' type='submit'>NEXT</button>
+        </form>
+      </div>
 
-            <div><Footer /></div>
-        </div>
-    )
+      <div className='dashboard_1'>
+        <p>आपका वॉलेट बैलेंस कम है. Balance : Rs. 0. पैन कार्ड अप्लाई करने के लिए कम से कम वॉलेट में Rs.107/- होना अनिवार्य है</p>
+      </div>
+      <div className='dashboard_1'>
+        <p>हम आपसे अनुरोध करते हैं कि डिजिटल इंडिया पोर्टल द्वारा प्रदान की जा रही अन्य सुविधाएं जैसे बिजली बिल का भुगतान, मोबाइल रिचार्ज, डीटीएच रिचार्ज, GST रजिस्ट्रेशन, ITR फाइलिंग जैसी अन्य सुविधाओं का भी आप लाभ उठाएं और हम आपको भरोसा दिलाते हैं कि भविष्य में डिजिटल इंडिया पोर्टल आपको और भी सुविधाएं प्रदान करेगा डिजिटल इंडिया पोर्टल के साथ जुड़े रहने के लिए धन्यवाद</p>
+      </div>
+
+      <div><Footer /></div>
+    </div>
+  )
 }
 
 
