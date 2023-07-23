@@ -1,22 +1,22 @@
 import './DashboardNav.css'
 import { useNavigate } from 'react-router-dom';
-import { Button, Menu, MenuButton, MenuItem, MenuList, useMediaQuery, useToast, Wrap, Avatar, WrapItem, AvatarBadge, AvatarGroup,Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useDisclosure, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { Button, Menu, MenuButton, MenuItem, MenuList, useMediaQuery, useToast, Wrap, Avatar, WrapItem, AvatarBadge, AvatarGroup, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, useDisclosure, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-
+import menu from '../../assets/menu.png';
 
 export const DashboardNav = () => {
     const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)");
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const [profile,setProfile] = useState(null)
-    const [amount,setAmount] = useState(null)
-    const [balance,setBalance] = useState(0)
+    const [profile, setProfile] = useState(null)
+    const [amount, setAmount] = useState(null)
+    const [balance, setBalance] = useState(0)
     const navigate = useNavigate()
     const toast = useToast()
-    const KEY_ID="rzp_test_rP3Xy6wdM4BJhE";
-    const KEY_SECRET="bUxk9FArJhGYabAGpAgyYDaS"
+    const KEY_ID = "rzp_test_rP3Xy6wdM4BJhE";
+    const KEY_SECRET = "bUxk9FArJhGYabAGpAgyYDaS"
 
     const handleLogout = () => {
         localStorage.removeItem("digitalPortal")
@@ -29,84 +29,86 @@ export const DashboardNav = () => {
         })
         window.location = '/'
     }
-    const profileAvater = () =>{
-        axios.get('http://localhost:8080/api/profile-detail',{
+    const profileAvater = () => {
+        axios.get('http://localhost:8080/api/profile-detail', {
             headers: { "Authorization": portalData.token }
         })
-        .then((res)=>{
-            // console.log(res.data)
-            setProfile(res.data)
-            setBalance(res.data[0].balance)
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
+            .then((res) => {
+                console.log(res.data)
+                setProfile(res.data)
+                setBalance(res.data[0].balance)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
-//handelOpenRazorpay
-const handelOpenRazorpay=(data)=>{
-   const options={
-    key: KEY_ID, // Enter the Key ID generated from the Dashboard
-   amount: data.amount,
-   currrency:data.currency,
-   order_id:data.id,
-   name:"Vineet Digital Portal",
-   handler:(response)=>{
-console.log(response);
-axios.post("http://localhost:8080/payment/verify",{response})
-.then((res)=>{
-    console.log(res.data,"55");
-    axios.patch("http://localhost:8080/api/add-balance",{...response,amount,date: new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true }).format(new Date())},{
-        headers: {
-            "Authorization": portalData.token
-          }
-    })
-    .then((res)=>{
-        profileAvater()
-        setAmount(null)
-        toast({
-            title: res.data,
-            status: 'success',
-            duration: 3000,
-            isClosable: true,
-          })
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
-})
-.catch((err)=>{
-    console.log(err);
-})
+    //handelOpenRazorpay
+    const handelOpenRazorpay = (data) => {
+        const options = {
+            key: KEY_ID, // Enter the Key ID generated from the Dashboard
+            amount: data.amount,
+            currrency: data.currency,
+            order_id: data.id,
+            name: "Vineet Digital Portal",
+            handler: (response) => {
+                console.log(response);
+                axios.post("http://localhost:8080/payment/verify", { response })
+                    .then((res) => {
+                        console.log(res.data, "55");
+                        axios.patch("http://localhost:8080/api/add-balance", { ...response, amount, date: new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true }).format(new Date()) }, {
+                            headers: {
+                                "Authorization": portalData.token
+                            }
+                        })
+                            .then((res) => {
+                                profileAvater()
+                                setAmount(null)
+                                toast({
+                                    title: res.data,
+                                    status: 'success',
+                                    duration: 3000,
+                                    isClosable: true,
+                                })
+                            })
+                            .catch((err) => {
+                                console.log(err);
+                            })
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    })
 
 
-   }
+            }
 
 
-   }
-   const rzp = new window.Razorpay(options);
-rzp.open()
-}
+        }
+        const rzp = new window.Razorpay(options);
+        rzp.open()
+    }
 
 
 
     //handelPay
-    const handelPay=()=>{
-        axios.post('http://localhost:8080/payment/order',{amount:amount})
-        .then((res)=>{
-            console.log(res.data);
-            onClose()
-            handelOpenRazorpay(res.data)
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
+    const handelPay = () => {
+        axios.post('http://localhost:8080/payment/order', { amount: amount })
+            .then((res) => {
+                console.log(res.data);
+                onClose()
+                handelOpenRazorpay(res.data)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
 
     }
-    
-    useEffect(()=>{
-        profileAvater();
-    },[])
 
+    useEffect(() => {
+        profileAvater();
+    }, [])
+
+
+    // console.log(portalData)
 
     return (
         <div>
@@ -123,7 +125,7 @@ rzp.open()
                     <a href="/profile">
                         <Wrap>
                             <WrapItem>
-                                <Avatar color={'white'} bg='blue.200' size={['md', 'md', 'lg']} name={profile && profile[0].name} src={profile&&profile[0].avtar} />
+                                <Avatar color={'white'} bg='blue.200' size={['md', 'md', 'lg']} name={profile && profile[0].name} src={profile && profile[0].avtar} />
                             </WrapItem>
                         </Wrap>
                     </a>
@@ -134,8 +136,8 @@ rzp.open()
                 {isSmallerThan1000 ?
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Menu>
-                            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} colorScheme="#0a9cf8" margin={0} fontSize={['10px', '15px', '15px']}>
-                                Menu
+                            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} colorScheme="#0a9cf8" margin={0}>
+                                <img width={'22px'} src={menu} alt="" />
                             </MenuButton>
                             <MenuList color={"black"}>
                                 <MenuItem onClick={() => navigate('/Dashboard')}>Dashboard</MenuItem>
@@ -144,7 +146,7 @@ rzp.open()
                                 <MenuItem onClick={() => navigate('/profile')}>Ledger</MenuItem>
                                 <MenuItem onClick={() => navigate('/profile')}>Add Money</MenuItem>
                                 <Menu placement="right-start">
-                                    <MenuButton colorScheme='white' color={'black'} fontSize={['10px', '15px', '15px']} as={Button} rightIcon={<ChevronDownIcon />} bg={'white'} margin={0}>Services</MenuButton>
+                                    <MenuButton colorScheme='white' color={'black'} fontSize={['15.5px', '15px', '15px']} as={Button} rightIcon={<ChevronDownIcon />} bg={'white'} margin={0}>Services</MenuButton>
                                     <MenuList>
                                         <MenuItem onClick={() => navigate('/PanCard')}>Pan Card</MenuItem>
                                         <MenuItem onClick={() => navigate('/ChangePassword')}>Electricity</MenuItem>
@@ -166,6 +168,9 @@ rzp.open()
                                     rightIcon={<ChevronDownIcon />}
                                     colorScheme="#0a9cf8"
                                     margin={0}
+                                    fontWeight={'normal'}
+                                    padding={0}
+                                    fontSize={['10px', '15px', '15px']}
                                 >
                                     Services
                                 </MenuButton>
@@ -184,7 +189,7 @@ rzp.open()
                         <div><a href="#"><p>Traning Manual</p></a></div>
                         <div><a href="#"><p>Downloads</p></a></div>
                         <div><a href="#"><p>Ledger</p></a></div>
-                        <div><a href="#"><p>Add Money</p></a></div>
+                        <div><Button onClick={onOpen} ml={'5px'} size={'sm'} colorScheme='blue'>Add money</Button></div>
                     </div>}
                 <div>
                     <div><a href="#"><p>Wallet Balance:₹ {balance} </p></a>
@@ -210,18 +215,18 @@ rzp.open()
                     </div>
                 </div>
             </div>
-{/* add money modal */}
-<Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Add Money to Wallet</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-           <FormControl>
-            <FormLabel>Enter Money</FormLabel>
-            <Input placeholder='Enter Your Money' type='number' value={amount} onChange={(e)=>setAmount(e.target.value)}/>
-           </FormControl>
-          </ModalBody>
+            {/* add money modal */}
+            <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Add Money to Wallet</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <FormControl>
+                            <FormLabel>Enter Money</FormLabel>
+                            <Input placeholder='Enter Your Money' type='number' value={amount} onChange={(e) => setAmount(e.target.value)} />
+                        </FormControl>
+                    </ModalBody>
 
           <ModalFooter bg={'white'}>
             <Button size={'sm'} mr={3} onClick={onClose}>

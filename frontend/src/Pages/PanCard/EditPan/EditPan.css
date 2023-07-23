@@ -1,0 +1,117 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* dashboard_1 */
+
+.editpan_head{
+    text-align: center;
+    width: 50%;
+    border: 1.5px solid rgb(10, 156, 248);;
+    margin: 0 auto 1cm auto;
+    color: rgb(10, 156, 248);;
+    padding: 10px 0;
+    border-radius: 25px;
+}
+
+/* editpan_2 */
+
+.editpan_2{
+    background-color: rgba(242, 242, 242, 0.847);
+    border-radius: 20px;
+    width: 80%;
+    margin: 1cm auto;
+    padding: 20px 20px;
+}
+.editpan_2 > div{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    margin: 15px 0;
+}
+.editpan_2 > div > div {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0);
+}
+.editpan_2 > div > div > p{
+    font-size: 13px;
+    color: rgb(62, 62, 62);
+    margin: 7px;
+}
+.editpan_2 > div > div > p > i{
+    color: red;
+}
+.editpan_2 > div > div > input{
+    width: 100%;
+    padding: 10px;
+    /* border: 1px solid rgba(128, 128, 128, 0); */
+    border-radius: 5px;
+}
+.editpan_2 > div > div > input::placeholder{
+    padding: 10px;
+}
+.editpan_2 > div > div > select{
+    width: 100%;
+    padding: 10px;
+    /* border: 1px solid grey; */
+    border-radius: 5px;
+    color: grey;
+}
+.editpan_2 > h1{
+    text-align: center;
+    font-size: 25px;
+}
+.editpan_3{
+    width: 80%;
+    margin: 1cm auto;
+}
+.editpan_3 > button{
+    display: block;
+    margin: 10px auto;
+    width: 60%;
+    background-color: rgb(10, 156, 248);
+    padding: 15px 10px;
+    color: white;
+    border: 1.3px solid rgb(10, 156, 248);
+    border-radius: 7px;
+    transition: 0.4s ease;
+}
+.editpan_3 > p{
+    text-align: center;
+    margin: 10px auto;
+    width: 60%;
+    padding: 15px 10px;
+    color: white;
+    border: 1.3px solid #ffb731;
+    border-radius: 7px;
+    transition: 0.4s ease;
+}
+.editpan_3 > button:hover{
+    background-color: white;
+    color: rgb(10, 156, 248);
+}
+
+@media screen and (min-width:0px) and (max-width:1000px){
+.individualPerson_1{
+    width: 90%;
+}
+.editpan_2{
+    width: 90%;
+}
+}
+
+@media screen and (min-width:0px) and (max-width:850px){
+.individualPerson_1{
+    text-align: start;
+}
+.editpan_2{
+    margin: 0.5cm auto;
+}
+.editpan_2 > div{
+    display: block;
+    margin: 15px 0;
+}
+.individualPerson_3{
+    width: 60%;
+}
+}
