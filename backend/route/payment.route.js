@@ -2,8 +2,8 @@ const express=require("express")
 const Razorpay = require('razorpay');
 const crypto=require("crypto")
 const paymentRoute=express.Router()
-const KEY_ID="rzp_test_rP3Xy6wdM4BJhE";
-const KEY_SECRET="bUxk9FArJhGYabAGpAgyYDaS"
+const KEY_ID="rzp_test_4PEjkS1Agy6kpO";
+const KEY_SECRET="IxtVLhJDIu4sHy5EQgaf2iKL"
 
 paymentRoute.post('/order',(req,res)=>{ 
 

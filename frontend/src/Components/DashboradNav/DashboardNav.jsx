@@ -15,9 +15,8 @@ export const DashboardNav = () => {
     const [balance, setBalance] = useState(0)
     const navigate = useNavigate()
     const toast = useToast()
-    const KEY_ID = "rzp_test_rP3Xy6wdM4BJhE";
-    const KEY_SECRET = "bUxk9FArJhGYabAGpAgyYDaS"
-
+    const KEY_ID = "rzp_test_4PEjkS1Agy6kpO";
+    const KEY_SECRET = "IxtVLhJDIu4sHy5EQgaf2iKL"
     const handleLogout = () => {
         localStorage.removeItem("digitalPortal")
 
@@ -193,7 +192,7 @@ export const DashboardNav = () => {
                     </div>}
                 <div>
                     <div><a href="#"><p>Wallet Balance:₹ {balance} </p></a>
-                    <Button onClick={onOpen}   ml={'5px'} size={'sm'} colorScheme='green'>Add money</Button>
+                   
                     </div>
                     {/* <div><a href="#"><p>OCW: 10000 ₹</p></a></div> */}
                     <div>
@@ -241,3 +240,5 @@ export const DashboardNav = () => {
         </div>
     )
 }
+
+  

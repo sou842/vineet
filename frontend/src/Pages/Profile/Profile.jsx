@@ -77,17 +77,15 @@ export const Profile = () => {
     if (e.target.name == "avtar") {
       let reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
-<<<<<<< HEAD
+
       reader.onload=()=>{
         setEditdata({...editdata,[e.target.name]:reader.result})
           // console.log(reader.result);
          
-=======
-      reader.onload = () => {
-        setEditdata({ ...editdata, [e.target.name]: reader.result })
-        // console.log(reader.result);
 
->>>>>>> 1003824ddc8b3678ebd5792d53e95e8c9dc5dd56
+    
+
+
       }
     }
     else {
