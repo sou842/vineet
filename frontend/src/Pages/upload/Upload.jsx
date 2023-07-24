@@ -7,38 +7,42 @@ import { useNavigate } from 'react-router-dom'
 import UploadDocument from '../upload document/UploadDocument'
 
 const Upload = () => {
-    const portalData=JSON.parse(localStorage.getItem('digitalPortal'))||null;
-    const navigate=useNavigate()
-    const [pans,setPans]=useState([])
-    const [loading,setLoading]=useState(false)
-    useEffect(()=>{
-        setLoading(true)
-        axios.get("http://localhost:8080/user/all-pan-card-deatils",{
-            headers: {
-                "Authorization": portalData.token
-              }
-        
-        }).then((res)=>{
+    const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null;
+    const navigate = useNavigate()
+    const [pans, setPans] = useState([])
+    const [loading, setLoading] = useState(false)
+
+
+    const GetData = () => {
+        axios.get("http://localhost:8080/user/all-pan-card-deatils", {
+            headers: { "Authorization": portalData.token }
+
+        }).then((res) => {
             setLoading(false)
-            // console.log(res.data);
+            console.log(res.data);
             setPans(res.data.reverse())
-        }).catch((err)=>{
+        }).catch((err) => {
             setLoading(false)
             console.log(err);
         })
+    }
 
-    },[])
+    useEffect(() => {
+        setLoading(true)
+        GetData()
+
+    }, [])
 
 
-  return (
-   <Box>
-    <Box>
-        <PanCardNav/>
-    </Box>
-    <Box mt={'20px'}>
-        <ContactUs/>
-    </Box>
-    <Box w={'90%'} m={'auto'} bg={'white'} mt={'50px'}>
+    return (
+        <Box>
+            <Box>
+                <PanCardNav />
+            </Box>
+            <Box mt={'20px'}>
+                <ContactUs />
+            </Box>
+            <Box w={'90%'} m={'auto'} bg={'white'} mt={'50px'}>
         <TableContainer >
             <Table>
                 <Thead>
@@ -64,7 +68,6 @@ const Upload = () => {
                                 <Td>{el.telephoneNumber|| "NA"}</Td>
                                 <Td><Button size={'xs'} colorScheme='yellow'>Edit</Button></Td>
                                 <Td><Button size={'xs'} colorScheme={'green'}  onClick={()=> navigate(`/user/upload-document/${el._id}`)}>Upload</Button></Td>
-                               
                             </Tr>
                         }
                         })
@@ -75,8 +78,8 @@ const Upload = () => {
 
     </Box>
 
-   </Box>
-  )
+        </Box>
+    )
 }
 
 export default Upload
