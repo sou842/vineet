@@ -149,6 +149,7 @@ userRoute.get("/profile-detail", async (req, res) => {
   }
 });
 
+ 
 // 2. update single user details
 userRoute.use(auth);
 userRoute.patch("/profile-update", async (req, res) => {
