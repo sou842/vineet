@@ -164,14 +164,14 @@ const UploadDocument = () => {
 
             <Heading w={'80%'} m={'auto'} mt={'1cm'} mb={'1cm'} size={'md'} textAlign={'center'} border={'1px solid'} p={'7px'} borderRadius={'15px'} color={'white'} bg={'#3F51B5'}>Upload Documents Pan Card</Heading>
 
-            <Box display={'flex'} p={'10px'} justifyContent={'space-between'} m={'auto'} mt={'50px'} mb={'1cm'} w={['97%','70%','60%']} >
-                <Box fontSize={['13px','14px','15px']}>
+            <Box display={'flex'} p={'10px'} justifyContent={'space-between'} m={'auto'} mt={'50px'} mb={'1cm'} w={['97%', '70%', '60%']} >
+                <Box fontSize={['13px', '14px', '15px']}>
                     <Text mt={'7px'} fontWeight={'bold'}>Applicant's Name</Text>
                     <Text mt={'7px'} fontWeight={'bold'}>Token Number</Text>
                     <Text mt={'7px'} fontWeight={'bold'}>Category of Applicant</Text>
                     <Text mt={'7px'} fontWeight={'bold'}>Apply Date</Text>
                 </Box>
-                <Box fontSize={['13px','14px','15px']}>
+                <Box fontSize={['13px', '14px', '15px']}>
                     <Text mt={'7px'} color={'grey'}>{pans.firstName + " " + pans.middleName + " " + pans.lastName}</Text>
                     <Text mt={'7px'} color={'grey'}>{pans.tokenNumber}</Text>
                     <Text mt={'7px'} color={'grey'}>{pans.category}</Text>
@@ -181,42 +181,53 @@ const UploadDocument = () => {
             </Box>
 
 
-            <Box w={['85%','93%','90%','80%']} display={'flex'} flexDirection={['column','column','row','row']} justifyContent={'space-between'} gap={'10px'} m={'20px  auto'}>
-                <Box w={['90%','55%','30%','27%']} m={'auto'}>
-                    <Box h={['250px','300px','250px','250px']} w={'100%'} m={'auto'} mb={'15px'} border={'1px solid'} objectFit={'contain'}>
-                        <Image src={image.frontForm || ""} alt='front' w={'100%'} h={'100%'} />
+            <Box w={['85%', '93%', '90%', '80%']} display={'flex'} flexDirection={['column', 'column', 'row', 'row']} justifyContent={'space-between'} gap={'10px'} m={'20px  auto'}>
+                <Box w={['90%', '55%', '30%', '27%']} m={'auto'}>
+                <Box h={['250px', '300px', '250px', '300px']} display={'flex'} justifyContent={'center'} alignItems={'center'} w={'100%'} m={'auto'} mb={'15px'} border={'1px solid'} objectFit={'contain'}>
+                        {image.frontForm == '' ?
+                            <Image w={'25%'} src='https://cdn-icons-png.flaticon.com/128/7188/7188242.png' />
+                            :
+                            <Image src={image.frontForm || ""} alt='front' w={'100%'} h={'100%'} />
+                        }
                     </Box>
                     <form>
                         <FormControl>
                             <FormLabel textAlign={'center'}>Front Form 49A</FormLabel>
                             <Text textAlign={'center'} fontSize={'14px'} mb={'7px'} color={'grey'}>(Only 200DPI Color JPG)</Text>
-                            <Input p={'3.5px'} type='file' name='frontForm' onChange={handleUpload} required accept="image/*" />
+                            <Input color={'grey'} p={'3.5px'} type='file' name='frontForm' onChange={handleUpload} required accept="image/*" />
                         </FormControl>
                     </form>
                 </Box>
 
-                <Box w={['90%','55%','30%','27%']} m={'auto'}>
-                <Box h={['250px','300px','250px','250px']} w={'100%'} m={'auto'} mb={'15px'} border={'1px solid'} objectFit={'contain'}>
-                        <Image src={image.backForm || ""} alt='back' w={'100%'} h={'100%'} />
+                <Box w={['90%', '55%', '30%', '27%']} m={'auto'}>
+                    <Box h={['250px', '300px', '250px', '300px']} display={'flex'} justifyContent={'center'} alignItems={'center'} w={'100%'} m={'auto'} mb={'15px'} border={'1px solid'} objectFit={'contain'}>
+                        {image.backForm == '' ?
+                            <Image w={'25%'} src='https://cdn-icons-png.flaticon.com/128/7188/7188242.png' />
+                            :
+                            <Image src={image.backForm || ""} alt='back' w={'100%'} h={'100%'} />}
                     </Box>
                     <form>
                         <FormControl>
                             <FormLabel textAlign={'center'} >Back Form 49A</FormLabel>
                             <Text textAlign={'center'} fontSize={'14px'} mb={'7px'} color={'grey'}>(Only 200DPI Color JPG)</Text>
-                            <Input p={'3.5px'} type='file' name='backForm' required onChange={handleUpload} accept="image/*" />
+                            <Input color={'grey'} p={'3.5px'} type='file' name='backForm' required onChange={handleUpload} accept="image/*" />
                         </FormControl>
                     </form>
                 </Box>
 
-                <Box w={['90%','55%','30%','27%']} m={'auto'}>
-                <Box h={['250px','300px','250px','250px']} w={'100%'} m={'auto'} mb={'15px'} border={'1px solid'} objectFit={'contain'}>
-                        <Image src={image.aadharCardDocs || ""} alt='aadhar' w={'100%'} h={'100%'} />
+                <Box w={['90%', '55%', '30%', '27%']} m={'auto'}>
+                <Box h={['250px', '300px', '250px', '300px']} display={'flex'} justifyContent={'center'} alignItems={'center'} w={'100%'} m={'auto'} mb={'15px'} border={'1px solid'} objectFit={'contain'}>
+                        {image.aadharCardDocs == '' ?
+                            <Image w={'25%'} src='https://cdn-icons-png.flaticon.com/128/7188/7188242.png' />
+                            :
+                            <Image src={image.aadharCardDocs || ""} alt='aadhar' w={'100%'} h={'100%'} />
+                            }                       
                     </Box>
                     <form onSubmit={handleUploadAadharCard}>
                         <FormControl>
                             <FormLabel textAlign={'center'} >Aadhar Card</FormLabel>
                             <Text textAlign={'center'} fontSize={'14px'} mb={'7px'} color={'grey'}>(Only 200DPI Color JPG)</Text>
-                            <Input p={'3.5px'} type='file' name='aadharCardDocs' required onChange={handleUpload} accept="image/*" />
+                            <Input color={'grey'} p={'3.5px'} type='file' name='aadharCardDocs' required onChange={handleUpload} accept="image/*" />
                         </FormControl>
                     </form>
                 </Box>
