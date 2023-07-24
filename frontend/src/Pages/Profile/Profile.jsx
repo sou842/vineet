@@ -11,7 +11,7 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton, Input, FormControl, FormLabel, useDisclosure
+  ModalCloseButton, Input, FormControl, FormLabel, useDisclosure, Image
 } from '@chakra-ui/react';
 import { PanCardNav } from '../../Components/PanCardNav/PanCardNav';
 
@@ -77,6 +77,7 @@ export const Profile = () => {
     if (e.target.name == "avtar") {
       let reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
+<<<<<<< HEAD
 
       reader.onload=()=>{
         setEditdata({...editdata,[e.target.name]:reader.result})
@@ -86,6 +87,11 @@ export const Profile = () => {
     
 
 
+=======
+      reader.onload = () => {
+        setEditdata({ ...editdata, [e.target.name]: reader.result })
+        // console.log(reader.result);
+>>>>>>> 418214b7c14be4c528d273620699f50f6751dc8a
       }
     }
     else {
@@ -122,37 +128,52 @@ export const Profile = () => {
       <div><PanCardNav /></div>
 
       {/* profile details */}
-      
-      <Heading size={'md'} textAlign={'center'} mt={'1cm'} mb={'20px'}>YOUR PROFILE</Heading>
-      <Box w={['90%', '90%', '60%']} m={'auto'} mb={'1cm'} gap={'10px'} bg={'gray.100'} p={'25px'} borderRadius={'5px'} >{
-        loading ? <Box display={'flex'} justifyContent={'center'}><Spinner /> </Box> :
+
+      {/* <Heading size={'md'} textAlign={'center'} mt={'1cm'} mb={'20px'}>YOUR PROFILE</Heading> */}
+      {loading ? <Box display={'flex'} justifyContent={'center'}><Spinner /></Box> :
 
 
-          profileData.map((el, i) => {
-            return <div key={i}>
-              <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>vendorID: <Text fontWeight={'thin'} as={'span'}>{el.vendorID}</Text> </Heading>
-              <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>Person Name: <Text fontWeight={'thin'} as={'span'}>{el.name}</Text> </Heading>
-              <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>Email: <Text fontWeight={'thin'} as={'span'}>{el.email}</Text> </Heading>
-              <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>Person Contact: <Text fontWeight={'thin'} as={'span'}>{el.mobileNumber}</Text> </Heading>
-              <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>Address: <Text fontWeight={'thin'} as={'span'}>{el.address}</Text> </Heading>
-              <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>City: <Text fontWeight={'thin'} as={'span'}>{el.city}</Text> </Heading>
-              <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>State: <Text fontWeight={'thin'} as={'span'}>{el.state}</Text> </Heading>
-              <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>Country: <Text fontWeight={'thin'} as={'span'}>India</Text> </Heading>
-              <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>Pin Code: <Text fontWeight={'thin'} as={'span'}>{el.pincode}</Text> </Heading>
-              <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>Retailer Shop Name: <Text fontWeight={'thin'} as={'span'}>{el.shopeName}</Text> </Heading>
-              <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>Bussiness: <Text fontWeight={'thin'} as={'span'}>NA</Text> </Heading>
-              <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>Joining Date & Time: <Text fontWeight={'thin'} as={'span'}>{el.joindate}</Text> </Heading>
-              <Box textAlign={'center'} mt={'20px'}>
-                <Button width={'50%'} colorScheme='yellow' size={'sm'} onClick={() => handleEdit(el)}>Edit Profile</Button>
+        profileData.map((el, i) => {
+          return <div key={i}>
+            <Box w={['95%', '95%', '85%']} display={'flex'} justifyContent={'space-between'} flexDirection={['column', 'column', 'row']} m={'auto'} mt={['0.5cm','0.5cm','1cm']} mb={'1cm'} bg={'gray.100'} p={['7px', '15px', '25px']} borderRadius={'15px'} >
 
+              <Box width={['100%', '100%', '40%']}>
+                <Box w={'100%'} h={['60%']} >
+                  {el.avtar == '' ?
+                    <Text color={'blue.200'} fontSize={'50px'} display={'flex'} justifyContent={'center'} alignItems={'center'} w={'100%'} h={'100%'} m={'auto'} borderRadius={'15px'} bg={'white'}>{el.name.match(/\b\w/g).join('').toUpperCase()}</Text>
+                    :
+                    <Image w={'100%'} h={'100%'} borderRadius={'15px'} src={el.avtar} alt="" />
+                  }
+                </Box>
+
+                <Box textAlign={'center'} mt={'20px'}>
+                  <Button width={'100%'} h={'45px'} colorScheme='yellow' size={'sm'} onClick={() => handleEdit(el)}>Edit Profile</Button>
+                </Box>
+
+                <Box mt={'20px'}>
+                  <Heading size={'sm'} p={'15px'} display={'flex'} alignItems={'center'}><Image width={'25px'} mr={'15px'} src='https://cdn-icons-png.flaticon.com/128/1077/1077063.png' /><Text fontWeight={'bold'} as={'span'}>{el.name.toUpperCase()}</Text> </Heading>
+                  <Heading size={'sm'} p={'15px'} display={'flex'} alignItems={'center'}><Image width={'25px'} mr={'15px'} src='https://cdn-icons-png.flaticon.com/128/646/646094.png' /> <Text fontWeight={'bold'} as={'span'}>{el.email}</Text> </Heading>
+                </Box>
               </Box>
-            </div>
-          })
+
+              <Box width={['100%', '100%', '55%']} bg={'white'} p={'10px'} borderRadius={'15px'}>
+                <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>vendorID: <Text fontWeight={'thin'} as={'span'}>{el.vendorID}</Text> </Heading>
+                <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>Address: <Text fontWeight={'thin'} as={'span'}>{el.address}</Text> </Heading>
+                <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>City: <Text fontWeight={'thin'} as={'span'}>{el.city}</Text> </Heading>
+                <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>State: <Text fontWeight={'thin'} as={'span'}>{el.state}</Text> </Heading>
+                <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>Country: <Text fontWeight={'thin'} as={'span'}>India</Text> </Heading>
+                <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>Pin Code: <Text fontWeight={'thin'} as={'span'}>{el.pincode}</Text> </Heading>
+                <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>Retailer Shop Name: <Text fontWeight={'thin'} as={'span'}>{el.shopeName}</Text> </Heading>
+                <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>Bussiness: <Text fontWeight={'thin'} as={'span'}>NA</Text> </Heading>
+                <Heading size={'sm'} p={'15px'}>Joining Date & Time: <Text fontWeight={'thin'} as={'span'}>{el.joindate}</Text> </Heading>
+              </Box>
+            </Box>
+          </div>
+        })
       }
 
 
 
-      </Box>
 
       {/* EDIT PROFIL MODAL */}
       <Modal
