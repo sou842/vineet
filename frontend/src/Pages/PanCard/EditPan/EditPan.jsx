@@ -151,21 +151,21 @@ export const EditPan = () => {
       localStorage.setItem("VDP_form_data", JSON.stringify(formData))
 
       axios.post("http://localhost:8080/user/new-pan-card", formData, {
-      headers: { "Authorization": portalData.token }
+        headers: { "Authorization": portalData.token }
       }).then((res) => {
-          // console.log(res.data);
-          toast({
-            title: 'SUBMITTED',
-            description: "PAN CARD FORM SUBMITTED SUCCESSFULLY",
-            status: 'success',
-            duration: 5000,
-            isClosable: true,
-            position: 'top-center',
-          })
-          
+        // console.log(res.data);
+        toast({
+          title: 'SUBMITTED',
+          description: "PAN CARD FORM SUBMITTED SUCCESSFULLY",
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+          position: 'top-center',
+        })
 
-      }) .catch((err) => {
-          console.log(err);
+
+      }).catch((err) => {
+        console.log(err);
       })
 
       navigate('/DashBoard')
@@ -186,13 +186,13 @@ export const EditPan = () => {
     <div style={{ backgroundColor: 'rgba(201, 201, 201, 0.249)' }}>
       <div><PanCardNav /></div>
 
-      <div style={{ paddingTop: '1cm', paddingBottom: '1cm', backgroundColor:'white' }}>
+      <div style={{ paddingTop: '1cm', paddingBottom: '1cm', backgroundColor: 'white' }}>
 
         <h1 className='editpan_head'>PANCARD REVIEW</h1>
 
         <form onSubmit={handleSubmit}>
           {/* all */}
-          <div className="editpan_2">
+          {!formEdit ? <div className="editpan_2">
             <div>
               <div>
                 <p>Category of Applicant<i>*</i></p>
@@ -230,7 +230,7 @@ export const EditPan = () => {
                 <input type="text" value={formData.aoNo} placeholder='AO No' disabled style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
               </div>
             </div>
-          </div>
+          </div> : null}
 
           {/* Individual */}
           {catagory == "Individual" ? <div className="editpan_2">
@@ -553,56 +553,281 @@ export const EditPan = () => {
 
 
           {/* Others */}
-          {catagory != "Individual" ? <div className="editpan_2">
-            <div>
-              <div style={{ width: '25%' }}>
-                <p>Title<i>*</i></p>
-                <select disabled={formEdit} required name='officetitle' value={formData.officetitle} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value={formData.officetitle} disabled>{formData.officetitle}</option>
-                </select>
+
+          {catagory !== "Individual" && formEdit ?
+            <table className='form_details_1'>
+              <thead>
+                <tr>
+                  <th>Field</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Category of Applicant</td>
+                  <td>{formData.category}</td>
+                </tr>
+                <tr>
+                  <td>City</td>
+                  <td>{formData.city}</td>
+                </tr>
+                <tr>
+                  <td>Area code</td>
+                  <td>{formData.areaCode}</td>
+                </tr>
+                <tr>
+                  <td>AOType</td>
+                  <td>{formData.aotype}</td>
+                </tr>
+                <tr>
+                  <td>Range Code</td>
+                  <td>{formData.rangeCode}</td>
+                </tr>
+                <tr>
+                  <td>AO No</td>
+                  <td>{formData.aoNo}</td>
+                </tr>
+                {/* <!-- Add more rows for each field and its corresponding value --> */}
+                <tr>
+                  <td>Organization Title</td>
+                  <td>{formData.officetitle}</td>
+                </tr>
+                <tr>
+                  <td>Full Name of Organization</td>
+                  <td>{formData.organization}</td>
+                </tr>
+                <tr>
+                  <td>Date of Birth</td>
+                  <td>{formData.dateOfBirth}</td>
+                </tr>
+                <tr>
+                  <td>Month</td>
+                  <td>{formData.monthOfBirth}</td>
+                </tr>
+                <tr>
+                  <td>Year</td>
+                  <td>{formData.yearOfBirth}</td>
+                </tr>
+                <tr>
+                  <td>Office Address</td>
+                  <td>{formData.Address}</td>
+                </tr>
+                <tr>
+                  <td>Name of the Office</td>
+                  <td>{formData.officeName}</td>
+                </tr>
+                <tr>
+                  <td>Office's Flat/Door/Block Number</td>
+                  <td>{formData.officeflatNumber}</td>
+                </tr>
+                <tr>
+                  <td>Office's Name of Premises/Building/Village</td>
+                  <td>{formData.officepremisesName}</td>
+                </tr>
+                <tr>
+                  <td>Office's Road/Street/Lane/Post Office</td>
+                  <td>{formData.officeroadName}</td>
+                </tr>
+                <tr>
+                  <td>Office's Area/Locality/Taluka/Sub-Division</td>
+                  <td>{formData.officearea}</td>
+                </tr>
+                <tr>
+                  <td>Office's Town/City/District</td>
+                  <td>{formData.officecityDistrict}</td>
+                </tr>
+                <tr>
+                  <td>Office's State/Union Territory</td>
+                  <td>{formData.officestate}</td>
+                </tr>
+                <tr>
+                  <td>Office's Zip Code</td>
+                  <td>{formData.officezipCode}</td>
+                </tr>
+                <tr>
+                  <td>Office's Country</td>
+                  <td>{formData.officecountry}</td>
+                </tr>
+                <tr>
+                  <td>Telephone ISD Code</td>
+                  <td>{formData.telephoneISDCode}</td>
+                </tr>
+                <tr>
+                  <td>Telephone/Mobile number</td>
+                  <td>{formData.telephoneNumber}</td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td>{formData.email}</td>
+                </tr>
+                <tr>
+                  <td>Registration Number</td>
+                  <td>{formData.registrationNumber}</td>
+                </tr>
+                <tr>
+                  <td>Source Of Income</td>
+                  <td>{formData.sourceOfIncome}</td>
+                </tr>
+                <tr>
+                  <td>Title</td>
+                  <td>{formData.title}</td>
+                </tr>
+                <tr>
+                  <td>First name</td>
+                  <td>{formData.firstName}</td>
+                </tr>
+                <tr>
+                  <td>Middle Name</td>
+                  <td>{formData.middleName}</td>
+                </tr>
+                <tr>
+                  <td>Last Name</td>
+                  <td>{formData.lastName}</td>
+                </tr>
+                <tr>
+                  <td>Flat/Door/Block Number</td>
+                  <td>{formData.flatNumber}</td>
+                </tr>
+                <tr>
+                  <td>Name of Premises/Building/Village</td>
+                  <td>{formData.premisesName}</td>
+                </tr>
+                <tr>
+                  <td>Road/Street/Lane/Post Office</td>
+                  <td>{formData.roadName}</td>
+                </tr>
+                <tr>
+                  <td>Area/Locality/Taluka/Sub-Division</td>
+                  <td>{formData.area}</td>
+                </tr>
+                <tr>
+                  <td>Town/City/District</td>
+                  <td>{formData.cityDistrict}</td>
+                </tr>
+                <tr>
+                  <td>State/Union Territory</td>
+                  <td>{formData.state}</td>
+                </tr>
+                <tr>
+                  <td>Zip Code</td>
+                  <td>{formData.zipCode}</td>
+                </tr>
+                <tr>
+                  <td>Country</td>
+                  <td>{formData.country}</td>
+                </tr>
+                <tr>
+                  <td>Identity Proof</td>
+                  <td>{formData.identityProof}</td>
+                </tr>
+                <tr>
+                  <td>Address Proof</td>
+                  <td>{formData.addressProof}</td>
+                </tr>
+                <tr>
+                  <td>Capacity</td>
+                  <td>{formData.declarationCapacity}</td>
+                </tr>
+                <tr>
+                  <td>Verifier Name</td>
+                  <td>{formData.verifierName}</td>
+                </tr>
+                <tr>
+                  <td>Verifier Place</td>
+                  <td>{formData.verifierPlace}</td>
+                </tr>
+                <tr>
+                  <td>Verification Date</td>
+                  <td>{formData.verificationDate}</td>
+                </tr>
+                <tr>
+                  <td>PAN Fee</td>
+                  <td>₹ {formData.PanFee}</td>
+                </tr>
+              </tbody>
+            </table> : null}
+
+
+          {catagory !== "Individual" && !formEdit ? (
+            <div className="editpan_2">
+              <div>
+                <div style={{ width: '25%' }}>
+                  <p>Organization Title<i>*</i></p>
+                  <select
+                    disabled={formEdit}
+                    required
+                    name='officetitle'
+                    value={formData.officetitle}
+                    onChange={handleChange}
+                  >
+                    <option value={formData.officetitle} disabled>{formData.officetitle}</option>
+                  </select>
+                </div>
+                <div>
+                  <p>Full Name of Organization<i>*</i></p>
+                  <input
+                    disabled={formEdit}
+                    type="text"
+                    placeholder='Organization'
+                    name='organization'
+                    value={formData.organization}
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
               <div>
-                <p>Full Name of Organization<i>*</i></p>
-                <input disabled={formEdit} type="text" placeholder='Organization' name='organization' value={formData.organization} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                <div>
+                  <p>Date of Birth<i>*</i></p>
+                  <select
+                    disabled={formEdit}
+                    required
+                    name='dateOfBirth'
+                    value={formData.dateOfBirth}
+                    onChange={handleChange}
+                  >
+                    <option value="" disabled>Date of Birth</option>
+                    {array1To31 && array1To31?.map((ele, index) => (
+                      <option key={index} value={ele}>{ele}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <p>Month<i>*</i></p>
+                  <select
+                    disabled={formEdit}
+                    required
+                    name='monthOfBirth'
+                    value={formData.monthOfBirth}
+                    onChange={handleChange}
+                  >
+                    <option value="" disabled>Month</option>
+                    {monthsArray && monthsArray?.map((ele, index) => (
+                      <option key={index} value={ele}>{ele}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <p>Year<i>*</i></p>
+                  <select
+                    disabled={formEdit}
+                    required
+                    name='yearOfBirth'
+                    value={formData.yearOfBirth}
+                    onChange={handleChange}
+                  >
+                    <option value="" disabled>Year</option>
+                    {yearsArray && yearsArray?.map((ele, index) => (
+                      <option key={index} value={ele}>{ele}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
             </div>
-            <div>
+          ) : null}
 
-              <div>
-                <p>Date of Birth<i>*</i></p>
-                <select disabled={formEdit} required name='dateOfBirth' value={formData.dateOfBirth} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value="" disabled>Date of Birth</option>
-                  {array1To31 && array1To31?.map((ele, index) => (
-                    <option key={index} value={ele}>{ele}</option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <p>Month<i>*</i></p>
-                <select disabled={formEdit} required name='monthOfBirth' value={formData.monthOfBirth} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value="" disabled>Month</option>
-                  {monthsArray && monthsArray?.map((ele, index) => (
-                    <option key={index} value={ele}>{ele}</option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <p>Year<i>*</i></p>
-                <select disabled={formEdit} required name='yearOfBirth' value={formData.yearOfBirth} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value="" disabled>Year</option>
-                  {yearsArray && yearsArray?.map((ele, index) => (
-                    <option key={index} value={ele}>{ele}</option>
-                  ))}
-                </select>
-              </div>
-
-            </div>
-          </div> : null}
-
-
-          {catagory !== "Individual" ? (
+          {catagory !== "Individual" && !formEdit ? (
             <div className="editpan_2">
               <h2>Address for Communication (If you want to select Office Address then Required Office Address Proof)</h2>
               <div>
@@ -614,7 +839,6 @@ export const EditPan = () => {
                     name='address'
                     value={formData.Address}
                     onChange={handleChange}
-                    style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}
                   >
                     <option value={formData.Address}>{formData.Address}</option>
                   </select>
@@ -631,7 +855,6 @@ export const EditPan = () => {
                     name='officeName'
                     value={formData.officeName}
                     onChange={handleChange}
-                    style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}
                   />
                 </div>
               </div>
@@ -647,7 +870,6 @@ export const EditPan = () => {
                     name='officeflatNumber'
                     value={formData.officeflatNumber}
                     onChange={handleChange}
-                    style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}
                   />
                 </div>
                 <div>
@@ -660,7 +882,6 @@ export const EditPan = () => {
                     name='officepremisesName'
                     value={formData.officepremisesName}
                     onChange={handleChange}
-                    style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}
                   />
                 </div>
               </div>
@@ -675,7 +896,6 @@ export const EditPan = () => {
                     name='officeroadName'
                     value={formData.officeroadName}
                     onChange={handleChange}
-                    style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}
                   />
                 </div>
                 <div>
@@ -688,7 +908,6 @@ export const EditPan = () => {
                     name='officearea'
                     value={formData.officearea}
                     onChange={handleChange}
-                    style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}
                   />
                 </div>
               </div>
@@ -703,7 +922,6 @@ export const EditPan = () => {
                     name='officecityDistrict'
                     value={formData.officecityDistrict}
                     onChange={handleChange}
-                    style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}
                   />
                 </div>
                 <div>
@@ -714,9 +932,7 @@ export const EditPan = () => {
                     name='officestate'
                     value={formData.officestate}
                     onChange={handleChange}
-                    style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}
                   >
-                    <option value="" disabled>State/Union Territory</option>
                     <option value="" disabled>State/Union Territory</option>
                     <option value="Andhra Pradesh">Andhra Pradesh</option>
                     <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -754,7 +970,8 @@ export const EditPan = () => {
                     <option value="Lakshadweep">Lakshadweep</option>
                     <option value="Puducherry">Puducherry</option>
                     <option value="Ladakh">Ladakh</option>
-                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>                  </select>
+                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                  </select>
                 </div>
               </div>
               <div>
@@ -768,7 +985,6 @@ export const EditPan = () => {
                     name='officezipCode'
                     value={formData.officezipCode}
                     onChange={handleChange}
-                    style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}
                   />
                 </div>
                 <div>
@@ -779,7 +995,6 @@ export const EditPan = () => {
                     name='officecountry'
                     value={formData.officecountry}
                     onChange={handleChange}
-                    style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}
                   >
                     <option value="" disabled>Country</option>
                     <option value="India">India</option>
@@ -789,8 +1004,7 @@ export const EditPan = () => {
             </div>
           ) : null}
 
-
-          {catagory !== "Individual" ? (
+          {catagory !== "Individual" && !formEdit ? (
             <div className="editpan_2">
               <div>
                 <div>
@@ -801,7 +1015,6 @@ export const EditPan = () => {
                     name='telephoneISDCode'
                     value={formData.telephoneISDCode}
                     onChange={handleChange}
-                    style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}
                   >
                     <option value="" disabled>Telephone ISD Code</option>
                     <option value="India">India</option>
@@ -817,7 +1030,6 @@ export const EditPan = () => {
                     name='telephoneNumber'
                     value={formData.telephoneNumber}
                     onChange={handleChange}
-                    style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}
                   />
                 </div>
                 <div>
@@ -830,7 +1042,6 @@ export const EditPan = () => {
                     name='email'
                     value={formData.email}
                     onChange={handleChange}
-                    style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}
                   />
                 </div>
               </div>
@@ -845,7 +1056,6 @@ export const EditPan = () => {
                       name='registrationNumber'
                       value={formData.registrationNumber}
                       onChange={handleChange}
-                      style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}
                     />
                   </div>
                 </div>
@@ -853,8 +1063,7 @@ export const EditPan = () => {
             </div>
           ) : null}
 
-
-          {catagory !== "Individual" ? (
+          {catagory !== "Individual" && !formEdit ? (
             <div className="editpan_2">
               <h2>Source Of Income<i>*</i></h2>
 
@@ -862,16 +1071,16 @@ export const EditPan = () => {
                 <div>
                   <span style={{ display: 'flex', color: 'rgb(71, 71, 71)', margin: '10px', fontSize: '13px' }}>
                     <input disabled={formEdit} type="checkbox" name="sourceIncome" onClick={() => setSourceIncome(!sourceIncome)} />
-                    <p style={{ marginLeft: '15px' }}>Are you are engaged in a business / profession?</p>
+                    <p style={{ marginLeft: '15px' }}>Are you engaged in a business / profession?</p>
                   </span>
                   {sourceIncome ?
-                    <select disabled={formEdit} required name='sourceOfIncome' value={formData.sourceOfIncome} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
+                    <select disabled={formEdit} required name='sourceOfIncome' value={formData.sourceOfIncome} onChange={handleChange}>
                       <option value="" disabled>Select Profession</option>
                       <option value="ARCHITECTURE">ARCHITECTURE</option>
                       <option value="BUILDERS AND DEVELOPERS">BUILDERS AND DEVELOPERS</option>
                     </select>
                     :
-                    <select disabled={formEdit} required name='sourceOfIncome' value={formData.sourceOfIncome} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
+                    <select disabled={formEdit} required name='sourceOfIncome' value={formData.sourceOfIncome} onChange={handleChange}>
                       <option value="" disabled>Source Of Income</option>
                       <option value="Income from Other source">Income from Other source</option>
                       <option value="Income from House Property">Income from House Property</option>
@@ -883,14 +1092,13 @@ export const EditPan = () => {
             </div>
           ) : null}
 
-
-          {catagory !== "Individual" ? (
+          {catagory !== "Individual" && !formEdit ? (
             <div className="editpan_2">
               <h1>Representative Assessee</h1>
               <div>
                 <div>
                   <p>Title<i>*</i></p>
-                  <select disabled={formEdit} required name='title' value={formData.title} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
+                  <select disabled={formEdit} required name='title' value={formData.title} onChange={handleChange}>
                     <option value="" disabled>Title</option>
                     <option value="Shri">Shri</option>
                     <option value="Smt">Smt</option>
@@ -899,15 +1107,15 @@ export const EditPan = () => {
                 </div>
                 <div>
                   <p>First name<i>*</i></p>
-                  <input disabled={formEdit} type="text" placeholder='First Name' onBlur={handleBlur} required name='firstName' value={formData.firstName} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                  <input disabled={formEdit} type="text" placeholder='First Name' onBlur={handleBlur} required name='firstName' value={formData.firstName} onChange={handleChange} />
                 </div>
                 <div>
                   <p>Middle Name</p>
-                  <input disabled={formEdit} type="text" placeholder='Middle Name' onBlur={handleBlur} name='middleName' value={formData.middleName} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                  <input disabled={formEdit} type="text" placeholder='Middle Name' onBlur={handleBlur} name='middleName' value={formData.middleName} onChange={handleChange} />
                 </div>
                 <div>
                   <p>Last Name<i>*</i></p>
-                  <input disabled={formEdit} type="text" placeholder='Last Name' onBlur={handleBlur} required name='lastName' value={formData.lastName} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                  <input disabled={formEdit} type="text" placeholder='Last Name' onBlur={handleBlur} required name='lastName' value={formData.lastName} onChange={handleChange} />
                 </div>
               </div>
               <div>
@@ -915,31 +1123,31 @@ export const EditPan = () => {
               <div>
                 <div>
                   <p>Flat/Door/Block Number<i>*</i></p>
-                  <input disabled={formEdit} type="text" placeholder='Flat/Door/Block Number' required name='flatNumber' value={formData.flatNumber} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                  <input disabled={formEdit} type="text" placeholder='Flat/Door/Block Number' required name='flatNumber' value={formData.flatNumber} onChange={handleChange} />
                 </div>
                 <div>
                   <p>Name of Premises/Building/Village<i>*</i></p>
-                  <input disabled={formEdit} type="text" placeholder='Name of Premises/Building/Village' required name='premisesName' value={formData.premisesName} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                  <input disabled={formEdit} type="text" placeholder='Name of Premises/Building/Village' required name='premisesName' value={formData.premisesName} onChange={handleChange} />
                 </div>
               </div>
               <div>
                 <div>
                   <p>Road/Street/Lane/Post Office<i>*</i></p>
-                  <input disabled={formEdit} type="text" placeholder='Road/Street/Lane/Post Office' required name='roadName' value={formData.roadName} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                  <input disabled={formEdit} type="text" placeholder='Road/Street/Lane/Post Office' required name='roadName' value={formData.roadName} onChange={handleChange} />
                 </div>
                 <div>
                   <p>Area/Locality/Taluka/Sub-Division<i>*</i></p>
-                  <input disabled={formEdit} type="text" placeholder='Area/Locality/Taluka/Sub-Division' required name='area' value={formData.area} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                  <input disabled={formEdit} type="text" placeholder='Area/Locality/Taluka/Sub-Division' required name='area' value={formData.area} onChange={handleChange} />
                 </div>
               </div>
               <div>
                 <div>
                   <p>Town/City/District<i>*</i></p>
-                  <input disabled={formEdit} type="text" placeholder='Town/City/District' required name='cityDistrict' value={formData.cityDistrict} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                  <input disabled={formEdit} type="text" placeholder='Town/City/District' required name='cityDistrict' value={formData.cityDistrict} onChange={handleChange} />
                 </div>
                 <div>
                   <p>State/Union Territory<i>*</i></p>
-                  <select disabled={formEdit} required name='state' value={formData.state} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
+                  <select disabled={formEdit} required name='state' value={formData.state} onChange={handleChange}>
                     <option value="" disabled>State/Union Territory</option>
                     <option value="Andhra Pradesh">Andhra Pradesh</option>
                     <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -984,11 +1192,11 @@ export const EditPan = () => {
               <div>
                 <div>
                   <p>Zip Code<i>*</i></p>
-                  <input disabled={formEdit} type="number" placeholder='Zip Code' required name='zipCode' value={formData.zipCode} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                  <input disabled={formEdit} type="number" placeholder='Zip Code' required name='zipCode' value={formData.zipCode} onChange={handleChange} />
                 </div>
                 <div>
                   <p>Country<i>*</i></p>
-                  <select disabled={formEdit} required name='country' value={formData.country} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
+                  <select disabled={formEdit} required name='country' value={formData.country} onChange={handleChange}>
                     <option value="" disabled>Country</option>
                     <option value="India">India</option>
                   </select>
@@ -997,43 +1205,43 @@ export const EditPan = () => {
             </div>
           ) : null}
 
-
-          {catagory != "Individual" ? <div className="editpan_2">
-            <div>
+          {catagory !== "Individual" && !formEdit ? (
+            <div className="editpan_2">
               <div>
-                <p>Which of these documents are you submitting as an Identity Proof<i>*</i></p>
-                <select disabled={formEdit} required name='identityProof' value={formData.identityProof} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value="" disabled>Select</option>
-                  <option value="Agreement">Agreement</option>
-                  <option value="Cretificate of Registration Number issued by any other Competent Authority">Cretificate of Registration Number issued by any other Competent Authority</option>
-                  <option value="Cretificate of Registration Number issued by Charity Commissioner">Cretificate of Registration Number issued by Charity Commissioner</option>
-                  <option value="Cretificate of Registration Number issued by Registrar of Co-op Society">Cretificate of Registration Number issued by Registrar of Co-op Society</option>
-                  <option value="Any document originating from any Center or State Govt. Department establishing identity of such person">Any document originating from any Center or State Govt. Department establishing identity of such person</option>
-                </select>
+                <div>
+                  <p>Which of these documents are you submitting as an Identity Proof<i>*</i></p>
+                  <select disabled={formEdit} required name='identityProof' value={formData.identityProof} onChange={handleChange}>
+                    <option value="" disabled>Select</option>
+                    <option value="Agreement">Agreement</option>
+                    <option value="Cretificate of Registration Number issued by any other Competent Authority">Cretificate of Registration Number issued by any other Competent Authority</option>
+                    <option value="Cretificate of Registration Number issued by Charity Commissioner">Cretificate of Registration Number issued by Charity Commissioner</option>
+                    <option value="Cretificate of Registration Number issued by Registrar of Co-op Society">Cretificate of Registration Number issued by Registrar of Co-op Society</option>
+                    <option value="Any document originating from any Center or State Govt. Department establishing identity of such person">Any document originating from any Center or State Govt. Department establishing identity of such person</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>Which of these documents are you submitting as an Address Proof<i>*</i></p>
+                  <select disabled={formEdit} required name='addressProof' value={formData.addressProof} onChange={handleChange}>
+                    <option value="" disabled>Select</option>
+                    <option value="Agreement">Agreement</option>
+                    <option value="Cretificate of Registration Number issued by any other Competent Authority">Cretificate of Registration Number issued by any other Competent Authority</option>
+                    <option value="Cretificate of Registration Number issued by Registrar of Co-op Society">Cretificate of Registration Number issued by Registrar of Co-op Society</option>
+                    <option value="Cretificate of Registration Number issued by Charity Commissioner">Cretificate of Registration Number issued by Charity Commissioner</option>
+                    <option value="Any document originating from any Center or State Govt. Department establishing identity of such person">Any document originating from any Center or State Govt. Department establishing identity of such person</option>
+                  </select>
+                </div>
               </div>
             </div>
-            <div>
-              <div>
-                <p>Which of these documents are you submitting as an Address Proof<i>*</i></p>
-                <select disabled={formEdit} required name='addressProof' value={formData.addressProof} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value="" disabled>Select</option>
-                  <option value="Agreement">Agreement</option>
-                  <option value="Cretificate of Registration Number issued by any other Competent Authority">Cretificate of Registration Number issued by any other Competent Authority</option>
-                  <option value="Cretificate of Registration Number issued by Registrar of Co-op Society">Cretificate of Registration Number issued by Registrar of Co-op Society</option>
-                  <option value="Cretificate of Registration Number issued by Charity Commissioner">Cretificate of Registration Number issued by Charity Commissioner</option>
-                  <option value="Any document originating from any Center or State Govt. Department establishing identity of such person">Any document originating from any Center or State Govt. Department establishing identity of such person</option>
-                </select>
-              </div>
-            </div>
-          </div> : null}
+          ) : null}
 
-
-          {catagory !== "Individual" ? (
+          {catagory !== "Individual" && !formEdit ? (
             <div className="editpan_2">
               <div>
                 <div>
                   <p>You do hereby declare that whatever stated above is true in the capacity of<i>*</i></p>
-                  <select disabled={formEdit} required name='declarationCapacity' value={formData.declarationCapacity} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
+                  <select disabled={formEdit} required name='declarationCapacity' value={formData.declarationCapacity} onChange={handleChange}>
                     <option value="" disabled>Select Capacity</option>
                     <option value="AUTHORIZED SIGNATUREE">AUTHORIZED SIGNATUREE</option>
                     <option value="DIRECTOR">DIRECTOR</option>
@@ -1047,15 +1255,15 @@ export const EditPan = () => {
               <div>
                 <div>
                   <p>Verifier Name<i>*</i></p>
-                  <input disabled={formEdit} type="text" placeholder='Verifier Name' required name='verifierName' value={formData.verifierName} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                  <input disabled={formEdit} type="text" placeholder='Verifier Name' required name='verifierName' value={formData.verifierName} onChange={handleChange} />
                 </div>
                 <div>
                   <p>Verifier Place<i>*</i></p>
-                  <input disabled={formEdit} type="text" placeholder='Verifier Place' required name='verifierPlace' value={formData.verifierPlace} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                  <input disabled={formEdit} type="text" placeholder='Verifier Place' required name='verifierPlace' value={formData.verifierPlace} onChange={handleChange} />
                 </div>
                 <div>
                   <p>Verification Date<i>*</i></p>
-                  <input type="text" placeholder={currentDate} disabled name='verificationDate' value={formData.verificationDate} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                  <input type="text" placeholder={currentDate} disabled name='verificationDate' value={formData.verificationDate} onChange={handleChange} />
                 </div>
               </div>
             </div>
@@ -1063,23 +1271,25 @@ export const EditPan = () => {
 
 
           {/* all */}
-          <div className="editpan_2">
+          {!formEdit ? <div className="editpan_2">
             <h2>Note : Physical PAN card will be delivered to applicant's address. e-PAN will be sent to applicant's e-mail.</h2>
             <div>
               <div>
                 <p>Select the required option<i>*</i></p>
-                <select disabled={formEdit} required name='requiredOption' value={formData.requiredOption} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
+                <select disabled={formEdit} required name='requiredOption' value={formData.requiredOption} onChange={handleChange} >
                   <option value="Both Physical PAN Card and e-PAN">Both Physical PAN Card and e-PAN</option>
                 </select>
               </div>
               <div>
                 <p>PAN Fee</p>
-                <input type="number" placeholder='₹ 107' disabled style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                <input type="number" placeholder='₹ 107' disabled />
               </div>
             </div>
-          </div>
+          </div> : null}
+
+
           <div className='editpan_3'>
-            <p style={{backgroundColor:formEdit?'#ffa600':null,color:formEdit?'white':'#ffa600',cursor:'pointer'}} onClick={()=>setFormEdit(!formEdit)}>EDIT FORM</p>
+            <p style={{ backgroundColor: formEdit ? '#ffa600' : null, color: formEdit ? 'white' : '#ffa600', cursor: 'pointer' }} onClick={() => setFormEdit(!formEdit)}>EDIT FORM</p>
             <button type='submit'>SUBMIT</button>
           </div>
         </form>

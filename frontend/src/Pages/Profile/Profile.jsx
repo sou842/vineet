@@ -129,8 +129,7 @@ export const Profile = () => {
 
       {/* profile details */}
 
-      {/* <Heading size={'md'} textAlign={'center'} mt={'1cm'} mb={'20px'}>YOUR PROFILE</Heading> */}
-      {loading ? <Box display={'flex'} justifyContent={'center'}><Spinner /></Box> :
+      {loading ? <Box display={'flex'} justifyContent={'center'} mt={'5cm'}><Spinner color='blue.300'/></Box> :
 
 
         profileData.map((el, i) => {
@@ -176,12 +175,9 @@ export const Profile = () => {
 
 
       {/* EDIT PROFIL MODAL */}
-      <Modal
-        isOpen={editIsOpen}
-        onClose={editOnClose}
-      >
+      <Modal isOpen={editIsOpen} onClose={editOnClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent w={'95%'}>
           <ModalHeader>Update your details</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
@@ -201,15 +197,13 @@ export const Profile = () => {
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>Upload your image</FormLabel>
-              <Input type='file' name='avtar' onChange={handleChangeEdit} accept="image/*" />
+              <Input pt={'4px'} type='file' name='avtar' onChange={handleChangeEdit} accept="image/*" />
             </FormControl>
           </ModalBody>
 
           <ModalFooter bg={'white'}>
-            <Button colorScheme='blue' mr={3} size={'sm'} onClick={handleUpdate} >
-              Update
-            </Button>
-            <Button onClick={editOnClose} size={'sm'}>Cancel</Button>
+            <Button onClick={editOnClose} mr={3} size={'sm'}>Cancel</Button>
+            <Button colorScheme='yellow' size={'sm'} onClick={handleUpdate} >Update</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

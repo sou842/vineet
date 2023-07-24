@@ -2,6 +2,27 @@
     margin: 0;
     padding: 0;
 }
+/* form_details_1 */
+.form_details_1{
+    border: 1px solid red;
+    width: 80%;
+    margin: 1cm auto;
+}
+.form_details_1 table {
+    border-collapse: collapse;
+    width: 100%;
+}
+.form_details_1 th, td {
+    border: 1px solid #ccc;
+    padding: 9px 8px;
+}
+.form_details_1 td:nth-child(2){
+    /* font-weight: bold; */
+    color: rgb(127, 127, 127);
+}
+.form_details_1 th {
+    background-color: #f2f2f2;
+  }
 /* dashboard_1 */
 
 .editpan_head{
@@ -44,7 +65,7 @@
 .editpan_2 > div > div > input{
     width: 100%;
     padding: 10px;
-    /* border: 1px solid rgba(128, 128, 128, 0); */
+    border: 1px solid grey;
     border-radius: 5px;
 }
 .editpan_2 > div > div > input::placeholder{
@@ -53,7 +74,7 @@
 .editpan_2 > div > div > select{
     width: 100%;
     padding: 10px;
-    /* border: 1px solid grey; */
+    border: 1px solid grey;
     border-radius: 5px;
     color: grey;
 }
@@ -92,6 +113,10 @@
 }
 
 @media screen and (min-width:0px) and (max-width:1000px){
+.form_details_1{
+    width: 95%;
+    font-size: 13px;
+}
 .individualPerson_1{
     width: 90%;
 }
