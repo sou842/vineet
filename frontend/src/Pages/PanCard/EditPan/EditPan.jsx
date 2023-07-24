@@ -196,17 +196,17 @@ export const EditPan = () => {
             <div>
               <div>
                 <p>Category of Applicant<i>*</i></p>
-                <input type="text" placeholder={catagory} disabled name='category' value={formData.category} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                <input type="text" placeholder={catagory} disabled name='category' value={formData.category} onChange={handleChange} />
               </div>
               <div>
-                <p>Category of Applicant<i>*</i></p>
-                <input type="text" placeholder={currentDate} disabled name='date' value={formData.date} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                <p>Date of Applicant<i>*</i></p>
+                <input type="text" placeholder={currentDate} disabled name='date' value={formData.date} onChange={handleChange} />
               </div>
             </div>
             <div>
               <div>
                 <p>City<i>*</i></p>
-                <select disabled={formEdit} name="city" required value={formData.city} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
+                <select disabled={formEdit} name="city" required value={formData.city} onChange={handleChange} >
                   <option value="" disabled>City</option>
                   {city.map((ele, index) => (
                     <option key={index} value={ele}>{ele}</option>
@@ -215,341 +215,541 @@ export const EditPan = () => {
               </div>
               <div>
                 <p>Area code<i>*</i></p>
-                <input type="text" value={formData.areaCode} placeholder='Area code' disabled style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                <input type="text" value={formData.areaCode} placeholder='Area code' disabled />
               </div>
               <div>
                 <p>AOType<i>*</i></p>
-                <input type="text" value={formData.aotype} placeholder='AOType' disabled style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                <input type="text" value={formData.aotype} placeholder='AOType' disabled />
               </div>
               <div>
                 <p>Range Code<i>*</i></p>
-                <input type="text" value={formData.rangeCode} placeholder='Range Code' disabled style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                <input type="text" value={formData.rangeCode} placeholder='Range Code' disabled />
               </div>
               <div>
                 <p>AO No<i>*</i></p>
-                <input type="text" value={formData.aoNo} placeholder='AO No' disabled style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                <input type="text" value={formData.aoNo} placeholder='AO No' disabled />
               </div>
             </div>
           </div> : null}
 
           {/* Individual */}
-          {catagory == "Individual" ? <div className="editpan_2">
-            <div>
+          {catagory == "Individual" && formEdit ?
+            <table className='form_details_1'>
+              <thead>
+                <tr>
+                  <th>Field</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Category of Applicant</td>
+                  <td>{formData.category}</td>
+                </tr>
+                <tr>
+                  <td>Date of Applicant</td>
+                  <td>{formData.date}</td>
+                </tr>
+                <tr>
+                  <td>City</td>
+                  <td>{formData.city}</td>
+                </tr>
+                <tr>
+                  <td>Area code</td>
+                  <td>{formData.areaCode}</td>
+                </tr>
+                <tr>
+                  <td>AOType</td>
+                  <td>{formData.aotype}</td>
+                </tr>
+                <tr>
+                  <td>Range Code</td>
+                  <td>{formData.rangeCode}</td>
+                </tr>
+                <tr>
+                  <td>AO No</td>
+                  <td>{formData.aoNo}</td>
+                </tr>
+                <tr>
+                  <td>Title</td>
+                  <td>{formData.title}</td>
+                </tr>
+                <tr>
+                  <td>First name</td>
+                  <td>{formData.firstName}</td>
+                </tr>
+                <tr>
+                  <td>Middle Name</td>
+                  <td>{formData.middleName}</td>
+                </tr>
+                <tr>
+                  <td>Last Name</td>
+                  <td>{formData.lastName}</td>
+                </tr>
+                <tr>
+                  <td>Name on Card</td>
+                  <td>{formData.NameOnCard}</td>
+                </tr>
+                <tr>
+                  <td>Gender</td>
+                  <td>{formData.gender}</td>
+                </tr>
+                <tr>
+                  <td>Date of Birth</td>
+                  <td>{formData.dateOfBirth}</td>
+                </tr>
+                <tr>
+                  <td>Month</td>
+                  <td>{formData.monthOfBirth}</td>
+                </tr>
+                <tr>
+                  <td>Year</td>
+                  <td>{formData.yearOfBirth}</td>
+                </tr>
+                <tr>
+                  <td>Father's First Name</td>
+                  <td>{formData.father_FName}</td>
+                </tr>
+                <tr>
+                  <td>Father's Middle Name</td>
+                  <td>{formData.father_MName}</td>
+                </tr>
+                <tr>
+                  <td>Father's Last Name</td>
+                  <td>{formData.father_LName}</td>
+                </tr>
+                <tr>
+                  <td>Residence Address</td>
+                  <td>{formData.Address}</td>
+                </tr>
+                <tr>
+                  <td>Flat/Door/Block Number</td>
+                  <td>{formData.flatNumber}</td>
+                </tr>
+                <tr>
+                  <td>Name of Premises/Building/Village</td>
+                  <td>{formData.premisesName}</td>
+                </tr>
+                <tr>
+                  <td>Road/Street/Lane/Post Office</td>
+                  <td>{formData.roadName}</td>
+                </tr>
+                <tr>
+                  <td>Area/Locality/Taluka/Sub-Division</td>
+                  <td>{formData.area}</td>
+                </tr>
+                <tr>
+                  <td>Town/City/District</td>
+                  <td>{formData.cityDistrict}</td>
+                </tr>
+                <tr>
+                  <td>State/Union Territory</td>
+                  <td>{formData.state}</td>
+                </tr>
+                <tr>
+                  <td>Zip Code</td>
+                  <td>{formData.zipCode}</td>
+                </tr>
+                <tr>
+                  <td>Country</td>
+                  <td>{formData.country}</td>
+                </tr>
+                <tr>
+                  <td>Telephone ISD Code</td>
+                  <td>{formData.telephoneISDCode}</td>
+                </tr>
+                <tr>
+                  <td>Telephone/Mobile number</td>
+                  <td>{formData.telephoneNumber}</td>
+                </tr>
+                <tr>
+                  <td>Email Id</td>
+                  <td>{formData.email}</td>
+                </tr>
+                <tr>
+                  <td>Registration Number</td>
+                  <td>{formData.registrationNumber}</td>
+                </tr>
+                <tr>
+                  <td>AADHAAR Number</td>
+                  <td>{formData.aadhaarNumber}</td>
+                </tr>
+                <tr>
+                  <td>Name as per AADHAAR</td>
+                  <td>{formData.aadhaarName}</td>
+                </tr>
+                <tr>
+                  <td>Source Of Income</td>
+                  <td>{formData.sourceOfIncome}</td>
+                </tr>
+                <tr>
+                  <td>Identity Proof</td>
+                  <td>{formData.identityProof}</td>
+                </tr>
+                <tr>
+                  <td>Address Proof</td>
+                  <td>{formData.addressProof}</td>
+                </tr>
+                <tr>
+                  <td>DOB Proof</td>
+                  <td>{formData.dobProof}</td>
+                </tr>
+                <tr>
+                  <td>capacity</td>
+                  <td>{formData.declarationCapacity}</td>
+                </tr>
+                <tr>
+                  <td>Verifier Name</td>
+                  <td>{formData.verifierName}</td>
+                </tr>
+                <tr>
+                  <td>Verifier Place</td>
+                  <td>{formData.verifierPlace}</td>
+                </tr>
+                <tr>
+                  <td>Verification Date</td>
+                  <td>{formData.verificationDate}</td>
+                </tr>
+                <tr>
+                  <td>PAN Fee</td>
+                  <td>₹ {formData.PanFee}</td>
+                </tr>
+              </tbody>
+            </table> : null}
+
+          {catagory === "Individual" && !formEdit ? (
+            <div className="editpan_2">
               <div>
-                <p>Title<i>*</i></p>
-                <select required disabled={formEdit} name='title' value={formData.title} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value="" disabled>Title</option>
-                  <option value="Shri">Shri</option>
-                  <option value="Smt">Smt</option>
-                  <option value="Kumari">Kumari</option>
-                </select>
+                <div>
+                  <p>Title<i>*</i></p>
+                  <select required disabled={formEdit} name='title' value={formData.title} onChange={handleChange}>
+                    <option value="" disabled>Title</option>
+                    <option value="Shri">Shri</option>
+                    <option value="Smt">Smt</option>
+                    <option value="Kumari">Kumari</option>
+                  </select>
+                </div>
+                <div>
+                  <p>First name<i>*</i></p>
+                  <input type="text" disabled={formEdit} placeholder='First Name' onBlur={handleBlur} required name='firstName' value={formData.firstName} onChange={handleChange} />
+                </div>
+                <div>
+                  <p>Middle Name</p>
+                  <input type="text" disabled={formEdit} placeholder='Middle Name' onBlur={handleBlur} name='middleName' value={formData.middleName} onChange={handleChange} />
+                </div>
+                <div>
+                  <p>Last Name<i>*</i></p>
+                  <input type="text" disabled={formEdit} placeholder='Last Name' onBlur={handleBlur} required name='lastName' value={formData.lastName} onChange={handleChange} />
+                </div>
               </div>
               <div>
-                <p>First name<i>*</i></p>
-                <input type="text" disabled={formEdit} placeholder='First Name' onBlur={handleBlur} required name='firstName' value={formData.firstName} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                <div>
+                  <p>Name on Card</p>
+                  <input type="text" placeholder='Name on Card' name='NameOnCard' disabled value={formData.NameOnCard} onChange={handleChange} />
+                </div>
               </div>
               <div>
-                <p>Middle Name</p>
-                <input type="text" disabled={formEdit} placeholder='Middle Name' onBlur={handleBlur} name='middleName' value={formData.middleName} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
-              </div>
-              <div>
-                <p>Last Name<i>*</i></p>
-                <input type="text" disabled={formEdit} placeholder='Last Name' onBlur={handleBlur} required name='lastName' value={formData.lastName} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                <div>
+                  <p>Gender<i>*</i></p>
+                  <select disabled={formEdit} required name='gender' value={formData.gender} onChange={handleChange}>
+                    <option value="" disabled>Gender</option>
+                    {formData.gender ? (
+                      <>
+                        <option value={formData.gender}>{formData.gender}</option>
+                        <option value="Transgender">Transgender</option>
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                  </select>
+                </div>
+
+                <div>
+                  <p>Date of Birth<i>*</i></p>
+                  <select disabled={formEdit} required name='dateOfBirth' value={formData.dateOfBirth} onChange={handleChange}>
+                    <option value="" disabled>Date of Birth</option>
+                    {array1To31 && array1To31?.map((ele, index) => (
+                      <option key={index} value={ele}>{ele}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <p>Month<i>*</i></p>
+                  <select disabled={formEdit} required name='monthOfBirth' value={formData.monthOfBirth} onChange={handleChange}>
+                    <option value="" disabled>Month</option>
+                    {monthsArray && monthsArray?.map((ele, index) => (
+                      <option key={index} value={ele}>{ele}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <p>Year<i>*</i></p>
+                  <select disabled={formEdit} required name='yearOfBirth' value={formData.yearOfBirth} onChange={handleChange}>
+                    <option value="" disabled>Year</option>
+                    {yearsArray && yearsArray?.map((ele, index) => (
+                      <option key={index} value={ele}>{ele}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
             </div>
-            <div>
+          ) : null}
+
+          {catagory === "Individual" && !formEdit ? (
+            <div className="editpan_2">
+              <h2>Details of Parents ( applicable only for Individual applicants )</h2>
               <div>
-                <p>Name on Card</p>
-                <input type="text" placeholder='Name on Card' name='NameOnCard' disabled value={formData.NameOnCard} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
+                <div>
+                  <p>If yes, please fill in mother's name in the appropriate space provide below.</p>
+                  <select disabled={formEdit}>
+                    <option>NO</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>Gudiance</p>
+                  <select disabled={formEdit}>
+                    <option>Father</option>
+                  </select>
+                </div>
+                <div>
+                  <p>Father's First Name<i>*</i></p>
+                  <input type="text" disabled={formEdit} required placeholder='first Name' name='father_FName' value={formData.father_FName} onChange={handleChange} />
+                </div>
+                <div>
+                  <p>Father's Middle Name</p>
+                  <input type="text" disabled={formEdit} placeholder='middle Name' name='father_MName' value={formData.father_MName} onChange={handleChange} />
+                </div>
+                <div>
+                  <p>Father's Last Name<i>*</i></p>
+                  <input type="text" disabled={formEdit} required placeholder='last Name' name='father_LName' value={formData.father_LName} onChange={handleChange} />
+                </div>
               </div>
             </div>
-            <div>
+          ) : null}
+
+          {catagory === "Individual" && !formEdit ? (
+            <div className="editpan_2">
+              <h2>Address for Communication(If you want to selected Office Address then Required Office Address Proof)</h2>
               <div>
-                <p>Gender<i>*</i></p>
-                <select disabled={formEdit} required name='gender' value={formData.gender} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value="" disabled>Gender</option>
-                  {formData.gender ?
-                    <>
-                      <option value={formData.gender}>{formData.gender}</option>
-                      <option value="Transgender">Transgender</option>
-                    </>
-                    :
-                    <></>
-                  }
-                </select>
+                <div>
+                  <p>Residence Address<i>*</i></p>
+                  <select disabled={formEdit} required name='Address' value={formData.Address} onChange={handleChange}>
+                    <option value={formData.Address}>{formData.Address}</option>
+                  </select>
+                </div>
               </div>
 
+              <h1>RESSIDENCE ADDRESS</h1>
               <div>
-                <p>Date of Birth<i>*</i></p>
-                <select disabled={formEdit} required name='dateOfBirth' value={formData.dateOfBirth} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value="" disabled>Date of Birth</option>
-                  {array1To31 && array1To31?.map((ele, index) => (
-                    <option key={index} value={ele}>{ele}</option>
-                  ))}
-                </select>
+                <div>
+                  <p>Flat/Door/Block Number<i>*</i></p>
+                  <input disabled={formEdit} type="text" placeholder='Flat/Door/Block Number' required name='flatNumber' value={formData.flatNumber} onChange={handleChange} />
+                </div>
+                <div>
+                  <p>Name of Premises/Building/Village<i>*</i></p>
+                  <input disabled={formEdit} type="text" placeholder='Name of Premises/Building/Village' required name='premisesName' value={formData.premisesName} onChange={handleChange} />
+                </div>
               </div>
+              <div>
+                <div>
+                  <p>Road/Street/Lane/Post Office<i>*</i></p>
+                  <input disabled={formEdit} type="text" placeholder='Road/Street/Lane/Post Office' required name='roadName' value={formData.roadName} onChange={handleChange} />
+                </div>
+                <div>
+                  <p>Area/Locality/Taluka/Sub-Division<i>*</i></p>
+                  <input disabled={formEdit} type="text" placeholder='Area/Locality/Taluka/Sub-Division' required name='area' value={formData.area} onChange={handleChange} />
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>Town/City/District<i>*</i></p>
+                  <input disabled={formEdit} type="text" placeholder='Town/City/District' required name='cityDistrict' value={formData.cityDistrict} onChange={handleChange} />
+                </div>
+                <div>
+                  <p>State/Union Territory<i>*</i></p>
+                  <select disabled={formEdit} required name='state' value={formData.state} onChange={handleChange}>
+                    <option value="" disabled>State/Union Territory</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Manipur">Manipur</option>
+                    <option value="Meghalaya">Meghalaya</option>
+                    <option value="Mizoram">Mizoram</option>
+                    <option value="Nagaland">Nagaland</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Sikkim">Sikkim</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Tripura">Tripura</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+                    <option value="Daman and Diu">Daman and Diu</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Lakshadweep">Lakshadweep</option>
+                    <option value="Puducherry">Puducherry</option>
+                    <option value="Ladakh">Ladakh</option>
+                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>Zip Code<i>*</i></p>
+                  <input disabled={formEdit} type="number" placeholder='Zip Code' required name='zipCode' value={formData.zipCode} onChange={handleChange} />
+                </div>
+                <div>
+                  <p>Country<i>*</i></p>
+                  <select disabled={formEdit} required name='country' value={formData.country} onChange={handleChange}>
+                    <option value="" disabled>Country</option>
+                    <option value="India">India</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          ) : null}
 
+          {catagory === "Individual" && !formEdit ? (
+            <div className="editpan_2">
               <div>
-                <p>Month<i>*</i></p>
-                <select disabled={formEdit} required name='monthOfBirth' value={formData.monthOfBirth} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value="" disabled>Month</option>
-                  {monthsArray && monthsArray?.map((ele, index) => (
-                    <option key={index} value={ele}>{ele}</option>
-                  ))}
-                </select>
+                <div>
+                  <p>Telephone ISD Code<i>*</i></p>
+                  <select disabled={formEdit} required name='telephoneISDCode' value={formData.telephoneISDCode} onChange={handleChange}>
+                    <option value="" disabled>Telephone ISD Code</option>
+                    <option value="India">India</option>
+                  </select>
+                </div>
+                <div>
+                  <p>Telephone/Mobile number<i>*</i></p>
+                  <input disabled={formEdit} type="number" placeholder='Telephone/Mobile number' required name='telephoneNumber' value={formData.telephoneNumber} onChange={handleChange} />
+                </div>
+                <div>
+                  <p>Email Id<i>*</i></p>
+                  <input disabled={formEdit} type="email" placeholder='Email ID' required name='email' value={formData.email} onChange={handleChange} />
+                </div>
               </div>
+              {catagory !== "Individual" ? (
+                <div>
+                  <div>
+                    <p>Registration Number</p>
+                    <input disabled={formEdit} type="number" placeholder='Registration Number' name='registrationNumber' value={formData.registrationNumber} onChange={handleChange} />
+                  </div>
+                </div>
+              ) : null}
+            </div>
+          ) : null}
 
+          {catagory === "Individual" && !formEdit ? (
+            <div className="editpan_2">
               <div>
-                <p>Year<i>*</i></p>
-                <select disabled={formEdit} required name='yearOfBirth' value={formData.yearOfBirth} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value="" disabled>Year</option>
-                  {yearsArray && yearsArray?.map((ele, index) => (
-                    <option key={index} value={ele}>{ele}</option>
-                  ))}
-                </select>
+                <div>
+                  <p>AADHAAR Number<i>*</i></p>
+                  <input disabled={formEdit} type="number" placeholder='AADHAAR Number' required name='aadhaarNumber' value={formData.aadhaarNumber} onChange={handleChange} />
+                </div>
+                <div>
+                  <p>Name as per AADHAAR</p>
+                  <input type="text" placeholder={'Name as per AADHAAR'} disabled name='aadhaarName' value={formData.aadhaarName} onChange={handleChange} />
+                </div>
               </div>
+            </div>
+          ) : null}
 
+          {catagory === "Individual" && !formEdit ? (
+            <div className="editpan_2">
+              <div>
+                <div>
+                  <p>Source Of Income<i>*</i></p>
+                  <select disabled={formEdit} required name='sourceOfIncome' value={formData.sourceOfIncome} onChange={handleChange}>
+                    <option value="" disabled>Source Of Income</option>
+                    <option value="No Income">No Income</option>
+                    <option value="salaried Employee">salaried Employee</option>
+                    <option value="Income from House Property">Income from House Property</option>
+                    <option value="Income from Other source">Income from Other source</option>
+                    <option value="engaged in a business / profession">engaged in a business / profession</option>
+                    <option value="Capital Gains">Capital Gains</option>
+                  </select>
+                </div>
+              </div>
             </div>
-          </div> : null}
+          ) : null}
 
-          {catagory == "Individual" ? <div className="editpan_2">
-            <h2>Details of Parents ( applicable only for Individual applicants )</h2>
-            <div>
+          {catagory === "Individual" && !formEdit ? (
+            <div className="editpan_2">
               <div>
-                <p>If yes, please fill in mother's name in the appropriate space provide below.</p>
-                <select style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option>NO</option>
-                </select>
+                <div>
+                  <p>Which of these documents are you submitting as an Identity Proof<i>*</i></p>
+                  <select disabled={formEdit} required name='identityProof' value={formData.identityProof} onChange={handleChange}>
+                    <option value="AADHAR Card issued by UIDAL (In Copy)">AADHAR Card issued by UIDAL (In Copy)</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>Which of these documents are you submitting as an Address Proof<i>*</i></p>
+                  <select disabled={formEdit} required name='addressProof' value={formData.addressProof} onChange={handleChange}>
+                    <option value="AADHAR Card issued by UIDAL (In Copy)">AADHAR Card issued by UIDAL (In Copy)</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>Which of these documents are you submitting as a DOB Proof<i>*</i></p>
+                  <select disabled={formEdit} required name='dobProof' value={formData.dobProof} onChange={handleChange}>
+                    <option value="AADHAR Card issued by UIDAL (In Copy)">AADHAR Card issued by UIDAL (In Copy)</option>
+                  </select>
+                </div>
               </div>
             </div>
-            <div>
-              <div>
-                <p>Gudiance</p>
-                <select disabled={formEdit} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option>Father</option>
-                </select>
-              </div>
-              <div>
-                <p>Father's First Name<i>*</i></p>
-                <input type="text" disabled={formEdit} required placeholder='first Name' name='father_FName' value={formData.father_FName} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
-              </div>
-              <div>
-                <p>Father's Middle Name</p>
-                <input type="text" disabled={formEdit} placeholder='middle Name' name='father_MName' value={formData.father_MName} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
-              </div>
-              <div>
-                <p>Father's Last Name<i>*</i></p>
-                <input type="text" disabled={formEdit} required placeholder='last Name' name='father_LName' value={formData.father_LName} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
-              </div>
-            </div>
-          </div> : null}
+          ) : null}
 
-          {catagory == "Individual" ? <div className="editpan_2">
-            <h2>Address for Communication(If you want to selected Office Address then Required Office Address Proof)</h2>
-            <div>
+          {catagory === "Individual" && !formEdit ? (
+            <div className="editpan_2">
               <div>
-                <p>Residence Address<i>*</i></p>
-                <select disabled={formEdit} required name='Address' value={formData.Address} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value={formData.Address}>{formData.Address}</option>
-                </select>
+                <div>
+                  <p>You do hereby declare that whatever stated above is true in the capacity of<i>*</i></p>
+                  <select disabled={formEdit} required name='declarationCapacity' value={formData.declarationCapacity} onChange={handleChange}>
+                    <option value="" disabled>Select</option>
+                    <option value="HIMSELF/HERSELF">HIMSELF / HERSELF</option>
+                    <option value="salaried Employee">REPRESENTATIVE ASSESSEE</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <p>Verifier Name<i>*</i></p>
+                  <input disabled={formEdit} type="text" placeholder='Verifier Name' required name='verifierName' value={formData.verifierName} onChange={handleChange} />
+                </div>
+                <div>
+                  <p>Verifier Place<i>*</i></p>
+                  <input disabled={formEdit} type="text" placeholder='Verifier Place' required name='verifierPlace' value={formData.verifierPlace} onChange={handleChange} />
+                </div>
+                <div>
+                  <p>Verification Date<i>*</i></p>
+                  <input type="text" placeholder={currentDate} disabled name='verificationDate' value={formData.verificationDate} onChange={handleChange} />
+                </div>
               </div>
             </div>
-
-            <h1>RESSIDENCE ADDRESS</h1>
-            <div>
-              <div>
-                <p>Flat/Door/Block Number<i>*</i></p>
-                <input disabled={formEdit} type="text" placeholder='Flat/Door/Block Number' required name='flatNumber' value={formData.flatNumber} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
-              </div>
-              <div>
-                <p>Name of Premises/Building/Village<i>*</i></p>
-                <input disabled={formEdit} type="text" placeholder='Name of Premises/Building/Village' required name='premisesName' value={formData.premisesName} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
-              </div>
-            </div>
-            <div>
-              <div>
-                <p>Road/Street/Lane/Post Office<i>*</i></p>
-                <input disabled={formEdit} type="text" placeholder='Road/Street/Lane/Post Office' required name='roadName' value={formData.roadName} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
-              </div>
-              <div>
-                <p>Area/Locality/Taluka/Sub-Division<i>*</i></p>
-                <input disabled={formEdit} type="text" placeholder='Area/Locality/Taluka/Sub-Division' required name='area' value={formData.area} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
-              </div>
-            </div>
-            <div>
-              <div>
-                <p>Town/City/District<i>*</i></p>
-                <input disabled={formEdit} type="text" placeholder='Town/City/District' required name='cityDistrict' value={formData.cityDistrict} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
-              </div>
-              <div>
-                <p>State/Union Territory<i>*</i></p>
-                <select disabled={formEdit} required name='state' value={formData.state} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value="" disabled>State/Union Territory</option>
-                  <option value="Andhra Pradesh">Andhra Pradesh</option>
-                  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                  <option value="Assam">Assam</option>
-                  <option value="Bihar">Bihar</option>
-                  <option value="Chhattisgarh">Chhattisgarh</option>
-                  <option value="Goa">Goa</option>
-                  <option value="Gujarat">Gujarat</option>
-                  <option value="Haryana">Haryana</option>
-                  <option value="Himachal Pradesh">Himachal Pradesh</option>
-                  <option value="Jharkhand">Jharkhand</option>
-                  <option value="Karnataka">Karnataka</option>
-                  <option value="Kerala">Kerala</option>
-                  <option value="Madhya Pradesh">Madhya Pradesh</option>
-                  <option value="Maharashtra">Maharashtra</option>
-                  <option value="Manipur">Manipur</option>
-                  <option value="Meghalaya">Meghalaya</option>
-                  <option value="Mizoram">Mizoram</option>
-                  <option value="Nagaland">Nagaland</option>
-                  <option value="Odisha">Odisha</option>
-                  <option value="Punjab">Punjab</option>
-                  <option value="Rajasthan">Rajasthan</option>
-                  <option value="Sikkim">Sikkim</option>
-                  <option value="Tamil Nadu">Tamil Nadu</option>
-                  <option value="Telangana">Telangana</option>
-                  <option value="Tripura">Tripura</option>
-                  <option value="Uttar Pradesh">Uttar Pradesh</option>
-                  <option value="Uttarakhand">Uttarakhand</option>
-                  <option value="West Bengal">West Bengal</option>
-                  <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                  <option value="Chandigarh">Chandigarh</option>
-                  <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
-                  <option value="Daman and Diu">Daman and Diu</option>
-                  <option value="Delhi">Delhi</option>
-                  <option value="Lakshadweep">Lakshadweep</option>
-                  <option value="Puducherry">Puducherry</option>
-                  <option value="Ladakh">Ladakh</option>
-                  <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <div>
-                <p>Zip Code<i>*</i></p>
-                <input disabled={formEdit} type="number" placeholder='Zip Code' required name='zipCode' value={formData.zipCode} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
-              </div>
-              <div>
-                <p>Country<i>*</i></p>
-                <select disabled={formEdit} required name='country' value={formData.country} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value="" disabled>Country</option>
-                  <option value="India">India</option>
-                </select>
-              </div>
-            </div>
-          </div> : null}
-
-          {catagory == "Individual" ? <div className="editpan_2">
-            <div>
-              <div>
-                <p>Telephone ISD Code<i>*</i></p>
-                <select disabled={formEdit} required name='telephoneISDCode' value={formData.telephoneISDCode} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value="" disabled>Telephone ISD Code</option>
-                  <option value="India">India</option>
-                </select>
-              </div>
-              <div>
-                <p>Telephone/Mobile number<i>*</i></p>
-                <input disabled={formEdit} type="number" placeholder='Telephone/Mobile number' required name='telephoneNumber' value={formData.telephoneNumber} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
-              </div>
-              <div>
-                <p>Email Id<i>*</i></p>
-                <input disabled={formEdit} type="email" placeholder='Email ID' required name='email' value={formData.email} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
-              </div>
-            </div>
-            {catagory != "Individual" ? <div>
-              <div>
-                <p>Registration Number</p>
-                <input disabled={formEdit} type="number" placeholder='Registration Number' name='registrationNumber' value={formData.registrationNumber} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
-              </div>
-            </div> : null}
-          </div> : null}
-
-          {catagory == "Individual" ? <div className="editpan_2">
-            <div>
-              <div>
-                <p>AADHAAR Number<i>*</i></p>
-                <input disabled={formEdit} type="number" placeholder='AADHAAR Number' required name='aadhaarNumber' value={formData.aadhaarNumber} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
-              </div>
-              <div>
-                <p>Name as per AADHAAR</p>
-                <input type="text" placeholder={'Name as per AADHAAR'} disabled name='aadhaarName' value={formData.aadhaarName} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
-              </div>
-            </div>
-          </div> : null}
-
-          {catagory == "Individual" ? <div className="editpan_2">
-
-            <div>
-              <div>
-                <p>Source Of Income<i>*</i></p>
-                <select disabled={formEdit} required name='sourceOfIncome' value={formData.sourceOfIncome} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value="" disabled>Source Of Income</option>
-                  <option value="No Income">No Income</option>
-                  <option value="salaried Employee">salaried Employee</option>
-                  <option value="Income from House Property">Income from House Property</option>
-                  <option value="Income from Other source">Income from Other source</option>
-                  <option value="engaged in a business / profession">engaged in a business / profession</option>
-                  <option value="Capital Gains">Capital Gains</option>
-                </select>
-              </div>
-            </div>
-          </div> : null}
-
-          {catagory == "Individual" ? <div className="editpan_2">
-            <div>
-              <div>
-                <p>Which of these documents are you submitting as an Identity Proof<i>*</i></p>
-                <select disabled={formEdit} required name='identityProof' value={formData.identityProof} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value="AADHAR Card issued by UIDAL (In Copy)">AADHAR Card issued by UIDAL (In Copy)</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <div>
-                <p>Which of these documents are you submitting as an Address Proof<i>*</i></p>
-                <select disabled={formEdit} required name='addressProof' value={formData.addressProof} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value="AADHAR Card issued by UIDAL (In Copy)">AADHAR Card issued by UIDAL (In Copy)</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <div>
-                <p>Which of these documents are you submitting as a DOB Proof<i>*</i></p>
-                <select disabled={formEdit} required name='dobProof' value={formData.dobProof} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value="AADHAR Card issued by UIDAL (In Copy)">AADHAR Card issued by UIDAL (In Copy)</option>
-                </select>
-              </div>
-            </div>
-          </div> : null}
-
-          {catagory == "Individual" ? <div className="editpan_2">
-            <div>
-              <div>
-                <p>You do hereby declare that whatever stated above is true in the capacity of<i>*</i></p>
-                <select disabled={formEdit} required name='declarationCapacity' value={formData.declarationCapacity} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }}>
-                  <option value="" disabled>Select</option>
-                  <option value="HIMSELF/HERSELF">HIMSELF / HERSELF</option>
-                  <option value="salaried Employee">REPRESENTATIVE ASSESSEE</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <div>
-                <p>Verifier Name<i>*</i></p>
-                <input disabled={formEdit} type="text" placeholder='Verifier Name' required name='verifierName' value={formData.verifierName} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
-              </div>
-              <div>
-                <p>Verifier Place<i>*</i></p>
-                <input disabled={formEdit} type="text" placeholder='Verifier Place' required name='verifierPlace' value={formData.verifierPlace} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
-              </div>
-              <div>
-                <p>Verification Date<i>*</i></p>
-                <input type="text" placeholder={currentDate} disabled name='verificationDate' value={formData.verificationDate} onChange={handleChange} style={formEdit ? { borderBottom: '1px solid grey' } : { border: '1px solid grey' }} />
-              </div>
-            </div>
-          </div> : null}
+          ) : null}
 
 
           {/* Others */}
