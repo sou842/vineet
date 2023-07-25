@@ -75,8 +75,10 @@ export const Profile = () => {
   //change edit data
   const handleChangeEdit = (e) => {
     if (e.target.name == "avtar") {
+      if(e.target.files[0]){
       let reader = new FileReader();
-      if(reader.result){
+      // console.log(reader.result);
+       
       reader.readAsDataURL(e.target.files[0]);
         reader.onload = () => {
           setEditdata({ ...editdata, [e.target.name]: reader.result })
