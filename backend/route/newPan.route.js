@@ -1,23 +1,23 @@
-const express=require("express")
+const express = require("express")
 const prandom = require("prandom");
-const fs=require('fs')
-const multer=require('multer')
+const fs = require('fs')
+const multer = require('multer')
 const path = require('path');
 const { auth } = require("../middleware/auth.middleware")
 const { NewPanModel } = require("../model/newPan.model")
-const newPanRoute=express.Router()
+const newPanRoute = express.Router()
 
 
 //post new pan
 newPanRoute.use(auth)
-newPanRoute.post("/new-pan-card",async(req,res)=>{
+newPanRoute.post("/new-pan-card", async (req, res) => {
     try {
         const tokenNumber = prandom.number(8);
-        req.body.tokenNumber=tokenNumber
-        const newPan=await NewPanModel(req.body)
+        req.body.tokenNumber = tokenNumber
+        const newPan = await NewPanModel(req.body)
         await newPan.save()
         res.send("Apply successful for new pan card")
-        
+
     } catch (error) {
         res.send(error)
     }
@@ -25,29 +25,29 @@ newPanRoute.post("/new-pan-card",async(req,res)=>{
 
 //get all pan deatails under login user 
 
-newPanRoute.get("/all-pan-card-deatils",async(req,res)=>{
-    const {vendorID,userID}=req.body;
-   
-    try {
-       
-            const pans=await NewPanModel.find({vendorID})
-            res.send(pans)
+newPanRoute.get("/all-pan-card-deatils", async (req, res) => {
+    const { vendorID, userID } = req.body;
 
-        
-        
+    try {
+        console.log(vendorID)
+        const pans = await NewPanModel.find({ vendorID })
+        res.send(pans)
+
+
+
     } catch (error) {
         res.send(error)
     }
 })
 //get one pan deatails under login user 
 
-newPanRoute.get("/upload-pan-card/:id",async(req,res)=>{
-    const {id}=req.params
-   
+newPanRoute.get("/upload-pan-card/:id", async (req, res) => {
+    const { id } = req.params
+
     try {
-            const pans=await NewPanModel.findOne({_id:id})
-            res.send(pans)
-        
+        const pans = await NewPanModel.findOne({ _id: id })
+        res.send(pans)
+
     } catch (error) {
         res.send(error)
     }
@@ -74,14 +74,14 @@ newPanRoute.get("/upload-pan-card/:id",async(req,res)=>{
 
 //upload image data base
 
-newPanRoute.patch('/upload-pan-document/:id',async(req,res)=>{
-    const {id}=req.params
-    const {aadharCardDocs,frontForm,backForm}=req.body
+newPanRoute.patch('/upload-pan-document/:id', async (req, res) => {
+    const { id } = req.params
+    const { aadharCardDocs, frontForm, backForm } = req.body
     try {
         // await NewPanModel.updateMany({_id:id},{$push:{documents:{name:req.file.fieldname,image:req.file.filename}}})
-        await NewPanModel.findByIdAndUpdate({_id:id},{aadharCardDocs,frontForm,backForm,isUploadDocs:true})
-         res.send("Document upload succesfull")
-        
+        await NewPanModel.findByIdAndUpdate({ _id: id }, { aadharCardDocs, frontForm, backForm, isUploadDocs: true })
+        res.send("Document upload succesfull")
+
     } catch (error) {
         res.send(error)
     }
@@ -89,26 +89,26 @@ newPanRoute.patch('/upload-pan-document/:id',async(req,res)=>{
 
 // final confirm stem api
 
-newPanRoute.get('/final-confirm-apply/:id',async(req,res)=>{
-    const {id}=req.params
+newPanRoute.get('/final-confirm-apply/:id', async (req, res) => {
+    const { id } = req.params
     try {
-       
-        const user=await NewPanModel.findOne({_id:id})
-         res.send(user)
-        
+
+        const user = await NewPanModel.findOne({ _id: id })
+        res.send(user)
+
     } catch (error) {
         res.send(error)
     }
 })
 
 
-newPanRoute.patch('/apply-confirm-from/:id',async(req,res)=>{
-    const {id}=req.params
+newPanRoute.patch('/apply-confirm-from/:id', async (req, res) => {
+    const { id } = req.params
     try {
-       
-        const user=await NewPanModel.findByIdAndUpdate({_id:id},{isDoneFromUser:true})
-         res.send('Apply Successfull')
-        
+
+        const user = await NewPanModel.findByIdAndUpdate({ _id: id }, { isDoneFromUser: true })
+        res.send('Apply Successfull')
+
     } catch (error) {
         res.send(error)
     }
@@ -118,13 +118,6 @@ newPanRoute.patch('/apply-confirm-from/:id',async(req,res)=>{
 
 
 
-
-
-
-
-
-
-
-module.exports={
+module.exports = {
     newPanRoute
 }

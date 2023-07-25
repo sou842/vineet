@@ -168,7 +168,7 @@ export const EditPan = () => {
         console.log(err);
       })
 
-      navigate('/upload')
+      navigate('/user/upload')
     }
 
 

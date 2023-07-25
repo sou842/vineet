@@ -18,22 +18,21 @@ const Upload = () => {
             headers: { "Authorization": portalData.token }
 
         }).then((res) => {
-            setLoading(false)
-            console.log(res.data);
+            // setLoading(false)
             setPans(res.data.reverse())
+            console.log(res.data);
         }).catch((err) => {
-            setLoading(false)
+            // setLoading(false)
             console.log(err);
         })
     }
 
     useEffect(() => {
-        setLoading(true)
+        // setLoading(true)
         GetData()
-
     }, [])
 
-
+console.log(portalData.token)
     return (
         <Box>
             <Box>
@@ -43,40 +42,40 @@ const Upload = () => {
                 <ContactUs />
             </Box>
             <Box w={'90%'} m={'auto'} bg={'white'} mt={'50px'}>
-        <TableContainer >
-            <Table>
-                <Thead>
-                    <Tr>
-                        <Th>S.No</Th>
-                        <Th>Token Number</Th>
-                        <Th>Apply Date</Th>
-                        <Th>Name</Th>
-                        <Th>Mobile</Th>
-                        <Th>Edit</Th>
-                        <Th>Upload</Th>
-                    </Tr>
-                </Thead>
-                <Tbody>
-                    {
-                     loading?<Box h={'50vh'} display={'flex'} justifyContent={'center'} alignItems={'center'} ><Spinner/></Box>: pans.map((el,i)=>{
-                         if(!el.isUploadDocs){
-                            return <Tr key={i} bg={'white'} >
-                                <Td>{i+1}</Td>
-                                <Td>{el.tokenNumber}</Td>
-                                <Td>{el.date}</Td>
-                                <Td>{el.firstName+" "+el.middleName+" "+el.lastName}</Td>
-                                <Td>{el.telephoneNumber|| "NA"}</Td>
-                                <Td><Button size={'xs'} colorScheme='yellow'>Edit</Button></Td>
-                                <Td><Button size={'xs'} colorScheme={'green'}  onClick={()=> navigate(`/user/upload-document/${el._id}`)}>Upload</Button></Td>
+                <TableContainer >
+                    <Table>
+                        <Thead>
+                            <Tr>
+                                <Th>S.No</Th>
+                                <Th>Token Number</Th>
+                                <Th>Apply Date</Th>
+                                <Th>Name</Th>
+                                <Th>Mobile</Th>
+                                <Th>Edit</Th>
+                                <Th>Upload</Th>
                             </Tr>
-                        }
-                        })
-                    }
-                </Tbody>
-            </Table>
-        </TableContainer>
+                        </Thead>
+                        <Tbody>
+                            {
+                                loading ? <Box h={'50vh'} display={'flex'} justifyContent={'center'} alignItems={'center'} ><Spinner /></Box> : pans.map((el, i) => {
+                                    if (!el.isUploadDocs) {
+                                        return <Tr key={i} bg={'white'} >
+                                            <Td>{i + 1}</Td>
+                                            <Td>{el.tokenNumber}</Td>
+                                            <Td>{el.date}</Td>
+                                            <Td>{el.firstName + " " + el.middleName + " " + el.lastName}</Td>
+                                            <Td>{el.telephoneNumber || "NA"}</Td>
+                                            <Td><Button size={'xs'} colorScheme='yellow'>Edit</Button></Td>
+                                            <Td><Button size={'xs'} colorScheme={'green'} onClick={() => navigate(`/user/upload-document/${el._id}`)}>Upload</Button></Td>
+                                        </Tr>
+                                    }
+                                })
+                            }
+                        </Tbody>
+                    </Table>
+                </TableContainer>
 
-    </Box>
+            </Box>
 
         </Box>
     )
