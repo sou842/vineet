@@ -117,20 +117,35 @@ export const Profile = () => {
 
       {/* profile details */}
 
-      {loading ? <Box display={'flex'} justifyContent={'center'} mt={'5cm'}><Spinner color='blue.300'/></Box> :
+      {loading ? <Box display={'flex'} justifyContent={'center'} mt={'5cm'}><Spinner color='blue.300' /></Box> :
 
 
         profileData.map((el, i) => {
           return <div key={i}>
-            <Box w={['95%', '95%', '85%']} display={'flex'} justifyContent={'space-between'} flexDirection={['column', 'column', 'row']} m={'auto'} mt={['0.5cm','0.5cm','1cm']} mb={'1cm'} bg={'gray.100'} p={['7px', '15px', '25px']} borderRadius={'15px'} >
+            <Box w={['95%', '95%', '85%']} display={'flex'} justifyContent={'space-between'} flexDirection={['column', 'column', 'row']} m={'auto'} mt={['0.5cm', '0.5cm', '1cm']} mb={'1cm'} bg={'gray.100'} p={['7px', '15px', '25px']} borderRadius={'15px'} >
 
-              <Box width={['100%', '100%', '40%']}>
-                <Box w={'100%'} h={['60%']} >
+              <Box width={['100%', '100%', '40%']} >
+
+                <Box w={'100%'} h={['60%']} position="relative" display="inline-block">
+                  <Box position="absolute"
+                    top="10px"
+                    right="10px"
+                    // transform="translate(-50%, -50%)"
+                    borderRadius="full"
+                    bg="white"
+                    boxShadow="md"
+                    p={1}
+                    boxShadow="rgba(0, 0, 0, 0.35) 0px 3px 15px"
+                    onClick={()=>console.log('yess')}
+                  >
+                    <Image position={'relative'} w={'30px'} src='https://cdn-icons-png.flaticon.com/128/8304/8304794.png' />
+                  </Box>
                   {el.avtar == '' ?
-                    <Text color={'blue.200'} fontSize={'50px'} display={'flex'} justifyContent={'center'} alignItems={'center'} w={'100%'} h={'100%'} m={'auto'} borderRadius={'15px'} bg={'white'}>{el.name.match(/\b\w/g).join('').toUpperCase()}</Text>
+                    <Text mt={'-30px'} color={'blue.200'} fontSize={'50px'} display={'flex'} justifyContent={'center'} alignItems={'center'} w={'100%'} h={'100%'} m={'auto'} borderRadius={'15px'} bg={'white'}>{el.name.match(/\b\w/g).join('').toUpperCase()}</Text>
                     :
                     <Image w={'100%'} h={'100%'} borderRadius={'15px'} src={el.avtar} alt="" />
                   }
+
                 </Box>
 
                 <Box textAlign={'center'} mt={'20px'}>
