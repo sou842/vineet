@@ -38,7 +38,6 @@ const [regData,setRegData]=useState({
     shopeName:"",
     panNumber:"",
     aadharNumber:"",
-    avtar:"",
     allOrders:[],
     balance:0
 })
@@ -51,14 +50,15 @@ const handleSubmit=(e)=>{
   e.preventDefault()
   axios.post("http://localhost:8080/api/register",regData)
   .then((res)=>{
+   
+    axios.post("http://localhost:8080/user/profile-pictire",{avatar:"",vendorID:res.data.vendorID}).then((res)=>console.log(res.data))
+.catch((err)=>console.log(err))
     toast({
       title: 'Account created.',
-      description: "Check your console ",
       status: 'success',
       duration: 5000,
       isClosable: true,
     })
-    console.log(res.data);
     navigate("/signin")
 
   })

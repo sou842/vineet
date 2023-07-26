@@ -15,7 +15,6 @@ const userSchema=mongoose.Schema({
     password:{type: String, required: true},
     vendorID:{type: String, required: true},
     joindate:{type: String, required: true},
-    avtar:{type: String},
     balance:{type: Number},
     allOrders:[
         {
