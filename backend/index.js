@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:500
 app.use(express.json())
 app.use(cors())
 app.use('/payment',paymentRoute)
-app.use('/user',profileRouter)
+app.use('/profile',profileRouter)
 app.use('/api',userRoute)
 app.use('/user',newPanRoute)
 

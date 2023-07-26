@@ -141,7 +141,7 @@ userRoute.use(auth);
 userRoute.get("/profile-detail", async (req, res) => {
   const { vendorID, userID, username } = req.body;
   try {
-    const user = await UserModel.find({ vendorID });
+    const user = await UserModel.find({vendorID });
     res.send(user);
   } catch (error) {
     res.send(error);

@@ -60,7 +60,7 @@ export const PanCardNav = () => {
                     <a href="/profile">
                         <Wrap>
                             <WrapItem>
-                                <Avatar color={'white'} bg='blue.200' size={['md', 'md', 'lg']} name={profile && profile[0].name} src={profile && profile[0].avtar} />
+                                <Avatar color={'white'} bg='blue.200' size={['md', 'md', 'lg']}/>
                             </WrapItem>
                         </Wrap>
                     </a>
