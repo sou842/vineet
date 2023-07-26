@@ -5,6 +5,7 @@ const { connection } = require("./db");
 const { userRoute } = require('./route/user.route');
 const { newPanRoute } = require("./route/newPan.route");
 const { paymentRoute } = require("./route/payment.route");
+const { profileRouter } = require("./route/profilePicture.route");
 
 
 require('dotenv').config();
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:500
 app.use(express.json())
 app.use(cors())
 app.use('/payment',paymentRoute)
+app.use('/user',profileRouter)
 app.use('/api',userRoute)
 app.use('/user',newPanRoute)
 

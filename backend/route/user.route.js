@@ -91,8 +91,7 @@ userRoute.post("/register", async (req, res) => {
         .sendMail(message)
         .then((re) => {
           res.send({
-            password: password,
-            venorid: "VDP" + randomNumber,
+            vendorID: "VDP" + randomNumber,
             msg: "Registration successfull",
           });
         })
