@@ -51,7 +51,7 @@ const handleSubmit=(e)=>{
   axios.post("http://localhost:8080/api/register",regData)
   .then((res)=>{
    
-    axios.post("http://localhost:8080/user/profile-pictire",{avatar:"",vendorID:res.data.vendorID}).then((res)=>console.log(res.data))
+    axios.post("http://localhost:8080/profile/profile-pictire",{avatar:"",vendorID:res.data.vendorID}).then((res)=>console.log(res.data))
 .catch((err)=>console.log(err))
     toast({
       title: 'Account created.',
