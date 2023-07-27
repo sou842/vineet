@@ -1,12 +1,4 @@
-import {
-    Box, Heading, FormControl,
-    FormLabel,
-    FormErrorMessage,
-    FormHelperText,
-    Button,
-    Input,
-    Text, useToast
-} from '@chakra-ui/react'
+import { Box, Heading, FormControl, FormLabel, FormErrorMessage, FormHelperText, Button, Input, Text, useToast } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -35,7 +27,8 @@ export default function Signin() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(loginFun(loginData)).then((res) => {
+        dispatch(loginFun(loginData))
+        .then((res) => {
             if (res == "login successful") {
                 toast({
                     title: res,

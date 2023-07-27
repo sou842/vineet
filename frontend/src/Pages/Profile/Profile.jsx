@@ -11,13 +11,14 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton, Input, FormControl, FormLabel, useDisclosure, Image
+  ModalCloseButton, Input, FormControl, FormLabel, useDisclosure, Image, Img
 } from '@chakra-ui/react';
 import { PanCardNav } from '../../Components/PanCardNav/PanCardNav';
 
 
 export const Profile = () => {
   const { isOpen: editIsOpen, onOpen: editOnOpen, onClose: editOnClose } = useDisclosure()
+  const { isOpen: profileIsOpen, onOpen: profileOnOpen, onClose: profileOnClose } = useDisclosure()
   const toast = useToast()
   const navigate = useNavigate()
   const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
@@ -25,16 +26,20 @@ export const Profile = () => {
   const handleOptionChange = (event) => {
     const selectedValue = event.target.value;
 
-    console.log(selectedValue)
+    // console.log(selectedValue)
     navigate(selectedValue)
   };
   const [profileData, setProfileData] = useState([])
   const [loading, setLoading] = useState(false)
+  const [picture, setPicture] = useState("")
+  const [userDP, setUserDP] = useState("")
   const [editdata, setEditdata] = useState({
     email: "",
     shopeName: "",
     mobileNumber: ""
   })
+
+
   useEffect(() => {
     setLoading(true)
     axios.get("http://localhost:8080/api/profile-detail", {
@@ -45,14 +50,37 @@ export const Profile = () => {
       .then((res) => {
         setLoading(false)
         setProfileData(res.data)
-
       })
       .catch((err) => {
         setLoading(false)
         console.log(err);
       })
+    if (portalData.avatar == '') {
+      axios.get("http://localhost:8080/profile/profile-pictire", {
+        headers: {
+          "Authorization": portalData.token
+        }
+      })
+        .then((res) => {
+          // setUserDP(res.data.avatar);
+          let obj = {
+            token: portalData.token,
+            auth: portalData.auth,
+            username: portalData.username,
+            avatar: res.data.avatar
+          }
+          localStorage.setItem("digitalPortal", JSON.stringify(obj))
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
 
   }, [])
+
+
+  // localStorage.setItem("digitalPortal",JSON.stringify(obj))
+
 
   //logout localstorage data will be delete
   const handleLogout = () => {
@@ -73,20 +101,43 @@ export const Profile = () => {
     setEditdata({ ...editdata, email: data.email, shopeName: data.shopeName, mobileNumber: data.mobileNumber })
   }
   //change edit data
-  const handleChangeEdit = (e) => {
-    if (e.target.name == "avtar") {
+  const handelProfilePicture = (e) => {
+    if (e.target.files[0]) {
       let reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       reader.onload = () => {
-        setEditdata({ ...editdata, [e.target.name]: reader.result })
-        // console.log(reader.result);
+        setPicture(reader.result)
       }
     }
-    else {
 
-      setEditdata({ ...editdata, [e.target.name]: e.target.value })
-    }
   }
+  const handleChangeEdit = (e) => {
+    setEditdata({ ...editdata, [e.target.name]: e.target.value })
+  }
+
+
+
+  //handelPhotoUpdate
+  const handelPhotoUpdate = () => {
+    axios.patch("http://localhost:8080/profile/update-profile-pictire", { avatar: picture }, {
+      headers: {
+        "Authorization": portalData.token
+      }
+    })
+      .then((res) => {
+        let obj = { token: portalData.token, auth: portalData.auth, username: portalData.username, avatar: picture }
+        localStorage.setItem("digitalPortal", JSON.stringify(obj))
+
+        toast({ title: res.data, status: 'success', duration: 3000, isClosable: true, })
+        profileOnClose()
+        window.location = '/Dashboard'
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+
   const handleUpdate = () => {
     axios.patch("http://localhost:8080/api/profile-update", editdata, {
       headers: {
@@ -108,7 +159,6 @@ export const Profile = () => {
         console.log(err);
       })
   }
-
 
 
   return (
@@ -135,15 +185,19 @@ export const Profile = () => {
                     bg="white"
                     boxShadow="md"
                     p={1}
-                    boxShadow="rgba(0, 0, 0, 0.35) 0px 3px 15px"
-                    onClick={()=>console.log('yess')}
+                    onClick={profileOnOpen}
+                    cursor={'pointer'}
+
                   >
-                    <Image position={'relative'} w={'30px'} src='https://cdn-icons-png.flaticon.com/128/8304/8304794.png' />
+
+
+                    <Img position={'relative'} w={'25px'} src='https://cdn-icons-png.flaticon.com/128/8304/8304794.png' />
+
                   </Box>
-                  {el.avtar == '' ?
+                  {portalData.avatar == '' ?
                     <Text mt={'-30px'} color={'blue.200'} fontSize={'50px'} display={'flex'} justifyContent={'center'} alignItems={'center'} w={'100%'} h={'100%'} m={'auto'} borderRadius={'15px'} bg={'white'}>{el.name.match(/\b\w/g).join('').toUpperCase()}</Text>
                     :
-                    <Image w={'100%'} h={'100%'} borderRadius={'15px'} src={el.avtar} alt="" />
+                    <Image w={'100%'} h={'100%'} borderRadius={'15px'} src={portalData.avatar} alt="" />
                   }
 
                 </Box>
@@ -160,6 +214,7 @@ export const Profile = () => {
 
               <Box width={['100%', '100%', '55%']} bg={'white'} p={'10px'} borderRadius={'15px'}>
                 <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>vendorID: <Text fontWeight={'thin'} as={'span'}>{el.vendorID}</Text> </Heading>
+                <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>Phone: <Text fontWeight={'thin'} as={'span'}>{el.mobileNumber}</Text> </Heading>
                 <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>Address: <Text fontWeight={'thin'} as={'span'}>{el.address}</Text> </Heading>
                 <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>City: <Text fontWeight={'thin'} as={'span'}>{el.city}</Text> </Heading>
                 <Heading size={'sm'} p={'15px'} borderBottom={'1px solid gray'}>State: <Text fontWeight={'thin'} as={'span'}>{el.state}</Text> </Heading>
@@ -198,15 +253,29 @@ export const Profile = () => {
               <FormLabel>Shop Name</FormLabel>
               <Input placeholder='Shop Name' name='shopeName' value={editdata.shopeName} onChange={handleChangeEdit} />
             </FormControl>
-            <FormControl mt={4}>
-              <FormLabel>Upload your image</FormLabel>
-              <Input pt={'4px'} type='file' name='avtar' onChange={handleChangeEdit} accept="image/*" />
-            </FormControl>
           </ModalBody>
 
           <ModalFooter bg={'white'}>
-            <Button onClick={editOnClose} mr={3} size={'sm'}>Cancel</Button>
-            <Button colorScheme='yellow' size={'sm'} onClick={handleUpdate} >Update</Button>
+            <Button p={'15px'} fontFamily={'sans-serif'} onClick={editOnClose} mr={3} size={'sm'}>Cancel</Button>
+            <Button p={'15px'} fontFamily={'sans-serif'} colorScheme='yellow' size={'sm'} onClick={handleUpdate} >Update</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
+      {/* profile picture update modal */}
+      <Modal isOpen={profileIsOpen} onClose={profileOnClose}>
+        <ModalOverlay />
+        <ModalContent w={'95%'}>
+          <ModalHeader>Update Profile Picture</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Input p={'3.5px'} type='file' onChange={handelProfilePicture} accept="image/*" />
+
+          </ModalBody>
+
+          <ModalFooter bg={'white'}>
+            <Button p={'15px'} fontFamily={'sans-serif'} variant='ghost' mr={3} onClick={profileOnClose} size={'sm'}> Close</Button>
+            <Button p={'15px'} fontFamily={'sans-serif'} colorScheme='yellow' size={'xs'} onClick={handelPhotoUpdate}>Update</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

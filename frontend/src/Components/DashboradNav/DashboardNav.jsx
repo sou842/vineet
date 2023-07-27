@@ -10,7 +10,7 @@ export const DashboardNav = () => {
     const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)");
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const [profile, setProfile] = useState(null)
+    const [profile, setProfile] = useState()
     const [amount, setAmount] = useState(null)
     const [balance, setBalance] = useState(0)
     const navigate = useNavigate()
@@ -29,19 +29,18 @@ export const DashboardNav = () => {
         })
         window.location = '/'
     }
-    const profileAvater = () => {
-        axios.get('http://localhost:8080/api/profile-detail', {
-            headers: { "Authorization": portalData.token }
-        })
-            .then((res) => {
-                // console.log(res.data)
-                setProfile(res.data)
-                setBalance(res.data[0].balance)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
+    // const profileAvater = () => {
+
+    //     axios.get("http://localhost:8080/profile/profile-pictire", {
+    //         headers: { "Authorization": portalData.token }
+    //     })
+    //         .then((res) => {
+    //             setProfile(res.data.avatar);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         })
+    // }
     //handelOpenRazorpay
     const handelOpenRazorpay = (data) => {
         const options = {
@@ -61,7 +60,7 @@ export const DashboardNav = () => {
                             }
                         })
                             .then((res) => {
-                                profileAvater()
+                                // profileAvater()
                                 setAmount(null)
                                 toast({
                                     title: res.data,
@@ -103,9 +102,9 @@ export const DashboardNav = () => {
 
     }
 
-    useEffect(() => {
-        profileAvater();
-    }, [])
+    // useEffect(() => {
+    //     profileAvater();
+    // }, [])
 
 
     // console.log(portalData)
@@ -125,7 +124,7 @@ export const DashboardNav = () => {
                     <a href="/profile">
                         <Wrap>
                             <WrapItem>
-                                <Avatar color={'white'} bg='blue.200' size={['md', 'md', 'lg']} name={profile && profile[0].name} src={profile && profile[0].avtar} />
+                                <Avatar color={'white'} bg='blue.200' size={['md', 'md', 'lg']}  />
                             </WrapItem>
                         </Wrap>
                     </a>
@@ -192,7 +191,8 @@ export const DashboardNav = () => {
                         <div><Button onClick={onOpen} ml={'5px'} size={'sm'} colorScheme='blue.100'>Add money</Button></div>
                     </div>}
                 <div>
-                    <div><a href="#"><p>Balance:₹ {balance} </p></a>
+                    <div><a href="#"><p>Wallet Balance:₹ {balance} </p></a>
+                   
                     </div>
                     <div>
                         <Menu >
@@ -226,16 +226,18 @@ export const DashboardNav = () => {
                         </FormControl>
                     </ModalBody>
 
-          <ModalFooter bg={'white'}>
-            <Button size={'sm'} mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button colorScheme='blue'  size={'sm'} onClick={handelPay}>Add</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+                    <ModalFooter bg={'white'}>
+                        <Button size={'sm'} mr={3} onClick={onClose}>
+                            Close
+                        </Button>
+                        <Button colorScheme='blue' size={'sm'} onClick={handelPay}>Add</Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
 
 
         </div>
     )
 }
+
+  
