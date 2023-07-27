@@ -33,7 +33,7 @@ const newPanSchema = mongoose.Schema({
   telephoneISDCode: { type: String, required: true },
   telephoneNumber: { type: String, required: true },
   email: { type: String, required: true },
-  aadhaarNumber: { type: String, required: true },
+  aadhaarNumber: { type: String},
   aadhaarName: { type: String },
   sourceOfIncome: { type: String, required: true },
   identityProof: { type: String },

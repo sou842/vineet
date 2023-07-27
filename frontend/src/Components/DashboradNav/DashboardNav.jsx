@@ -15,7 +15,8 @@ export const DashboardNav = () => {
     const [balance, setBalance] = useState(0)
     const navigate = useNavigate()
     const toast = useToast()
-    const KEY_ID = "rzp_test_rP3Xy6wdM4BJhE";
+
+    const KEY_ID = "rzp_test_4PEjkS1Agy6kpO";
     const KEY_SECRET = "bUxk9FArJhGYabAGpAgyYDaS"
 
     const handleLogout = () => {
@@ -29,7 +30,10 @@ export const DashboardNav = () => {
         })
         window.location = '/'
     }
-    // const profileAvater = () => {
+
+    // const showBalance = () => {
+
+  
 
     //     axios.get("http://localhost:8080/profile/profile-pictire", {
     //         headers: { "Authorization": portalData.token }
@@ -238,3 +242,4 @@ export const DashboardNav = () => {
         </div>
     )
 }
+
