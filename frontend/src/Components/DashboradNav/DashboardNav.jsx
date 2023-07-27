@@ -15,6 +15,7 @@ export const DashboardNav = () => {
     const [balance, setBalance] = useState(0)
     const navigate = useNavigate()
     const toast = useToast()
+
     const KEY_ID = "rzp_test_4PEjkS1Agy6kpO";
     const KEY_SECRET = "bUxk9FArJhGYabAGpAgyYDaS"
 
@@ -29,6 +30,7 @@ export const DashboardNav = () => {
         })
         window.location = '/'
     }
+
     const showBalance = () => {
 
         axios.get("http://localhost:8080/api", {
@@ -42,6 +44,9 @@ export const DashboardNav = () => {
                 console.log(err);
             })
     }
+
+
+    
     //handelOpenRazorpay
     const handelOpenRazorpay = (data) => {
         const options = {
@@ -239,3 +244,4 @@ export const DashboardNav = () => {
         </div>
     )
 }
+
