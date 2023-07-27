@@ -152,8 +152,9 @@ export const EditPan = () => {
 
       axios.post("http://localhost:8080/user/new-pan-card", formData, {
         headers: { "Authorization": portalData.token }
-      }).then((res) => {
-        // console.log(res.data);
+      })
+      .then((res) => {
+        console.log(res.data);
         toast({
           title: 'SUBMITTED',
           description: "PAN CARD FORM SUBMITTED SUCCESSFULLY",
@@ -168,7 +169,7 @@ export const EditPan = () => {
         console.log(err);
       })
 
-      navigate('/user/upload')
+      // navigate('/user/upload')
     }
 
 
@@ -180,7 +181,7 @@ export const EditPan = () => {
     setFormData(VDP_form_data)
   }, [])
 
-  // console.log(formData)
+  console.log(formData)
 
   return (
     <div style={{ backgroundColor: 'rgba(201, 201, 201, 0.249)' }}>

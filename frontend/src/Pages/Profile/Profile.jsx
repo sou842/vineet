@@ -187,10 +187,7 @@ export const Profile = () => {
                     p={1}
                     onClick={profileOnOpen}
                     cursor={'pointer'}
-
                   >
-
-
                     <Img position={'relative'} w={'25px'} src='https://cdn-icons-png.flaticon.com/128/8304/8304794.png' />
 
                   </Box>
