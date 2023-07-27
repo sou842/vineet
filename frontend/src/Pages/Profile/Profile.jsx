@@ -33,6 +33,7 @@ export const Profile = () => {
   const [loading, setLoading] = useState(false)
   const [picture, setPicture] = useState("")
   const [userDP, setUserDP] = useState("")
+  const [uploadDpLoad, setUploadDpLoad] = useState(false)
   const [editdata, setEditdata] = useState({
     email: "",
     shopeName: "",
@@ -119,12 +120,14 @@ export const Profile = () => {
 
   //handelPhotoUpdate
   const handelPhotoUpdate = () => {
+    setUploadDpLoad(true)
     axios.patch("http://localhost:8080/profile/update-profile-pictire", { avatar: picture }, {
       headers: {
         "Authorization": portalData.token
       }
     })
       .then((res) => {
+        setUploadDpLoad(false)
         let obj = { token: portalData.token, auth: portalData.auth, username: portalData.username, avatar: picture }
         localStorage.setItem("digitalPortal", JSON.stringify(obj))
 
@@ -133,6 +136,7 @@ export const Profile = () => {
         window.location = '/Dashboard'
       })
       .catch((err) => {
+        setUploadDpLoad(false)
         console.log(err);
       })
   }
@@ -275,7 +279,7 @@ export const Profile = () => {
 
           <ModalFooter bg={'white'}>
             <Button p={'15px'} fontFamily={'sans-serif'} variant='ghost' mr={3} onClick={profileOnClose} size={'sm'}> Close</Button>
-            <Button p={'15px'} fontFamily={'sans-serif'} colorScheme='yellow' size={'xs'} onClick={handelPhotoUpdate}>Update</Button>
+            <Button p={'15px'} fontFamily={'sans-serif'} colorScheme='yellow' isDisabled={uploadDpLoad} size={'xs'} onClick={handelPhotoUpdate}  >{uploadDpLoad?"Loading...":"Update"}</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
