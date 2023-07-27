@@ -33,7 +33,7 @@ export const DashboardNav = () => {
             headers: { "Authorization": portalData.token }
         })
             .then((res) => {
-                // console.log(res.data)
+                console.log(res.data)
                 setProfile(res.data)
                 setBalance(res.data[0].balance)
             })
@@ -124,7 +124,7 @@ export const DashboardNav = () => {
                     <a href="/profile">
                         <Wrap>
                             <WrapItem>
-                                <Avatar color={'white'} bg='blue.200' size={['md', 'md', 'lg']} name={profile && profile[0].name} src={profile && profile[0].avtar} />
+                                {/* <Avatar color={'white'} bg='blue.200' size={['md', 'md', 'lg']} name={profile && profile[0].name} src={profile && profile[0].avtar} /> */}
                             </WrapItem>
                         </Wrap>
                     </a>
