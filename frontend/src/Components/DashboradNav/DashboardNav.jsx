@@ -13,6 +13,7 @@ export const DashboardNav = () => {
     const [profile, setProfile] = useState()
     const [amount, setAmount] = useState(null)
     const [balance, setBalance] = useState(0)
+    const [addBalanceLoad,setAddBalanceLoad]=useState(false)
     const navigate = useNavigate()
     const toast = useToast()
     const KEY_ID = "rzp_test_4PEjkS1Agy6kpO";
@@ -91,13 +92,16 @@ export const DashboardNav = () => {
 
     //handelPay
     const handelPay = () => {
+        setAddBalanceLoad(true)
         axios.post('http://localhost:8080/payment/order', { amount: amount })
             .then((res) => {
+                setAddBalanceLoad(false)
                 console.log(res.data);
                 onClose()
                 handelOpenRazorpay(res.data)
             })
             .catch((err) => {
+                setAddBalanceLoad(false)
                 console.log(err);
             })
 
@@ -230,7 +234,7 @@ export const DashboardNav = () => {
                         <Button size={'sm'} mr={3} onClick={onClose}>
                             Close
                         </Button>
-                        <Button colorScheme='blue' size={'sm'} onClick={handelPay}>Add</Button>
+                        <Button colorScheme='blue' size={'sm'} onClick={handelPay} isDisabled={addBalanceLoad} >{addBalanceLoad?"Loading...":"Add"}</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
