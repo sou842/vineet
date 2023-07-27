@@ -6,7 +6,7 @@
 
 .dashboard_1{
     /* background-color: rgba(48, 162, 255, 0.447); */
-    border: 1.5px solid rgb(10, 156, 248);
+    border: 1.5px solid  #ECC94B;
     width: 85%;
     margin: 1cm auto;
     padding: 20px 20px;
@@ -29,14 +29,15 @@
 .dashboard_2 > div{
     padding: 15px 10px;
     text-align: center;
-    background-color: rgb(10, 156, 248);
-    /* background-color: #ecc94e; */
-    color: white;
+    /* background-color: rgb(10, 156, 248); */
+    background-color:  #ECC94B;
+    border: 1.4px solid #ECC94B;
+    color: rgb(30, 30, 30);
     border-radius: 10px;
     transition: 0.4s ease;
 }
 .dashboard_2 > div:hover{
-    background-color: rgb(81, 188, 255);
+    background-color:  #ffffffd3;
 }
 .dashboard_2 > div > a > p{
     font-size: 16px;

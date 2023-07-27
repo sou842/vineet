@@ -91,6 +91,7 @@ export const Profile = () => {
       status: 'success',
       duration: 3000,
       isClosable: true,
+      position: 'top'
     })
     window.location = '/'
   }
@@ -119,26 +120,32 @@ export const Profile = () => {
 
   //handelPhotoUpdate
   const handelPhotoUpdate = () => {
+    toast({ title: 'Photo Updating...', status: 'success', duration: 4000, isClosable: true, position: 'top'})
+
+    let obj = { token: portalData.token, auth: portalData.auth, username: portalData.username, avatar: picture }
+    profileOnClose()
+
     axios.patch("http://localhost:8080/profile/update-profile-pictire", { avatar: picture }, {
       headers: {
         "Authorization": portalData.token
       }
     })
-      .then((res) => {
-        let obj = { token: portalData.token, auth: portalData.auth, username: portalData.username, avatar: picture }
-        localStorage.setItem("digitalPortal", JSON.stringify(obj))
-
-        toast({ title: res.data, status: 'success', duration: 3000, isClosable: true, })
-        profileOnClose()
+    .then((res) => {
+      localStorage.setItem("digitalPortal", JSON.stringify(obj))
+      
+      // toast({ title: res.data, status: 'success', duration: 4000, isClosable: true, position: 'top'})
         window.location = '/Dashboard'
       })
       .catch((err) => {
+        toast({ title: 'Try Again, Something Wrong!!!', status: 'error', duration: 4000, isClosable: true, position: 'top'})
         console.log(err);
       })
   }
 
 
   const handleUpdate = () => {
+    editOnClose()
+    
     axios.patch("http://localhost:8080/api/profile-update", editdata, {
       headers: {
         "Authorization": portalData.token
@@ -152,11 +159,13 @@ export const Profile = () => {
           status: 'success',
           duration: 3000,
           isClosable: true,
+          position: 'top'
         })
         window.location = '/Dashboard'
       })
       .catch((err) => {
         console.log(err);
+        toast({ title: 'Try Again, Something Wrong!!!', status: 'error', duration: 4000, isClosable: true, position: 'top'})
       })
   }
 
@@ -167,7 +176,7 @@ export const Profile = () => {
 
       {/* profile details */}
 
-      {loading ? <Box display={'flex'} justifyContent={'center'} mt={'5cm'}><Spinner color='blue.300' /></Box> :
+      {loading ? <Box display={'flex'} justifyContent={'center'} mt={'5cm'}><Spinner color='yellow.300' /></Box> :
 
 
         profileData.map((el, i) => {
