@@ -20,7 +20,7 @@ const Upload = () => {
         }).then((res) => {
             // setLoading(false)
             setPans(res.data.reverse())
-            console.log(res.data);
+            //console.log(res.data);
         }).catch((err) => {
             // setLoading(false)
             console.log(err);
@@ -32,7 +32,6 @@ const Upload = () => {
         GetData()
     }, [])
 
-console.log(portalData.token)
     return (
         <Box>
             <Box>

@@ -51,12 +51,21 @@ const newPanSchema = mongoose.Schema({
   father_LName: { type: String, required: true },
   father_MName: { type: String },
   father_FName: { type: String, required: true },
-  backForm: { type: String },
-  frontForm: { type: String },
-  aadharCardDocs: { type: String },
-  isUploadDocs: { type: Boolean },
   isDoneFromUser: { type: Boolean },
   PanFee: { type: Number, required: true },
+  //new add for others type
+  organization: { type: String},
+    officeName:{ type: String},
+    registrationNumber:{ type: String},
+    officetitle:{ type: String},
+    officeflatNumber:{ type: String},
+    officepremisesName:{ type: String},
+    officeroadName:{ type: String},
+    officearea:{ type: String},
+    officecityDistrict:{ type: String},
+    officestate:{ type: String},
+    officezipCode:{ type: String},
+    officecountry:{ type: String},
 });
 
 const NewPanModel = mongoose.model("newPancard", newPanSchema);

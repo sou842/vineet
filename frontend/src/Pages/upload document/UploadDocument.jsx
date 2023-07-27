@@ -13,124 +13,55 @@ const UploadDocument = () => {
     const navigate = useNavigate()
     const [pans, setPans] = useState([])
     const [loading, setLoading] = useState(false)
-    const [uploadDocumentFront, setUploadDocumentFront] = useState(null)
-    const [uploadDocumentBack, setUploadDocumentBack] = useState(null)
-    const [uploadDocumentAadhar, setUploadDocumentAadhar] = useState(null)
-    const [buttonCondition, setButtonCondition] = useState(0)
+    const [upladDone, setUploadDone] = useState(false)
     const [image, setImage] = useState({
-        frontForm: "",
-        backForm: "",
-        aadharCardDocs: ""
+        form49Front: "",
+        form49Back: "",
+        aadharDoc:"",
+        isUpload:false,
+        userid:""
     })
 
-    // const handleUploadFront=(e)=>{
-    //     e.preventDefault()
-    //     const formData=new FormData()
-    //     formData.append('file',uploadDocumentFront)
-    //    axios.patch(`http://localhost:8080/user/upload-pan-document/${id}`,formData,{
-    //     headers: {
-    //         "Authorization": portalData.token
-    //       }
-    //    })
-    //    .then((res)=>{
-    //     setButtonCondition(buttonCondition+1)
-    //     toast({
-    //         title: 'Form Front Upload Successfully',
-    //         status: 'success',
-    //         duration: 3000,
-    //         isClosable: true,
-    //       })
-    //    }).catch((err)=>{
-    //     console.log(err);
-    //    })
-    // }
+    
 
     const handleUpload = (e) => {
+        if(e.target.files[0]){
         let reader = new FileReader();
         reader.readAsDataURL(e.target.files[0]);
         reader.onload = () => {
             setImage({ ...image, [e.target.name]: reader.result })
-            console.log(reader.result);
+            // console.log(reader.result);
         }
     }
-
-    const handelFinalUpload = () => {
-        axios.patch(`http://localhost:8080/user/upload-pan-document/${id}`, image, {
-            headers: {
-                "Authorization": portalData.token
-            }
-        })
-            .then((res) => {
-                if (res.data == "Document upload succesfull") {
-                    toast({
-                        title: res.data,
-                        status: 'success',
-                        duration: 3000,
-                        isClosable: true,
-                    })
-                    navigate(`/user/final-confirm-apply/${id}`)
-                }
-                else {
-                    toast({
-                        title: "Somthing went wrong!",
-                        status: 'error',
-                        duration: 3000,
-                        isClosable: true,
-                    })
-                }
-            }).catch((err) => {
-                console.log(err);
-            })
     }
 
-
-
-
-
-    const handleUploadBack = (e) => {
+    const handelFinalUpload = (e) => {
         e.preventDefault()
-        const formData = new FormData()
-        formData.append('file', uploadDocumentBack)
-        console.log(formData);
-        axios.patch(`http://localhost:8080/user/upload-pan-document/${id}`, formData, {
+        axios.post("http://localhost:8080/user/upload-pandocs",{...image,isUpload:true,userid:id},{
             headers: {
                 "Authorization": portalData.token
             }
         })
-            .then((res) => {
-                setButtonCondition(buttonCondition + 1)
-                toast({
-                    title: 'Form Back Upload Successfully',
-                    status: 'success',
-                    duration: 3000,
-                    isClosable: true,
-                })
-            }).catch((err) => {
-                console.log(err);
-            })
-    }
-    const handleUploadAadharCard = (e) => {
-        e.preventDefault()
-        const formData = new FormData()
-        formData.append('file', uploadDocumentAadhar)
-        console.log(formData);
-        axios.patch(`http://localhost:8080/user/upload-pan-document/${id}`, formData, {
-            headers: {
-                "Authorization": portalData.token
-            }
+        .then((res)=>{
+            toast({
+                title: res.data,
+                status: 'success',
+                duration: 3000,
+                isClosable: true,
+              })
         })
-            .then((res) => {
-                setButtonCondition(buttonCondition + 1)
-                toast({
-                    title: 'Aadhar Upload Successfully',
-                    status: 'success',
-                    duration: 3000,
-                    isClosable: true,
-                })
-            }).catch((err) => {
-                console.log(err);
-            })
+        .catch((err)=>{
+            console.log(err);
+        })
+       
     }
+
+
+
+
+
+   
+   
 
 
 
@@ -146,9 +77,19 @@ const UploadDocument = () => {
         }).then((res) => {
             setLoading(false)
             setPans(res.data)
-            console.log(res.data)
         }).catch((err) => {
             setLoading(false)
+            console.log(err);
+        })
+
+        axios.get(`http://localhost:8080/user/upload-pandocs/${id}`, {
+            headers: {
+                "Authorization": portalData.token
+            }
+
+        }).then((res) => {
+            setUploadDone(res.data)
+        }).catch((err) => { 
             console.log(err);
         })
 
@@ -180,61 +121,61 @@ const UploadDocument = () => {
 
             </Box>
 
-
+<form onSubmit={handelFinalUpload}>
             <Box w={['85%', '93%', '90%', '80%']} display={'flex'} flexDirection={['column', 'column', 'row', 'row']} justifyContent={'space-between'} gap={'10px'} m={'20px  auto'}>
                 <Box w={['90%', '55%', '30%', '27%']} m={'auto'}>
                 <Box h={['250px', '300px', '250px', '300px']} display={'flex'} justifyContent={'center'} alignItems={'center'} w={'100%'} m={'auto'} mb={'15px'} border={'1px solid'} objectFit={'contain'}>
-                        {image.frontForm == '' ?
+                        {image.form49Front == '' ?
                             <Image w={'25%'} src='https://cdn-icons-png.flaticon.com/128/7188/7188242.png' />
                             :
-                            <Image src={image.frontForm || ""} alt='front' w={'100%'} h={'100%'} />
+                            <Image src={image.form49Front || ""} alt='front' w={'100%'} h={'100%'} />
                         }
                     </Box>
-                    <form>
+                  
                         <FormControl>
                             <FormLabel textAlign={'center'}>Front Form 49A</FormLabel>
                             <Text textAlign={'center'} fontSize={'14px'} mb={'7px'} color={'grey'}>(Only 200DPI Color JPG)</Text>
-                            <Input color={'grey'} p={'3.5px'} type='file' name='frontForm' onChange={handleUpload} required accept="image/*" />
+                            <Input color={'grey'} p={'3.5px'} type='file' name='form49Front' onChange={handleUpload} required accept="image/*" />
                         </FormControl>
-                    </form>
+                  
                 </Box>
 
                 <Box w={['90%', '55%', '30%', '27%']} m={'auto'}>
                     <Box h={['250px', '300px', '250px', '300px']} display={'flex'} justifyContent={'center'} alignItems={'center'} w={'100%'} m={'auto'} mb={'15px'} border={'1px solid'} objectFit={'contain'}>
-                        {image.backForm == '' ?
+                        {image.form49Back == '' ?
                             <Image w={'25%'} src='https://cdn-icons-png.flaticon.com/128/7188/7188242.png' />
                             :
-                            <Image src={image.backForm || ""} alt='back' w={'100%'} h={'100%'} />}
+                            <Image src={image.form49Back || ""} alt='back' w={'100%'} h={'100%'} />}
                     </Box>
-                    <form>
+                  
                         <FormControl>
                             <FormLabel textAlign={'center'} >Back Form 49A</FormLabel>
                             <Text textAlign={'center'} fontSize={'14px'} mb={'7px'} color={'grey'}>(Only 200DPI Color JPG)</Text>
-                            <Input color={'grey'} p={'3.5px'} type='file' name='backForm' required onChange={handleUpload} accept="image/*" />
+                            <Input color={'grey'} p={'3.5px'} type='file' name='form49Back' required onChange={handleUpload} accept="image/*" />
                         </FormControl>
-                    </form>
+                    
                 </Box>
 
                 <Box w={['90%', '55%', '30%', '27%']} m={'auto'}>
                 <Box h={['250px', '300px', '250px', '300px']} display={'flex'} justifyContent={'center'} alignItems={'center'} w={'100%'} m={'auto'} mb={'15px'} border={'1px solid'} objectFit={'contain'}>
-                        {image.aadharCardDocs == '' ?
+                        {image.aadharDoc == '' ?
                             <Image w={'25%'} src='https://cdn-icons-png.flaticon.com/128/7188/7188242.png' />
                             :
-                            <Image src={image.aadharCardDocs || ""} alt='aadhar' w={'100%'} h={'100%'} />
+                            <Image src={image.aadharDoc || ""} alt='aadhar' w={'100%'} h={'100%'} />
                             }                       
                     </Box>
-                    <form onSubmit={handleUploadAadharCard}>
+                   
                         <FormControl>
                             <FormLabel textAlign={'center'} >Aadhar Card</FormLabel>
                             <Text textAlign={'center'} fontSize={'14px'} mb={'7px'} color={'grey'}>(Only 200DPI Color JPG)</Text>
-                            <Input color={'grey'} p={'3.5px'} type='file' name='aadharCardDocs' required onChange={handleUpload} accept="image/*" />
+                            <Input color={'grey'} p={'3.5px'} type='file' name='aadharDoc' required onChange={handleUpload} accept="image/*" />
                         </FormControl>
-                    </form>
+                   
                 </Box>
             </Box>
 
-            <Button w={'70%'} h={'45px'} display={'block'} m={'auto'} mt={'1cm'} mb={'1.5cm'} colorScheme={'green'} size={'sm'} letterSpacing={'5px'} onClick={handelFinalUpload}>UPLOAD</Button>
-
+            <Button w={'70%'} h={'45px'} display={'block'} m={'auto'} mt={'1cm'} mb={'1.5cm'} colorScheme={'green'} size={'sm'} letterSpacing={'5px'} type='submit' title={upladDone.isUpload?"You already upload document":"Upload"}  isDisabled={upladDone.isUpload}>UPLOAD</Button>
+            </form>
 
         </Box>
     )

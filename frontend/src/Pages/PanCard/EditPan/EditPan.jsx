@@ -155,7 +155,7 @@ export const EditPan = () => {
       }).then((res) => {
         // console.log(res.data);
         toast({
-          title: 'SUBMITTED',
+          title: 'SUBMITED',
           description: "PAN CARD FORM SUBMITTED SUCCESSFULLY",
           status: 'success',
           duration: 5000,

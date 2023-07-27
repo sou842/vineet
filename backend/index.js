@@ -6,6 +6,7 @@ const { userRoute } = require('./route/user.route');
 const { newPanRoute } = require("./route/newPan.route");
 const { paymentRoute } = require("./route/payment.route");
 const { profileRouter } = require("./route/profilePicture.route");
+const { panDocsRoute } = require("./route/panDocs.route");
 
 
 require('dotenv').config();
@@ -16,6 +17,7 @@ app.use(express.json())
 app.use(cors())
 app.use('/payment',paymentRoute)
 app.use('/profile',profileRouter)
+app.use('/user',panDocsRoute)
 app.use('/api',userRoute)
 app.use('/user',newPanRoute)
 
