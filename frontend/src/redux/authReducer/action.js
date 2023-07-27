@@ -13,7 +13,8 @@ export const loginFun=(loginData)=>(dispatch)=>{
         let obj={
             token:res.data.token,
             auth:true,
-            username:res.data.username
+            username:res.data.username,
+            avatar: ''
         }
         localStorage.setItem("digitalPortal",JSON.stringify(obj))
        return res.data.msg

@@ -60,7 +60,7 @@ export const PanCardNav = () => {
                     <a href="/profile">
                         <Wrap>
                             <WrapItem>
-                                <Avatar color={'white'} bg='blue.200' size={['md', 'md', 'lg']}/>
+                            <Avatar color={'white'} bg='blue.200' size={['md', 'md', 'lg']} name={portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData.avatar}/>
                             </WrapItem>
                         </Wrap>
                     </a>
