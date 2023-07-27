@@ -13,6 +13,7 @@ export const DashboardNav = () => {
     const [profile, setProfile] = useState()
     const [amount, setAmount] = useState(null)
     const [balance, setBalance] = useState(0)
+    const [addBalanceLoad,setAddBalanceLoad]=useState(false)
     const navigate = useNavigate()
     const toast = useToast()
 
@@ -32,20 +33,22 @@ export const DashboardNav = () => {
         window.location = '/'
     }
 
-    // const showBalance = () => {
+    const showBalance = () => {
+
+        axios.get("http://localhost:8080/api", {
+            headers: { "Authorization": portalData.token }
+        })
+            .then((res) => {
+                setBalance(res.data.balance)
+               
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
 
 
-
-    //     axios.get("http://localhost:8080/profile/profile-pictire", {
-    //         headers: { "Authorization": portalData.token }
-    //     })
-    //         .then((res) => {
-    //             setProfile(res.data.avatar);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         })
-    // }
+    
     //handelOpenRazorpay
     const handelOpenRazorpay = (data) => {
         const options = {
@@ -96,20 +99,22 @@ export const DashboardNav = () => {
 
     //handelPay
     const handelPay = () => {
+        setAddBalanceLoad(true)
         axios.post('http://localhost:8080/payment/order', { amount: amount })
             .then((res) => {
+                setAddBalanceLoad(false)
                 console.log(res.data);
                 onClose()
                 handelOpenRazorpay(res.data)
             })
             .catch((err) => {
+                setAddBalanceLoad(false)
                 console.log(err);
             })
 
     }
 
     useEffect(() => {
-        // profileAvater();
         if (portalData.avatar == '') {
             axios.get("http://localhost:8080/profile/profile-pictire", {
                 headers: { "Authorization": portalData.token }
@@ -128,6 +133,9 @@ export const DashboardNav = () => {
                 })
         }
     }, [])
+
+        showBalance()
+    }, [amount])
 
 
     // console.log(portalData)

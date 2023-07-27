@@ -240,6 +240,17 @@ res.send(`${amount} add successfull`)
     res.send(error)
   }
 })
+//get singel user
+userRoute.use(auth);
+userRoute.get("/",async(req,res)=>{
+  try {
+    const user= await UserModel.findOne({vendorID:req.body.vendorID})
+    res.send(user)
+    
+  } catch (error) {
+    res.send(error)
+  }
+})
 
 
 

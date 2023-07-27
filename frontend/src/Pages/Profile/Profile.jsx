@@ -33,6 +33,7 @@ export const Profile = () => {
   const [loading, setLoading] = useState(false)
   const [picture, setPicture] = useState("")
   const [userDP, setUserDP] = useState("")
+  const [uploadDpLoad, setUploadDpLoad] = useState(false)
   const [editdata, setEditdata] = useState({
     email: "",
     shopeName: "",
@@ -125,6 +126,7 @@ export const Profile = () => {
     let obj = { token: portalData.token, auth: portalData.auth, username: portalData.username, avatar: picture }
     profileOnClose()
 
+    setUploadDpLoad(true)
     axios.patch("http://localhost:8080/profile/update-profile-pictire", { avatar: picture }, {
       headers: {
         "Authorization": portalData.token
@@ -284,7 +286,7 @@ export const Profile = () => {
 
           <ModalFooter bg={'white'}>
             <Button p={'15px'} fontFamily={'sans-serif'} variant='ghost' mr={3} onClick={profileOnClose} size={'sm'}> Close</Button>
-            <Button p={'15px'} fontFamily={'sans-serif'} colorScheme='yellow' size={'xs'} onClick={handelPhotoUpdate}>Update</Button>
+            <Button p={'15px'} fontFamily={'sans-serif'} colorScheme='yellow' isDisabled={uploadDpLoad} size={'xs'} onClick={handelPhotoUpdate}  >{uploadDpLoad?"Loading...":"Update"}</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
