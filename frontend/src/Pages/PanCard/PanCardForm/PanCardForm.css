@@ -5,7 +5,7 @@
 /* dashboard_1 */
 
 .individualPerson_1{
-    background-color: rgba(48, 162, 255, 0.447);
+    background-color: #ECC94B;
     width: 80%;
     margin: 1cm auto;
     padding: 20px 15px;
@@ -18,9 +18,9 @@
 .individualPerson_head{
     text-align: center;
     width: 50%;
-    border: 1.5px solid rgb(10, 156, 248);;
+    border: 1.5px solid #ECC94B;
     margin: 1cm auto;
-    color: rgb(10, 156, 248);;
+    color: rgb(45, 45, 45);
     padding: 10px 0;
     border-radius: 25px;
 }
@@ -79,16 +79,16 @@
     display: block;
     width: 40%;
     margin: 1cm auto;
-    background-color: rgb(10, 156, 248);
-    border: 1.5px solid rgb(10, 156, 248);
-    color: white;
+    background-color: #ECC94B;
+    border: 1.5px solid #ECC94B;
+    color: rgb(50, 50, 50);
     padding: 15px;
     border-radius: 10px;
-    transition: 0.4s ease;
+    transition: 0.3s ease;
 }
 .individualPerson_3:hover{
     background-color: white;
-    color: rgb(10, 156, 248);
+    /* color: #ECC94B; */
 }
 
 @media screen and (min-width:0px) and (max-width:1000px){

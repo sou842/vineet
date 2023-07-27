@@ -3,13 +3,12 @@
     padding: 0;
 }
 .pancardnav_0{
-    padding: 7px 1.5cm;
+    padding: 5px 1.5cm;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 .pancardnav_0 > div{
-    /* border: 1px solid red; */
     font-size: 30px;
     /* color: white; */
 }
@@ -20,18 +19,24 @@
 .pancardnav_1{
     display: flex;
     justify-content: space-between;
-    background-color: rgb(10, 156, 248);
+    background-color: rgb(49, 49, 49);
     color: white;
 }
 .pancardnav_1 > div{
     display: flex;
-    margin: 0 15px;
+    margin: 0 10px;
     /* border: 1px solid red; */
 }
 .pancardnav_1 > div > div{
     display: flex;
     align-items: center;
-    margin: 10px;
+    padding: 6px 10px;
+    margin-bottom: 1.5px;
+    transition: 0.4s ease;
+    border-bottom: 1.5px solid #ffd12a00;
+}
+.pancardnav_1 > div > div:hover{
+    border-bottom: 1.5px solid #ffd12a;
 }
 .pancardnav_1 > div > div > a > p{
     font-size: 15px;
@@ -41,7 +46,7 @@
 .pancardnav_0{
     display: flex;
     justify-content: space-between;
-    padding: 7px;
+    padding: 5px 7px;
 }
 .pancardnav_0 > div > a > p{
     color: whitesmoke;
@@ -55,12 +60,16 @@
     font-weight: bold;
 }
 .pancardnav_0 > div > a > img{
-    width: 50px;
+    width: 55px;
 }
 }
 
 @media screen and (min-width:0px) and (max-width:600px){
 .pancardnav_1 > div > div > a > p{
     font-size: 12px;
+}
+.pancardnav_1 > div{
+    display: flex;
+    margin: 0 5px;
 }
 }

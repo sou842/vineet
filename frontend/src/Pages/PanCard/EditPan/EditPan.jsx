@@ -125,6 +125,16 @@ export const EditPan = () => {
     console.log('false')
   }
 
+  const handleEdit = (e) => {
+    e.preventDefault()
+    setFormEdit(!formEdit)
+
+    if (!formEdit) {
+      toast({ title: 'EDIT SAVE', status: 'success', duration: 2000, isClosable: true, position: 'top' })
+    }
+
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -1487,7 +1497,7 @@ export const EditPan = () => {
 
 
           <div className='editpan_3'>
-            <p style={{ backgroundColor: formEdit ? '#ffa600' : null, color: formEdit ? 'white' : '#ffa600', cursor: 'pointer' }} onClick={() => setFormEdit(!formEdit)}>EDIT FORM</p>
+            <p style={{ backgroundColor: formEdit ? '#ECC94B' : null, color: formEdit ? 'rgb(59, 59, 59)' : '#ecba02', cursor: 'pointer' }} onClick={handleEdit}>{formEdit ? 'EDIT FORM' : 'SAVE'}</p>
             <button type='submit'>SUBMIT</button>
           </div>
         </form>

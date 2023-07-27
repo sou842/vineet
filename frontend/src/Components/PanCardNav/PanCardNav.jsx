@@ -60,7 +60,7 @@ export const PanCardNav = () => {
                     <a href="/profile">
                         <Wrap>
                             <WrapItem>
-                            <Avatar color={'white'} bg='blue.200' size={['md', 'md', 'lg']} name={portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData.avatar}/>
+                            <Avatar color={'black'} bg='yellow.300' size={['md', 'md', 'lg']} name={portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData.avatar}/>
                             </WrapItem>
                         </Wrap>
                     </a>
@@ -100,7 +100,31 @@ export const PanCardNav = () => {
                                 <p>Dashboard</p>
                             </a>
                         </div>
+                        <div>
+                            <Menu >
+                            <MenuButton
+                                    as={Button}
+                                    rightIcon={<ChevronDownIcon />}
+                                    colorScheme="#0a9cf8"
+                                    margin={0}
+                                    fontWeight={'normal'}
+                                    padding={0}
+                                    fontSize={['10px', '15px', '15px']}
+                                >
+                                    Services
+                                </MenuButton>
+                                <MenuList color={"black"} >
+                                    <MenuItem onClick={() => navigate('/PanCard')}>Pan Card</MenuItem>
+                                    <MenuItem onClick={() => navigate('/ChangePassword')}>Electricity</MenuItem>
+                                    <MenuItem onClick={() => navigate('/profile')}>Mobile Recharge</MenuItem>
+                                    <MenuItem onClick={() => navigate('/profile')}>DTH Recharge</MenuItem>
+                                    <MenuItem onClick={() => navigate('/profile')}>ITR</MenuItem>
+                                    <MenuItem onClick={() => navigate('/profile')}>GST</MenuItem>
+                                    <MenuItem onClick={() => navigate('/profile')}>Online Job Portal</MenuItem>
 
+                                </MenuList>
+                            </Menu>
+                        </div>
                         <div>
                             <a href="/user/pan-receipt">
                                 <p>Receipt</p>
@@ -125,29 +149,6 @@ export const PanCardNav = () => {
                             <a href="#">
                                 <p>Check Pan Status</p>
                             </a>
-                        </div>
-                        <div>
-                            <Menu >
-                                <MenuButton
-                                    as={Button}
-                                    rightIcon={<ChevronDownIcon />}
-                                    colorScheme="#0a9cf8"
-                                    fontSize={'15px'}
-                                    color={'white'}
-                                >
-                                    Services
-                                </MenuButton>
-                                <MenuList color={"black"} >
-                                    <MenuItem onClick={() => navigate('/PanCard')}>Pan Card</MenuItem>
-                                    <MenuItem onClick={() => navigate('/ChangePassword')}>Electricity</MenuItem>
-                                    <MenuItem onClick={() => navigate('/profile')}>Mobile Recharge</MenuItem>
-                                    <MenuItem onClick={() => navigate('/profile')}>DTH Recharge</MenuItem>
-                                    <MenuItem onClick={() => navigate('/profile')}>ITR</MenuItem>
-                                    <MenuItem onClick={() => navigate('/profile')}>GST</MenuItem>
-                                    <MenuItem onClick={() => navigate('/profile')}>Online Job Portal</MenuItem>
-
-                                </MenuList>
-                            </Menu>
                         </div>
                     </div>
                 }

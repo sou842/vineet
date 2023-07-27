@@ -28,6 +28,7 @@ export const DashboardNav = () => {
             status: 'success',
             duration: 3000,
             isClosable: true,
+            position: 'top'
         })
         window.location = '/'
     }
@@ -74,6 +75,7 @@ export const DashboardNav = () => {
                                     status: 'success',
                                     duration: 3000,
                                     isClosable: true,
+                                    position: 'top'
                                 })
                             })
                             .catch((err) => {
@@ -113,6 +115,25 @@ export const DashboardNav = () => {
     }
 
     useEffect(() => {
+        if (portalData.avatar == '') {
+            axios.get("http://localhost:8080/profile/profile-pictire", {
+                headers: { "Authorization": portalData.token }
+            })
+                .then((res) => {
+                    let obj = {
+                        token: portalData.token,
+                        auth: portalData.auth,
+                        username: portalData.username,
+                        avatar: res.data.avatar
+                    }
+                    localStorage.setItem("digitalPortal", JSON.stringify(obj))
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
+    }, [])
+
         showBalance()
     }, [amount])
 
@@ -134,7 +155,7 @@ export const DashboardNav = () => {
                     <a href="/profile">
                         <Wrap>
                             <WrapItem>
-                                <Avatar color={'white'} bg='blue.200' size={['md', 'md', 'lg']} name={portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData.avatar} />
+                                <Avatar color={'black'} bg='yellow.300' size={['md', 'md', 'lg']} name={portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData.avatar} />
                             </WrapItem>
                         </Wrap>
                     </a>
@@ -198,10 +219,10 @@ export const DashboardNav = () => {
                         <div><a href="#"><p>Traning Manual</p></a></div>
                         <div><a href="#"><p>Downloads</p></a></div>
                         <div><a href="#"><p>Ledger</p></a></div>
-                        <div><Button onClick={onOpen} ml={'5px'} size={'sm'} colorScheme='blue.100'>Add money</Button></div>
+                        <div><Button border={'1.2px solid #ffd12a'} _hover={{bg:'#ffd12a',color:'black'}} onClick={onOpen} ml={'5px'} size={'sm'} colorScheme='blue.100'>Add money</Button></div>
                     </div>}
                 <div>
-                    <div><a href="#"><p>Balance:₹ {balance} </p></a>
+                    <div><a href="#"><p>Balance: ₹ {balance} </p></a>
                     </div>
                     <div>
                         <Menu >
@@ -226,7 +247,7 @@ export const DashboardNav = () => {
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Add Money to Wallet</ModalHeader>
+                    <ModalHeader>ADD Money to Wallet</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
                         <FormControl>
@@ -236,10 +257,8 @@ export const DashboardNav = () => {
                     </ModalBody>
 
                     <ModalFooter bg={'white'}>
-                        <Button size={'sm'} mr={3} onClick={onClose}>
-                            Close
-                        </Button>
-                        <Button colorScheme='blue' size={'sm'} onClick={handelPay} isDisabled={addBalanceLoad} >{addBalanceLoad?"Loading...":"Add"}</Button>
+                        <Button p={'15px'} size={'sm'} mr={3} onClick={onClose}>Close</Button>
+                        <Button p={'15px'} colorScheme='yellow' size={'sm'} onClick={handelPay}>Add</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
