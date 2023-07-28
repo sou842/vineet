@@ -273,6 +273,8 @@ export const Profile = () => {
         </ModalContent>
       </Modal>
 
+       
+
       {/* profile picture update modal */}
       <Modal isOpen={profileIsOpen} onClose={profileOnClose}>
         <ModalOverlay />
