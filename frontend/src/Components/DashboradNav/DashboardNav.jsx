@@ -36,6 +36,7 @@ export const DashboardNav = () => {
             headers: { "Authorization": portalData.token }
         })
             .then((res) => {
+                console.log(res.data);
                 setBalance(res.data.balance)
                
             })

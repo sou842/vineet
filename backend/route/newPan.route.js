@@ -29,7 +29,7 @@ newPanRoute.get("/all-pan-card-deatils", async (req, res) => {
     const { vendorID, userID } = req.body;
 
     try {
-        console.log(vendorID)
+       
         const pans = await NewPanModel.find({ vendorID })
         res.send(pans)
 
