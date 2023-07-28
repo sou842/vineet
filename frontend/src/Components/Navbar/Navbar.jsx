@@ -30,31 +30,34 @@ export const Navbar = () => {
                 </div>
                 {isSmallerThan700 ?
                     <div className='navbar_2'>
-                        { portalData ? <div><a href="/Dashboard"><p>DASHBOARD</p></a></div> : <div><a href="/signin"><p>LOGIN</p></a></div> }
-                        <Menu>
-                            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} colorScheme="#0a9cf8" margin={0} fontSize={['10px', '15px', '15px']}>
-                                Menu
-                            </MenuButton>
-                            <MenuList color={"grey"}>
-                                <MenuItem onClick={() => navigate('/Dashboard')}>Dashboard</MenuItem>
-                                <MenuItem onClick={() => navigate('/About')}>ABOUT</MenuItem>
-                                <MenuItem onClick={() => navigate('/Services')}>SERVICES</MenuItem>
-                                <MenuItem onClick={() => navigate('/Privacy')}>PRIVACY POLICY</MenuItem>
-                                <MenuItem onClick={() => navigate('/Contact')}>CONTACT US</MenuItem>
-                            </MenuList>
-                        </Menu>
+                        <div>
+                            {portalData ? <div><a href="/Dashboard"><p>DASHBOARD</p></a></div> : <div><a href="/signin"><p>LOGIN</p></a></div>}
+                            <Menu>
+                                <MenuButton as={Button} rightIcon={<ChevronDownIcon />} colorScheme="#0a9cf8" margin={0} fontSize={['10px', '15px', '15px']}>
+                                    Menu
+                                </MenuButton>
+                                <MenuList color={"grey"}>
+                                    <MenuItem onClick={() => navigate('/Dashboard')}>Dashboard</MenuItem>
+                                    <MenuItem onClick={() => navigate('/About')}>ABOUT</MenuItem>
+                                    <MenuItem onClick={() => navigate('/Services')}>SERVICES</MenuItem>
+                                    <MenuItem onClick={() => navigate('/Privacy')}>PRIVACY POLICY</MenuItem>
+                                    <MenuItem onClick={() => navigate('/Contact')}>CONTACT US</MenuItem>
+                                </MenuList>
+                            </Menu>
+                        </div>
                     </div>
                     :
                     <div className='navbar_2'>
-                        <div><a href="/"><p>HOME</p></a></div>
-                        <div><a href="/About"><p>ABOUT</p></a></div>
-                        <div><a href="/Services"><p>SERVICES</p></a></div>
-                        <div><a href="/Privacy"><p>PRIVACY POLICY</p></a></div>
-                        <div><a href="/Contact"><p>CONTACT US</p></a></div>
-                        {
-                            portalData ? <div><a href="/Dashboard"><p>DASHBOARD</p></a></div> : <div><a href="/signin"><p>LOGIN</p></a></div>
-                        }
-
+                        <div>
+                            <div><a href="/"><p>HOME</p></a></div>
+                            <div><a href="/About"><p>ABOUT</p></a></div>
+                            <div><a href="/Services"><p>SERVICES</p></a></div>
+                            <div><a href="/Privacy"><p>PRIVACY POLICY</p></a></div>
+                            <div><a href="/Contact"><p>CONTACT US</p></a></div>
+                            {
+                                portalData ? <div><a href="/Dashboard"><p>DASHBOARD</p></a></div> : <div><a href="/signin"><p>LOGIN</p></a></div>
+                            }
+                        </div>
                     </div>
                 }
             </div>

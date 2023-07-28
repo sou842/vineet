@@ -1497,7 +1497,7 @@ export const EditPan = () => {
 
 
           <div className='editpan_3'>
-            <p style={{ backgroundColor: formEdit ? '#ECC94B' : null, color: formEdit ? 'rgb(59, 59, 59)' : '#ecba02', cursor: 'pointer' }} onClick={handleEdit}>{formEdit ? 'EDIT FORM' : 'SAVE'}</p>
+            <p style={{ backgroundColor: formEdit ? '#43ef6e' : null, color: 'rgb(59, 59, 59)', cursor: 'pointer' }} onClick={handleEdit}>{formEdit ? 'EDIT FORM' : 'SAVE'}</p>
             <button type='submit'>SUBMIT</button>
           </div>
         </form>

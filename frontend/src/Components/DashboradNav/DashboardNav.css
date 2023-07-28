@@ -19,7 +19,7 @@
     display: flex;
     justify-content: space-between;
     /* background-color: rgb(10, 156, 248); */
-    background-color: rgb(49, 49, 49);
+    background-color: rgb(38, 38, 38);
     color: white;
 }
 .dashboard_0 > div{
@@ -39,7 +39,7 @@
     transition: 0.4s ease;
 }
 .dashboard_0 > div > div:hover{
-    border-bottom: 1.5px solid #ffd12a;
+    border-bottom: 1.5px solid #43ef6e;
 }
 .dashboard_0 > div > div:nth-child(6){
     border-bottom: 1.5px solid #ffd12a00;

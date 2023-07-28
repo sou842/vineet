@@ -31,15 +31,15 @@ const Receipt = () => {
     return (
         <Box>
             <PanCardNav />
-            <Box mt={'25px'}><ContactUs /></Box>
+            {/* <Box mt={'25px'}><ContactUs /></Box> */}
 
             {
-                loading ? <Box display={'flex'} justifyContent={'center'} mt={'2cm'} mb={'2cm'}><Spinner color='blue.300' /></Box> :
+                loading ? <Box display={'flex'} justifyContent={'center'} mt={'2cm'} mb={'2cm'}><Spinner color='#43ef6e' /></Box> :
                     <Grid templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} gap={['5px', '10px']} w={'90%'} m={'1cm auto'}>
                         {
                             pans?.map((ele, index) => (
-                                <Box key={index} border={'1.5px solid grey'} borderRadius={'15px'} pt={'10px'} pb={'10px'}>
-                                    <Box textAlign={'center'} p={'7px'} bg={'#ECC94B'} w={'100%'} m={'auto'} mt={'10px'} mb={'15px'}>{ele.category.toUpperCase()}</Box>
+                                <Box key={index} border={'1.5px solid #43ef6e'} borderRadius={'15px'} pt={'10px'} pb={'10px'}>
+                                    <Box textAlign={'center'} fontWeight={'bold'} p={'7px'} bg={'#43ef6e'} w={'100%'} m={'auto'} mt={'10px'} mb={'15px'}>{ele.category.toUpperCase()}</Box>
                                     <Box w={'90%'} m={'auto'}>
                                         <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Name :<Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>{ele.firstName + " " + ele.middleName + " " + ele.lastName}</Text></Text>
                                         <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Token : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>{ele.tokenNumber}</Text></Text>
@@ -48,7 +48,7 @@ const Receipt = () => {
                                         <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Slip Generate Date : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>null</Text></Text>
                                     </Box>
                                     <Box>
-                                        <Button _hover={{ bg: '#ECC94B', color:'black' }} transition={'0.4s'} bg={'#616161'} color={'white'} w={'95%'} m={'auto'} mt={'20px'} mb={'10px'} display={'block'}>Download Receipt</Button>
+                                        <Button color={'black'} _hover={{color:'#43ef6e'}} transition={'0.4s'} border={'1.3px solid grey'} w={'95%'} m={'auto'} mt={'20px'} mb={'10px'} display={'block'}>Download Receipt</Button>
                                     </Box>
                                 </Box>
                             ))
@@ -61,39 +61,3 @@ const Receipt = () => {
 }
 
 export default Receipt
-
-
-
-{/* <TableContainer border={'1px solid gray'}>
-<Table variant={'simple'}>
-    <Thead>
-        <Tr>
-            <Th>S.No.</Th>
-            <Th>Category</Th>
-            <Th>Token Number</Th>
-            <Th>Apply date</Th>
-            <Th>Download Receipt</Th>
-            <Th>Name</Th>
-
-            <Th>Acknowledgement</Th>
-            <Th>Slip Generate Date</Th>
-        </Tr>
-    </Thead>
-    <Tbody>
-        {
-            pans.map((el,i)=>{
-                return <Tr>
-                    <Td>{i+1}</Td>
-                    <Td>{el.category.toUpperCase()}</Td>
-                    <Td>{el.tokenNumber}</Td>
-                    <Td>{el.date}</Td>
-                    <Td>
-                        // <Button size={'xs'} colorScheme='yellow'>Dounload Receipt</Button> 
-                    </Td>
-                    <Td>{el.firstName+" "+el.middleName+" "+el.lastName}</Td>
-                </Tr>
-            })
-        }
-    </Tbody>
-</Table>
-</TableContainer> */}

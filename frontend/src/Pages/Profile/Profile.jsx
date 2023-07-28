@@ -121,25 +121,22 @@ export const Profile = () => {
 
   //handelPhotoUpdate
   const handelPhotoUpdate = () => {
-    toast({ title: 'Photo Updating...', status: 'success', duration: 4000, isClosable: true, position: 'top'})
+    toast({ title: 'Photo Updating...', status: 'success', duration: 4000, isClosable: true, position: 'top' })
 
     let obj = { token: portalData.token, auth: portalData.auth, username: portalData.username, avatar: picture }
     profileOnClose()
 
     setUploadDpLoad(true)
     axios.patch("http://localhost:8080/profile/update-profile-pictire", { avatar: picture }, {
-      headers: {
-        "Authorization": portalData.token
-      }
+      headers: { "Authorization": portalData.token }
     })
-    .then((res) => {
-      localStorage.setItem("digitalPortal", JSON.stringify(obj))
-      
-      // toast({ title: res.data, status: 'success', duration: 4000, isClosable: true, position: 'top'})
+      .then((res) => {
+        localStorage.setItem("digitalPortal", JSON.stringify(obj))
+        // toast({ title: res.data, status: 'success', duration: 4000, isClosable: true, position: 'top'})
         window.location = '/Dashboard'
       })
       .catch((err) => {
-        toast({ title: 'Try Again, Something Wrong!!!', status: 'error', duration: 4000, isClosable: true, position: 'top'})
+        toast({ title: 'Try Again, Something Wrong!!!', status: 'error', duration: 4000, isClosable: true, position: 'top' })
         console.log(err);
       })
   }
@@ -147,7 +144,7 @@ export const Profile = () => {
 
   const handleUpdate = () => {
     editOnClose()
-    
+
     axios.patch("http://localhost:8080/api/profile-update", editdata, {
       headers: {
         "Authorization": portalData.token
@@ -167,7 +164,7 @@ export const Profile = () => {
       })
       .catch((err) => {
         console.log(err);
-        toast({ title: 'Try Again, Something Wrong!!!', status: 'error', duration: 4000, isClosable: true, position: 'top'})
+        toast({ title: 'Try Again, Something Wrong!!!', status: 'error', duration: 4000, isClosable: true, position: 'top' })
       })
   }
 
@@ -178,48 +175,33 @@ export const Profile = () => {
 
       {/* profile details */}
 
-      {loading ? <Box display={'flex'} justifyContent={'center'} mt={'5cm'}><Spinner color='yellow.300' /></Box> :
+      {loading ? <Box display={'flex'} justifyContent={'center'} mt={'5cm'}><Spinner color='#43ef6e' /></Box> :
 
 
         profileData.map((el, i) => {
           return <div key={i}>
-            <Box w={['95%', '95%', '85%']} display={'flex'} justifyContent={'space-between'} flexDirection={['column', 'column', 'row']} m={'auto'} mt={['0.5cm', '0.5cm', '1cm']} mb={'1cm'} bg={'gray.100'} p={['7px', '15px', '25px']} borderRadius={'15px'} >
+            <Box w={['95%', '95%','95%', '85%']} display={'flex'} justifyContent={'space-between'} flexDirection={['column', 'column', 'row']} m={'auto'} mt={['0.5cm', '0.5cm', '1cm']} mb={'1cm'} bg={'gray.100'} p={['7px', '15px', '25px']} borderRadius={'15px'} >
 
               <Box width={['100%', '100%', '40%']} >
 
-                <Box w={'100%'} h={['60%']} position="relative" display="inline-block">
-                  <Box position="absolute"
-                    top="10px"
-                    right="10px"
-                    // transform="translate(-50%, -50%)"
-                    borderRadius="full"
-                    bg="white"
-                    boxShadow="md"
-                    p={1}
-                    onClick={profileOnOpen}
-                    cursor={'pointer'}
-
-                  >
-
-
+                <Box overflow={'hidden'} w={'100%'} h={['230px','300px','320px']} position="relative" display="inline-block" borderRadius={'15px'}>
+                  <Box position="absolute" top="10px" right="10px" borderRadius="full" bg="white" boxShadow="md" p={1} onClick={profileOnOpen} cursor={'pointer'}                  >
                     <Img position={'relative'} w={'25px'} src='https://cdn-icons-png.flaticon.com/128/8304/8304794.png' />
-
                   </Box>
                   {portalData.avatar == '' ?
-                    <Text mt={'-30px'} color={'blue.200'} fontSize={'50px'} display={'flex'} justifyContent={'center'} alignItems={'center'} w={'100%'} h={'100%'} m={'auto'} borderRadius={'15px'} bg={'white'}>{portalData.username.match(/\b\w/g).join('').toUpperCase()}</Text>
+                    <Text mt={'-30px'} color={'#43ef6e'} fontSize={'50px'} display={'flex'} justifyContent={'center'} alignItems={'center'} w={'100%'} h={'100%'} m={'auto'} borderRadius={'15px'} bg={'white'}>{portalData.username.match(/\b\w/g).join('').toUpperCase()}</Text>
                     :
-                    <Image w={'100%'} h={'100%'} borderRadius={'15px'} src={portalData.avatar} alt="" />
+                    <Image display={'block'} m={'auto'} h={'100%'} objectFit={'cover'} objectPosition={'cover'} borderRadius={'15px'} src={portalData.avatar} alt="" />
                   }
-
                 </Box>
 
                 <Box textAlign={'center'} mt={'20px'}>
-                  <Button width={'100%'} h={'45px'} colorScheme='yellow' size={'sm'} onClick={() => handleEdit(el)}>Edit Profile</Button>
+                  <Button width={'100%'} h={'45px'} bg='#43ef6e' size={'sm'} onClick={() => handleEdit(el)}>Edit Profile</Button>
                 </Box>
 
                 <Box mt={'20px'}>
-                  <Heading size={'sm'} p={'15px'} display={'flex'} alignItems={'center'}><Image width={'25px'} mr={'15px'} src='https://cdn-icons-png.flaticon.com/128/1077/1077063.png' /><Text fontWeight={'bold'} as={'span'}>{el.name.toUpperCase()}</Text> </Heading>
-                  <Heading size={'sm'} p={'15px'} display={'flex'} alignItems={'center'}><Image width={'25px'} mr={'15px'} src='https://cdn-icons-png.flaticon.com/128/646/646094.png' /> <Text fontWeight={'bold'} as={'span'}>{el.email}</Text> </Heading>
+                  <Heading size={'sm'} p={'15px'} display={'flex'} alignItems={'center'}><Image width={'25px'} mr={'15px'} src='https://cdn-icons-png.flaticon.com/128/1077/1077063.png' /><Text fontWeight={'bold'} as={'span'} fontSize={['15px','14px','15px']}>{el.name.toUpperCase()}</Text> </Heading>
+                  <Heading size={'sm'} p={'15px'} display={'flex'} alignItems={'center'}><Image width={'25px'} mr={'15px'} src='https://cdn-icons-png.flaticon.com/128/646/646094.png' /> <Text fontWeight={'bold'} as={'span'} fontSize={['15px','14px','15px']}>{el.email}</Text> </Heading>
                 </Box>
               </Box>
 
@@ -268,12 +250,12 @@ export const Profile = () => {
 
           <ModalFooter bg={'white'}>
             <Button p={'15px'} fontFamily={'sans-serif'} onClick={editOnClose} mr={3} size={'sm'}>Cancel</Button>
-            <Button p={'15px'} fontFamily={'sans-serif'} colorScheme='yellow' size={'sm'} onClick={handleUpdate} >Update</Button>
+            <Button p={'15px'} fontFamily={'sans-serif'} bg={'#43ef6e'} size={'sm'} onClick={handleUpdate} >Update</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
 
-       
+
 
       {/* profile picture update modal */}
       <Modal isOpen={profileIsOpen} onClose={profileOnClose}>
@@ -288,7 +270,7 @@ export const Profile = () => {
 
           <ModalFooter bg={'white'}>
             <Button p={'15px'} fontFamily={'sans-serif'} variant='ghost' mr={3} onClick={profileOnClose} size={'sm'}> Close</Button>
-            <Button p={'15px'} fontFamily={'sans-serif'} colorScheme='yellow' isDisabled={uploadDpLoad} size={'xs'} onClick={handelPhotoUpdate}  >{uploadDpLoad?"Loading...":"Update"}</Button>
+            <Button p={'15px'} fontFamily={'sans-serif'} bg={'#43ef6e'} isDisabled={uploadDpLoad} size={'xs'} onClick={handelPhotoUpdate}  >{uploadDpLoad ? "Loading..." : "Update"}</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

@@ -6,7 +6,7 @@
 .home_01{
     width: 85%;
     margin: 1cm auto;
-    border: 1.5px solid rgb(10, 156, 248);
+    border: 1.5px solid #43ef6e;
     text-align: center;
     padding: 0.7cm;
     border-radius: 20px;
@@ -42,13 +42,13 @@
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 15px;
     padding: 5px;
-    background-color: rgb(10, 156, 248);
+    background-color: #43ef6e;
 }
 .home_02 > div{
     width: 100%;
     margin: 1cm auto;
     padding: 10px;
-    background-color: rgba(48, 162, 255, 0.447);
+    background-color: #43ef6e93;
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap: 10px;
@@ -73,7 +73,7 @@
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 .home_02 > div > div > a:hover{
-    color: rgb(0, 140, 255);
+    color: #43ef6e;
 }
 
 @media screen and (min-width:0px) and (max-width:1000px){
@@ -126,7 +126,6 @@
         width: 90%;
     }
     .home_02 > div{
-        background-color: rgba(48, 162, 255, 0.447);
         grid-template-columns: repeat(1,1fr);
         gap: 15px;
     }

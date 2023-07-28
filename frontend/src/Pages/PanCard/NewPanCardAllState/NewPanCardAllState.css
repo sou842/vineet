@@ -4,7 +4,7 @@
 }
 .newPanCardAllState_1{
     /* background-color: rgba(48, 162, 255, 0.447); */
-    border: 1.5px solid #ECC94B;
+    border: 1.5px solid #43ef6e;
     width: 85%;
     margin: 1cm auto;
     padding: 20px 15px;
@@ -34,8 +34,8 @@
 .newPanCardAllState_2 > div{
     padding: 15px 10px;
     text-align: center;
-    background-color: #ECC94B;
-    border: 1.4px solid #ECC94B;
+    background-color: #43ef6e;
+    border: 1.4px solid #43ef6e;
     color: rgb(30, 30, 30);
     border-radius: 10px;
     transition: 0.4s ease;

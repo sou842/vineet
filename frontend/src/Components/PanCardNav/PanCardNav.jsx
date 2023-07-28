@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 
 export const PanCardNav = () => {
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
-
+    const [balance, setBalance] = useState(0);
     const [isSmallerThan1150] = useMediaQuery("(max-width: 1150px)")
     const [profile, setProfile] = useState(null)
     const toast = useToast()
@@ -39,9 +39,21 @@ export const PanCardNav = () => {
             })
     }
 
+    const showBalance = () => {
 
-    // console.log(profile[0].avtar)
+        axios.get("http://localhost:8080/api", {
+            headers: { "Authorization": portalData.token }
+        })
+            .then((res) => {
+                setBalance(res.data.balance);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
     useEffect(() => {
+        showBalance()
         profileAvater();
     }, [])
 
@@ -60,7 +72,7 @@ export const PanCardNav = () => {
                     <a href="/profile">
                         <Wrap>
                             <WrapItem>
-                            <Avatar color={'black'} bg='yellow.300' size={['md', 'md', 'lg']} name={portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData.avatar}/>
+                            <Avatar color={'black'} bg='#43ef6e' size={['md', 'md', 'lg']} name={portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData.avatar}/>
                             </WrapItem>
                         </Wrap>
                     </a>
@@ -153,14 +165,8 @@ export const PanCardNav = () => {
                     </div>
                 }
                 <div>
-                    {/* <div>
-                        <a href="#"><p>Wallet Balance:₹ 1000</p></a>
-                       
-                      
-                    </div> */}
-                    {/* <div>
-                        <a href="#"><p>OCW:0 ₹</p></a>
-                    </div> */}
+                    <div><a href="#"><p>Balance: ₹ {balance} </p></a></div>
+                    <div>
                     <div>
                         <Menu >
                             <MenuButton
@@ -182,6 +188,7 @@ export const PanCardNav = () => {
                 </div>
             </div>
 
+        </div>
         </div>
     )
 }

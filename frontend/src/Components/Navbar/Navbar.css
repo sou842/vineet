@@ -17,23 +17,28 @@
     width: 80px;
 }
 .navbar_2{
-    background-color: rgb(10, 156, 248);
-    display: flex;
-    justify-content: space-evenly;
-    padding: 15px;
+    background-color: rgb(38, 38, 38);
     font-family: Arial, Helvetica, sans-serif;
 }
 .navbar_2 > div{
+    width: 85%;
     display: flex;
     align-items: center;
-    padding: 0 10px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
 }
-.navbar_2 > div > a{
+.navbar_2 > div > div > a{
     text-decoration: none;
 }
-.navbar_2 > div > a > p{
-    color: whitesmoke;
+.navbar_2 > div > div > a > p{
+    color: white;
     font-size: 15px;
+    transition: 0.4s ease;
+}
+.navbar_2 > div > div > a > p:hover{
+    color: #4ad26c;
 }
 
 @media screen and (min-width:0px) and (max-width:700px){
