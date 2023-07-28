@@ -32,20 +32,19 @@ export const DashboardNav = () => {
         window.location = '/'
     }
 
-    // const showBalance = () => {
+    const showBalance = () => {
 
+        axios.get("http://localhost:8080/api", {
+            headers: { "Authorization": portalData.token }
+        })
+            .then((res) => {
+                setBalance(res.data.balance);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
 
-
-    //     axios.get("http://localhost:8080/profile/profile-pictire", {
-    //         headers: { "Authorization": portalData.token }
-    //     })
-    //         .then((res) => {
-    //             setProfile(res.data.avatar);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         })
-    // }
     //handelOpenRazorpay
     const handelOpenRazorpay = (data) => {
         const options = {
@@ -109,7 +108,7 @@ export const DashboardNav = () => {
     }
 
     useEffect(() => {
-        // profileAvater();
+        showBalance();
         if (portalData.avatar == '') {
             axios.get("http://localhost:8080/profile/profile-pictire", {
                 headers: { "Authorization": portalData.token }
@@ -127,7 +126,7 @@ export const DashboardNav = () => {
                     console.log(err);
                 })
         }
-    }, [])
+    }, [amount])
 
 
     // console.log(portalData)
