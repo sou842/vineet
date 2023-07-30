@@ -5,6 +5,7 @@ import axios from 'axios'
 import { PanCardNav } from '../../Components/PanCardNav/PanCardNav'
 import { useNavigate } from 'react-router-dom'
 import UploadDocument from '../upload document/UploadDocument'
+import { Footer } from '../../Components/Footer/Footer'
 
 const Upload = () => {
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null;
@@ -32,52 +33,39 @@ const Upload = () => {
         GetData()
     }, [])
 
+    console.log(pans)
+
     return (
         <Box>
-            <Box>
-                <PanCardNav />
+            <Box><PanCardNav /></Box>
+            <Box mt={'20px'}><ContactUs /></Box>
+            
+            <Box w={'90%'} m={'auto'} mt={'1cm'} bg={'white'} mb={'1cm'} display={'flex'} justifyContent={'space-between'}>
+                {loading ? <Box h={'50vh'} display={'flex'} justifyContent={'center'} alignItems={'center'} ><Spinner /></Box> :
+                    pans.map((el, i) => {
+                        // if (!el.isUploadDocs) {
+                            return (
+                                <Box key={i} width={'32%'} border={'2px solid #43ef6e'} pt={'20px'} pb={'5px'} borderRadius={'15px'}>
+                                    <Box textAlign={'center'} fontWeight={'bold'} p={'7px'} bg={'#43ef6e'} w={'100%'} m={'auto'} mt={'10px'} mb={'15px'}>{el.category.toUpperCase()}</Box>
+                                    <Box w={'90%'} m={'auto'}>
+                                        <Text mt={'7px'} mb={'7px'} display={'flex'} fontWeight={'bold'}>Name:<Text fontWeight={'normal'} ml={'10px'}>{el.firstName + " " + el.middleName + " " + el.lastName}</Text></Text>
+                                        <Text mt={'7px'} mb={'7px'} display={'flex'} fontWeight={'bold'}>Token Number:<Text fontWeight={'normal'} ml={'10px'}>{el.tokenNumber}</Text></Text>
+                                        <Text mt={'7px'} mb={'7px'} display={'flex'} fontWeight={'bold'}>Apply Date:<Text fontWeight={'normal'} ml={'10px'}>{el.date}</Text></Text>
+                                        <Text mt={'7px'} mb={'7px'} display={'flex'} fontWeight={'bold'}>Mobile:<Text fontWeight={'normal'} ml={'10px'}>{el.telephoneNumber || "NA"}</Text></Text>
+                                    </Box>
+                                    <Box m={'auto'} mt={'15px'} w={'95%'}>
+                                        <Button w={'100%'} h={'40px'} mb={'10px'} size={'xs'}>EDIT</Button>
+                                        <Button w={'100%'} h={'40px'} mb={'10px'} size={'xs'} bg={'grey'} color={'white'} onClick={() => navigate(`/user/upload-document/${el._id}`)}>UPLOAD</Button>
+                                    </Box>
+                                </Box>
+                            )
+                        
+                    })
+                }
             </Box>
-            <Box mt={'20px'}>
-                <ContactUs />
-            </Box>
-            <Box w={'90%'} m={'auto'} bg={'white'} mt={'50px'}>
-                <TableContainer >
-                    <Table>
-                        <Thead>
-                            <Tr>
-                                <Th>S.No</Th>
-                                <Th>Token Number</Th>
-                                <Th>Apply Date</Th>
-                                <Th>Name</Th>
-                                <Th>Mobile</Th>
-                                <Th>Edit</Th>
-                                <Th>Upload</Th>
-                            </Tr>
-                        </Thead>
-                        <Tbody>
-                            {
-                                loading ? <Box h={'50vh'} display={'flex'} justifyContent={'center'} alignItems={'center'} ><Spinner /></Box> : pans.map((el, i) => {
-                                    if (!el.isUploadDocs) {
-                                        return <Tr key={i} bg={'white'} >
-                                            <Td>{i + 1}</Td>
-                                            <Td>{el.tokenNumber}</Td>
-                                            <Td>{el.date}</Td>
-                                            <Td>{el.firstName + " " + el.middleName + " " + el.lastName}</Td>
-                                            <Td>{el.telephoneNumber || "NA"}</Td>
-                                            <Td><Button size={'xs'} colorScheme='yellow'>Edit</Button></Td>
-                                            <Td><Button size={'xs'} colorScheme={'green'} onClick={() => navigate(`/user/upload-document/${el._id}`)}>Upload</Button></Td>
-                                        </Tr>
-                                    }
-                                })
-                            }
-                        </Tbody>
-                    </Table>
-                </TableContainer>
-
-            </Box>
-
+            <Box><Footer /></Box>
         </Box>
     )
 }
 
-export default Upload
+export default Upload;

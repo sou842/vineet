@@ -48,7 +48,7 @@ const Receipt = () => {
                                         <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Slip Generate Date : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>null</Text></Text>
                                     </Box>
                                     <Box>
-                                        <Button color={'black'} _hover={{color:'#43ef6e'}} transition={'0.4s'} border={'1.3px solid grey'} w={'95%'} m={'auto'} mt={'20px'} mb={'10px'} display={'block'}>Download Receipt</Button>
+                                        <Button color={'black'} _hover={{ color: '#43ef6e' }} transition={'0.4s'} border={'1.3px solid grey'} w={'95%'} m={'auto'} mt={'20px'} mb={'10px'} display={'block'}>Download Receipt</Button>
                                     </Box>
                                 </Box>
                             ))
