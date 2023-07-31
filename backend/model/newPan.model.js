@@ -6,6 +6,7 @@ const documenstSchema = mongoose.Schema({
 });
 
 const newPanSchema = mongoose.Schema({
+  Address: {type: String},
   category: { type: String },
   date: { type: String },
   city: { type: String },

@@ -19,6 +19,7 @@ import PanApplySuccess from '../../Pages/PanCard/PanApplySuccess/PanApplySuccess
 import Receipt from '../../Pages/PanCard/Receipt/Receipt';
 import { EditPan } from '../../Pages/PanCard/EditPan/EditPan';
 import { PanCardForm } from '../../Pages/PanCard/PanCardForm/PanCardForm';
+import { PanUploadEdit } from '../../Pages/PanUploadEdit/PanUploadEdit';
 
 
 
@@ -51,7 +52,7 @@ return (
         <Route path={'/user/pan-edit'} element={portalData?<EditPan/>:<Signin/>}></Route>
         <Route path={'*'} element={<h1>404 Page Not Found</h1>}></Route>
         <Route path={'/PanCardForm/:catagory'} element={<PanCardForm/>}></Route>
+        <Route path={'/user/upload/PanUploadEdit/:id'} element={<PanUploadEdit/>}></Route>
     </Routes>
-    
 )
 }

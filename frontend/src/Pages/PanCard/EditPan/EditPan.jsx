@@ -193,7 +193,7 @@ export const EditPan = () => {
     setFormData(VDP_form_data)
   }, [])
 
-  // console.log(formData)
+  console.log(formData)
 
   return (
     <div style={{ backgroundColor: 'rgba(201, 201, 201, 0.249)' }}>
@@ -1286,9 +1286,27 @@ export const EditPan = () => {
                   </span>
                   {sourceIncome ?
                     <select disabled={formEdit} required name='sourceOfIncome' value={formData.sourceOfIncome} onChange={handleChange}>
-                      <option value="" disabled>Select Profession</option>
-                      <option value="ARCHITECTURE">ARCHITECTURE</option>
-                      <option value="BUILDERS AND DEVELOPERS">BUILDERS AND DEVELOPERS</option>
+                    <option value="" disabled>Select Profession</option>
+                    <option value="ARCHITECTURE">ARCHITECTURE</option>
+                    <option value="BUILDERS AND DEVELOPERS">BUILDERS AND DEVELOPERS</option>\
+                    <option value="CHARTERED ACCOUNTANT/ACCOUNTANCY">CHARTERED ACCOUNTANT/ACCOUNTANCY</option>
+                    <option value="CINEMA HALLS OTHER THEATRES">CINEMA HALLS OTHER THEATRES</option>
+                    <option value="COMPANY SECRETARY">COMPANY SECRETARY</option>
+                    <option value="ENGINEERING">ENGINEERING</option>
+                    <option value="FILMS,TV AND SUCH OTHER ENTERTAINMENT">FILMS,TV AND SUCH OTHER ENTERTAINMENT</option>
+                    <option value="GOVERNMENT CONTRACTORS">GOVERNMENT CONTRACTORS</option>
+                    <option value="INFORMATION TECHNOLOGY">INFORMATION TECHNOLOGY</option>
+                    <option value="INSURANCE AGENCY">INSURANCE AGENCY</option>
+                    <option value="INTERIOR DECORATION">INTERIOR DECORATION</option>
+                    <option value="LEGAL PRACTITIONER AND SOLICITORS">LEGAL PRACTITIONER AND SOLICITORS</option>
+                    <option value="MEDICAL PROFESSION AND BUSINESS">MEDICAL PROFESSION AND BUSINESS</option>
+                    <option value="MEMBERS OF STOCK EXCHANGE,SHARE BROKERS AND SUB-BROKERS">MEMBERS OF STOCK EXCHANGE,SHARE BROKERS AND SUB-BROKERS</option>
+                    <option value="OPERATION OF SHIPS,HOVERCRAFT,AIRCRAFT OR HELICOPTERS">OPERATION OF SHIPS,HOVERCRAFT,AIRCRAFT OR HELICOPTERS</option>
+                    <option value="OWNERSHIP OF HORSES OR JOCKEYS">OWNERSHIP OF HORSES OR JOCKEYS</option>
+                    <option value="PERFORMING ARTS AND YATRA">PERFORMING ARTS AND YATRA</option>
+                    <option value="PLYING TAXIS,LORRIES,TRUCKS,BUSES OR OTHER COMMERCIAL VEHICLES">PLYING TAXIS,LORRIES,TRUCKS,BUSES OR OTHER COMMERCIAL VEHICLES</option>
+                    <option value="TECHNICAL CONSULTANCY">TECHNICAL CONSULTANCY</option>
+                    <option value="OTHRES">OTHRES</option>
                     </select>
                     :
                     <select disabled={formEdit} required name='sourceOfIncome' value={formData.sourceOfIncome} onChange={handleChange}>
@@ -1305,115 +1323,116 @@ export const EditPan = () => {
 
           {catagory !== "Individual" && !formEdit ? (
             <div className="editpan_2">
-              <h1>Representative Assessee</h1>
+            <h1>Representative Assessee</h1>
+            <div>
               <div>
-                <div>
-                  <p>Title<i>*</i></p>
-                  <select disabled={formEdit} required name='title' value={formData.title} onChange={handleChange}>
-                    <option value="" disabled>Title</option>
-                    <option value="Shri">Shri</option>
-                    <option value="Smt">Smt</option>
-                    <option value="Kumari">Kumari</option>
-                  </select>
-                </div>
-                <div>
-                  <p>First name<i>*</i></p>
-                  <input disabled={formEdit} type="text" placeholder='First Name' onBlur={handleBlur} required name='firstName' value={formData.firstName} onChange={handleChange} />
-                </div>
-                <div>
-                  <p>Middle Name</p>
-                  <input disabled={formEdit} type="text" placeholder='Middle Name' onBlur={handleBlur} name='middleName' value={formData.middleName} onChange={handleChange} />
-                </div>
-                <div>
-                  <p>Last Name<i>*</i></p>
-                  <input disabled={formEdit} type="text" placeholder='Last Name' onBlur={handleBlur} required name='lastName' value={formData.lastName} onChange={handleChange} />
-                </div>
+                <p>Title<i>*</i></p>
+                <select required name='representativetitle' value={formData.representativetitle} onChange={handleChange} >
+                  <option value="" disabled>Title</option>
+                  <option value="Shri">Shri</option>
+                  <option value="Smt">Smt</option>
+                  <option value="Kumari">Kumari</option>
+                </select>
               </div>
               <div>
+                <p>Last Name<i>*</i></p>
+                <input type="text" placeholder='Last Name' onBlur={handleBlur} required name='representativelastName' value={formData.representativelastName} onChange={handleChange} />
               </div>
               <div>
-                <div>
-                  <p>Flat/Door/Block Number<i>*</i></p>
-                  <input disabled={formEdit} type="text" placeholder='Flat/Door/Block Number' required name='flatNumber' value={formData.flatNumber} onChange={handleChange} />
-                </div>
-                <div>
-                  <p>Name of Premises/Building/Village<i>*</i></p>
-                  <input disabled={formEdit} type="text" placeholder='Name of Premises/Building/Village' required name='premisesName' value={formData.premisesName} onChange={handleChange} />
-                </div>
+                <p>Middle Name</p>
+                <input type="text" placeholder='Middle Name' onBlur={handleBlur} name='representativemiddleName' value={formData.representativemiddleName} onChange={handleChange} />
               </div>
               <div>
-                <div>
-                  <p>Road/Street/Lane/Post Office<i>*</i></p>
-                  <input disabled={formEdit} type="text" placeholder='Road/Street/Lane/Post Office' required name='roadName' value={formData.roadName} onChange={handleChange} />
-                </div>
-                <div>
-                  <p>Area/Locality/Taluka/Sub-Division<i>*</i></p>
-                  <input disabled={formEdit} type="text" placeholder='Area/Locality/Taluka/Sub-Division' required name='area' value={formData.area} onChange={handleChange} />
-                </div>
-              </div>
-              <div>
-                <div>
-                  <p>Town/City/District<i>*</i></p>
-                  <input disabled={formEdit} type="text" placeholder='Town/City/District' required name='cityDistrict' value={formData.cityDistrict} onChange={handleChange} />
-                </div>
-                <div>
-                  <p>State/Union Territory<i>*</i></p>
-                  <select disabled={formEdit} required name='state' value={formData.state} onChange={handleChange}>
-                    <option value="" disabled>State/Union Territory</option>
-                    <option value="Andhra Pradesh">Andhra Pradesh</option>
-                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                    <option value="Assam">Assam</option>
-                    <option value="Bihar">Bihar</option>
-                    <option value="Chhattisgarh">Chhattisgarh</option>
-                    <option value="Goa">Goa</option>
-                    <option value="Gujarat">Gujarat</option>
-                    <option value="Haryana">Haryana</option>
-                    <option value="Himachal Pradesh">Himachal Pradesh</option>
-                    <option value="Jharkhand">Jharkhand</option>
-                    <option value="Karnataka">Karnataka</option>
-                    <option value="Kerala">Kerala</option>
-                    <option value="Madhya Pradesh">Madhya Pradesh</option>
-                    <option value="Maharashtra">Maharashtra</option>
-                    <option value="Manipur">Manipur</option>
-                    <option value="Meghalaya">Meghalaya</option>
-                    <option value="Mizoram">Mizoram</option>
-                    <option value="Nagaland">Nagaland</option>
-                    <option value="Odisha">Odisha</option>
-                    <option value="Punjab">Punjab</option>
-                    <option value="Rajasthan">Rajasthan</option>
-                    <option value="Sikkim">Sikkim</option>
-                    <option value="Tamil Nadu">Tamil Nadu</option>
-                    <option value="Telangana">Telangana</option>
-                    <option value="Tripura">Tripura</option>
-                    <option value="Uttar Pradesh">Uttar Pradesh</option>
-                    <option value="Uttarakhand">Uttarakhand</option>
-                    <option value="West Bengal">West Bengal</option>
-                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                    <option value="Chandigarh">Chandigarh</option>
-                    <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
-                    <option value="Daman and Diu">Daman and Diu</option>
-                    <option value="Delhi">Delhi</option>
-                    <option value="Lakshadweep">Lakshadweep</option>
-                    <option value="Puducherry">Puducherry</option>
-                    <option value="Ladakh">Ladakh</option>
-                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                  </select>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <p>Zip Code<i>*</i></p>
-                  <input disabled={formEdit} type="number" placeholder='Zip Code' required name='zipCode' value={formData.zipCode} onChange={handleChange} />
-                </div>
-                <div>
-                  <p>Country<i>*</i></p>
-                  <select disabled={formEdit} required name='country' value={formData.country} onChange={handleChange}>
-                    <option value="" disabled>Country</option>
-                    <option value="India">India</option>
-                  </select>
-                </div>
+                <p>First name</p>
+                <input type="text" placeholder='First Name' onBlur={handleBlur} name='representativefirstName' value={formData.representativefirstName} onChange={handleChange} />
               </div>
             </div>
+            <div>
+            </div>
+
+            <div>
+              <div>
+                <p>Flat/Door/Block Number<i>*</i></p>
+                <input type="text" placeholder='Flat/Door/Block Number' required name='representativeflatNumber' value={formData.representativeflatNumber} onChange={handleChange} />
+              </div>
+              <div>
+                <p>Name of Premises/Building/Village<i>*</i></p>
+                <input type="text" placeholder='Name of Premises/Building/Village' required name='representativepremisesName' value={formData.representativepremisesName} onChange={handleChange} />
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>Road/Street/Lane/Post Office<i>*</i></p>
+                <input type="text" placeholder='Road/Street/Lane/Post Office' required name='representativeroadName' value={formData.representativeroadName} onChange={handleChange} />
+              </div>
+              <div>
+                <p>Area/Locality/Taluka/Sub-Division<i>*</i></p>
+                <input type="text" placeholder='Area/Locality/Taluka/Sub-Division' required name='representativearea' value={formData.representativearea} onChange={handleChange} />
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>Town/City/District<i>*</i></p>
+                <input type="text" placeholder='Town/City/District' required name='representativecityDistrict' value={formData.representativecityDistrict} onChange={handleChange} />
+              </div>
+              <div>
+                <p>State/Union Territory<i>*</i></p>
+                <select required name='representativestate' value={formData.representativestate} onChange={handleChange}>
+                  <option value="" disabled>State/Union Territory</option>
+                  <option value="Andhra Pradesh">Andhra Pradesh</option>
+                  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                  <option value="Assam">Assam</option>
+                  <option value="Bihar">Bihar</option>
+                  <option value="Chhattisgarh">Chhattisgarh</option>
+                  <option value="Goa">Goa</option>
+                  <option value="Gujarat">Gujarat</option>
+                  <option value="Haryana">Haryana</option>
+                  <option value="Himachal Pradesh">Himachal Pradesh</option>
+                  <option value="Jharkhand">Jharkhand</option>
+                  <option value="Karnataka">Karnataka</option>
+                  <option value="Kerala">Kerala</option>
+                  <option value="Madhya Pradesh">Madhya Pradesh</option>
+                  <option value="Maharashtra">Maharashtra</option>
+                  <option value="Manipur">Manipur</option>
+                  <option value="Meghalaya">Meghalaya</option>
+                  <option value="Mizoram">Mizoram</option>
+                  <option value="Nagaland">Nagaland</option>
+                  <option value="Odisha">Odisha</option>
+                  <option value="Punjab">Punjab</option>
+                  <option value="Rajasthan">Rajasthan</option>
+                  <option value="Sikkim">Sikkim</option>
+                  <option value="Tamil Nadu">Tamil Nadu</option>
+                  <option value="Telangana">Telangana</option>
+                  <option value="Tripura">Tripura</option>
+                  <option value="Uttar Pradesh">Uttar Pradesh</option>
+                  <option value="Uttarakhand">Uttarakhand</option>
+                  <option value="West Bengal">West Bengal</option>
+                  <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                  <option value="Chandigarh">Chandigarh</option>
+                  <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+                  <option value="Daman and Diu">Daman and Diu</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Lakshadweep">Lakshadweep</option>
+                  <option value="Puducherry">Puducherry</option>
+                  <option value="Ladakh">Ladakh</option>
+                  <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <div>
+                <p>Zip Code<i>*</i></p>
+                <input type="number" placeholder='Zip Code' required name='representativezipCode' value={formData.representativezipCode} onChange={handleChange} />
+              </div>
+              <div>
+                <p>Country<i>*</i></p>
+                <select required name='representativecountry' value={formData.representativecountry} onChange={handleChange}>
+                  <option value="" disabled>Country</option>
+                  <option value="India">India</option>
+                </select>
+              </div>
+            </div>
+          </div>
           ) : null}
 
           {catagory !== "Individual" && !formEdit ? (
