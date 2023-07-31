@@ -30,9 +30,9 @@
     padding: 15px 10px;
     text-align: center;
     /* background-color: rgb(10, 156, 248); */
-    background-color:  #ECC94B;
-    border: 1.4px solid #ECC94B;
-    color: rgb(30, 30, 30);
+    background-color:  #29B6F6;
+    border: 1.4px solid #29B6F6;
+    color: white;
     border-radius: 10px;
     transition: 0.4s ease;
 }
