@@ -25,7 +25,6 @@ export const Profile = () => {
 
   const handleOptionChange = (event) => {
     const selectedValue = event.target.value;
-
     // console.log(selectedValue)
     navigate(selectedValue)
   };

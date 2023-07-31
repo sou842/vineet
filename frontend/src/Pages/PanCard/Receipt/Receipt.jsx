@@ -35,7 +35,7 @@ const Receipt = () => {
 
             {
                 loading ? <Box display={'flex'} justifyContent={'center'} mt={'2cm'} mb={'2cm'}><Spinner color='#43ef6e' /></Box> :
-                    <Grid templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} gap={['5px', '10px']} w={'90%'} m={'1cm auto'}>
+                    <Grid templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} gap={['10px', '15px']} w={'90%'} m={'1cm auto'}>
                         {
                             pans?.map((ele, index) => (
                                 <Box key={index} border={'1.5px solid #43ef6e'} borderRadius={'15px'} pt={'10px'} pb={'10px'}>

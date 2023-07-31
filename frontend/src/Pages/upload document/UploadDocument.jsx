@@ -76,6 +76,7 @@ const UploadDocument = () => {
 
         }).then((res) => {
             setLoading(false)
+            // console.log(res.data)
             setPans(res.data)
         }).catch((err) => {
             setLoading(false)

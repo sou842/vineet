@@ -207,7 +207,7 @@ export const PanCardForm = () => {
   }, [age])
 
   // console.log(age,residenceIndividual,'age--->')
-  // console.log(formData)
+  console.log(formData)
 
   return (
     <div style={{ backgroundColor: 'rgba(201, 201, 201, 0.249)' }}>
