@@ -142,8 +142,11 @@ export const PanCardForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-
-    if (catagory == 'Individual' && formData.aadhaarNumber.length != 12) {
+    if(formData.aadhaarNumber.length == 0 ||formData.zipCode.length==0){
+      localStorage.setItem("VDP_form_data", JSON.stringify(formData))
+      navigate('/user/pan-edit')
+    }
+    else if (catagory == 'Individual' && formData.aadhaarNumber.length != 12) {
       toast({
         title: 'Aadhaar Number',
         description: "Aadhaar Number should have 12 Charecter",
@@ -152,7 +155,8 @@ export const PanCardForm = () => {
         isClosable: true,
         position: 'top-center',
       })
-    } else if (formData.zipCode.length != 6) {
+    } else if (formData.zipCode.length != 6||formData.zipCode.length==0) {
+
       toast({
         title: 'Zip Code',
         description: "PIN Code Number should have 6 Charecter",

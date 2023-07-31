@@ -138,8 +138,11 @@ export const EditPan = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-
-    if (catagory == 'Individual' && formData.aadhaarNumber.length != 12) {
+    if(formData.aadhaarNumber.length == 0 ||formData.zipCode.length==0){
+      localStorage.setItem("VDP_form_data", JSON.stringify(formData))
+      navigate('/user/pan-edit')
+    }
+    else if (catagory == 'Individual' && formData.aadhaarNumber.length != 12) {
       toast({
         title: 'Aadhaar Number',
         description: "Aadhaar Number should have 12 Charecter",

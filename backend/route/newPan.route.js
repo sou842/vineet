@@ -113,6 +113,16 @@ newPanRoute.patch('/apply-confirm-from/:id', async (req, res) => {
         res.send(error)
     }
 })
+//before upload pan edit api
+newPanRoute.patch("/pan-edit/:id",async(req,res)=>{
+    const {id}=req.params
+    try {
+       await NewPanModel.findByIdAndUpdate({ _id: id }, req.body)
+        res.send('Edit Successfull')
+    } catch (error) {
+        res.send(error)
+    }
+})
 
 
 
