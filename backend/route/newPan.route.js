@@ -12,6 +12,7 @@ const newPanRoute = express.Router()
 newPanRoute.use(auth)
 newPanRoute.post("/new-pan-card", async (req, res) => {
     try {
+        console.log(req.body)
         const tokenNumber = prandom.number(8);
         req.body.tokenNumber = tokenNumber
         const newPan = await NewPanModel(req.body)
@@ -29,7 +30,6 @@ newPanRoute.get("/all-pan-card-deatils", async (req, res) => {
     const { vendorID, userID } = req.body;
 
     try {
-        console.log(vendorID)
         const pans = await NewPanModel.find({ vendorID })
         res.send(pans)
 

@@ -33,7 +33,7 @@ const Upload = () => {
         GetData()
     }, [])
 
-    console.log(pans)
+    // console.log(pans)
 
     return (
         <Box>
@@ -49,7 +49,11 @@ const Upload = () => {
                                 <Box key={i} border={'2px solid #43ef6e'} pt={'20px'} pb={'5px'} borderRadius={'15px'}>
                                     <Box textAlign={'center'} fontWeight={'bold'} p={'7px'} bg={'#43ef6e'} w={'100%'} m={'auto'} mt={'10px'} mb={'15px'}>{el.category.toUpperCase()}</Box>
                                     <Box w={'90%'} m={'auto'}>
-                                        <Text mt={'7px'} mb={'7px'} display={'flex'} fontWeight={'bold'}>Name:<Text fontWeight={'normal'} ml={'10px'}>{el.firstName + " " + el.middleName + " " + el.lastName}</Text></Text>
+                                        {el.category == 'Individual' ?
+                                            <Text mt={'7px'} mb={'7px'} display={'flex'} fontWeight={'bold'}>Name:<Text fontWeight={'normal'} ml={'10px'}>{el.firstName + " " + el.middleName + " " + el.lastName}</Text></Text>
+                                            :
+                                            <Text mt={'7px'} mb={'7px'} display={'flex'} fontWeight={'bold'}>Organization:<Text fontWeight={'normal'} ml={'10px'}>{el.organization}</Text></Text>
+                                        }
                                         <Text mt={'7px'} mb={'7px'} display={'flex'} fontWeight={'bold'}>Token Number:<Text fontWeight={'normal'} ml={'10px'}>{el.tokenNumber}</Text></Text>
                                         <Text mt={'7px'} mb={'7px'} display={'flex'} fontWeight={'bold'}>Apply Date:<Text fontWeight={'normal'} ml={'10px'}>{el.date}</Text></Text>
                                         <Text mt={'7px'} mb={'7px'} display={'flex'} fontWeight={'bold'}>Mobile:<Text fontWeight={'normal'} ml={'10px'}>{el.telephoneNumber || "NA"}</Text></Text>
