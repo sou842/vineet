@@ -129,6 +129,9 @@ export const PanCardForm = () => {
   }
 
   const handleBlur = () => {
+
+    if(catagory == "Individual"){
+
     if (formData.middleName) {
       setFormData((prevData) => ({ ...prevData, ['aadhaarName']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
       setFormData((prevData) => ({ ...prevData, ['NameOnCard']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
@@ -138,6 +141,16 @@ export const PanCardForm = () => {
       setFormData((prevData) => ({ ...prevData, ['NameOnCard']: formData.firstName + ' ' + formData.lastName }));
       setFormData((prevData) => ({ ...prevData, ['verifierName']: formData.firstName + ' ' + formData.lastName }));
     }
+  } else{
+
+    if(formData.representativemiddleName){
+      setFormData((prevData) => ({ ...prevData, ['verifierName']: formData.representativefirstName + ' ' + formData.representativemiddleName + ' ' + formData.representativelastName }))
+    } else{
+      setFormData((prevData) => ({ ...prevData, ['verifierName']: formData.representativefirstName + ' ' + formData.representativelastName }));
+    }
+  }
+
+    
     console.log('false')
   }
 

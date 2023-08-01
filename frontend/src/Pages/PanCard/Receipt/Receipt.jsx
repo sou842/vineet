@@ -10,6 +10,8 @@ const Receipt = () => {
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
     const [pans, setPans] = useState([])
     const [loading, setLoading] = useState([])
+
+    
     useEffect(() => {
         axios.get("http://localhost:8080/user/all-pan-card-deatils", {
             headers: {
@@ -33,11 +35,13 @@ const Receipt = () => {
             <PanCardNav />
             {/* <Box mt={'25px'}><ContactUs /></Box> */}
 
-            {
-                loading ? <Box display={'flex'} justifyContent={'center'} mt={'2cm'} mb={'2cm'}><Spinner color='#43ef6e' /></Box> :
-                    <Grid templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} gap={['10px', '15px']} w={'90%'} m={'1cm auto'}>
-                        {
-                            pans?.map((ele, index) => (
+            <Box w={'100%'} minH={'60vh'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+                {loading ? <Box display={'flex'} justifyContent={'center'} mt={'2cm'} mb={'2cm'}><Spinner color='#43ef6e' /></Box> :
+                    <Box w={'90%'}>
+                    {pans.length == 0 ? <Box textAlign={'center'}>NO DATA FOUND</Box> : null}
+
+                        <Grid templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} gap={['10px', '15px']} w={'95%'} m={'1cm auto'}>
+                            {pans?.map((ele, index) => (
                                 <Box key={index} border={'1.5px solid #43ef6e'} borderRadius={'15px'} pt={'10px'} pb={'10px'}>
                                     <Box textAlign={'center'} fontWeight={'bold'} p={'7px'} bg={'#43ef6e'} w={'100%'} m={'auto'} mt={'10px'} mb={'15px'}>{ele.category.toUpperCase()}</Box>
                                     <Box w={'90%'} m={'auto'}>
@@ -54,10 +58,11 @@ const Receipt = () => {
                                         <Button color={'black'} _hover={{ color: '#43ef6e' }} transition={'0.4s'} border={'1.3px solid grey'} w={'95%'} m={'auto'} mt={'20px'} mb={'10px'} display={'block'}>Download Receipt</Button>
                                     </Box>
                                 </Box>
-                            ))
-                        }
-                    </Grid>
-            }
+                            ))}
+                        </Grid>
+                    </Box>
+                }
+            </Box>
             <Box><Footer /></Box>
         </Box>
     )
