@@ -1,5 +1,5 @@
 import './Navbar.css'
-import { Button, Menu, MenuButton, MenuItem, MenuList, useMediaQuery, useToast } from '@chakra-ui/react';
+import { Avatar, Button, Menu, MenuButton, MenuItem, MenuList, Wrap, WrapItem, useMediaQuery, useToast } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import user from '../../assets/user.png'
@@ -23,9 +23,11 @@ export const Navbar = () => {
                         VINEET DIGITAL PORTAL
                     </div>
                     <div>
-                        <a href="/">
-                            <img src={user} alt="logo_1" />
-                        </a>
+                        <Wrap>
+                            <WrapItem>
+                                <Avatar color={'black'} bg='#00aeff' size={['md', 'md', 'lg']} name={portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData.avatar} />
+                            </WrapItem>
+                        </Wrap>
                     </div>
                 </div>
                 {isSmallerThan700 ?

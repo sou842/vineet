@@ -174,7 +174,7 @@ export const Profile = () => {
 
       {/* profile details */}
 
-      {loading ? <Box display={'flex'} justifyContent={'center'} mt={'5cm'}><Spinner color='#43ef6e' /></Box> :
+      {loading ? <Box display={'flex'} justifyContent={'center'} mt={'5cm'}><Spinner color='#00aeff' /></Box> :
 
 
         profileData.map((el, i) => {
@@ -188,14 +188,14 @@ export const Profile = () => {
                     <Img position={'relative'} w={'25px'} src='https://cdn-icons-png.flaticon.com/128/8304/8304794.png' />
                   </Box>
                   {portalData.avatar == '' ?
-                    <Text mt={'-30px'} color={'#43ef6e'} fontSize={'50px'} display={'flex'} justifyContent={'center'} alignItems={'center'} w={'100%'} h={'100%'} m={'auto'} borderRadius={'15px'} bg={'white'}>{portalData.username.match(/\b\w/g).join('').toUpperCase()}</Text>
+                    <Text mt={'-30px'} color={'#00aeff'} fontSize={'50px'} display={'flex'} justifyContent={'center'} alignItems={'center'} w={'100%'} h={'100%'} m={'auto'} borderRadius={'15px'} bg={'white'}>{portalData.username.match(/\b\w/g).join('').toUpperCase()}</Text>
                     :
                     <Image display={'block'} m={'auto'} h={'100%'} objectFit={'cover'} objectPosition={'cover'} borderRadius={'15px'} src={portalData.avatar} alt="" />
                   }
                 </Box>
 
                 <Box textAlign={'center'} mt={'20px'}>
-                  <Button width={'100%'} h={'45px'} bg='#43ef6e' size={'sm'} onClick={() => handleEdit(el)}>Edit Profile</Button>
+                  <Button width={'100%'} h={'45px'} bg='#00aeff' size={'sm'} onClick={() => handleEdit(el)}>Edit Profile</Button>
                 </Box>
 
                 <Box mt={'20px'}>
@@ -249,7 +249,7 @@ export const Profile = () => {
 
           <ModalFooter bg={'white'}>
             <Button p={'15px'} fontFamily={'sans-serif'} onClick={editOnClose} mr={3} size={'sm'}>Cancel</Button>
-            <Button p={'15px'} fontFamily={'sans-serif'} bg={'#43ef6e'} size={'sm'} onClick={handleUpdate} >Update</Button>
+            <Button p={'15px'} fontFamily={'sans-serif'} color={'whiteAlpha.900'} bg={'#00aeff'} size={'sm'} onClick={handleUpdate} >Update</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
@@ -269,7 +269,7 @@ export const Profile = () => {
 
           <ModalFooter bg={'white'}>
             <Button p={'15px'} fontFamily={'sans-serif'} variant='ghost' mr={3} onClick={profileOnClose} size={'sm'}> Close</Button>
-            <Button p={'15px'} fontFamily={'sans-serif'} bg={'#43ef6e'} isDisabled={uploadDpLoad} size={'xs'} onClick={handelPhotoUpdate}  >{uploadDpLoad ? "Loading..." : "Update"}</Button>
+            <Button p={'15px'} fontFamily={'sans-serif'} bg={'#00aeff'} color={'whiteAlpha.900'} isDisabled={uploadDpLoad} size={'xs'} onClick={handelPhotoUpdate}  >{uploadDpLoad ? "Loading..." : "Update"}</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

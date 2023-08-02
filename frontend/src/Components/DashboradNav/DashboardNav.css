@@ -39,7 +39,7 @@
     transition: 0.4s ease;
 }
 .dashboard_0 > div > div:hover{
-    border-bottom: 1.5px solid #43ef6e;
+    border-bottom: 1.5px solid #00aeff;
 }
 .dashboard_0 > div > div:nth-child(6){
     border-bottom: 1.5px solid #ffd12a00;

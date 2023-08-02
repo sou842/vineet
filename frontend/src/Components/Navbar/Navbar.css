@@ -14,7 +14,7 @@
     font-size: 30px;
 }
 .navbar_1 > div >a> img{
-    width: 80px;
+    width: 70px;
 }
 .navbar_2{
     background-color: rgb(38, 38, 38);
@@ -38,7 +38,7 @@
     transition: 0.4s ease;
 }
 .navbar_2 > div > div > a > p:hover{
-    color: #4ad26c;
+    color: #00aeff;
 }
 
 @media screen and (min-width:0px) and (max-width:700px){

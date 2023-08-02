@@ -6,7 +6,7 @@
 /* pancard_1 */
 .pancard_1{
     /* background-color: rgba(48, 162, 255, 0.447); */
-    border: 1.5px solid #43ef6e;
+    border: 1.5px solid #00aeff;
     width: 80%;
     margin: 1cm auto;
     padding: 20px;
@@ -24,11 +24,11 @@
     margin: auto;
 }
 .pancard_2 > div{
-    background-color: #43ef6e;
+    background-color: #00aeff;
     text-align: center;
     padding: 15px 10px;
     color: rgb(23, 23, 23);
-    border: 1.5px solid #43ef6e;
+    border: 1.5px solid #00aeff;
     border-radius: 7px;
     transition: 0.4s ease;
 }

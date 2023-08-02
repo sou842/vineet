@@ -39,15 +39,15 @@ const Upload = () => {
             {/* <Box mt={'20px'}><ContactUs /></Box> */}
 
             <Box w={'100%'} minH={'60vh'} m={'auto'} bg={'white'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
-                {loading ? <Box display={'flex'} justifyContent={'center'} alignItems={'center'} ><Spinner color='#43ef6e' /></Box> :
+                {loading ? <Box display={'flex'} justifyContent={'center'} alignItems={'center'} ><Spinner color='#00aeff' /></Box> :
                     <Box w={'90%'}>
                         {pans.length == 0 ? <Box textAlign={'center'}>NO DATA FOUND</Box> : null}
 
                         <Grid templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} gap={['10px', '15px']} w={'95%'} m={'1cm auto'}>
                             {pans.map((el, i) => {
                                 return (
-                                    <Box key={i} border={'2px solid #43ef6e'} pt={'20px'} pb={'5px'} borderRadius={'15px'}>
-                                        <Box textAlign={'center'} fontWeight={'bold'} p={'7px'} bg={'#43ef6e'} w={'100%'} m={'auto'} mt={'10px'} mb={'15px'}>{el.category.toUpperCase()}</Box>
+                                    <Box key={i} border={'2px solid #00aeff'} pt={'20px'} pb={'5px'} borderRadius={'15px'}>
+                                        <Box textAlign={'center'} fontWeight={'bold'} p={'7px'} bg={'#00aeff'} w={'100%'} m={'auto'} mt={'10px'} mb={'15px'}>{el.category.toUpperCase()}</Box>
                                         <Box w={'90%'} m={'auto'}>
                                             {el.category == 'Individual' ?
                                                 <Text mt={'7px'} mb={'7px'} display={'flex'} fontWeight={'bold'}>Name:<Text fontWeight={'normal'} ml={'10px'}>{el.firstName + " " + el.middleName + " " + el.lastName}</Text></Text>

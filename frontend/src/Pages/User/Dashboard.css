@@ -6,7 +6,7 @@
 
 .dashboard_1{
     /* background-color: rgba(48, 162, 255, 0.447); */
-    border: 1.5px solid #43ef6e;
+    border: 1.5px solid #00aeff;
     width: 85%;
     margin: 1cm auto;
     padding: 20px 20px;
@@ -31,8 +31,8 @@
     text-align: center;
     /* background-color: rgb(10, 156, 248); */
     /* border: 1.4px solid #0091EA; */
-    background-color: #43ef6e;
-    border: 1.4px solid #43ef6e;
+    background-color: #00aeff;
+    border: 1.4px solid #00aeff;
     color: rgb(37, 37, 37);
     border-radius: 10px;
     transition: 0.4s ease;

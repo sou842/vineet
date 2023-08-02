@@ -5,7 +5,7 @@
 /* dashboard_1 */
 
 .individualPerson_1{
-    background-color: #43ef6e;
+    background-color: #00aeff;
     width: 80%;
     margin: 1cm auto;
     padding: 20px 15px;
@@ -18,7 +18,7 @@
 .individualPerson_head{
     text-align: center;
     width: 50%;
-    border: 1.5px solid #43ef6e;
+    border: 1.5px solid #00aeff;
     margin: 1cm auto;
     color: rgb(45, 45, 45);
     padding: 10px 0;
@@ -79,8 +79,8 @@
     display: block;
     width: 40%;
     margin: 1cm auto;
-    background-color: #43ef6e;
-    border: 1.5px solid #43ef6e;
+    background-color: #00aeff;
+    border: 1.5px solid #00aeff;
     color: rgb(50, 50, 50);
     padding: 15px;
     border-radius: 10px;

@@ -36,14 +36,14 @@ const Receipt = () => {
             {/* <Box mt={'25px'}><ContactUs /></Box> */}
 
             <Box w={'100%'} minH={'60vh'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
-                {loading ? <Box display={'flex'} justifyContent={'center'} mt={'2cm'} mb={'2cm'}><Spinner color='#43ef6e' /></Box> :
+                {loading ? <Box display={'flex'} justifyContent={'center'} mt={'2cm'} mb={'2cm'}><Spinner color='#00aeff' /></Box> :
                     <Box w={'90%'}>
                     {pans.length == 0 ? <Box textAlign={'center'}>NO DATA FOUND</Box> : null}
 
                         <Grid templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} gap={['10px', '15px']} w={'95%'} m={'1cm auto'}>
                             {pans?.map((ele, index) => (
-                                <Box key={index} border={'1.5px solid #43ef6e'} borderRadius={'15px'} pt={'10px'} pb={'10px'}>
-                                    <Box textAlign={'center'} fontWeight={'bold'} p={'7px'} bg={'#43ef6e'} w={'100%'} m={'auto'} mt={'10px'} mb={'15px'}>{ele.category.toUpperCase()}</Box>
+                                <Box key={index} border={'1.5px solid #00aeff'} borderRadius={'15px'} pt={'10px'} pb={'10px'}>
+                                    <Box textAlign={'center'} fontWeight={'bold'} p={'7px'} bg={'#00aeff'} w={'100%'} m={'auto'} mt={'10px'} mb={'15px'}>{ele.category.toUpperCase()}</Box>
                                     <Box w={'90%'} m={'auto'}>
                                         {ele.category == 'Individual' ?
                                             <Text mt={'7px'} mb={'7px'} display={'flex'} fontWeight={'bold'}>Name:<Text fontWeight={'normal'} ml={'10px'}>{ele.firstName + " " + ele.middleName + " " + ele.lastName}</Text></Text>
@@ -55,7 +55,7 @@ const Receipt = () => {
                                         <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Slip Generate Date : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>null</Text></Text>
                                     </Box>
                                     <Box>
-                                        <Button color={'black'} _hover={{ color: '#43ef6e' }} transition={'0.4s'} border={'1.3px solid grey'} w={'95%'} m={'auto'} mt={'20px'} mb={'10px'} display={'block'}>Download Receipt</Button>
+                                        <Button color={'black'} _hover={{ color: '#00aeff' }} transition={'0.4s'} border={'1.3px solid grey'} w={'95%'} m={'auto'} mt={'20px'} mb={'10px'} display={'block'}>Download Receipt</Button>
                                     </Box>
                                 </Box>
                             ))}

@@ -8,8 +8,8 @@
     text-align: center;
 }
 .newpancard_2 > div{
-    background-color: #43ef6e;
-    border: 1.5px solid #43ef6e;
+    background-color: #00aeff;
+    border: 1.5px solid #00aeff;
     color: rgb(33, 33, 33);
     margin: 15px 0px;
     padding: 17px 10px;
@@ -22,7 +22,7 @@
 .newpancard_2 > div > a > p > i{
     font-size: 15px;
     font-weight: lighter;
-    color: #007b1f;
+    color: #00547a;
     font-family: Arial, Helvetica, sans-serif;
 }
 

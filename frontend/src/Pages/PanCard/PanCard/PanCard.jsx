@@ -19,7 +19,6 @@ export const PanCard = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleForm49A = (e) => {
-
     window.open('https://digitalindiaportal.co.in/users/pancard/Form49A.pdf')
   }
 
@@ -81,7 +80,7 @@ export const PanCard = () => {
         <ModalContent>
           <ModalHeader>Please Note :</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
+          <ModalBody m={'10px'} mt={'0'} mb={'15px'}>
             <Heading size={'sm'}>संचालक भाइयों अब आप इसी पेज पर नीचे दिए गए <Heading size={'sm'} color={'red'} as={'span'}> Download slip by acknow पर click </Heading> करके अपनी सब पुरानी स्लिप डाउनलोड कर सकते है </Heading>
           </ModalBody>
         </ModalContent>
