@@ -1,19 +1,11 @@
+import { Box, Button, Heading, MenuButton, Spinner, Text, Menu, MenuItem, MenuList, useToast, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Input, FormControl, FormLabel, useDisclosure, Image, Img } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { DashboardNav } from '../../Components/DashboradNav/DashboardNav';
 import './Profile.css'
 import { useNavigate } from "react-router-dom"
 import axios from 'axios';
-import { ChevronDownIcon } from "@chakra-ui/icons";
-import {
-  Box, Button, Heading, MenuButton, Spinner, Text, Menu, MenuItem, MenuList, useToast, Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton, Input, FormControl, FormLabel, useDisclosure, Image, Img
-} from '@chakra-ui/react';
 import { PanCardNav } from '../../Components/PanCardNav/PanCardNav';
+import deletee from '../../assets/deletee.png';
+import edit from '../../assets/edit.png'
 
 
 export const Profile = () => {
@@ -25,7 +17,6 @@ export const Profile = () => {
 
   const handleOptionChange = (event) => {
     const selectedValue = event.target.value;
-    // console.log(selectedValue)
     navigate(selectedValue)
   };
   const [profileData, setProfileData] = useState([])
@@ -77,10 +68,6 @@ export const Profile = () => {
     }
 
   }, [])
-
-
-  // localStorage.setItem("digitalPortal",JSON.stringify(obj))
-
 
   //logout localstorage data will be delete
   const handleLogout = () => {
@@ -140,7 +127,6 @@ export const Profile = () => {
       })
   }
 
-
   const handleUpdate = () => {
     editOnClose()
 
@@ -179,18 +165,20 @@ export const Profile = () => {
 
         profileData.map((el, i) => {
           return <div key={i}>
-            <Box w={['95%', '95%','95%', '85%']} display={'flex'} justifyContent={'space-between'} flexDirection={['column', 'column', 'row']} m={'auto'} mt={['0.5cm', '0.5cm', '1cm']} mb={'1cm'} bg={'gray.100'} p={['7px', '15px', '25px']} borderRadius={'15px'} >
+            <Box w={['95%', '95%', '95%', '85%']} display={'flex'} justifyContent={'space-between'} flexDirection={['column', 'column', 'row']} m={'auto'} mt={['0.5cm', '0.5cm', '1cm']} mb={'1cm'} bg={'gray.100'} p={['7px', '15px', '25px']} borderRadius={'15px'} >
 
               <Box width={['100%', '100%', '40%']} >
 
-                <Box overflow={'hidden'} w={'100%'} h={['230px','300px','320px']} position="relative" display="inline-block" borderRadius={'15px'}>
-                  <Box position="absolute" top="10px" right="10px" borderRadius="full" bg="white" boxShadow="md" p={1} onClick={profileOnOpen} cursor={'pointer'}                  >
-                    <Img position={'relative'} w={'25px'} src='https://cdn-icons-png.flaticon.com/128/8304/8304794.png' />
+                <Box overflow={'hidden'} w={'100%'} h={['230px', '300px', '320px']} position="relative" display="inline-block" borderRadius={'15px'}>
+                  <Box position="absolute" top="10px" right="10px" borderRadius="full" bg="whiteAlpha.700" boxShadow="md" p={1} cursor={'pointer'}  >
+                    <Img onClick={profileOnOpen} position={'relative'} w={'25px'} src={edit} m={'6px'}/>
+                    <Text border={'1px solid #00aeff'}></Text>
+                    <Img position={'relative'} w={'25px'} src={deletee} m={'6px'}/>
                   </Box>
                   {portalData.avatar == '' ?
                     <Text mt={'-30px'} color={'#00aeff'} fontSize={'50px'} display={'flex'} justifyContent={'center'} alignItems={'center'} w={'100%'} h={'100%'} m={'auto'} borderRadius={'15px'} bg={'white'}>{portalData.username.match(/\b\w/g).join('').toUpperCase()}</Text>
                     :
-                    <Image display={'block'} m={'auto'} h={'100%'} objectFit={'cover'} objectPosition={'cover'} borderRadius={'15px'} src={portalData.avatar} alt="" />
+                    <Image display={'block'} w={'100%'} m={'auto'} h={'100%'} objectFit={'cover'} objectPosition={'cover'} borderRadius={'15px'} src={portalData.avatar} alt="" />
                   }
                 </Box>
 
@@ -199,8 +187,8 @@ export const Profile = () => {
                 </Box>
 
                 <Box mt={'20px'}>
-                  <Heading size={'sm'} p={'15px'} display={'flex'} alignItems={'center'}><Image width={'25px'} mr={'15px'} src='https://cdn-icons-png.flaticon.com/128/1077/1077063.png' /><Text fontWeight={'bold'} as={'span'} fontSize={['15px','14px','15px']}>{el.name.toUpperCase()}</Text> </Heading>
-                  <Heading size={'sm'} p={'15px'} display={'flex'} alignItems={'center'}><Image width={'25px'} mr={'15px'} src='https://cdn-icons-png.flaticon.com/128/646/646094.png' /> <Text fontWeight={'bold'} as={'span'} fontSize={['15px','14px','15px']}>{el.email}</Text> </Heading>
+                  <Heading size={'sm'} p={'15px'} display={'flex'} alignItems={'center'}><Image width={'25px'} mr={'15px'} src='https://cdn-icons-png.flaticon.com/128/1077/1077063.png' /><Text fontWeight={'bold'} as={'span'} fontSize={['15px', '14px', '15px']}>{el.name.toUpperCase()}</Text> </Heading>
+                  <Heading size={'sm'} p={'15px'} display={'flex'} alignItems={'center'}><Image width={'25px'} mr={'15px'} src='https://cdn-icons-png.flaticon.com/128/646/646094.png' /> <Text fontWeight={'bold'} as={'span'} fontSize={['15px', '14px', '15px']}>{el.email}</Text> </Heading>
                 </Box>
               </Box>
 
