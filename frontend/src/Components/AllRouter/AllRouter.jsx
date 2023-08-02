@@ -20,6 +20,9 @@ import Receipt from '../../Pages/PanCard/Receipt/Receipt';
 import { EditPan } from '../../Pages/PanCard/EditPan/EditPan';
 import { PanCardForm } from '../../Pages/PanCard/PanCardForm/PanCardForm';
 import { PanUploadEdit } from '../../Pages/PanUploadEdit/PanUploadEdit';
+import { AdminDash } from '../../Admin/AdminDash/AdminDash';
+import { AdminUser } from '../../Admin/AdminUser/AdminUser';
+import { AminPerson } from '../../Admin/AminPerson/AminPerson';
 
 
 
@@ -53,6 +56,9 @@ return (
         <Route path={'*'} element={<h1>404 Page Not Found</h1>}></Route>
         <Route path={'/PanCardForm/:catagory'} element={<PanCardForm/>}></Route>
         <Route path={'/user/upload/PanUploadEdit/:id'} element={<PanUploadEdit/>}></Route>
+        <Route path={'/AdminDash'} element={<AdminDash/>}></Route>
+        <Route path={'/AdminUser'} element={<AdminUser/>}></Route>
+        <Route path={'/AminPerson/:id'} element={<AminPerson/>}></Route>
     </Routes>
 )
 }

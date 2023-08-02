@@ -252,9 +252,16 @@ userRoute.get("/",async(req,res)=>{
   }
 })
 
-
-
-
+userRoute.use(auth);
+userRoute.get("/allUserData",async(req,res)=>{
+  try {
+    const user= await UserModel.find();
+    res.send(user)
+    
+  } catch (error) {
+    res.send(error)
+  }
+})
 
 
 
