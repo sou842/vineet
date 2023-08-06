@@ -7,6 +7,7 @@ const { newPanRoute } = require("./route/newPan.route");
 const { paymentRoute } = require("./route/payment.route");
 const { profileRouter } = require("./route/profilePicture.route");
 const { panDocsRoute } = require("./route/panDocs.route");
+const { adminRoute } = require("./route/admin/admin.route");
 
 
 require('dotenv').config();
@@ -20,6 +21,7 @@ app.use('/profile',profileRouter)
 app.use('/user',panDocsRoute)
 app.use('/api',userRoute)
 app.use('/user',newPanRoute)
+app.use('/admin',adminRoute)
 
 
 
