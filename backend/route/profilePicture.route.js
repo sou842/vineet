@@ -37,6 +37,17 @@ profileRouter.get("/profile-pictire",async(req,res)=>{
     }
 })
 
+//delete profile picture
+profileRouter.use(auth)
+profileRouter.delete("/remove-profile-pictire",async(req,res)=>{
+    try {
+        const user=await ProfilePictureModel.findOneAndDelete({vendorID:req.body.vendorID})
+        res.send("Profile picture removed")
+    } catch (error) {
+        res.send(error.message)
+    }
+})
+
 module.exports={
     profileRouter
 }
