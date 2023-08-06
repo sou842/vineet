@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.AdminDash_0{
+    display: flex;
+    justify-content: space-between;
+}
+.AdminDash_0 > div{
+    border: 1px solid red;
+    width: auto;
+}

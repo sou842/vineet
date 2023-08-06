@@ -23,6 +23,7 @@ import { PanUploadEdit } from '../../Pages/PanUploadEdit/PanUploadEdit';
 import { AdminDash } from '../../Admin/AdminDash/AdminDash';
 import { AdminUser } from '../../Admin/AdminUser/AdminUser';
 import { AminPerson } from '../../Admin/AminPerson/AminPerson';
+import { AdminPanCard } from '../../Admin/AdminPanCard/AdminPanCard';
 
 
 
@@ -59,6 +60,7 @@ return (
         <Route path={'/AdminDash'} element={<AdminDash/>}></Route>
         <Route path={'/AdminUser'} element={<AdminUser/>}></Route>
         <Route path={'/AminPerson/:id'} element={<AminPerson/>}></Route>
+        <Route path={'/AdminPanCard'} element={<AdminPanCard/>}></Route>
     </Routes>
 )
 }

@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.AdminSlider_0{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(26, 39, 51);
+    padding: 10px;
+}
+.AdminSlider_0 > div{
+    border: 1px solid #00aeff;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    transition: 0.3s ease;
+    color: whitesmoke;
+}
+.AdminSlider_0 > div:nth-child(1){
+    border: 0;
+    border-bottom: 1.5px solid #ededed;
+}
+.AdminSlider_0 > div:nth-child(1):hover{
+    background-color: transparent;
+}
+.AdminSlider_0 > div:hover{
+    background-color: #00aeff;
+}

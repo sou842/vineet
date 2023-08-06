@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.AdminNavbar_1{
+    padding: 10px 1.5cm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(152, 152, 152);
+}
+.AdminNavbar_1 > div{
+    /* border: 1px solid red; */
+    color: whitesmoke;
+    font-size: 30px;
+}
+.AdminNavbar_1 > div >a> img{
+    width: 70px;
+}

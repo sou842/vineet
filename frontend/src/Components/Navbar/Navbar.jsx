@@ -25,7 +25,7 @@ export const Navbar = () => {
                     <div>
                         <Wrap>
                             <WrapItem>
-                                <Avatar color={'black'} bg='#00aeff' size={['md', 'md', 'lg']} name={portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData.avatar} />
+                                <Avatar color={'black'} bg='#00aeff' size={['md', 'md', 'lg']} name={portalData&&portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData&&portalData.avatar} />
                             </WrapItem>
                         </Wrap>
                     </div>

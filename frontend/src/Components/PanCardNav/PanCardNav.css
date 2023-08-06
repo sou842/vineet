@@ -19,7 +19,7 @@
 .pancardnav_1{
     display: flex;
     justify-content: space-between;
-    background-color: rgb(49, 49, 49);
+    background-color: #313131;
     color: white;
 }
 .pancardnav_1 > div{

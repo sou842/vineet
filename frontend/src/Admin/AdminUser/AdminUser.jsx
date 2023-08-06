@@ -10,10 +10,10 @@ export const AdminUser = () => {
     const [users, setUsers] = useState([]);
     const navigate = useNavigate()
 
-
-
+    // http://localhost:8080/admin/all-login-user
+    // http://localhost:8080/admin/all-pan
     useEffect(() => {
-        axios.get("http://localhost:8080/api/allUserData", {
+        axios.get("http://localhost:8080/admin/all-pan", {
             headers: { "Authorization": portalData.token }
         })
             .then((res) => {
@@ -29,7 +29,7 @@ export const AdminUser = () => {
     return (
         <div>
             <p style={{ color: 'red' }}>Adminuser</p>
-
+{/* 
             <Box w={'95%'} m={'auto'}>
                 {users && users.map((ele, index) => (
                     <Box onClick={() => navigate(`/AminPerson/${ele.vendorID}`)} cursor={'pointer'} display={'flex'} justifyContent={'space-between'} alignItems={'center'} bg={'#43ef6e'} p={'10px'} m={'10px'} borderRadius={'10px'} key={index}>
@@ -40,7 +40,7 @@ export const AdminUser = () => {
                         <Box>{ele.vendorID}</Box>
                     </Box>
                 ))}
-            </Box>
+            </Box> */}
         </div>
     )
 }

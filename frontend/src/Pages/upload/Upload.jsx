@@ -47,7 +47,7 @@ const Upload = () => {
                             {pans.map((el, i) => {
                                 return (
                                     <Box key={i} border={'2px solid #00aeff'} pt={'20px'} pb={'5px'} borderRadius={'15px'}>
-                                        <Box textAlign={'center'} fontWeight={'bold'} p={'7px'} bg={'#00aeff'} w={'100%'} m={'auto'} mt={'10px'} mb={'15px'}>{el.category.toUpperCase()}</Box>
+                                        <Box textAlign={'center'} fontWeight={'bold'} p={'7px'} color={'whiteAlpha.900'} bg={'#00aeff'} w={'100%'} m={'auto'} mt={'10px'} mb={'15px'}>{el.category.toUpperCase()}</Box>
                                         <Box w={'90%'} m={'auto'}>
                                             {el.category == 'Individual' ?
                                                 <Text mt={'7px'} mb={'7px'} display={'flex'} fontWeight={'bold'}>Name:<Text fontWeight={'normal'} ml={'10px'}>{el.firstName + " " + el.middleName + " " + el.lastName}</Text></Text>

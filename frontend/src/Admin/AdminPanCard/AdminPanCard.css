@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.AdminPanCard_0{
+    display: flex;
+    justify-content: space-between;
+}
+.AdminPanCard_1{
+    display: flex;
+    /* border: 1px solid red; */
+    margin: 10px 5px;
+}
+.AdminPanCard_1 > div:nth-child(1){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+}
+.AdminPanCard_subnav{
+    /* background-color: #313131; */
+    margin: 0.5cm;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+.AdminPanCard_subnav > div:nth-child(2){
+    width: 45%;
+    display: flex;
+    align-items: center;
+}
+.AdminPanCard_subnav > div > img{
+    width: 25px;
+    height: 25px;
+    margin-left: -0.9cm;
+}
+.AdminPanCard_subnav > div > input{
+    width: 100%;
+    padding: 7px 0 7px 15px;
+    border-radius: 25px;
+    /* background-color: #313131; */
+    border: 1.4px solid rgb(174, 174, 174);
+}
+.AdminPanCard_subnav > div > select{
+    padding: 10px 15px;
+    border-radius: 25px;
+    color: rgb(94, 94, 94);
+    /* background-color: #313131; */
+    /* border: 1.4px solid whitesmoke; */
+}
