@@ -15,7 +15,7 @@ const Upload = () => {
 
 
     const GetData = () => {
-        axios.get("http://localhost:8080/user/all-pan-card-deatils", {
+        axios.get("http://localhost:8080/user/all-pan-card-deatils-noDocs", {
             headers: { "Authorization": portalData.token }
 
         }).then((res) => {

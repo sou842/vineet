@@ -26,11 +26,11 @@ newPanRoute.post("/new-pan-card", async (req, res) => {
 
 //get all pan deatails under login user 
 
-newPanRoute.get("/all-pan-card-deatils", async (req, res) => {
+newPanRoute.get("/all-pan-card-deatils-noDocs", async (req, res) => {
     const { vendorID, userID } = req.body;
 
     try {
-        const pans = await NewPanModel.find({ vendorID })
+        const pans = await NewPanModel.find({$and:[{vendorID:vendorID},{isUpload:false}]})
         res.send(pans)
 
 

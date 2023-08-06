@@ -1,4 +1,10 @@
-import { Box, Button, FormControl, FormLabel, Heading, Image, Img, Input, Text, useToast } from '@chakra-ui/react'
+import { Box, Button, FormControl, FormLabel, Heading, Image, Img, Input, Text, useToast,  Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,useDisclosure } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import ContactUs from '../contact us with time/ContactUs'
 import { PanCardNav } from '../../Components/PanCardNav/PanCardNav'
@@ -13,7 +19,9 @@ const UploadDocument = () => {
     const navigate = useNavigate()
     const [pans, setPans] = useState([])
     const [loading, setLoading] = useState(false)
+    const [isverify, setIsverify] = useState(false)
     const [upladDone, setUploadDone] = useState(false)
+    const [birth, setBirth] = useState("")
     const [image, setImage] = useState({
         form49Front: "",
         form49Back: "",
@@ -21,7 +29,7 @@ const UploadDocument = () => {
         isUpload:false,
         userid:""
     })
-
+    const { isOpen, onOpen, onClose } = useDisclosure()
     
 
     const handleUpload = (e) => {
@@ -37,26 +45,58 @@ const UploadDocument = () => {
 
     const handelFinalUpload = (e) => {
         e.preventDefault()
-        axios.post("http://localhost:8080/user/upload-pandocs",{...image,isUpload:true,userid:id},{
+       if(!isverify){
+        onOpen()
+       }
+       else{
+        setLoading(true)
+            axios.post("http://localhost:8080/user/upload-pandocs",{...image,isUpload:true,userid:id},{
             headers: {
                 "Authorization": portalData.token
             }
         })
         .then((res)=>{
+            setLoading(false)
             toast({
                 title: res.data,
                 status: 'success',
                 duration: 3000,
                 isClosable: true,
               })
+              //window.location="/user/applied-success"
+             
         })
         .catch((err)=>{
+            setLoading(false)
             console.log(err);
         })
+       }
+        
        
     }
 
-
+const handelVerify=()=>{
+    if(pans.yearOfBirth==birth){
+        toast({
+            title: 'Verifyed',
+            status: 'success',
+            duration: 3000,
+            isClosable: true,
+            position:'top'
+          })
+          setIsverify(true)
+          onClose()
+    }
+    else{
+        toast({
+            title: 'You Are Enter Wrong Year of Birth',
+            status: 'error',
+            duration: 3000,
+            isClosable: true,
+            position:'top'
+          })
+    }
+}
 
 
 
@@ -68,18 +108,17 @@ const UploadDocument = () => {
 
 
     useEffect(() => {
-        setLoading(true)
+        
         axios.get(`http://localhost:8080/user/upload-pan-card/${id}`, {
             headers: {
                 "Authorization": portalData.token
             }
 
         }).then((res) => {
-            setLoading(false)
-            // console.log(res.data)
+           
             setPans(res.data)
         }).catch((err) => {
-            setLoading(false)
+           
             console.log(err);
         })
 
@@ -175,8 +214,32 @@ const UploadDocument = () => {
                 </Box>
             </Box>
 
-            <Button w={'70%'} h={'45px'} display={'block'} m={'auto'} mt={'1cm'} mb={'1.5cm'} colorScheme={'green'} size={'sm'} letterSpacing={'5px'} type='submit' title={upladDone.isUpload?"You already upload document":"Upload"}  isDisabled={upladDone.isUpload}>UPLOAD</Button>
+            <Button w={'70%'} h={'45px'} display={'block'} m={'auto'} mt={'1cm'} mb={'1.5cm'} colorScheme={'green'} size={'sm'} letterSpacing={'5px'} type='submit' title={upladDone.isUpload?"You already upload document":"Upload"}  isDisabled={upladDone.isUpload}>{isverify ?"UPLOAD":"NEXT"}</Button>
             </form>
+
+
+
+
+            <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false} >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Verify Your DOB</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <FormControl>
+           <FormLabel>Year of Birth</FormLabel>
+           <Input type='number'  placeholder='Enter Year Of Birth For Verify' onChange={(e)=>setBirth(e.target.value)}/>
+            </FormControl>
+          </ModalBody>
+
+          <ModalFooter bg={'white'}>
+            <Button colorScheme={'blackAlpha'} mr={3} onClick={onClose} size={'sm'}>
+              Close
+            </Button>
+            <Button colorScheme='green' size={'sm'} isDisabled={isverify} onClick={handelVerify} >{isverify?"Verifyed":"Verify"}</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
 
         </Box>
     )
