@@ -86,7 +86,7 @@ adminRoute.get("/category-pan",async(req,res)=>{
       res.send(pans)
   } catch (error) {
       res.send(error.messege)
-  }
+  } 
 })
 adminRoute.get("/individual-pan/:id",async(req,res)=>{
   const {id}=req.params
