@@ -1,0 +1,101 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.AdminPanCardPerson_0{
+    width: 90%;
+    display: flex;
+    margin: auto;
+    justify-content: space-around;
+}
+.AdminPanCardPerson_0 > div:nth-child(1){
+    width: 60%;
+    max-height: 100vh;
+    overflow: scroll;
+    padding: 1cm 0;
+}
+.AdminPanCardPerson_0 > div:nth-child(1)::-webkit-scrollbar{
+    display: none;
+}
+.AdminPanCardPerson_0 > div:nth-child(1) > h1{
+    text-align: center;
+    font-weight: bolder;
+    font-size: 18px;
+    margin: 15px;
+}
+.AdminPanCardPerson_0 > div:nth-child(1) > table{
+    /* border: 1px solid red; */
+    width: 100%;
+}
+.AdminPanCardPerson_0 > div:nth-child(1) > table > thead > tr > th{
+    border: 1.3px solid #00aeff;
+    background-color: rgb(255, 255, 255);
+    color: rgb(71, 71, 71);
+    padding: 10px;
+}
+.AdminPanCardPerson_0 > div:nth-child(1) > table > tbody > tr > td{
+    /* background-color: red; */
+    background-color: #beeaff47;
+    text-align: center;
+}
+.AdminPanCardPerson_0 > div:nth-child(2){
+    width: 35%;
+    padding: 1cm 0;
+}
+.AdminPanCardPerson_0 > div:nth-child(2) > form > h1{
+    border: 1.4px solid #00aeff;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 0.5cm;
+}
+.AdminPanCardPerson_0 > div:nth-child(2) > form > p{
+    font-size: 15px;
+    color: rgb(61, 61, 61);
+    margin-left: 7px;
+    margin-bottom: 5px;
+}
+.AdminPanCardPerson_0 > div:nth-child(2) > form > input{
+    margin-bottom: 0.7cm;
+    width: 100%;
+    padding: 5px;
+    border: 1.3px solid grey;
+}
+.AdminPanCardPerson_0 > div:nth-child(2) > form > button{
+    background-color: #00aeff;
+    border: 1.4px solid #00aeff;
+    color: whitesmoke;
+    width: 100%;
+    padding: 10px;
+    transition: 0.4s ease;
+}
+.AdminPanCardPerson_0 > div:nth-child(2) > form > button:hover{
+    background-color: white;
+    color: rgb(72, 72, 72);
+}
+
+@media screen and (min-width:0px) and (max-width:1000px){
+.AdminPanCardPerson_0{
+    display: flex;
+    flex-direction: column-reverse;
+    width: 90%;
+    margin: auto;
+}
+.AdminPanCardPerson_0 > div:nth-child(1){
+    width: 100%;
+    overflow:visible;
+}
+.AdminPanCardPerson_0 > div:nth-child(2){
+    width: 100%;
+}
+}
+
+@media screen and (min-width:0px) and (max-width:600px){
+.AdminPanCardPerson_0{
+    width: 95%;
+}
+.AdminPanCardPerson_0 > div:nth-child(1) > table > tbody > tr > td{
+    font-size: 10.5px;
+
+}
+}

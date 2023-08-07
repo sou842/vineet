@@ -9,7 +9,8 @@ import { useEffect, useState } from 'react';
 export const PanCardNav = () => {
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
     const [balance, setBalance] = useState(0);
-    const [isSmallerThan1150] = useMediaQuery("(max-width: 1150px)")
+    // const [isSmallerThan1150] = useMediaQuery("(max-width: 1150px)")
+    let isSmallerThan1150 = window.matchMedia("(max-width:1150px)").matches;
     const [profile, setProfile] = useState(null)
     const toast = useToast()
     const navigate = useNavigate();
