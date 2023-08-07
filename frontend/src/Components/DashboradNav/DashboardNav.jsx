@@ -7,7 +7,8 @@ import { useEffect, useState } from 'react';
 import menu from '../../assets/menu.png';
 
 export const DashboardNav = () => {
-    const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)");
+    // const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)");
+    let isSmallerThan1000 = window.matchMedia("(max-width:1000px)").matches;
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [profile, setProfile] = useState()
