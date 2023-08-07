@@ -118,7 +118,6 @@ export const Profile = () => {
     })
       .then((res) => {
         localStorage.setItem("digitalPortal", JSON.stringify(obj))
-        // toast({ title: res.data, status: 'success', duration: 4000, isClosable: true, position: 'top'})
         window.location = '/Dashboard'
       })
       .catch((err) => {
