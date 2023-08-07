@@ -9,7 +9,7 @@ import { Footer } from '../../../Components/Footer/Footer.jsx'
 const Receipt = () => {
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
     const [pans, setPans] = useState([])
-    const [loading, setLoading] = useState([])
+    const [loading, setLoading] = useState()
 
     
     useEffect(() => {

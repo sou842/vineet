@@ -90,8 +90,10 @@ adminRoute.get("/category-pan",async(req,res)=>{
 })
 adminRoute.get("/individual-pan/:id",async(req,res)=>{
   const {id}=req.params
+
   try {
-      const pans=await NewPanModel.findOne({_id:id});
+      const pans=await NewPanModel.findOne({_id:id})
+      console.log(pans)
       res.send(pans)
   } catch (error) {
       res.send(error.messege)
