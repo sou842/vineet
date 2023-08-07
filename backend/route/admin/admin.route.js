@@ -79,6 +79,26 @@ adminRoute.get("/all-pan",async(req,res)=>{
 })
 
 
+adminRoute.get("/category-pan",async(req,res)=>{
+  const {category}=req.query
+  try {
+      const pans=await NewPanModel.find({category});
+      res.send(pans)
+  } catch (error) {
+      res.send(error.messege)
+  } 
+})
+adminRoute.get("/individual-pan/:id",async(req,res)=>{
+  const {id}=req.params
+  try {
+      const pans=await NewPanModel.findOne({_id:id});
+      res.send(pans)
+  } catch (error) {
+      res.send(error.messege)
+  }
+})
+
+  
 
 
 
