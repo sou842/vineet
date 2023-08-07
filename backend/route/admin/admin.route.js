@@ -98,6 +98,7 @@ adminRoute.get("/individual-pan/:id",async(req,res)=>{
   }
 })
 
+  
 
 
 
