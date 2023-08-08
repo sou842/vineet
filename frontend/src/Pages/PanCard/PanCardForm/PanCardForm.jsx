@@ -127,7 +127,7 @@ export const PanCardForm = () => {
       setFormData((prevData) => ({ ...prevData, ['ageOfTheUser']: age }));
     }
 
-
+     
   }
 
   const handleBlur = () => {
