@@ -32,7 +32,6 @@ import { AdminPanCardPerson } from '../../Admin/AdminPanCardPerson/AdminPanCardP
 
 export const AllRouter = () =>{
     const portalData=JSON.parse(localStorage.getItem("digitalPortal"))
-    // console.log(portalData);
 
 return (
     <Routes>

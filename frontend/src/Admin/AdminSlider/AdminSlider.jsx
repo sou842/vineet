@@ -4,8 +4,8 @@ import './AdminSlider.css';
 
 export const AdminSlider = ({ slidevalue }) => {
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null
-    // console.log(slidevalue)
 
+    
     return (
         <div className='AdminSlider_0'>
             {/* <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}> */}
