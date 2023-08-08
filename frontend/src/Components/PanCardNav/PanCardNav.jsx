@@ -191,5 +191,6 @@ export const PanCardNav = () => {
 
             </div>
         </div>
+        </div>
     )
 }
