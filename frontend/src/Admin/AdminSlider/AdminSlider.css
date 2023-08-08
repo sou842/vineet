@@ -8,20 +8,18 @@
     background-color: rgb(26, 39, 51);
     padding: 10px;
 }
+.AdminSlider_0 > div:nth-child(1){
+    margin-top: 10px;
+}
 .AdminSlider_0 > div{
     display: flex;
     justify-content: space-around;
     align-items: center;
     border: 1px solid #00aeff;
-    text-align: center;
     padding: 10px;
     margin-bottom: 10px;
     transition: 0.3s ease;
     color: whitesmoke;
-}
-.AdminSlider_0 > div:nth-child(1){
-    border: 0;
-    /* border-bottom: 1.5px solid #ededed; */
 }
 .AdminSlider_0 > div:nth-child(1):hover{
     background-color: transparent;

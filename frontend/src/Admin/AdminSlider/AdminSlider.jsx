@@ -3,20 +3,11 @@ import './AdminSlider.css';
 
 
 export const AdminSlider = ({ slidevalue }) => {
-    const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null
+    // const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null
 
     
     return (
         <div className='AdminSlider_0'>
-            {/* <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}> */}
-            <div >
-                <Wrap style={{marginBottom:'15px'}}>
-                    <WrapItem>
-                        <Avatar color={'black'} bg='#00aeff' size={['md', 'md', 'lg','xl']} name={portalData && portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData && portalData.avatar} />
-                    </WrapItem>
-                </Wrap>
-                <p style={{fontSize:'20px'}}>Hi, ADMIN</p>
-            </div>
             <div style={{ backgroundColor: slidevalue == 'AdminDash' ? '#00aeff' : null, color: slidevalue == 'AdminDash' ? 'white' : null }}><a href="/AdminDash"><p>DASHBOARD</p></a></div>
             <div style={{ backgroundColor: slidevalue == 'AdminPanCard' ? '#00aeff' : null, color: slidevalue == 'AdminPanCard' ? 'white' : null }}><a href="/AdminPanCard"><p>PANCARD</p></a></div>
             <div><a href="#"><p>MOBILE</p></a></div>

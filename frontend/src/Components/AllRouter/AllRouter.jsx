@@ -25,8 +25,7 @@ import { AdminUser } from '../../Admin/AdminUser/AdminUser';
 import { AminPerson } from '../../Admin/AminPerson/AminPerson';
 import { AdminPanCard } from '../../Admin/AdminPanCard/AdminPanCard';
 import { AdminPanCardPerson } from '../../Admin/AdminPanCardPerson/AdminPanCardPerson';
-import Login from '../../Admin/AdminLogin/Login';
-
+import Login from '../../Admin/AdminLogin/Login.jsx'
 
 
 

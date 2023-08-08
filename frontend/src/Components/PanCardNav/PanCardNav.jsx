@@ -73,7 +73,7 @@ export const PanCardNav = () => {
                     <a href="/profile">
                         <Wrap>
                             <WrapItem>
-                            <Avatar color={'black'} bg='#00aeff' size={['md', 'md', 'lg']} name={portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData.avatar}/>
+                                <Avatar color={'black'} bg='#00aeff' size={['md', 'md', 'lg']} name={portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData.avatar} />
                             </WrapItem>
                         </Wrap>
                     </a>
@@ -115,7 +115,7 @@ export const PanCardNav = () => {
                         </div>
                         <div>
                             <Menu >
-                            <MenuButton
+                                <MenuButton
                                     as={Button}
                                     rightIcon={<ChevronDownIcon />}
                                     colorScheme="#0a9cf8"
@@ -188,9 +188,8 @@ export const PanCardNav = () => {
                         </Menu>
                     </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
         </div>
     )
 }

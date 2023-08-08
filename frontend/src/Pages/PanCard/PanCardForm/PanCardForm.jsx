@@ -1135,5 +1135,3 @@ export const PanCardForm = () => {
     </div>
   )
 }
-
-
