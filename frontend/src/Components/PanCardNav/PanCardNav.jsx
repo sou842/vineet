@@ -182,6 +182,7 @@ export const PanCardNav = () => {
                             <MenuList color={"black"} >
                                 <MenuItem onClick={() => navigate('/profile')}>Profile</MenuItem>
                                 <MenuItem onClick={() => navigate('/user/change-password')}>Change Password</MenuItem>
+                                <MenuItem onClick={() => navigate('/admin/login')}>Admin Login</MenuItem>
                                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
                             </MenuList>
                         </Menu>
