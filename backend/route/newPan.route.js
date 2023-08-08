@@ -25,12 +25,12 @@ newPanRoute.post("/new-pan-card", async (req, res) => {
 })
 
 //get all pan deatails under login user 
-
+newPanRoute.use(auth)
 newPanRoute.get("/all-pan-card-deatils", async (req, res) => {
     const { vendorID, userID } = req.body;
 
     try {
-        const pans = await NewPanModel.find({ vendorID })
+        const pans = await NewPanModel.find({$and:[{vendorID:vendorID},{isUpload:false}]})
         res.send(pans)
 
 
@@ -106,7 +106,7 @@ newPanRoute.patch('/apply-confirm-from/:id', async (req, res) => {
     const { id } = req.params
     try {
 
-        const user = await NewPanModel.findByIdAndUpdate({ _id: id }, { isDoneFromUser: true })
+        const user = await NewPanModel.findByIdAndUpdate({ _id: id }, { isDoneFromUser: true,isUpload:true })
         res.send('Apply Successfull')
 
     } catch (error) {

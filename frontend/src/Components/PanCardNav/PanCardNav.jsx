@@ -73,7 +73,7 @@ export const PanCardNav = () => {
                     <a href="/profile">
                         <Wrap>
                             <WrapItem>
-                            <Avatar color={'black'} bg='#00aeff' size={['md', 'md', 'lg']} name={portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData.avatar}/>
+                                <Avatar color={'black'} bg='#00aeff' size={['md', 'md', 'lg']} name={portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData.avatar} />
                             </WrapItem>
                         </Wrap>
                     </a>
@@ -115,7 +115,7 @@ export const PanCardNav = () => {
                         </div>
                         <div>
                             <Menu >
-                            <MenuButton
+                                <MenuButton
                                     as={Button}
                                     rightIcon={<ChevronDownIcon />}
                                     colorScheme="#0a9cf8"
@@ -168,28 +168,29 @@ export const PanCardNav = () => {
                 <div>
                     <div><a href="#"><p>Balance: ₹ {balance} </p></a></div>
                     <div>
-                    <div>
-                        <Menu >
-                            <MenuButton
-                                as={Button}
-                                rightIcon={<ChevronDownIcon />}
-                                colorScheme="#0a9cf8"
-                                fontSize={['10px', '15px', '15px']}
-                                color={'white'}
-                            >
-                                {portalData && portalData.username.trim().split(' ')[0].toUpperCase()}
-                            </MenuButton>
-                            <MenuList color={"black"} >
-                                <MenuItem onClick={() => navigate('/profile')}>Profile</MenuItem>
-                                <MenuItem onClick={() => navigate('/user/change-password')}>Change Password</MenuItem>
-                                <MenuItem onClick={handleLogout}>Logout</MenuItem>
-                            </MenuList>
-                        </Menu>
+                        <div>
+                            <Menu >
+                                <MenuButton
+                                    as={Button}
+                                    rightIcon={<ChevronDownIcon />}
+                                    colorScheme="#0a9cf8"
+                                    fontSize={['10px', '15px', '15px']}
+                                    color={'white'}
+                                >
+                                    {portalData && portalData.username.trim().split(' ')[0].toUpperCase()}
+                                </MenuButton>
+                                <MenuList color={"black"} >
+                                    <MenuItem onClick={() => navigate('/profile')}>Profile</MenuItem>
+                                    <MenuItem onClick={() => navigate('/user/change-password')}>Change Password</MenuItem>
+                                    <MenuItem onClick={() => navigate('/admin/login')}>Admin Login</MenuItem>
+                                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                                </MenuList>
+                            </Menu>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
         </div>
     )
 }

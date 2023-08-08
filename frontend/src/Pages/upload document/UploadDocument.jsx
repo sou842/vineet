@@ -1,4 +1,10 @@
-import { Box, Button, FormControl, FormLabel, Heading, Image, Img, Input, Text, useToast } from '@chakra-ui/react'
+import { Box, Button, FormControl, FormLabel, Heading, Image, Img, Input, Text, useToast,  Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,useDisclosure } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import ContactUs from '../contact us with time/ContactUs'
 import { PanCardNav } from '../../Components/PanCardNav/PanCardNav'
@@ -11,8 +17,10 @@ const UploadDocument = () => {
     const toast = useToast()
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null;
     const navigate = useNavigate()
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const [pans, setPans] = useState([])
     const [loading, setLoading] = useState(false)
+    const [year, setYear] = useState("")
     const [upladDone, setUploadDone] = useState(false)
     const [image, setImage] = useState({
         form49Front: "",
@@ -37,26 +45,73 @@ const UploadDocument = () => {
 
     const handelFinalUpload = (e) => {
         e.preventDefault()
+        if(image.aadharDoc!=""&& image.form49Back!=""&&image.form49Front!=""){
+            onOpen()
+        
+        }
+        else{
+            toast({
+                        title: "Please choose all documents",
+                        status: 'error',
+                        duration: 3000,
+                        isClosable: true,
+                        position:'top'
+                      })
+        }
+       
+       
+    }
+
+//handelConfirmUpload
+const handelConfirmUpload=()=>{
+    if(year!=pans.yearOfBirth || year==""){
+        toast({
+            title: 'You Are Enter wrong year of birth',
+            status: 'error',
+            duration: 3000,
+            isClosable: true,
+            position:'top'
+          })
+    }
+    else{
+        setLoading(true)
         axios.post("http://localhost:8080/user/upload-pandocs",{...image,isUpload:true,userid:id},{
             headers: {
                 "Authorization": portalData.token
             }
         })
         .then((res)=>{
+
+                axios.patch(`http://localhost:8080/user/apply-confirm-from/${id}`,{},{
+                    headers: {
+                        "Authorization": portalData.token
+                    }
+                }).then((res)=>{
+
+                })
+                .catch((er)=>{
+                    console.log(er);
+                })
+
+
+
+            setLoading(false)
             toast({
                 title: res.data,
                 status: 'success',
                 duration: 3000,
                 isClosable: true,
               })
+              onClose()
+              navigate('/user/applied-success')
         })
         .catch((err)=>{
+            setLoading(false)
             console.log(err);
         })
-       
     }
 
-
+}
 
 
 
@@ -68,31 +123,31 @@ const UploadDocument = () => {
 
 
     useEffect(() => {
-        setLoading(true)
+       
         axios.get(`http://localhost:8080/user/upload-pan-card/${id}`, {
             headers: {
                 "Authorization": portalData.token
             }
 
         }).then((res) => {
-            setLoading(false)
-            // console.log(res.data)
             setPans(res.data)
+            //console.log(res.data);
+            
         }).catch((err) => {
-            setLoading(false)
+           
             console.log(err);
         })
 
-        axios.get(`http://localhost:8080/user/upload-pandocs/${id}`, {
-            headers: {
-                "Authorization": portalData.token
-            }
+        // axios.get(`http://localhost:8080/user/upload-pandocs/${id}`, {
+        //     headers: {
+        //         "Authorization": portalData.token
+        //     }
 
-        }).then((res) => {
-            setUploadDone(res.data)
-        }).catch((err) => { 
-            console.log(err);
-        })
+        // }).then((res) => {
+        //     setUploadDone(res.data)
+        // }).catch((err) => { 
+        //     console.log(err);
+        // })
 
     }, [])
 
@@ -136,7 +191,7 @@ const UploadDocument = () => {
                         <FormControl>
                             <FormLabel textAlign={'center'}>Front Form 49A</FormLabel>
                             <Text textAlign={'center'} fontSize={'14px'} mb={'7px'} color={'grey'}>(Only 200DPI Color JPG)</Text>
-                            <Input color={'grey'} p={'3.5px'} type='file' name='form49Front' onChange={handleUpload} required accept="image/*" />
+                            <Input color={'grey'} p={'3.5px'} type='file' name='form49Front' onChange={handleUpload}  accept="image/*" />
                         </FormControl>
                   
                 </Box>
@@ -152,7 +207,7 @@ const UploadDocument = () => {
                         <FormControl>
                             <FormLabel textAlign={'center'} >Back Form 49A</FormLabel>
                             <Text textAlign={'center'} fontSize={'14px'} mb={'7px'} color={'grey'}>(Only 200DPI Color JPG)</Text>
-                            <Input color={'grey'} p={'3.5px'} type='file' name='form49Back' required onChange={handleUpload} accept="image/*" />
+                            <Input color={'grey'} p={'3.5px'} type='file' name='form49Back'  onChange={handleUpload} accept="image/*" />
                         </FormControl>
                     
                 </Box>
@@ -169,14 +224,38 @@ const UploadDocument = () => {
                         <FormControl>
                             <FormLabel textAlign={'center'} >Aadhar Card</FormLabel>
                             <Text textAlign={'center'} fontSize={'14px'} mb={'7px'} color={'grey'}>(Only 200DPI Color JPG)</Text>
-                            <Input color={'grey'} p={'3.5px'} type='file' name='aadharDoc' required onChange={handleUpload} accept="image/*" />
+                            <Input color={'grey'} p={'3.5px'} type='file' name='aadharDoc'  onChange={handleUpload} accept="image/*" />
                         </FormControl>
                    
                 </Box>
             </Box>
 
-            <Button w={'70%'} h={'45px'} display={'block'} m={'auto'} mt={'1cm'} mb={'1.5cm'} colorScheme={'green'} size={'sm'} letterSpacing={'5px'} type='submit' title={upladDone.isUpload?"You already upload document":"Upload"}  isDisabled={upladDone.isUpload}>UPLOAD</Button>
+            <Button w={'70%'} h={'45px'} display={'block'} m={'auto'} mt={'1cm'} mb={'1.5cm'} colorScheme={'green'} size={'sm'} letterSpacing={'5px'} type='submit' title={upladDone.isUpload?"You already upload document":"Upload"}>NEXT</Button>
             </form>
+
+
+
+            {/* dateof birth confirmation */}
+            <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <FormControl>
+                <FormLabel>Enter Year of Birth for Confirm</FormLabel>
+                <Input type='number' placeholder='Enter Year of Birth' onChange={(e)=>setYear(e.target.value)}/>
+            </FormControl>
+          </ModalBody>
+
+          <ModalFooter bg={'white'}>
+            <Button colorScheme={'blackAlpha'}  mr={3} onClick={onClose} size={'sm'}>
+              Close
+            </Button>
+            <Button  size={'sm'} colorScheme='green' onClick={handelConfirmUpload}>{loading?"Loading...":"Confirm and Upload"}</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
 
         </Box>
     )
