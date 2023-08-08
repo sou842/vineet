@@ -168,25 +168,24 @@ export const PanCardNav = () => {
                 <div>
                     <div><a href="#"><p>Balance: ₹ {balance} </p></a></div>
                     <div>
-                        <div>
-                            <Menu >
-                                <MenuButton
-                                    as={Button}
-                                    rightIcon={<ChevronDownIcon />}
-                                    colorScheme="#0a9cf8"
-                                    fontSize={['10px', '15px', '15px']}
-                                    color={'white'}
-                                >
-                                    {portalData && portalData.username.trim().split(' ')[0].toUpperCase()}
-                                </MenuButton>
-                                <MenuList color={"black"} >
-                                    <MenuItem onClick={() => navigate('/profile')}>Profile</MenuItem>
-                                    <MenuItem onClick={() => navigate('/user/change-password')}>Change Password</MenuItem>
-                                    <MenuItem onClick={() => navigate('/admin/login')}>Admin Login</MenuItem>
-                                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
-                                </MenuList>
-                            </Menu>
-                        </div>
+                    <div>
+                        <Menu >
+                            <MenuButton
+                                as={Button}
+                                rightIcon={<ChevronDownIcon />}
+                                colorScheme="#0a9cf8"
+                                fontSize={['10px', '15px', '15px']}
+                                color={'white'}
+                            >
+                                {portalData && portalData.username.trim().split(' ')[0].toUpperCase()}
+                            </MenuButton>
+                            <MenuList color={"black"} >
+                                <MenuItem onClick={() => navigate('/profile')}>Profile</MenuItem>
+                                <MenuItem onClick={() => navigate('/user/change-password')}>Change Password</MenuItem>
+                                <MenuItem onClick={() => navigate('/admin/login')}>Admin Login</MenuItem>
+                                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                            </MenuList>
+                        </Menu>
                     </div>
                 </div>
 
