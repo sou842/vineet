@@ -82,8 +82,15 @@ adminRoute.get("/all-pan",async(req,res)=>{
 adminRoute.get("/category-pan",async(req,res)=>{
   const {category}=req.query
   try {
+    if(category){
+
       const pans=await NewPanModel.find({category});
       res.send(pans)
+    }
+    else{
+      const pans=await NewPanModel.find();
+      res.send(pans)
+    }
   } catch (error) {
       res.send(error.messege)
   } 
@@ -103,7 +110,17 @@ adminRoute.get("/individual-pan/:id",async(req,res)=>{
 adminRoute.get('/current-user',async(req,res)=>{
   try {
     const user= await UserModel.find()
+    const top3_latest_user=await UserModel.find().limit(3)
     res.send(user)
+    
+  } catch (error) {
+    res.send(error)
+  }
+})
+adminRoute.get('/top3-letest-user',async(req,res)=>{
+  try {
+    const top3_latest_user=await UserModel.find().limit(3)
+    res.send(top3_latest_user)
     
   } catch (error) {
     res.send(error)

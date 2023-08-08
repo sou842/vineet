@@ -80,7 +80,7 @@ export const PanCardForm = () => {
     officestate: '',
     officezipCode: '',
     officecountry: 'India',
-    // new added
+    // new added  
     representativetitle: '',
     representativelastName: '',
     representativefirstName: '',
@@ -92,13 +92,14 @@ export const PanCardForm = () => {
     representativecityDistrict: '',
     representativestate: '',
     representativezipCode: '',
-    representativecountry: ''
+    representativecountry: '',
+    ageOfTheUser:''
   })
 
   const age_month = { "January": "1", "February": "2", "March": "3", "April": "4", "May": "5", "June": "6", "July": "7", "August": "8", "September": "9", "October": "10", "November": "11", "December": "12" }
   const birthdate = new Date(`${formData.yearOfBirth}-${age_month[formData.monthOfBirth]}-${formData.dateOfBirth}`)
   const age = differenceInYears(new Date(), birthdate);
-
+  console.log(age);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -123,9 +124,10 @@ export const PanCardForm = () => {
       setFormData((prevData) => ({ ...prevData, [name]: value.charAt(0).toUpperCase() + value.slice(1) }));
     } else {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
+      setFormData((prevData) => ({ ...prevData, ['ageOfTheUser']: age }));
     }
 
-
+     
   }
 
   const handleBlur = () => {
