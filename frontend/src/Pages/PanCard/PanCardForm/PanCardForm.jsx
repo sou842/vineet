@@ -80,6 +80,7 @@ export const PanCardForm = () => {
     officestate: '',
     officezipCode: '',
     officecountry: 'India',
+    isUpload:false,
     // new added  
     representativetitle: '',
     representativelastName: '',
