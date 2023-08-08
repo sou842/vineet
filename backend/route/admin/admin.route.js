@@ -100,6 +100,16 @@ adminRoute.get("/individual-pan/:id",async(req,res)=>{
   }
 })
 
+adminRoute.get('/current-user',async(req,res)=>{
+  try {
+    const user= await UserModel.find()
+    res.send(user)
+    
+  } catch (error) {
+    res.send(error)
+  }
+})
+
   
 
 
