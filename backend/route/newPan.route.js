@@ -12,7 +12,7 @@ const newPanRoute = express.Router()
 newPanRoute.use(auth)
 newPanRoute.post("/new-pan-card", async (req, res) => {
     try {
-        console.log(req.body)
+       
         const tokenNumber = prandom.number(8);
         req.body.tokenNumber = tokenNumber
         const newPan = await NewPanModel(req.body)
