@@ -14,8 +14,6 @@ export const AdminPanCard = () => {
     const [filterData, setFilterData] = useState({ CATEGORY: '', SEARCH: '' })
     const [loading, setLoading] = useState()
 
-    // http://localhost:8080/admin/all-pan
-    // http://localhost:8080/admin/category-pan?category=individual
 
     const handleChange = (event) => {
         const { name, value } = event.target;
