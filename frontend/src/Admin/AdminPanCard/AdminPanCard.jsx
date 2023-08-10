@@ -52,7 +52,7 @@ export const AdminPanCard = () => {
                             {/* <select name="city" required value={formData.city} onChange={handleChange}> */}
 
                             <select name="CATEGORY" value={filterData.CATEGORY} onChange={handleChange}>
-                                <option value="" disabled>CATEGORY</option>
+                                <option value="">CATEGORY</option>
                                 <option value="Individual">Individual</option>
                                 <option value="Artificial Judicial Person">Artificial Judicial Person</option>
                                 <option value="Association of Person">Association of Person</option>

@@ -8,7 +8,7 @@ import axios from 'axios';
 import { PieChart, Pie, Cell } from "recharts";
 
 const data = [{ name: "PAN CARD", value: 400 }, { name: "Electricity", value: 300 }, { name: "Mobile Recharge", value: 300 }, { name: "DTH Recharge", value: 200 }, { name: "Income Tax Return", value: 200 }, { name: "GST", value: 180 }, { name: "Digital Job Portal", value: 20 }, { name: "Social Services", value: 200 }, { name: "National Pension System", value: 200 }];
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042",'#FF3D00','#651FFF','#76FF03','#9C27B0','#4DD0E1'];
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", '#FF3D00', '#651FFF', '#76FF03', '#9C27B0', '#4DD0E1'];
 // const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
     // const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
@@ -51,37 +51,45 @@ export const AdminDash = () => {
                 </div>
 
                 <div style={{ width: '75%' }}>
-                    <Box display={'flex'}  justifyContent={'space-between'} mt={'15px'} mb={'15px'}>
+                    <Box display={'flex'} justifyContent={'space-between'} mt={'15px'} mb={'15px'}>
                         <Box w={'70%'} boxShadow={'rgba(0, 0, 0, 0.24) 0px 3px 8px'} display={'flex'} justifyContent={'space-between'}>
                             {/* ... */}
-                            <Box>                                
-                            <PieChart width={350} height={350}>
-                                <Pie
-                                    data={data}
-                                    labelLine={false}
-                                    label={renderCustomizedLabel}
-                                    outerRadius={120}
-                                    fill="#8884d8"
-                                    dataKey="value"
-                                >
-                                    {data.map((entry, index) => (
-                                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                    ))}
-                                </Pie>
-                            </PieChart>
+                            <Box>
+                                <PieChart width={350} height={350}>
+                                    <Pie
+                                        data={data}
+                                        labelLine={false}
+                                        label={renderCustomizedLabel}
+                                        outerRadius={120}
+                                        fill="#8884d8"
+                                        dataKey="value"
+                                    >
+                                        {data.map((entry, index) => (
+                                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                        ))}
+                                    </Pie>
+                                </PieChart>
                             </Box>
                             {/* ... */}
                             <Box m={'10px'} display={'flex'} alignItems={'center'}>
                                 <Box>
-                                {data&&data?.map((ele,index)=>(
-                                    <Box display={'flex'} alignItems={'center'} color={'grey'}><Box w={'20px'} h={'14px'} borderRadius={'2px'} mr={'5px'} bg={COLORS[index]}></Box>{ele.name}</Box>
-                                ))}
+                                    {data && data?.map((ele, index) => (
+                                        <Box display={'flex'} alignItems={'center'} color={'grey'}><Box w={'20px'} h={'14px'} borderRadius={'2px'} mr={'5px'} bg={COLORS[index]}></Box>{ele.name}</Box>
+                                    ))}
                                 </Box>
                             </Box>
                         </Box>
                         <Box w={'28%'} display={'flex'}>
-                            <Box w={'99%'} boxShadow={'rgba(0, 0, 0, 0.24) 0px 3px 8px'}>
-
+                            <Box w={'99%'} p={'7px'} boxShadow={'rgba(0, 0, 0, 0.24) 0px 3px 8px'}>
+                                <Text>Individual Person</Text>
+                                <Text>Artificial Judicial Person</Text>
+                                <Text>Association of Person</Text>
+                                <Text>Trust</Text>
+                                <Text>Body of Individual</Text>
+                                <Text>Firm</Text>
+                                <Text>Government</Text>
+                                <Text>Limited Liability Partnership</Text>
+                                <Text>Local Authority</Text>
                             </Box>
                         </Box>
                     </Box>
