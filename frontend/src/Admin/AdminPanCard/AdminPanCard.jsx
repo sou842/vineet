@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Grid, Menu, MenuButton, MenuItem, MenuList, Spinner, Text, Wrap, WrapItem, useMediaQuery, useToast } from '@chakra-ui/react';
+import { Avatar, Box, Button, Grid, Menu, MenuButton, MenuItem, MenuList, Spinner, Text, Wrap, WrapItem, useMediaQuery, useToast, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer } from '@chakra-ui/react';
 import './AdminPanCard.css'
 import { useEffect, useState } from "react";
 import axios from 'axios'
@@ -52,7 +52,7 @@ export const AdminPanCard = () => {
                             {/* <select name="city" required value={formData.city} onChange={handleChange}> */}
 
                             <select name="CATEGORY" value={filterData.CATEGORY} onChange={handleChange}>
-                                <option value="" disabled>CATEGORY</option>
+                                <option value="">CATEGORY</option>
                                 <option value="Individual">Individual</option>
                                 <option value="Artificial Judicial Person">Artificial Judicial Person</option>
                                 <option value="Association of Person">Association of Person</option>
@@ -72,24 +72,36 @@ export const AdminPanCard = () => {
                     {loading ? <Box display={'flex'} justifyContent={'center'} mt={'2cm'} mb={'2cm'}><Spinner color='#00aeff' /></Box> :
 
                         <Box>{pan.length == 0 ? <Box minH={'60vh'} display={'flex'} justifyContent={'center'} alignItems={'center'}>NO DATA FOUND</Box> :
-                            <Grid templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} gap={['10px', '15px']} w={'97%'} m={'15px auto'}>
-                                {pan?.map((ele, index) => (
-                                    <Box key={index} onClick={() => navigate(`/AdminPanCard/AdminPanCardPerson/${ele._id}`)} cursor={'pointer'} border={'1.5px solid #00aeff'} borderRadius={'15px'} pt={'10px'} pb={'10px'}>
-                                        <Box textAlign={'center'} fontWeight={'bold'} p={'7px'} bg={'#00aeff'} color={'whiteAlpha.900'} w={'100%'} m={'auto'} mt={'10px'} mb={'15px'}>{ele.category.toUpperCase()}</Box>
-                                        <Box w={'90%'} m={'auto'}>
-                                            {ele.category == 'Individual' ?
-                                                <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Name : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>{ele.firstName + " " + ele.middleName + " " + ele.lastName}</Text></Text>
-                                                :
-                                                <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Organization : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>{ele.organization}</Text></Text>
-                                            }
-                                            <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Token : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>{ele.tokenNumber}</Text></Text>
-                                            <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>ID : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>{ele.userID}</Text></Text>
-                                            <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Apply date : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>{ele.date}</Text></Text>
-                                            <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Acknowledgement : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>pending</Text></Text>
-                                        </Box>
-                                    </Box>
-                                ))}
-                            </Grid>
+                            <TableContainer>
+                                <Table variant='striped' colorScheme='teal'>
+                                    <TableCaption>Imperial to metric conversion factors</TableCaption>
+                                    <Thead>
+                                        <Tr>
+                                            <Th w={'4%'}>No.</Th>
+                                            <Th>Category</Th>
+                                            <Th>Name</Th>
+                                            <Th>Apply date</Th>
+                                            <Th>Acknowledge</Th>
+                                        </Tr>
+                                    </Thead>
+                                    <Tbody>
+                                        {pan?.map((ele, index) => (
+                                            <Tr key={index} fontSize={['12px', '13px', '14px']} onClick={() => navigate(`/AdminPanCard/AdminPanCardPerson/${ele._id}`)} cursor={'pointer'}>
+                                                <Td w={'4%'}>{index+1}</Td>
+                                                <Td>{ele.category}</Td>
+                                                {ele.category == 'Individual' ?
+                                                    <Td>{ele.firstName + " " + ele.middleName + " " + ele.lastName}</Td>
+                                                    :
+                                                    <Td>{ele.organization}</Td>
+                                                }
+                                                {/* <Td>{ele.tokenNumber}</Td> */}
+                                                <Td>{ele.date}</Td>
+                                                <Td>pending</Td>
+                                            </Tr>
+                                        ))}
+                                    </Tbody>
+                                </Table>
+                            </TableContainer>
                         }
                         </Box>}
                 </div>
