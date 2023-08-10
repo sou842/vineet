@@ -126,5 +126,32 @@ adminRoute.get('/top3-letest-user', async (req, res) => {
   }
 })
 
+//single user profile data
+adminRoute.get("/user-profile-data/:vendorID",async(req,res)=>{
+  const {vendorID}=req.params
+  try {
+    const user=await UserModel.findOne({vendorID})
+    res.send(user)
+    
+  } catch (error) {
+    res.send(error)
+  }
+})
+
+
+//under one user all pancards
+adminRoute.get("/user/pancards/:vendorID",async(req,res)=>{
+  const {vendorID}=req.params
+  try {
+    const pans=await NewPanModel.find({vendorID})
+    res.send(pans)
+    
+  } catch (error) {
+    res.send("error")
+  }
+})
+
+
+
 
 module.exports = { adminRoute }

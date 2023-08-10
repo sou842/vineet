@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Menu, MenuButton, MenuItem, MenuList, Text, Wrap, WrapItem, useMediaQuery, useToast } from '@chakra-ui/react';
+import { Avatar, Box, Button, Grid, Menu, MenuButton, MenuItem, MenuList, Spinner, Text, Wrap, WrapItem, useMediaQuery, useToast, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer, } from '@chakra-ui/react';
 import { AdminSlider } from '../AdminSlider/AdminSlider';
 import './AdminDash.css';
 import { Link, useNavigate } from "react-router-dom"
@@ -94,23 +94,34 @@ export const AdminDash = () => {
                         </Box>
                     </Box>
 
-                    <Box minH={'20vh'} mt={'20px'} >
+                    <Box mt={'20px'} >
                         <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} p={'5px'} pl={'15px'} pr={'15px'} boxShadow={'rgba(0, 0, 0, 0.24) 0px 3px 8px'}>
                             <Text color={'grey'} fontWeight={'bold'}>ALL USER</Text>
                             <Button onClick={() => navigate(`/AdminUser`)} w={'10%'} bg={'blue.400'} color={'whiteAlpha.900'}>Show</Button>
                         </Box>
-                        <Box mt={'15px'} mb={'15px'}>
-                            {userData && userData?.map((ele, index) => (
-                                <Box onClick={() => console.log(ele.vendorID)} key={index} cursor={'pointer'} w={'98%'} border={'1.2px solid #00aeff'} p={'7px'} m={'auto'} mt={'4px'} mb={'4px'} borderRadius={'7px'} display={'flex'} justifyContent={'space-between'}>
-                                    <Box>
-                                        <Text fontSize={'16px'} fontWeight={'bold'}>{ele.name}</Text>
-                                        <Text fontSize={'14px'}>{ele.email}</Text>
-                                    </Box>
-                                    <Box>
-                                        <Text color={'grey'}>{ele.joindate}</Text>
-                                    </Box>
-                                </Box>
-                            ))}
+                        <Box w={'98%'} m={'auto'} mt={'15px'} mb={'15px'}>
+                            <TableContainer>
+                                <Table variant='striped' colorScheme='blue'>
+                                    <Thead>
+                                        <Tr>
+                                            <Th>No.</Th>
+                                            <Th>Name</Th>
+                                            <Th>Email</Th>
+                                            <Th>Join Date</Th>
+                                        </Tr>
+                                    </Thead>
+                                    <Tbody>
+                                        {userData && userData?.map((ele, index) => (
+                                            <Tr key={index} fontSize={['12px', '13px', '14px']} cursor={'pointer'} onClick={() => navigate(`/AdminUser/AminPerson/${ele.vendorID}`)}>
+                                                <Td w={'6%'}>{index+1}</Td>
+                                                <Td>{ele.name}</Td>
+                                                <Td>{ele.email}</Td>
+                                                <Td>{ele.joindate}</Td>
+                                            </Tr>
+                                        ))}
+                                    </Tbody>
+                                </Table>
+                            </TableContainer>
                         </Box>
                     </Box>
                 </div>

@@ -59,7 +59,7 @@ return (
         <Route path={'/user/upload/PanUploadEdit/:id'} element={<PanUploadEdit/>}></Route>
         <Route path={'/AdminDash'} element={<AdminDash/>}></Route>
         <Route path={'/AdminUser'} element={<AdminUser/>}></Route>
-        <Route path={'/AminPerson/:id'} element={<AminPerson/>}></Route>
+        <Route path={'/AdminUser/AminPerson/:id'} element={<AminPerson/>}></Route>
         <Route path={'/AdminPanCard'} element={<AdminPanCard/>}></Route>
         <Route path={'/AdminPanCard/AdminPanCardPerson/:id'} element={<AdminPanCardPerson/>}></Route>
         <Route path={'/admin/login'} element={<Login/>}></Route>
