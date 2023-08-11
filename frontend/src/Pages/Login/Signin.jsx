@@ -12,6 +12,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 import { loginFun } from '../../redux/authReducer/action';
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Signin() {
     const dispatch = useDispatch()
@@ -26,6 +27,7 @@ export default function Signin() {
         password: ""
 
     })
+    const [validate,setValidate]=useState(false)
     const handleChange = (e) => {
         setLoginData({ ...loginData, [e.target.name]: e.target.value })
     }
@@ -45,7 +47,10 @@ export default function Signin() {
         })
 
     }
-
+    function onChangeCaptcha(value) {
+        // console.log("Captcha value:", value);
+        setValidate(true)
+      }
 
     return (
         <Box bg={'gray.200'} pt={'1.3cm'} pb={'1cm'}>
@@ -74,13 +79,17 @@ export default function Signin() {
                             <FormLabel display={'flex'} ml={'10px'}>Password<Text color={'red'}>*</Text></FormLabel>
                             <Input required border={'1.3px solid grey'} type='password' placeholder='Passowrd' name='password' onChange={handleChange} />
                         </FormControl>
-                        <FormControl color={'grey'} mb={'10px'}>
-                            <FormLabel display={'flex'} ml={'10px'}>Capcha<Text color={'red'}>*</Text></FormLabel>
-                            <Input border={'1.3px solid grey'} type='text' placeholder='Captcha' />
-                        </FormControl>
+                      
+                        <ReCAPTCHA
+                            sitekey={process.env.REACT_APP_CAPTCHA_KEY}
+                            onChange={onChangeCaptcha}
+                           
+                            />
+                        
+                    
                         <Box mt={'0.7cm'} textAlign={'center'}>
                             <Text m={'10px'} display={'flex'}>Forget Your Password?<Text onClick={() => navigate("/user/change-password")} ml={'10px'} cursor={'pointer'} borderBottom={'1.4px solid #43ef6e'}>Click Here</Text> </Text>
-                            <Button w={'100%'} h={'45px'} bg={'#43ef6e'} type='submit'>SIGNIN</Button>
+                            <Button w={'100%'} h={'45px'} bg={'#43ef6e'} type='submit'isDisabled={!validate} >SIGNIN</Button>
                         </Box>
 
                     </Box>
