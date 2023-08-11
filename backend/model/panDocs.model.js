@@ -2,6 +2,7 @@ const mongoose=require('mongoose')
 
 const panDocsSchema=mongoose.Schema({
     aadharDoc:{type:String},
+    parentAadharDoc:{type:String},
     form49Front:{type:String},
     form49Back:{type:String},
     isUpload:{type:Boolean},
