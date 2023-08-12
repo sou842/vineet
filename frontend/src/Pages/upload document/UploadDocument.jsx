@@ -41,6 +41,7 @@ const UploadDocument = () => {
     parentAadharDoc: "",
     isUpload: false,
     userid: "",
+    receiptPdf:""
   });
 
   const handleUpload = (e) => {
@@ -56,13 +57,13 @@ const UploadDocument = () => {
 
   const handelFinalUpload = (e) => {
     e.preventDefault();
-    if (
-      image.aadharDoc != "" &&
-      image.form49Back != "" &&
-      image.form49Front != ""
-    ) {
+    if(pans.ageOfTheUser<18 && image.aadharDoc != "" &&image.form49Back != "" &&image.form49Front != "" &&image.parentAadharDoc!=""){
+        onOpen();
+    }
+    else if (pans.ageOfTheUser>=18 && image.aadharDoc != "" &&image.form49Back != "" &&image.form49Front != "") {
       onOpen();
-    } else {
+    }
+    else {
       toast({
         title: "Please choose all documents",
         status: "error",

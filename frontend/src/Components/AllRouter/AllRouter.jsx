@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import { Home } from '../../Pages/Home/Home';
 import { About } from '../../Pages/About/About';
 import { Services } from '../../Pages/Services/Services';
@@ -32,6 +32,7 @@ import Login from '../../Admin/AdminLogin/Login.jsx'
 
 export const AllRouter = () =>{
     const portalData=JSON.parse(localStorage.getItem("digitalPortal"))
+    const adminData=JSON.parse(localStorage.getItem("VDPadmin"))
 
 return (
     <Routes>
@@ -42,22 +43,22 @@ return (
         <Route path={'/Privacy'} element={<Privacy/>}></Route>
         <Route path={'/Signup'} element={<Signup/>}></Route>
         <Route path={'/Signin'} element={<Signin/>}></Route>
-        <Route path={'/Dashboard'} element={portalData?<Dashboard/>:<Signin/>}></Route>
-        <Route path={'/Profile'} element={portalData?<Profile/>:<Signin/>}></Route>
-        <Route path={'/PanCard'} element={<PanCard/>}></Route>
-        <Route path={'/NewPanCard'} element={<NewPanCard/>}></Route>
-        <Route path={'/NewPanCardAllState'} element={<NewPanCardAllState/>}></Route>
-        <Route path={'/user/change-password'} element={portalData?<ChangePassword/>:<Signin/>}></Route>
-        <Route path={'/user/upload'} element={portalData?<Upload/>:<Signin/>}></Route>
-        <Route path={'/user/upload-document/:id'} element={portalData?<UploadDocument/>:<Signin/>}></Route>
-        <Route path={'/user/final-confirm-apply/:id'} element={portalData?<FinalApplyConfirm/>:<Signin/>}></Route>
-        <Route path={'/user/applied-success'} element={portalData?<PanApplySuccess/>:<Signin/>}></Route>
-        <Route path={'/user/pan-receipt'} element={portalData?<Receipt/>:<Signin/>}></Route>
-        <Route path={'/user/pan-edit'} element={portalData?<EditPan/>:<Signin/>}></Route>
+        <Route path={'/Dashboard'} element={portalData?<Dashboard/>:<Navigate to={'/Signin'}/>}></Route>
+        <Route path={'/Profile'} element={portalData?<Profile/>:<Navigate to={'/Signin'}/>}></Route>
+        <Route path={'/PanCard'} element={portalData?<PanCard/>:<Navigate to={'/Signin'}/>}></Route>
+        <Route path={'/NewPanCard'} element={portalData?<NewPanCard/>:<Navigate to={'/Signin'}/>}></Route>
+        <Route path={'/NewPanCardAllState'} element={portalData?<NewPanCardAllState/>:<Navigate to={'/Signin'}/>}></Route>
+        <Route path={'/user/change-password'} element={portalData?<ChangePassword/>:<Navigate to={'/Signin'}/>}></Route>
+        <Route path={'/user/upload'} element={portalData?<Upload/>:<Navigate to={'/Signin'}/>}></Route>
+        <Route path={'/user/upload-document/:id'} element={portalData?<UploadDocument/>:<Navigate to={'/Signin'}/>}></Route>
+        <Route path={'/user/final-confirm-apply/:id'} element={portalData?<FinalApplyConfirm/>:<Navigate to={'/Signin'}/>}></Route>
+        <Route path={'/user/applied-success'} element={portalData?<PanApplySuccess/>:<Navigate to={'/Signin'}/>}></Route>
+        <Route path={'/user/pan-receipt'} element={portalData?<Receipt/>:<Navigate to={'/Signin'}/>}></Route>
+        <Route path={'/user/pan-edit'} element={portalData?<EditPan/>:<Navigate to={'/Signin'}/>}></Route>
         <Route path={'*'} element={<h1>404 Page Not Found</h1>}></Route>
-        <Route path={'/PanCardForm/:catagory'} element={<PanCardForm/>}></Route>
-        <Route path={'/user/upload/PanUploadEdit/:id'} element={<PanUploadEdit/>}></Route>
-        <Route path={'/AdminDash'} element={<AdminDash/>}></Route>
+        <Route path={'/PanCardForm/:catagory'} element={portalData?<PanCardForm/>:<Navigate to={'/Signin'}/>}></Route>
+        <Route path={'/user/upload/PanUploadEdit/:id'} element={portalData?<PanUploadEdit/>:<Navigate to={'/Signin'}/>}></Route>
+        <Route path={'/AdminDash'} element={adminData?<AdminDash/>:<Navigate to={'/admin/login'}/>}></Route>
         <Route path={'/AdminUser'} element={<AdminUser/>}></Route>
         <Route path={'/AdminUser/AminPerson/:id'} element={<AminPerson/>}></Route>
         <Route path={'/AdminPanCard'} element={<AdminPanCard/>}></Route>

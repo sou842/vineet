@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const { NewPanModel } = require("../../model/newPan.model");
 const { adminAuth } = require("../../middleware/adminAuth.middleware");
 const { UserModel } = require("../../model/user.model");
+const { panDocsModel } = require("../../model/panDocs.model");
 const adminRoute = express.Router()
 
 
@@ -100,7 +101,6 @@ adminRoute.get("/individual-pan/:id", async (req, res) => {
 
   try {
     const pans = await NewPanModel.findOne({ _id: id })
-    console.log(pans)
     res.send(pans)
   } catch (error) {
     res.send(error.messege)
@@ -151,6 +151,30 @@ adminRoute.get("/user/pancards/:vendorID",async(req,res)=>{
   }
 })
 
+//pan docs get perticular page
+adminRoute.get("/user/pandocs",async(req,res)=>{
+  const {userid,vendorID}=req.body
+  try {
+    const pandocs=await panDocsModel.findOne({userid,vendorID})
+    res.send(pandocs)
+    
+  } catch (error) {
+    res.send(error)
+  }
+})
+// update status change and slip generate of pan card 
+adminRoute.patch("/user/status-change/:id",async(req,res)=>{
+  const {slipGenerateDate,acknowledgement,receiptPdf}=req.body
+  const {id}=req.params
+  try {
+    await NewPanModel.findByIdAndUpdate({_id:id},{slipGenerateDate,acknowledgement})
+    await panDocsModel.findOneAndUpdate({userid:id},{receiptPdf})
+    res.send("Update Succesfull")
+    
+  } catch (error) {
+    res.send(error)
+  }
+})
 
 
 

@@ -26,8 +26,8 @@ export default function Login() {
         axios.post("http://localhost:8080/admin/login",{email,password})
         .then((res)=>{
             if(res.data.msg=="login successful"){
-                localStorage.setItem("vdpadmin",JSON.stringify({token:res.data.token,adminName:res.data.username}))
-                console.log(res.data);
+                // console.log(res.data);
+               
                 toast({
                     title: res.data.msg,
                     status: 'success',
@@ -35,6 +35,7 @@ export default function Login() {
                     isClosable: true,
                     position:'top-left'
                   })
+                  localStorage.setItem("VDPadmin",JSON.stringify({adminName:res.data.username,token:res.data.token}))
                   navigate("/AdminDash")
             }
             else{

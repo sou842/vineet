@@ -3,15 +3,68 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { AdminNavbar } from '../AdminNavbar/AdminNavbar'
-import { Box, Image, useMediaQuery } from '@chakra-ui/react'
+import { Box, Image, useMediaQuery,useToast,Button } from '@chakra-ui/react'
 
 
 export const AdminPanCardPerson = () => {
+  //########################################
+  const baseurl=process.env.REACT_APP_BASE_URL
+  //########################################
   const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)")
   const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
   const { id } = useParams()
   const [formData, setFormData] = useState();
+  const [pdf, setPdf] = useState("")
+ 
+  const [isComplete,setIscomplete]=useState(false)
+
   const navigate = useNavigate()
+const toast=useToast()
+  const handelSubmit=(e)=>{
+    e.preventDefault()
+    axios.patch(`${baseurl}/admin/user/status-change/${id}`,{...formData,receiptPdf:pdf} ,{
+      headers: { "Authorization": portalData.token }
+    })
+      .then((res) => {
+        toast({
+          title: res.data,
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+          position: 'top-center',
+        })
+        navigate("/AdminPanCard")
+
+      })
+      .catch((err) => {
+        toast({
+          title: "Try again somthing went wrong!",
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+          position: 'top-center',
+        })
+        console.log(err);
+      })
+   
+  }
+
+  const handelChange=(e)=>{
+    if (e.target.name=="receiptPdf" && e.target.files[0]) {
+      let reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = () => {
+        setPdf(reader.result);
+        // console.log(reader.result);
+      }
+    }
+    else{
+
+      setFormData({...formData,[e.target.name]:e.target.value})
+    }
+
+  }
+
 
   useEffect(() => {
     axios.get(`http://localhost:8080/admin/individual-pan/${id}`, {
@@ -20,6 +73,7 @@ export const AdminPanCardPerson = () => {
       .then((res) => {
         console.log(res.data)
         setFormData(res.data);
+        setIscomplete(res.data.acknowledgement=="completed")
       })
       .catch((err) => {
         console.log(err);
@@ -564,20 +618,27 @@ export const AdminPanCardPerson = () => {
         </div>
 
         <div>
-          <form>
-            <h1>CONFIRMMATION</h1>
-            <p>Acknowledgement</p>
-            <input type="text" placeholder='Update Acknowledgement' />
-            <p>Slip Generate Date</p>
-            <input type='date' />
-            <p>Receipt</p>
-            <input type="file" />
-            <button type='submit'>SUBMIT</button>
-          </form>
+          <form onSubmit={handelSubmit}>
+          <h1>CONFIRMMATION</h1>
+          <p>Acknowledgement</p>
+          {/* <input type="text" placeholder='Update Acknowledgement' /> */}
+          <select  required value={formData && formData.acknowledgement}  name='acknowledgement' onChange={handelChange}>
+            <option value="pending">Pending</option>
+            <option value="rejected">Rejected</option>
+            <option value="completed">Completed</option>
+          </select>
+          <p>Slip Generate Date</p>
+          <input type='date'   value={formData&& formData.slipGenerateDate} name='slipGenerateDate' onChange={handelChange}/>
+          <p>Receipt</p>
+          <input type="file"  name='receiptPdf' onChange={handelChange}/>
+          <Button type='submit' isDisabled={isComplete}  >SUBMIT</Button>
+        </form>
+          
+         
           <p onClick={() => navigate('/AdminPanCard')} style={{ textAlign: 'center', margin: '10px', fontSize: '18px', cursor: 'pointer' }}>← BACK</p>
         </div>
       </div>
-      <Box w={'90%'} display={'flex'} flexDirection={['column', 'column', 'row',]} justifyContent={'space-between'} gap={'10px'} m={'auto'} mt={['0.5cm','0.5cm','1cm']} mb={'1cm'}>
+      <Box  w={'90%'} display={'flex'} flexDirection={['column', 'column', 'row',]} justifyContent={'space-between'} gap={'10px'} m={'auto'} mt={['0.5cm','0.5cm','1cm']} mb={'1cm'}>
         <Box w={['100%', '100%', '30%']} m={'auto'} border={'1px solid grey'} h={'350px'} display={'flex'} justifyContent={'center'} alignItems={'center'} position="relative">
           <Image src='https://cdn-icons-png.flaticon.com/128/7188/7188242.png' />
           <Box position="absolute" top="10px" right="10px" borderRadius="full" bg="whiteAlpha.700" boxShadow="md" p={1} cursor={'pointer'}  >
