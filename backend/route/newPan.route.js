@@ -40,7 +40,7 @@ newPanRoute.get("/all-pan-card-deatils", async (req, res) => {
     }
 })
 //get one pan deatails under login user 
-
+newPanRoute.use(auth)
 newPanRoute.get("/upload-pan-card/:id", async (req, res) => {
     const { id } = req.params
 
@@ -73,7 +73,7 @@ newPanRoute.get("/upload-pan-card/:id", async (req, res) => {
 
 
 //upload image data base
-
+newPanRoute.use(auth)
 newPanRoute.patch('/upload-pan-document/:id', async (req, res) => {
     const { id } = req.params
     const { aadharCardDocs, frontForm, backForm } = req.body
@@ -88,7 +88,7 @@ newPanRoute.patch('/upload-pan-document/:id', async (req, res) => {
 })
 
 // final confirm stem api
-
+newPanRoute.use(auth)
 newPanRoute.get('/final-confirm-apply/:id', async (req, res) => {
     const { id } = req.params
     try {
@@ -101,7 +101,7 @@ newPanRoute.get('/final-confirm-apply/:id', async (req, res) => {
     }
 })
 
-
+newPanRoute.use(auth)
 newPanRoute.patch('/apply-confirm-from/:id', async (req, res) => {
     const { id } = req.params
     try {
@@ -113,7 +113,9 @@ newPanRoute.patch('/apply-confirm-from/:id', async (req, res) => {
         res.send(error)
     }
 })
+
 //before upload pan edit api
+newPanRoute.use(auth)
 newPanRoute.patch("/pan-edit/:id",async(req,res)=>{
     const {id}=req.params
     try {
@@ -123,6 +125,18 @@ newPanRoute.patch("/pan-edit/:id",async(req,res)=>{
         res.send(error)
     }
 })
+// only complete panstatus send
+newPanRoute.use(auth)
+newPanRoute.get('/status-completed',async(req,res)=>{
+    try {
+        let pans=await NewPanModel.find({panStatus:"completed"})
+        res.send(pans)
+    } catch (error) {
+        res.send(error)
+    }
+})
+
+
 
 
 

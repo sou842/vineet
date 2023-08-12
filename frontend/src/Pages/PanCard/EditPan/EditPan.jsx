@@ -86,7 +86,8 @@ export const EditPan = () => {
     officezipCode: '',
     officecountry: 'India',
     slipGenerateDate:"",
-    acknowledgement:"pending"
+    acknowledgement:"",
+    panStatus:"pending"
 
   })
 
