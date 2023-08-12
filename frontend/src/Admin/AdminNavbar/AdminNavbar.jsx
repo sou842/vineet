@@ -9,8 +9,7 @@ export const AdminNavbar = ({value}) => {
     const { side, setSide } = useContext(AuthorContext)
     const navigate = useNavigate();
 
-    console.log(value)
-
+    
     return (
         <div>
             <Box w={'100%'} display={'flex'} justifyContent={'space-between'} alignItems={'center'} p={'10px'} pl={'15px'} pr={'15px'} mt={'0'} gap={'10px'} boxShadow={'rgba(0, 0, 0, 0.24) 0px 3px 8px'}>

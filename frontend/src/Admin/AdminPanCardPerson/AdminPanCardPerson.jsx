@@ -15,11 +15,11 @@ export const AdminPanCardPerson = () => {
   const { id } = useParams()
   const [formData, setFormData] = useState();
   const [pdf, setPdf] = useState("")
- 
   const [isComplete,setIscomplete]=useState(false)
-
   const navigate = useNavigate()
-const toast=useToast()
+  const toast=useToast()
+  
+  
   const handelSubmit=(e)=>{
     e.preventDefault()
     axios.patch(`${baseurl}/admin/user/status-change/${id}`,{...formData,receiptPdf:pdf} ,{
@@ -55,11 +55,9 @@ const toast=useToast()
       reader.readAsDataURL(e.target.files[0]);
       reader.onload = () => {
         setPdf(reader.result);
-        // console.log(reader.result);
       }
     }
     else{
-
       setFormData({...formData,[e.target.name]:e.target.value})
     }
 
@@ -628,7 +626,7 @@ const toast=useToast()
             <option value="completed">Completed</option>
           </select>
           <p>Slip Generate Date</p>
-          <input type='date'   value={formData&& formData.slipGenerateDate} name='slipGenerateDate' onChange={handelChange}/>
+          <input type='date'  value={formData&& formData.slipGenerateDate} name='slipGenerateDate' onChange={handelChange}/>
           <p>Receipt</p>
           <input type="file"  name='receiptPdf' onChange={handelChange}/>
           <Button type='submit' isDisabled={isComplete}  >SUBMIT</Button>
