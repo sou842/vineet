@@ -1,15 +1,17 @@
 import { Avatar, Box, Image, Text, Wrap, WrapItem } from "@chakra-ui/react"
 import './AdminNavbar.css'
+import { AuthorContext } from "../../Components/AllContext/AllContext"
+import { useContext } from "react"
 
 export const AdminNavbar = () => {
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null
-
+    const {side,setSide} = useContext(AuthorContext)
 
     return (
         <div>
             <Box w={'100%'} display={'flex'} justifyContent={'space-between'} alignItems={'center'} p={'10px'} pl={'15px'} pr={'15px'} mt={'0'} gap={'10px'} boxShadow={'rgba(0, 0, 0, 0.24) 0px 3px 8px'}>
                 <Box display={'flex'} alignItems={'end'}>
-                    <Image onClick={()=>console.log('click')} cursor={'pointer'} w={'30px'} h={'30px'} src={'https://cdn-icons-png.flaticon.com/128/1828/1828859.png'}/>
+                    <Image onClick={()=>setSide(!side)} cursor={'pointer'} w={'30px'} h={'30px'} src={'https://cdn-icons-png.flaticon.com/128/1828/1828859.png'}/>
                     <Text fontSize={'16px'} ml={'10px'} color={'blue.400'}>Hi,Admin</Text>
                 </Box>
                 <Box display={'flex'} gap={'10px'}>
