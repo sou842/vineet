@@ -1,10 +1,11 @@
-import { Avatar, Box, Button, Grid, Menu, MenuButton, MenuItem, MenuList, Spinner, Text, Wrap, WrapItem, useMediaQuery, useToast, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer } from '@chakra-ui/react';
+import { Avatar, Box, Button, Grid, Menu, MenuButton, MenuItem, MenuList, Spinner, Text, Wrap, WrapItem, useMediaQuery, useToast, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer, Input } from '@chakra-ui/react';
 import './AdminPanCard.css'
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from 'axios'
 import { AdminSlider } from "../AdminSlider/AdminSlider";
 import { AdminNavbar } from '../AdminNavbar/AdminNavbar';
 import { useNavigate } from 'react-router-dom';
+import { AuthorContext } from '../../Components/AllContext/AllContext';
 
 
 export const AdminPanCard = () => {
@@ -13,7 +14,9 @@ export const AdminPanCard = () => {
     const [pan, setPan] = useState([]);
     const [filterData, setFilterData] = useState({ CATEGORY: '', SEARCH: '' })
     const [loading, setLoading] = useState()
-
+    const { side, setSide } = useContext(AuthorContext)
+    const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)");
+    const [isSmallerThan600] = useMediaQuery("(max-width: 600px)");
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -42,16 +45,18 @@ export const AdminPanCard = () => {
             <div><AdminNavbar /></div>
 
             <div className="AdminPanCard_0">
-                <div style={{ width: '24%' }}>
-                    <AdminSlider slidevalue={'AdminPanCard'} />
-                </div>
+                {!isSmallerThan1000 ?
+                    <div style={{ width: side ? '24%' : '0px', backgroundColor: '#061621eb' }}>{side ? <div><AdminSlider slidevalue={'AdminPanCard'} /></div> : null}</div>
+                    :
+                    <div>{side ? <div style={{ width: !isSmallerThan600 ? '37%' : '65%', position: 'fixed', zIndex: '90', backgroundColor: '#061621eb', height: '100vh' }}>{side ? <div><AdminSlider slidevalue={'AdminPanCard'} /></div> : null}</div> : null}
+                    </div>
+                }
 
-                <div style={{ width: '75%' }}>
-                    <div className='AdminPanCard_subnav'>
-                        <div>
-                            {/* <select name="city" required value={formData.city} onChange={handleChange}> */}
 
-                            <select name="CATEGORY" value={filterData.CATEGORY} onChange={handleChange}>
+                <div style={{ width: side && !isSmallerThan1000 ? '75%' : '100%' }}>
+                    <Box display={'flex'} justifyContent={'space-between'} mt={'1cm'} p={'3px'}>
+                        <Box w={['30%', '35%', '40%']}>
+                            <select style={{ padding: '10px', border: '0', fontSize: '14px' }} name="CATEGORY" value={filterData.CATEGORY} onChange={handleChange}>
                                 <option value="">CATEGORY</option>
                                 <option value="Individual">Individual</option>
                                 <option value="Artificial Judicial Person">Artificial Judicial Person</option>
@@ -63,15 +68,16 @@ export const AdminPanCard = () => {
                                 <option value="Limited Liability Partnership">Limited Liability Partnership</option>
                                 <option value="Local Authority">Local Authority</option>
                             </select>
-                        </div>
-                        <div>
-                            <input type="text" placeholder='Search...' />
-                            <img onClick={() => console.log('Search...')} src="https://cdn-icons-png.flaticon.com/128/758/758917.png" alt="search" />
-                        </div>
-                    </div>
+                        </Box>
+                        <Box w={['60%', '55%', '45%']} display={'flex'}>
+                            <Input border={'1px solid grey'} borderRadius={'20px'} borderEndRadius={0} type="text" placeholder='Search...' />
+                            <Button fontSize={'14px'} bg={'blue.500'} color={'whiteAlpha.900'} borderRadius={'10px'} borderStartRadius={0}>Search</Button>
+                        </Box>
+                    </Box>
+
                     {loading ? <Box display={'flex'} justifyContent={'center'} mt={'2cm'} mb={'2cm'}><Spinner color='#00aeff' /></Box> :
 
-                        <Box>{pan.length == 0 ? <Box minH={'60vh'} display={'flex'} justifyContent={'center'} alignItems={'center'}>NO DATA FOUND</Box> :
+                        <Box>{pan.length == 0 ? <Box minH={'60vh'} display={'flex'} justifyContent={'center'} alignItems={'center'} maxH={'100vh'} overflow={'scroll'} scrollBehavior={'smooth'}>NO DATA FOUND</Box> :
                             <TableContainer>
                                 <Table variant='striped' colorScheme='teal'>
                                     <TableCaption>Imperial to metric conversion factors</TableCaption>
@@ -88,7 +94,7 @@ export const AdminPanCard = () => {
                                     <Tbody>
                                         {pan?.map((ele, index) => (
                                             <Tr key={index} fontSize={['12px', '13px', '14px']} onClick={() => navigate(`/AdminPanCard/AdminPanCardPerson/${ele._id}`)} cursor={'pointer'}>
-                                                <Td w={'4%'}>{index+1}</Td>
+                                                <Td w={'4%'}>{index + 1}</Td>
                                                 <Td>{ele.category}</Td>
                                                 {ele.category == 'Individual' ?
                                                     <Td>{ele.firstName + " " + ele.middleName + " " + ele.lastName}</Td>
@@ -97,7 +103,7 @@ export const AdminPanCard = () => {
                                                 }
                                                 {/* <Td>{ele.tokenNumber}</Td> */}
                                                 <Td>{ele.date}</Td>
-                                                <Td fontSize={'15px'} textAlign={'center'}>{ele.isDoneFromUser?"✓":"✕"}</Td>
+                                                <Td fontSize={'15px'} textAlign={'center'}>{ele.isDoneFromUser ? "✓" : "✕"}</Td>
                                                 <Td >{ele.acknowledgement.toUpperCase()}</Td>
                                             </Tr>
                                         ))}
