@@ -123,13 +123,13 @@ newPanRoute.patch("/pan-edit/:id",async(req,res)=>{
         res.send('Edit Successfull')
     } catch (error) {
         res.send(error)
-    }
+    }   
 })
 // only complete panstatus send
 newPanRoute.use(auth)
 newPanRoute.get('/status-completed',async(req,res)=>{
     try {
-        let pans=await NewPanModel.find({panStatus:"completed"})
+        let pans=await NewPanModel.find({panStatus:"completed",vendorID:req.body.vendorID})
         res.send(pans)
     } catch (error) {
         res.send(error)

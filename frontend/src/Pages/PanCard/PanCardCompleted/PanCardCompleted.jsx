@@ -19,8 +19,10 @@ export const PanCardCompleted = () => {
 
         }).then((res) => {
             setLoading(false)
-            
-           window.open(res.data);
+           
+
+            // window.location.reload()
+                window.open(res.data);
 
            
         }).catch((err) => {
