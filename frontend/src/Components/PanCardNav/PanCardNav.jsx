@@ -91,7 +91,7 @@ export const PanCardNav = () => {
                                 <MenuItem onClick={() => navigate('/user/pan-receipt')}>Receipt</MenuItem>
                                 <MenuItem onClick={() => navigate('/user/upload')}>Upload</MenuItem>
                                 <MenuItem onClick={() => navigate('#')}>Reject Pan by NSDL</MenuItem>
-                                <MenuItem onClick={() => navigate('#')}>Complite</MenuItem>
+                                <MenuItem onClick={() => navigate('/user/PanCardCompleted')}>Complete</MenuItem>
                                 <MenuItem onClick={() => navigate('#')}>Check Pan Status</MenuItem>
                                 <Menu placement="right-start">
                                     <MenuButton colorScheme='white' color={'black'} as={Button} rightIcon={<ChevronDownIcon />} bg={'white'} margin={0}>Services</MenuButton>
@@ -154,8 +154,8 @@ export const PanCardNav = () => {
                             </a>
                         </div>
                         <div>
-                            <a href="#">
-                                <p>Complite</p>
+                            <a href="/user/PanCardCompleted">
+                                <p>Complete</p>
                             </a>
                         </div>
                         <div>

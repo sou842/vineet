@@ -65,15 +65,16 @@ const toast=useToast()
 
   }
 
+  console.log(formData)
 
   useEffect(() => {
     axios.get(`${baseurl}/admin/individual-pan/${id}`, {
       headers: { "Authorization": portalData.token }
     })
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         setFormData(res.data);
-        setIscomplete(res.data.acknowledgement=="completed")
+        setIscomplete(res.data.panStatus=="completed")
       })
       .catch((err) => {
         console.log(err);
@@ -620,18 +621,20 @@ const toast=useToast()
         <div>
           <form onSubmit={handelSubmit}>
           <h1>CONFIRMMATION</h1>
-          <p>Acknowledgement</p>
+          <p>Status</p>
           {/* <input type="text" placeholder='Update Acknowledgement' /> */}
-          <select  required value={formData && formData.acknowledgement}  name='acknowledgement' onChange={handelChange}>
+          <select  required value={formData && formData.panStatus}  name='panStatus' onChange={handelChange}>
             <option value="pending">Pending</option>
             <option value="rejected">Rejected</option>
             <option value="completed">Completed</option>
           </select>
+          <p>Acknowledgement</p>
+          <input type="number" placeholder='Acknowledgement Number' required value={formData && formData.acknowledgement}  name='acknowledgement' onChange={handelChange}/>
           <p>Slip Generate Date</p>
           <input type='date'   value={formData&& formData.slipGenerateDate} name='slipGenerateDate' onChange={handelChange}/>
           <p>Receipt</p>
           <input type="file"  name='receiptPdf' onChange={handelChange}/>
-          <Button type='submit' isDisabled={isComplete}  >SUBMIT</Button>
+          <Button type='submit' isDisabled={isComplete || formData&& !formData.isDoneFromUser}  >SUBMIT</Button>
         </form>
           
          

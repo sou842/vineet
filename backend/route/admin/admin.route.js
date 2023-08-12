@@ -164,10 +164,10 @@ adminRoute.get("/user/pandocs",async(req,res)=>{
 })
 // update status change and slip generate of pan card 
 adminRoute.patch("/user/status-change/:id",async(req,res)=>{
-  const {slipGenerateDate,acknowledgement,receiptPdf}=req.body
+  const {slipGenerateDate,acknowledgement,panStatus,receiptPdf}=req.body
   const {id}=req.params
   try {
-    await NewPanModel.findByIdAndUpdate({_id:id},{slipGenerateDate,acknowledgement})
+    await NewPanModel.findByIdAndUpdate({_id:id},{slipGenerateDate,acknowledgement,panStatus})
     await panDocsModel.findOneAndUpdate({userid:id},{receiptPdf})
     res.send("Update Succesfull")
     

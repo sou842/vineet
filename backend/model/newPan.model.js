@@ -55,7 +55,8 @@ const newPanSchema = mongoose.Schema({
   ageOfTheUser: { type: String },
   isDoneFromUser: { type: Boolean },
   isUpload: { type: Boolean },
-  acknowledgement: { type: String },
+  acknowledgement: { type: Number },
+  panStatus:{type:String},
   slipGenerateDate: { type: String },
   
   PanFee: { type: Number },

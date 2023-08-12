@@ -26,6 +26,17 @@ panDocsRoute.get("/upload-pandocs/:id",async(req,res)=>{
         res.send(error)
     }
 })
+//download reciept
+panDocsRoute.get("/recipt-download/:id",async(req,res)=>{
+    const {id}=req.params
+    try {
+        const recipt=await panDocsModel.findOne({userid:id})
+        res.send(recipt.receiptPdf)
+        
+    } catch (error) {
+        res.send(error)
+    }
+})
 
 
 module.exports={

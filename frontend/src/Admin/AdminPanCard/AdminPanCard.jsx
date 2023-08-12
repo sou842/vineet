@@ -96,7 +96,7 @@ export const AdminPanCard = () => {
                                             <Th>Name</Th>
                                             <Th>Apply date</Th>
                                             <Th>From user</Th>
-                                            <Th>Acknowledge</Th>
+                                            <Th>Status</Th>
                                         </Tr>
                                     </Thead>
                                     <Tbody>
@@ -112,7 +112,7 @@ export const AdminPanCard = () => {
                                                 {/* <Td>{ele.tokenNumber}</Td> */}
                                                 <Td>{ele.date}</Td>
                                                 <Td fontSize={'15px'} textAlign={'center'}>{ele.isDoneFromUser ? "✓" : "✕"}</Td>
-                                                <Td >{ele.acknowledgement.toUpperCase()}</Td>
+                                                <Td >{ele.panStatus.toUpperCase()}</Td>
                                             </Tr>
                                         ))}
                                     </Tbody>
