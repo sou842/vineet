@@ -18,12 +18,15 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export default function Login() {
+//########################################
+const baseurl=process.env.REACT_APP_BASE_URL
+//########################################
     const toast=useToast()
     const navigate=useNavigate()
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
     const handelLogin=()=>{
-        axios.post("http://localhost:8080/admin/login",{email,password})
+        axios.post(`${baseurl}/admin/login`,{email,password})
         .then((res)=>{
             if(res.data.msg=="login successful"){
                 // console.log(res.data);
@@ -36,7 +39,7 @@ export default function Login() {
                     position:'top-left'
                   })
                   localStorage.setItem("VDPadmin",JSON.stringify({adminName:res.data.username,token:res.data.token}))
-                  navigate("/AdminDash")
+                  window.location="/AdminDash"
             }
             else{
                 toast({

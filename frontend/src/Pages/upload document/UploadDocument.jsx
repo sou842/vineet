@@ -45,6 +45,7 @@ const UploadDocument = () => {
   });
 
   const handleUpload = (e) => {
+    console.log(e.target.files[0].size);
     if (e.target.files[0]) {
       let reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
@@ -53,6 +54,7 @@ const UploadDocument = () => {
         // console.log(reader.result);
       };
     }
+    
   };
 
   const handelFinalUpload = (e) => {

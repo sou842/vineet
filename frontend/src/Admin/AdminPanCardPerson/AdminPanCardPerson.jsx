@@ -67,7 +67,7 @@ const toast=useToast()
 
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/admin/individual-pan/${id}`, {
+    axios.get(`${baseurl}/admin/individual-pan/${id}`, {
       headers: { "Authorization": portalData.token }
     })
       .then((res) => {
