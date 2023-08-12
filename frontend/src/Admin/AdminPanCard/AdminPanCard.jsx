@@ -42,18 +42,26 @@ export const AdminPanCard = () => {
 
     return (
         <div>
-            <div><AdminNavbar /></div>
+            {/* <div><AdminNavbar value={'adminpancard'} /></div> */}
 
-            <div className="AdminPanCard_0">
+            {/* <div className="AdminPanCard_0">
                 {!isSmallerThan1000 ?
                     <div style={{ width: side ? '24%' : '0px', backgroundColor: '#061621eb' }}>{side ? <div><AdminSlider slidevalue={'AdminPanCard'} /></div> : null}</div>
                     :
-                    <div>{side ? <div style={{ width: !isSmallerThan600 ? '37%' : '65%', position: 'fixed', zIndex: '90', backgroundColor: '#061621eb', height: '100vh' }}>{side ? <div><AdminSlider slidevalue={'AdminPanCard'} /></div> : null}</div> : null}
+                    <div>{side ? <div style={{ width: !isSmallerThan600 ? '37%' : '65%', position: 'fixed', top:'0', zIndex: '90', backgroundColor: '#061621eb', height: '100vh' }}>{side ? <div><AdminSlider slidevalue={'AdminPanCard'} /></div> : null}</div> : null}
+                    </div>
+                } */}
+
+            <div style={{ position: 'fixed', zIndex: '100', width: '100%', backgroundColor: 'white' }}> <AdminNavbar value={'adminpancard'} /></div>
+            <div className='AdminDash_0'>
+                {!isSmallerThan1000 ?
+                    <div style={{ width: side ? '24%' : '0px', backgroundColor: '#061621eb', paddingTop: '1.4cm' }}>{side ? <div><AdminSlider slidevalue={'AdminPanCard'} /></div> : null}</div>
+                    :
+                    <div>{side ? <div style={{ width: !isSmallerThan600 ? '37%' : '65%', position: 'fixed', zIndex: '10', top: '0', backgroundColor: '#061621eb', paddingTop: '1.4cm', height: '100vh' }}>{side ? <div><AdminSlider slidevalue={'AdminPanCard'} /></div> : null}</div> : null}
                     </div>
                 }
 
-
-                <div style={{ width: side && !isSmallerThan1000 ? '75%' : '100%' }}>
+                <div style={{ width: side && !isSmallerThan1000 ? '75%' : '96%', margin: '1.2cm auto' }}>
                     <Box display={'flex'} justifyContent={'space-between'} mt={'1cm'} p={'3px'}>
                         <Box w={['30%', '35%', '40%']}>
                             <select style={{ padding: '10px', border: '0', fontSize: '14px' }} name="CATEGORY" value={filterData.CATEGORY} onChange={handleChange}>
