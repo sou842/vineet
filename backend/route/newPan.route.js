@@ -129,7 +129,7 @@ newPanRoute.patch("/pan-edit/:id",async(req,res)=>{
 newPanRoute.use(auth)
 newPanRoute.get('/status-completed',async(req,res)=>{
     try {
-        let pans=await NewPanModel.find({panStatus:"completed"})
+        let pans=await NewPanModel.find({panStatus:"completed",vendorID:req.body.vendorID})
         res.send(pans)
     } catch (error) {
         res.send(error)
