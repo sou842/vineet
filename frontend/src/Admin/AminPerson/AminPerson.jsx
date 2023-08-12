@@ -16,7 +16,6 @@ export const AminPerson = () => {
     const navigate = useNavigate();
 
 
-
     const handleState = (value) => {
         setOpeningdata(false)
         setPandata(false)
@@ -24,7 +23,7 @@ export const AminPerson = () => {
         if (value == 'pancard') {
             setPandata(true)
 
-            axios.get(`http://localhost:8080/admin/user/pancards/VDP5191193`, {
+            axios.get(`http://localhost:8080/admin/user/pancards/${users&&users.vendorID}`, {
                 headers: { "Authorization": portalData.token }
             })
                 .then((res) => {
@@ -38,8 +37,6 @@ export const AminPerson = () => {
         if (value == 'user') setOpeningdata(true)
     }
 
-    //   for under one user all pans
-    //   http://localhost:8080/admin/user/pancards/VDP5191193
     useEffect(() => {
         axios.get(`http://localhost:8080/admin/user-profile-data/${id}`, {
             headers: { "Authorization": portalData.token }
