@@ -67,7 +67,7 @@ const toast=useToast()
 
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/admin/individual-pan/${id}`, {
+    axios.get(`${baseurl}/admin/individual-pan/${id}`, {
       headers: { "Authorization": portalData.token }
     })
       .then((res) => {
@@ -628,9 +628,9 @@ const toast=useToast()
             <option value="completed">Completed</option>
           </select>
           <p>Slip Generate Date</p>
-          <input type='date'   value={formData&& formData.slipGenerateDate} name='slipGenerateDate' onChange={handelChange}/>
+          <input type='date' required  value={formData&& formData.slipGenerateDate} name='slipGenerateDate' onChange={handelChange}/>
           <p>Receipt</p>
-          <input type="file"  name='receiptPdf' onChange={handelChange}/>
+          <input type="file" required name='receiptPdf' onChange={handelChange}/>
           <Button type='submit' isDisabled={isComplete}  >SUBMIT</Button>
         </form>
           
