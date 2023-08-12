@@ -123,7 +123,7 @@ newPanRoute.patch("/pan-edit/:id",async(req,res)=>{
         res.send('Edit Successfull')
     } catch (error) {
         res.send(error)
-    }
+    }   
 })
 // only complete panstatus send
 newPanRoute.use(auth)
