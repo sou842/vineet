@@ -42,15 +42,6 @@ export const AdminPanCard = () => {
 
     return (
         <div>
-            {/* <div><AdminNavbar value={'adminpancard'} /></div> */}
-
-            {/* <div className="AdminPanCard_0">
-                {!isSmallerThan1000 ?
-                    <div style={{ width: side ? '24%' : '0px', backgroundColor: '#061621eb' }}>{side ? <div><AdminSlider slidevalue={'AdminPanCard'} /></div> : null}</div>
-                    :
-                    <div>{side ? <div style={{ width: !isSmallerThan600 ? '37%' : '65%', position: 'fixed', top:'0', zIndex: '90', backgroundColor: '#061621eb', height: '100vh' }}>{side ? <div><AdminSlider slidevalue={'AdminPanCard'} /></div> : null}</div> : null}
-                    </div>
-                } */}
 
             <div style={{ position: 'fixed', zIndex: '100', width: '100%', backgroundColor: 'white' }}> <AdminNavbar value={'adminpancard'} /></div>
             <div className='AdminDash_0'>
@@ -102,7 +93,7 @@ export const AdminPanCard = () => {
                                     <Tbody>
                                         {pan?.map((ele, index) => (
                                             <Tr key={index} fontSize={['12px', '13px', '14px']} onClick={() => navigate(`/AdminPanCard/AdminPanCardPerson/${ele._id}`)} cursor={'pointer'}>
-                                                <Td w={'4%'}>{index + 1}</Td>
+                                                <Td w={'70px'}>{index + 1}</Td>
                                                 <Td>{ele.category}</Td>
                                                 {ele.category == 'Individual' ?
                                                     <Td>{ele.firstName + " " + ele.middleName + " " + ele.lastName}</Td>
@@ -111,8 +102,14 @@ export const AdminPanCard = () => {
                                                 }
                                                 {/* <Td>{ele.tokenNumber}</Td> */}
                                                 <Td>{ele.date}</Td>
-                                                <Td fontSize={'15px'} textAlign={'center'}>{ele.isDoneFromUser ? "✓" : "✕"}</Td>
-                                                <Td >{ele.panStatus.toUpperCase()}</Td>
+                                                {ele.isDoneFromUser ?
+                                                    <Td w={'60px'} fontWeight={'bold'} color={'green'} fontSize={'15px'} textAlign={'center'}>✓</Td>
+                                                    :
+                                                    <Td w={'60px'} fontWeight={'bold'} color={'red'} fontSize={'15px'} textAlign={'center'}>✕</Td>
+                                                }
+                                                {ele.panStatus=='pending'?<Td color={'blue.600'}>{ele.panStatus.toUpperCase()}</Td>:null }
+                                                {ele.panStatus=='completed'?<Td color={'green'}>{ele.panStatus.toUpperCase()}</Td>:null }
+                                                {ele.panStatus=='rejected'?<Td color={'red'}>{ele.panStatus.toUpperCase()}</Td>:null }
                                             </Tr>
                                         ))}
                                     </Tbody>

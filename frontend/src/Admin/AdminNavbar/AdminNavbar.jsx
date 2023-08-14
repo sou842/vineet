@@ -80,12 +80,6 @@ const handelAdminLogout=()=>{
             src="https://cdn-icons-png.flaticon.com/128/646/646094.png"
             alt=""
           />
-          {/* <Wrap>
-                    <WrapItem>
-                        <Avatar color={'black'} bg='#00aeff' size={['sm']} name={portalData && portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData && portalData.avatar} />
-                    </WrapItem>
-
-                </Wrap> */}
           <Menu>
             <MenuButton>
               <Avatar
@@ -100,7 +94,7 @@ const handelAdminLogout=()=>{
               />
             </MenuButton>
             <MenuList>
-              <MenuItem fontWeight={'bold'}>Hello Admin,{adminData.adminName.toUpperCase()}</MenuItem>
+              <MenuItem fontWeight={'bold'}>Hello,{adminData.adminName.toUpperCase()}</MenuItem>
               <MenuItem color={'red'} onClick={handelAdminLogout}>Logout</MenuItem>
              
             </MenuList>
