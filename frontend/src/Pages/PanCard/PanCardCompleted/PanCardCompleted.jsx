@@ -10,7 +10,9 @@ export const PanCardCompleted = () => {
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
     const [pans, setPans] = useState([])
     const [loading, setLoading] = useState()
-    const handelDownloadRecipt=(id)=>{
+    const [pd,setPd] = useState('');
+
+    const handelDownloadRecipt = (id) => {
 
         axios.get(`http://localhost:8080/user/recipt-download/${id}`, {
             headers: {
@@ -19,18 +21,16 @@ export const PanCardCompleted = () => {
 
         }).then((res) => {
             setLoading(false)
-            
-           window.open(res.data);
+            setPd(res.data)
 
-           
         }).catch((err) => {
             setLoading(false)
             console.log(err);
         })
-        
+
     }
 
-    
+
     useEffect(() => {
         axios.get("http://localhost:8080/user/status-completed", {
             headers: {
@@ -57,7 +57,7 @@ export const PanCardCompleted = () => {
             <Box w={'100%'} minH={'60vh'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
                 {loading ? <Box display={'flex'} justifyContent={'center'} mt={'2cm'} mb={'2cm'}><Spinner color='#00aeff' /></Box> :
                     <Box w={'90%'}>
-                    {pans.length == 0 ? <Box textAlign={'center'}>NO DATA FOUND</Box> : null}
+                        {pans.length == 0 ? <Box textAlign={'center'}>NO DATA FOUND</Box> : null}
 
                         <Grid templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} gap={['10px', '15px']} w={'95%'} m={'1cm auto'}>
                             {pans?.map((ele, index) => (
@@ -73,13 +73,16 @@ export const PanCardCompleted = () => {
                                         <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Status : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>{ele.panStatus}</Text></Text>
                                         <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Acknowledgement : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>{ele.acknowledgement}</Text></Text>
                                         <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Slip Generate Date : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>{ele.slipGenerateDate}</Text></Text>
-                                      
-                                           
+
+
                                     </Box>
                                     <Box>
 
 
-                                        <Button color={'black'} _hover={{ color: '#00aeff' }} transition={'0.4s'} border={'1.3px solid grey'} w={'95%'} m={'auto'} mt={'20px'} mb={'10px'} display={'block'} onClick={()=>handelDownloadRecipt(ele._id)}>Download Receipt</Button>
+                                        <Button color={'black'} _hover={{ color: '#00aeff' }} transition={'0.4s'} border={'1.3px solid grey'} w={'95%'} m={'auto'} mt={'20px'} mb={'10px'} display={'block'} onClick={() => handelDownloadRecipt(ele._id)}>Download Receipt</Button>
+                                        {pd?
+                                        <Button onClick={()=>window.open(pd)}>open</Button>
+                                    :null}
                                     </Box>
                                 </Box>
                             ))}

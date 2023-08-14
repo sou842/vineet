@@ -100,7 +100,7 @@ export const AdminPanCard = () => {
                                         </Tr>
                                     </Thead>
                                     <Tbody>
-                                        {pan?.map((ele, index) => (
+                                        {pan && pan?.map((ele, index) => (
                                             <Tr key={index} fontSize={['12px', '13px', '14px']} onClick={() => navigate(`/AdminPanCard/AdminPanCardPerson/${ele._id}`)} cursor={'pointer'}>
                                                 <Td w={'4%'}>{index + 1}</Td>
                                                 <Td>{ele.category}</Td>
@@ -112,7 +112,7 @@ export const AdminPanCard = () => {
                                                 {/* <Td>{ele.tokenNumber}</Td> */}
                                                 <Td>{ele.date}</Td>
                                                 <Td fontSize={'15px'} textAlign={'center'}>{ele.isDoneFromUser ? "✓" : "✕"}</Td>
-                                                <Td >{ele.panStatus.toUpperCase()}</Td>
+                                                <Td >{ele.panStatus}</Td>
                                             </Tr>
                                         ))}
                                     </Tbody>
