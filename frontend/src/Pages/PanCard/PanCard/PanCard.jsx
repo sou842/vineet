@@ -1,14 +1,7 @@
 import "./PanCard.css";
 import { useNavigate } from "react-router-dom";
 import { PanCardNav } from "../../../Components/PanCardNav/PanCardNav";
-import {
-  ModalOverlay, Modal,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton, useDisclosure, Button, Heading
-} from "@chakra-ui/react";
+import { ModalOverlay, Modal, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure, Button, Heading } from "@chakra-ui/react";
 import { useEffect } from "react";
 import axios from "axios";
 import { Footer } from "../../../Components/Footer/Footer";
@@ -75,7 +68,7 @@ export const PanCard = () => {
       </div>
 
       {/* initial instruction modal */}
-      <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
+      {/* <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Please Note :</ModalHeader>
@@ -84,7 +77,7 @@ export const PanCard = () => {
             <Heading size={'sm'}>संचालक भाइयों अब आप इसी पेज पर नीचे दिए गए <Heading size={'sm'} color={'red'} as={'span'}> Download slip by acknow पर click </Heading> करके अपनी सब पुरानी स्लिप डाउनलोड कर सकते है </Heading>
           </ModalBody>
         </ModalContent>
-      </Modal>
+      </Modal> */}
 
 
 

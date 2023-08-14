@@ -14,7 +14,7 @@ export const AdminPanCardPerson = () => {
   const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
   const { id } = useParams()
   const [formData, setFormData] = useState();
-  const [pdf, setPdf] = useState("")
+  const [pdf, setPdf] = useState("https://drive.google.com/file/d/1YueuQPSR4-ihIuhWdqWluA6cGYOkRzMn/view?usp=sharing")
  
   const [isComplete,setIscomplete]=useState(false)
 

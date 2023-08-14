@@ -12,7 +12,7 @@ const newPanRoute = express.Router()
 newPanRoute.use(auth)
 newPanRoute.post("/new-pan-card", async (req, res) => {
     try {
-       
+
         const tokenNumber = prandom.number(8);
         req.body.tokenNumber = tokenNumber
         const newPan = await NewPanModel(req.body)
@@ -30,7 +30,7 @@ newPanRoute.get("/all-pan-card-deatils", async (req, res) => {
     const { vendorID, userID } = req.body;
 
     try {
-        const pans = await NewPanModel.find({$and:[{vendorID:vendorID},{isUpload:false}]})
+        const pans = await NewPanModel.find({ $and: [{ vendorID: vendorID }, { isUpload: false }] })
         res.send(pans)
 
 
@@ -39,6 +39,19 @@ newPanRoute.get("/all-pan-card-deatils", async (req, res) => {
         res.send(error)
     }
 })
+
+newPanRoute.get("/all-uploaded-pan-card", async (req, res) => {
+    const { vendorID, userID } = req.body;
+
+    try {
+        const pans = await NewPanModel.find({ $and: [{ vendorID: vendorID }, { isUpload: true }] })
+        res.send(pans)
+
+    } catch (error) {
+        res.send(error)
+    }
+})
+
 //get one pan deatails under login user 
 newPanRoute.use(auth)
 newPanRoute.get("/upload-pan-card/:id", async (req, res) => {
@@ -106,7 +119,7 @@ newPanRoute.patch('/apply-confirm-from/:id', async (req, res) => {
     const { id } = req.params
     try {
 
-        const user = await NewPanModel.findByIdAndUpdate({ _id: id }, { isDoneFromUser: true,isUpload:true })
+        const user = await NewPanModel.findByIdAndUpdate({ _id: id }, { isDoneFromUser: true, isUpload: true })
         res.send('Apply Successfull')
 
     } catch (error) {
@@ -116,20 +129,20 @@ newPanRoute.patch('/apply-confirm-from/:id', async (req, res) => {
 
 //before upload pan edit api
 newPanRoute.use(auth)
-newPanRoute.patch("/pan-edit/:id",async(req,res)=>{
-    const {id}=req.params
+newPanRoute.patch("/pan-edit/:id", async (req, res) => {
+    const { id } = req.params
     try {
-       await NewPanModel.findByIdAndUpdate({ _id: id }, req.body)
+        await NewPanModel.findByIdAndUpdate({ _id: id }, req.body)
         res.send('Edit Successfull')
     } catch (error) {
         res.send(error)
-    }   
+    }
 })
 // only complete panstatus send
 newPanRoute.use(auth)
-newPanRoute.get('/status-completed',async(req,res)=>{
+newPanRoute.get('/status-completed', async (req, res) => {
     try {
-        let pans=await NewPanModel.find({panStatus:"completed",vendorID:req.body.vendorID})
+        let pans = await NewPanModel.find({ panStatus: "completed", vendorID: req.body.vendorID })
         res.send(pans)
     } catch (error) {
         res.send(error)

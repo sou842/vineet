@@ -79,7 +79,7 @@ export const AdminPanCard = () => {
                         <Box>{pan.length == 0 ? <Box minH={'60vh'} display={'flex'} justifyContent={'center'} alignItems={'center'} maxH={'100vh'} overflow={'scroll'} scrollBehavior={'smooth'}>NO DATA FOUND</Box> :
                             <TableContainer>
                                 <Table variant='striped' colorScheme='teal'>
-                                    <TableCaption>Imperial to metric conversion factors</TableCaption>
+                                    <TableCaption></TableCaption>
                                     <Thead>
                                         <Tr>
                                             <Th w={'4%'}>No.</Th>
