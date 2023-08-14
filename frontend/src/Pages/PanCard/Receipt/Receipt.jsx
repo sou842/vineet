@@ -1,15 +1,15 @@
 import { Box, Table, TableContainer, Tbody, Td, Th, Tr, Thead, Spinner, Text, Button, Grid } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import ContactUs from '../../contact us with time/ContactUs'
 import { PanCardNav } from '../../../Components/PanCardNav/PanCardNav'
 import { Footer } from '../../../Components/Footer/Footer.jsx'
-
+import { Navigate } from 'react-router-dom'
 
 const Receipt = () => {
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
     const [pans, setPans] = useState([])
     const [loading, setLoading] = useState()
+    const [pdfData, setPdfData] = useState({ PDF: '', panID: '' });
 
 
     useEffect(() => {
@@ -29,20 +29,23 @@ const Receipt = () => {
 
     }, [])
 
-    // const [pdfData, setPdfData] = useState(null);
 
 
     const handleDownload = (id) => {
-        console.log(id)
         axios.get(`http://localhost:8080/user/recipt-download/${id}`, {
             headers: { "Authorization": portalData.token }
         }).then((res) => {
-            console.log(res.data)
-            window.open(res.data)
+            // setPdfData(res.data)
+            setPdfData((prevData) => ({ ...prevData, ['PDF']: res.data }));
+            setPdfData((prevData) => ({ ...prevData, ['panID']: id }));
+            
         }).catch((err) => {
             console.log(err)
         })
     }
+    
+    console.log(pdfData)
+
     return (
         <Box>
             <PanCardNav />
@@ -67,7 +70,11 @@ const Receipt = () => {
                                         <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Slip Generate Date : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>{ele.slipGenerateDate}</Text></Text>
                                     </Box>
                                     <Box>
-                                        <Button onClick={()=>handleDownload(ele._id)} color={'black'} _hover={{ color: '#00aeff' }} transition={'0.4s'} border={'1.3px solid grey'} w={'95%'} m={'auto'} mt={'20px'} mb={'10px'} display={'block'}>Download Receipt</Button>
+                                        {pdfData.PDF && pdfData.panID==ele._id ?
+                                            <a style={{ textAlign: 'center',width:'95%',margin:'20px auto 10px auto',borderRadius:'7px', display: 'block', color: '#00aeff', border: '1.2px solid #00aeff', padding: '7px' }} href={pdfData.PDF} download={pdfData.PDF}>Download Now</a>
+                                            :
+                                            <Button onClick={() => handleDownload(ele._id)} color={'black'} _hover={{ color: '#00aeff' }} transition={'0.4s'} border={'1.3px solid grey'} w={'95%'} m={'auto'} mt={'20px'} mb={'10px'} display={'block'}>Generate Receipt</Button>
+                                        }
                                     </Box>
                                 </Box>
                             ))}
@@ -80,4 +87,6 @@ const Receipt = () => {
     )
 }
 
-export default Receipt
+export default Receipt;
+
+// isLoading loadingText="Loading..."
