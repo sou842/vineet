@@ -11,15 +11,16 @@ const Receipt = () => {
     const [pans, setPans] = useState([])
     const [loading, setLoading] = useState()
 
-    
+
     useEffect(() => {
-        axios.get("http://localhost:8080/user/all-pan-card-deatils", {
+        axios.get("http://localhost:8080/user/all-uploaded-pan-card", {
             headers: {
                 "Authorization": portalData.token
             }
 
         }).then((res) => {
             setLoading(false)
+            console.log(res.data)
             setPans(res.data.reverse())
         }).catch((err) => {
             setLoading(false)
@@ -28,17 +29,28 @@ const Receipt = () => {
 
     }, [])
 
-    console.log(pans)
+    // const [pdfData, setPdfData] = useState(null);
 
+
+    const handleDownload = (id) => {
+        console.log(id)
+        axios.get(`http://localhost:8080/user/recipt-download/${id}`, {
+            headers: { "Authorization": portalData.token }
+        }).then((res) => {
+            console.log(res.data)
+            window.open(res.data)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
     return (
         <Box>
             <PanCardNav />
-            {/* <Box mt={'25px'}><ContactUs /></Box> */}
 
             <Box w={'100%'} minH={'60vh'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
                 {loading ? <Box display={'flex'} justifyContent={'center'} mt={'2cm'} mb={'2cm'}><Spinner color='#00aeff' /></Box> :
                     <Box w={'90%'}>
-                    {pans.length == 0 ? <Box textAlign={'center'}>NO DATA FOUND</Box> : null}
+                        {pans.length == 0 ? <Box textAlign={'center'}>NO DATA FOUND</Box> : null}
 
                         <Grid templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} gap={['10px', '15px']} w={'95%'} m={'1cm auto'}>
                             {pans?.map((ele, index) => (
@@ -51,11 +63,11 @@ const Receipt = () => {
                                             <Text mt={'7px'} mb={'7px'} display={'flex'} fontWeight={'bold'}>Organization:<Text fontWeight={'normal'} ml={'10px'}>{ele.organization}</Text></Text>
                                         }                                        <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Token : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>{ele.tokenNumber}</Text></Text>
                                         <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Apply date : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>{ele.date}</Text></Text>
-                                        <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Acknowledgement : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>pending</Text></Text>
-                                        <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Slip Generate Date : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>null</Text></Text>
+                                        <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Acknowledgement : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>{ele.acknowledgement}</Text></Text>
+                                        <Text mb={'7px'} mt={'7px'} display={'flex'} fontWeight={'bold'}>Slip Generate Date : <Text fontWeight={'normal'} color={'#616161'} ml={'4px'}>{ele.slipGenerateDate}</Text></Text>
                                     </Box>
                                     <Box>
-                                        <Button color={'black'} _hover={{ color: '#00aeff' }} transition={'0.4s'} border={'1.3px solid grey'} w={'95%'} m={'auto'} mt={'20px'} mb={'10px'} display={'block'}>Download Receipt</Button>
+                                        <Button onClick={()=>handleDownload(ele._id)} color={'black'} _hover={{ color: '#00aeff' }} transition={'0.4s'} border={'1.3px solid grey'} w={'95%'} m={'auto'} mt={'20px'} mb={'10px'} display={'block'}>Download Receipt</Button>
                                     </Box>
                                 </Box>
                             ))}
