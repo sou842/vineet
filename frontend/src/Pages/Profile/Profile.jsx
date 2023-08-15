@@ -11,9 +11,9 @@ import edit from '../../assets/edit.png'
 export const Profile = () => {
   const { isOpen: editIsOpen, onOpen: editOnOpen, onClose: editOnClose } = useDisclosure()
   const { isOpen: profileIsOpen, onOpen: profileOnOpen, onClose: profileOnClose } = useDisclosure()
-  const toast = useToast()
-  const navigate = useNavigate()
   const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
+  const navigate = useNavigate()
+  const toast = useToast()
 
   const handleOptionChange = (event) => {
     const selectedValue = event.target.value;
@@ -73,13 +73,7 @@ export const Profile = () => {
   const handleLogout = () => {
     localStorage.removeItem("digitalPortal")
 
-    toast({
-      title: 'Logout Succesfull.',
-      status: 'success',
-      duration: 3000,
-      isClosable: true,
-      position: 'top'
-    })
+    toast({ title: 'Logout Succesfull.', status: 'success', duration: 3000, isClosable: true, position: 'top' })
     window.location = '/'
   }
 
@@ -136,14 +130,7 @@ export const Profile = () => {
 
     })
       .then((res) => {
-        // console.log(res.data);
-        toast({
-          title: res.data,
-          status: 'success',
-          duration: 3000,
-          isClosable: true,
-          position: 'top'
-        })
+        toast({ title: res.data, status: 'success', duration: 3000, isClosable: true, position: 'top' })
         window.location = '/Dashboard'
       })
       .catch((err) => {
@@ -170,9 +157,9 @@ export const Profile = () => {
 
                 <Box overflow={'hidden'} w={'100%'} h={['230px', '300px', '320px']} position="relative" display="inline-block" borderRadius={'15px'}>
                   <Box position="absolute" top="10px" right="10px" borderRadius="full" bg="whiteAlpha.700" boxShadow="md" p={1} cursor={'pointer'}  >
-                    <Img onClick={profileOnOpen} position={'relative'} w={'25px'} src={edit} m={'6px'}/>
+                    <Img onClick={profileOnOpen} position={'relative'} w={'25px'} src={edit} m={'6px'} />
                     <Text border={'1px solid #00aeff'}></Text>
-                    <Img position={'relative'} w={'25px'} src={deletee} m={'6px'}/>
+                    <Img position={'relative'} w={'25px'} src={deletee} m={'6px'} />
                   </Box>
                   {portalData.avatar == '' ?
                     <Text mt={'-30px'} color={'#00aeff'} fontSize={'50px'} display={'flex'} justifyContent={'center'} alignItems={'center'} w={'100%'} h={'100%'} m={'auto'} borderRadius={'15px'} bg={'white'}>{portalData.username.match(/\b\w/g).join('').toUpperCase()}</Text>
