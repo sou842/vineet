@@ -46,7 +46,7 @@ export const PanCard = () => {
         <div><a target='_blank' onClick={handleForm49A} href={form49A} download="form49A" ><p>New Pan Form Download</p></a></div>
         <div><a href="#"><p>Update Pan Form Download</p></a></div>
         <div><a href="/NewPanCard"><p>New Pan Card</p></a></div>
-        <div><a href="#"><p>Update Pan Card</p></a></div>
+        <div><a href="/UpdatePancard"><p>Update Pan Card</p></a></div>
         <div><a href="#"><p>Upload Pan Docs</p></a></div>
         <div><a href="#"><p>Cancel Pan Card</p></a></div>
         <div><a href="#"><p>Complete All PanCard</p></a></div>

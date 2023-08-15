@@ -1,4 +1,4 @@
-import { Box, Table, TableContainer, Tbody, Td, Th, Tr, Thead, Spinner, Text, Button, Grid } from '@chakra-ui/react'
+import { Box, Table, TableContainer, Tbody, Td, Th, Tr, Thead, Spinner, Text, Button, Grid, useToast } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { PanCardNav } from '../../../Components/PanCardNav/PanCardNav'
@@ -7,9 +7,10 @@ import { Navigate } from 'react-router-dom'
 
 const Receipt = () => {
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
-    const [pans, setPans] = useState([])
-    const [loading, setLoading] = useState()
     const [pdfData, setPdfData] = useState({ PDF: '', panID: '' });
+    const [loading, setLoading] = useState()
+    const [pans, setPans] = useState([])
+    const toast = useToast()
 
 
     useEffect(() => {
@@ -32,14 +33,17 @@ const Receipt = () => {
 
 
     const handleDownload = (id) => {
+        toast({ title: 'Recipt Generating...', status: 'info', duration: 5000, isClosable: true, position: 'top' })
+
         axios.get(`http://localhost:8080/user/recipt-download/${id}`, {
             headers: { "Authorization": portalData.token }
         }).then((res) => {
-            // setPdfData(res.data)
+            toast({ title: 'Download the Recipt Now', status: 'success', duration: 3000, isClosable: true, position: 'top' })
             setPdfData((prevData) => ({ ...prevData, ['PDF']: res.data }));
             setPdfData((prevData) => ({ ...prevData, ['panID']: id }));
             
         }).catch((err) => {
+            toast({ title: 'Try Again, Something Wrong!!!', status: 'error', duration: 4000, isClosable: true, position: 'top' })
             console.log(err)
         })
     }
