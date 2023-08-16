@@ -176,6 +176,41 @@ adminRoute.patch("/user/status-change/:id",async(req,res)=>{
   }
 })
 
+// search user by defferent type
+adminRoute.get("/user",async(req,res)=>{
+  const{email}=req.query
+  const{vendorID}=req.query
+  const{aadharNumber}=req.query
+  const{name}=req.query
+
+  try {
+    if(email){
+      const user=await UserModel.find({email})
+      res.send(user)
+    }
+    else if(vendorID){
+      const user=await UserModel.find({vendorID})
+      res.send(user)
+    }
+    else if(aadharNumber){
+      const user=await UserModel.find({aadharNumber})
+      res.send(user)
+    }
+    else if(name){
+      const user=await UserModel.find({name})
+      res.send(user)
+    }
+    else{
+      const user=await UserModel.find()
+      res.send(user)
+    }
+    
+  } catch (error) {
+    
+  }
+  
+})
+
 
 
 module.exports = { adminRoute }
