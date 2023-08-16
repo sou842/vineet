@@ -5,8 +5,9 @@
 .AdminSlider_0{
     width: 100%;
     height: 100%;
-    background-color: rgb(26, 39, 51);
+    background-color:#34495E;
     padding: 10px;
+    
 }
 .AdminSlider_0 > div:nth-child(1){
     margin-top: 10px;
@@ -15,15 +16,17 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border: 1px solid #00aeff;
+    border: 1px solid rgb(173, 170, 170);
+    border-radius: 10px;
     padding: 10px;
     margin-bottom: 10px;
     transition: 0.3s ease;
-    color: whitesmoke;
+    color: white;
 }
 .AdminSlider_0 > div:nth-child(1):hover{
     background-color: transparent;
 }
 .AdminSlider_0 > div:hover{
-    background-color: #00aeff;
+    background-color: #1ABC9C;
+    border: 1px solid white;
 }

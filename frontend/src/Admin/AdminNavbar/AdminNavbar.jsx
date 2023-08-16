@@ -52,7 +52,7 @@ const handelAdminLogout=()=>{
         gap={"10px"}
         boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
       >
-        <Box display={"flex"} alignItems={"end"}>
+        <Box display={"flex"} alignItems={"end"} >
           {value && (
             <Image
               onClick={() => setSide(!side)}
