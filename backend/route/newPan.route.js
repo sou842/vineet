@@ -15,7 +15,7 @@ newPanRoute.post("/new-pan-card", async (req, res) => {
 
         const tokenNumber = prandom.number(8);
         req.body.tokenNumber = tokenNumber
-        const newPan = await NewPanModel(req.body)
+        const newPan = new NewPanModel(req.body)
         await newPan.save()
         res.send("Apply successful for new pan card")
 
