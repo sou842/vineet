@@ -138,8 +138,6 @@ export const UpdatePancardForm = () => {
 
     const handleBlur = () => {
 
-        if (catagory == "Individual") {
-
             if (formData.middleName) {
                 setFormData((prevData) => ({ ...prevData, ['aadhaarName']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
                 setFormData((prevData) => ({ ...prevData, ['NameOnCard']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
@@ -154,15 +152,9 @@ export const UpdatePancardForm = () => {
                 setFormData((prevData) => ({ ...prevData, ['correction_section_4']: correction_section_4 }));
                 setFormData((prevData) => ({ ...prevData, ['correction_section_5']: correction_section_5 }));
             }
-        } else {
 
-            if (formData.representativemiddleName) {
-                setFormData((prevData) => ({ ...prevData, ['verifierName']: formData.representativefirstName + ' ' + formData.representativemiddleName + ' ' + formData.representativelastName }))
-            } else {
-                setFormData((prevData) => ({ ...prevData, ['verifierName']: formData.representativefirstName + ' ' + formData.representativelastName }));
-            }
-        }
-
+        console.log('trigered')
+        
     }
 
     const handleSubmit = (event) => {
@@ -222,7 +214,7 @@ export const UpdatePancardForm = () => {
     }, [age])
 
     console.log(formData)
-    
+
     return (
         <div style={{ backgroundColor: 'rgba(201, 201, 201, 0.249)' }}>
             <div><PanCardNav /></div>
@@ -524,7 +516,7 @@ export const UpdatePancardForm = () => {
                         <div>
                             <div>
                                 <p style={{ display: 'flex', alignItems: 'center' }}>
-                                    <input onBlur={handleBlur} type="checkbox" name='correction_section_5' value={correction_section_5} onChange={() => setCorrection_section_5(!correction_section_5)} /> 
+                                    <input onBlur={handleBlur} type="checkbox" name='correction_section_5' value={correction_section_5} onChange={() => setCorrection_section_5(!correction_section_5)} />
                                 </p>
                             </div>
                         </div>
@@ -652,7 +644,7 @@ export const UpdatePancardForm = () => {
                         </div>
                     </div> : null}
 
-                     <div className="individualPerson_2">
+                    <div className="individualPerson_2">
                         <p>Verification <i>*</i></p>
                         <div>
                             <div>
