@@ -29,6 +29,7 @@ import Login from '../../Admin/AdminLogin/Login.jsx'
 import { PanCardCompleted } from '../../Pages/PanCard/PanCardCompleted/PanCardCompleted';
 import { UpdatePancard } from '../../Pages/UpdatePancard/UpdatePancard/UpdatePancard';
 import { UpdatePancardForm } from '../../Pages/UpdatePancard/UpdatePancardForm/UpdatePancardForm';
+import { UpdatePanEdit } from '../../Pages/UpdatePancard/UpdatePanEdit/UpdatePanEdit';
 
 
 
@@ -70,6 +71,7 @@ return (
         <Route path={'/user/PanCardCompleted'} element={portalData?<PanCardCompleted/>:<Navigate to={'/Signin'}/>}></Route>
         <Route path={'/UpdatePancard'} element={portalData?<UpdatePancard/>:<Navigate to={'/Signin'}/>}></Route>
         <Route path={'/UpdatePancardForm/:catagory'} element={portalData?<UpdatePancardForm/>:<Navigate to={'/Signin'}/>}></Route>
+        <Route path={'/UpdatePanEdit'} element={portalData?<UpdatePanEdit/>:<Navigate to={'/Signin'}/>}></Route>
     </Routes>
 )
 }
