@@ -1,32 +1,31 @@
-import './UpdatePancardForm.css';
-import { DashboardFooter } from '../../../Components/DashboradFooter/DashboradFooter'
+import './UpdatePanEdit.css';
 import { PanCardNav } from '../../../Components/PanCardNav/PanCardNav'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import date from 'date-and-time';
+import axios from 'axios';
 import { city, city_data } from '../../../city.js'
 import { Footer } from '../../../Components/Footer/Footer';
 import { useToast, Box } from "@chakra-ui/react";
 import { array1To31, monthsArray, yearsArray } from '../../../FromElement.js'
-import { differenceInYears } from 'date-fns';
 
-
-export const UpdatePancardForm = () => {
+export const UpdatePanEdit = () => {
+    const VDP_form_data = JSON.parse(localStorage.getItem('VDP_form_data')) || null
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
+    const [residenceIndividual, setResidenceIndividual] = useState(false);
+    const [formEdit, setFormEdit] = useState(true);
     const [correction_section_1, setCorrection_section_1] = useState(false);
     const [correction_section_2, setCorrection_section_2] = useState(false);
     const [correction_section_3, setCorrection_section_3] = useState(false);
     const [correction_section_4, setCorrection_section_4] = useState(false);
     const [correction_section_5, setCorrection_section_5] = useState(false);
-    const [residenceIndividual, setResidenceIndividual] = useState(false);
 
-    const { catagory } = useParams();
+    const catagory = VDP_form_data.category
     const now = new Date();
     let currentDate = date.format(now, 'YYYY-MMM-DD');
     const navigate = useNavigate()
     const toast = useToast()
 
-    // category: catagory.replace(/-/g, ' '),
 
     const [formData, setFormData] = useState({
         category: catagory.split('-')[0],
@@ -99,11 +98,6 @@ export const UpdatePancardForm = () => {
         madeFor: 'update'
     })
 
-    const age_month = { "January": "1", "February": "2", "March": "3", "April": "4", "May": "5", "June": "6", "July": "7", "August": "8", "September": "9", "October": "10", "November": "11", "December": "12" }
-    const birthdate = new Date(`${formData.yearOfBirth}-${age_month[formData.monthOfBirth]}-${formData.dateOfBirth}`)
-    const age = differenceInYears(new Date(), birthdate);
-    // console.log(age);
-
     const handleChange = (event) => {
         const { name, value } = event.target;
 
@@ -122,18 +116,12 @@ export const UpdatePancardForm = () => {
         if (name == 'title' && value == 'Kumari' && value != '') {
             setFormData((prevData) => ({ ...prevData, ['gender']: 'Female' }));
         }
-        if (name == 'correction_section_1') {
-            setFormData((prevData) => ({ ...prevData, ['correction_section_1']: !formData.correction_section_1 }));
-        }
+
         if (name == 'firstName' || name == 'middleName' || name == 'lastName' || name == 'father_FName' || name == 'father_MName' || name == 'father_LName') {
             setFormData((prevData) => ({ ...prevData, [name]: value.charAt(0).toUpperCase() + value.slice(1) }));
         } else {
             setFormData((prevData) => ({ ...prevData, [name]: value }));
-            setFormData((prevData) => ({ ...prevData, ['ageOfTheUser']: age }));
-
         }
-
-        console.log()
     }
 
     const handleBlur = () => {
@@ -153,16 +141,39 @@ export const UpdatePancardForm = () => {
         setFormData((prevData) => ({ ...prevData, ['correction_section_4']: correction_section_4 }));
         setFormData((prevData) => ({ ...prevData, ['correction_section_5']: correction_section_5 }));
 
-        console.log('trigered')
-
     }
 
+    const handleEdit = (e) => {
+        e.preventDefault()
+        setFormEdit(!formEdit)
+
+        if (!formEdit) {
+            toast({ title: 'EDIT SAVE', status: 'success', duration: 2000, isClosable: true, position: 'top' })
+        }
+
+    }
+    // ${baseurl}/user/pan-update
     const handleSubmit = (event) => {
         event.preventDefault();
 
         if (formData.aadhaarNumber.length == 0 || formData.zipCode.length == 0) {
-            localStorage.setItem("VDP_form_data", JSON.stringify(formData))
-            navigate('/UpdatePanEdit')
+            axios.post("http://localhost:8080/user/pan-update", formData, {
+                headers: { "Authorization": portalData.token }
+            }).then((res) => {
+                toast({
+                    title: 'SUBMITED',
+                    description: "PAN CARD FORM SUBMITTED SUCCESSFULLY",
+                    status: 'success',
+                    duration: 5000,
+                    isClosable: true,
+                    position: 'top-center',
+                })
+
+            }).catch((err) => {
+                console.log(err);
+            })
+
+            navigate('/user/upload')
         }
         else if (catagory == 'Individual' && formData.aadhaarNumber.length != 12) {
             toast({
@@ -173,8 +184,7 @@ export const UpdatePancardForm = () => {
                 isClosable: true,
                 position: 'top-center',
             })
-        } else if (formData.zipCode.length != 6 || formData.zipCode.length == 0) {
-
+        } else if (formData.zipCode.length != 6) {
             toast({
                 title: 'Zip Code',
                 description: "PIN Code Number should have 6 Charecter",
@@ -184,8 +194,26 @@ export const UpdatePancardForm = () => {
                 position: 'top-center',
             })
         } else {
-            localStorage.setItem("VDP_form_data", JSON.stringify(formData))
-            navigate('/UpdatePanEdit')
+            // localStorage.setItem("VDP_form_data", JSON.stringify(formData))
+
+            axios.post("http://localhost:8080/user/pan-update", formData, {
+                headers: { "Authorization": portalData.token }
+            }).then((res) => {
+                console.log(res.data);
+                toast({
+                    title: 'SUBMITED',
+                    description: "PAN CARD FORM SUBMITTED SUCCESSFULLY",
+                    status: 'success',
+                    duration: 5000,
+                    isClosable: true,
+                    position: 'top-center',
+                })
+
+            }).catch((err) => {
+                console.log(err);
+            })
+
+            // navigate('/user/upload')
         }
 
     }
@@ -193,21 +221,13 @@ export const UpdatePancardForm = () => {
 
 
     useEffect(() => {
-
-        setFormData((prevData) => ({ ...prevData, ['Address']: 'RESIDENCE ADDRESS' }))
-        setFormData((prevData) => ({ ...prevData, ['identityProof']: 'AADHAR Card issued by UIDAL (In Copy)' }))
-        setFormData((prevData) => ({ ...prevData, ['addressProof']: 'AADHAR Card issued by UIDAL (In Copy)' }))
-        setFormData((prevData) => ({ ...prevData, ['dobProof']: 'AADHAR Card issued by UIDAL (In Copy)' }))
-
-        if (age < 18) {
-            setResidenceIndividual(true)
-            toast({ title: 'you are below 18 year', description: "Fill the Representative Assessee", status: 'info', duration: 5000, isClosable: true, position: 'top-center', })
-        }
-        else if (age >= 18) {
-            setResidenceIndividual(false)
-        }
-
-    }, [age])
+        setFormData(VDP_form_data)
+        setCorrection_section_1(VDP_form_data.correction_section_1)
+        setCorrection_section_2(VDP_form_data.correction_section_2)
+        setCorrection_section_3(VDP_form_data.correction_section_3)
+        setCorrection_section_4(VDP_form_data.correction_section_4)
+        setCorrection_section_5(VDP_form_data.correction_section_5)
+    }, [])
 
     console.log(formData)
 
@@ -215,13 +235,13 @@ export const UpdatePancardForm = () => {
         <div style={{ backgroundColor: 'rgba(201, 201, 201, 0.249)' }}>
             <div><PanCardNav /></div>
 
-            <div >
+            <div style={{ paddingTop: '1cm', paddingBottom: '1cm', backgroundColor: 'white' }}>
 
-                <h1 className='individualPerson_head'>PANCARD UPDATE</h1>
+                <h1 className='editpan_head'>PANCARD REVIEW</h1>
 
                 <form onSubmit={handleSubmit}>
                     {/* all */}
-                    <div className="individualPerson_2">
+                    {!formEdit ? <div className="individualPerson_2">
                         <div>
                             <div>
                                 <p>Category of Applicant<i>*</i></p>
@@ -238,14 +258,227 @@ export const UpdatePancardForm = () => {
                                 <input type="text" placeholder={'PAN Number'} name='panNumber' value={formData.panNumber} onChange={handleChange} />
                             </div>
                         </div>
-                    </div>
+                    </div> : null}
 
-                    {/* Individual */}
-                    <div className="individualPerson_2">
+
+                    {/* Others */}
+
+                    {formEdit ? <table className='form_details_1'>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Category of Applicant</td>
+                                <td>{formData.category}</td>
+                            </tr>
+                            <tr>
+                                <td>Date</td>
+                                <td>{formData.date}</td>
+                            </tr>
+                            <tr>
+                                <td>Pan Card</td>
+                                <td>{formData.panNumber}</td>
+                            </tr>
+                            <tr>
+                                <td>Title</td>
+                                <td>{formData.title}</td>
+                            </tr>
+                            <tr>
+                                <td>First Name</td>
+                                <td>{formData.firstName}</td>
+                            </tr>
+                            <tr>
+                                <td>Middle Name</td>
+                                <td>{formData.middleName}</td>
+                            </tr>
+                            <tr>
+                                <td>Last Name</td>
+                                <td>{formData.lastName}</td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td>{formData.gender}</td>
+                            </tr>
+                            <tr>
+                                <td>Date of Birth</td>
+                                <td>{formData.dateOfBirth}</td>
+                            </tr>
+                            <tr>
+                                <td>Month</td>
+                                <td>{formData.monthOfBirth}</td>
+                            </tr>
+                            <tr>
+                                <td>Year</td>
+                                <td>{formData.yearOfBirth}</td>
+                            </tr>
+                            <tr>
+                                <td>Father's First Name</td>
+                                <td>{formData.father_FName}</td>
+                            </tr>
+                            <tr>
+                                <td>Father's Middle Name</td>
+                                <td>{formData.father_MName}</td>
+                            </tr>
+                            <tr>
+                                <td>Father's Last Name</td>
+                                <td>{formData.father_LName}</td>
+                            </tr>
+                            <tr>
+                                <td>Residence Address</td>
+                                <td>{formData.Address}</td>
+                            </tr>
+                            <tr>
+                                <td>Flat/Door/Block</td>
+                                <td>{formData.flatNumber}</td>
+                            </tr>
+                            <tr>
+                                <td>Premises/Building/Village</td>
+                                <td>{formData.premisesName}</td>
+                            </tr>
+                            <tr>
+                                <td>Road/Street/Lane/Post Office</td>
+                                <td>{formData.roadName}</td>
+                            </tr>
+                            <tr>
+                                <td>Area/Locality</td>
+                                <td>{formData.area}</td>
+                            </tr>
+                            <tr>
+                                <td>Town/City/District</td>
+                                <td>{formData.cityDistrict}</td>
+                            </tr>
+                            <tr>
+                                <td>State/Union Territory</td>
+                                <td>{formData.state}</td>
+                            </tr>
+                            <tr>
+                                <td>Zip Code</td>
+                                <td>{formData.zipCode}</td>
+                            </tr>
+                            <tr>
+                                <td>Country</td>
+                                <td>{formData.country}</td>
+                            </tr>
+                            <tr>
+                                <td>Telephone ISD Code</td>
+                                <td>{formData.telephoneISDCode}</td>
+                            </tr>
+                            <tr>
+                                <td>Telephone/Mobile number</td>
+                                <td>{formData.telephoneNumber}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>{formData.email}</td>
+                            </tr>
+                            <tr>
+                                <td>Aadhaar Number</td>
+                                <td>{formData.aadhaarNumber}</td>
+                            </tr>
+                            <tr>
+                                <td>AADHAAR Name</td>
+                                <td>{formData.aadhaarName}</td>
+                            </tr>
+                            <tr>
+                                <td>RA Title</td>
+                                <td>{formData.representativetitle}</td>
+                            </tr>
+                            <tr>
+                                <td>RA First name</td>
+                                <td>{formData.representativefirstName}</td>
+                            </tr>
+                            <tr>
+                                <td>RA Middle Name</td>
+                                <td>{formData.representativemiddleName}</td>
+                            </tr>
+                            <tr>
+                                <td>RA Last Name</td>
+                                <td>{formData.representativelastName}</td>
+                            </tr>
+                            <tr>
+                                <td>RA Flat/Door/Block Number</td>
+                                <td>{formData.representativeflatNumber}</td>
+                            </tr>
+                            <tr>
+                                <td>RA Name of Premises/Building/Village</td>
+                                <td>{formData.representativepremisesName}</td>
+                            </tr>
+                            <tr>
+                                <td>RA Road/Street/Lane/Post Office</td>
+                                <td>{formData.representativeroadName}</td>
+                            </tr>
+                            <tr>
+                                <td>RA Area/Locality/Taluka/Sub-Division</td>
+                                <td>{formData.representativearea}</td>
+                            </tr>
+                            <tr>
+                                <td>RA Town/City/District</td>
+                                <td>{formData.representativecityDistrict}</td>
+                            </tr>
+                            <tr>
+                                <td>RA State/Union Territory</td>
+                                <td>{formData.representativestate}</td>
+                            </tr>
+                            <tr>
+                                <td>RA Zip Code</td>
+                                <td>{formData.representativezipCode}</td>
+                            </tr>
+                            <tr>
+                                <td>RA Country</td>
+                                <td>{formData.representativecountry}</td>
+                            </tr>
+                            <tr>
+                                <td>Verifier Name</td>
+                                <td>{formData.verifierName}</td>
+                            </tr>
+                            <tr>
+                                <td>Applicant</td>
+                                <td>{formData.declarationCapacity}</td>
+                            </tr>
+                            <tr>
+                                <td>Number of documents</td>
+                                <td>{formData.numberofdocuments}</td>
+                            </tr>
+                            <tr>
+                                <td>Identity Proof</td>
+                                <td>{formData.identityProof}</td>
+                            </tr>
+                            <tr>
+                                <td>Address Proof</td>
+                                <td>{formData.addressProof}</td>
+                            </tr>
+                            <tr>
+                                <td>DOB Proof</td>
+                                <td>{formData.verificationDate}</td>
+                            </tr>
+                            <tr>
+                                <td>Pancard Proof</td>
+                                <td>{formData.pancardProof}</td>
+                            </tr>
+                            <tr>
+                                <td>Verifier Place</td>
+                                <td>{formData.verifierPlace}</td>
+                            </tr>
+                            <tr>
+                                <td>Verification Date</td>
+                                <td>{formData.verificationDate}</td>
+                            </tr>
+                            <tr>
+                                <td>PAN Fee</td>
+                                <td>₹ {formData.PanFee}</td>
+                            </tr>
+                        </tbody>
+                    </table> : null}
+
+                    {!formEdit ? <div className="individualPerson_2">
                         <div>
                             <div>
                                 <p>
-                                    <input type="checkbox" name='correction_section_1' onBlur={handleBlur} value={correction_section_1} onChange={() => setCorrection_section_1(!correction_section_1)} /> Full Name* (Full extended name, address, dob to be mentioned as appearing in proof of identity /address/ dob documents. Initials are not allowed)
+                                    <input type="checkbox" name='correction_section_1' onBlur={handleBlur} checked={correction_section_1} onChange={() => setCorrection_section_1(!correction_section_1)} /> Full Name* (Full extended name, address, dob to be mentioned as appearing in proof of identity /address/ dob documents. Initials are not allowed)
                                 </p>
                             </div>
                         </div>
@@ -278,13 +511,13 @@ export const UpdatePancardForm = () => {
                                 <input type="text" placeholder='Name on Card' name='NameOnCard' disabled value={formData.NameOnCard} onChange={handleChange} />
                             </div>
                         </div>
-                    </div>
+                    </div> : null}
 
-                    <div className="individualPerson_2">
+                    {!formEdit ? <div className="individualPerson_2">
                         <div>
                             <div>
                                 <p style={{ display: 'flex', alignItems: 'center' }}>
-                                    <input type="checkbox" name='correction_section_2' onBlur={handleBlur} value={correction_section_2} onChange={() => setCorrection_section_2(!correction_section_2)} />Details of Date of Birth
+                                    <input type="checkbox" name='correction_section_2' onBlur={handleBlur} checked={correction_section_2} onChange={() => setCorrection_section_2(!correction_section_2)} />Details of Date of Birth
                                 </p>
                             </div>
                         </div>
@@ -335,9 +568,9 @@ export const UpdatePancardForm = () => {
                             </div>
 
                         </div>
-                    </div>
+                    </div> : null}
 
-                    <div className="individualPerson_2">
+                    {!formEdit ? <div className="individualPerson_2">
                         <h2>Details of Parents ( applicable only for Individual applicants )</h2>
                         <div>
                             <div>
@@ -367,26 +600,26 @@ export const UpdatePancardForm = () => {
                                 <input type="text" required placeholder='last Name' name='father_LName' value={formData.father_LName} onChange={handleChange} />
                             </div>
                         </div>
-                    </div>
+                    </div> : null}
 
-                    <div className="individualPerson_2">
+                    {!formEdit ? <div className="individualPerson_2">
                         <div>
                             <div>
                                 <p style={{ display: 'flex', alignItems: 'center' }}>
-                                    <input onBlur={handleBlur} type="checkbox" name='correction_section_3' value={correction_section_3} onChange={() => setCorrection_section_3(!correction_section_3)} /> Photo Mismatch *
+                                    <input onBlur={handleBlur} type="checkbox" name='correction_section_3' checked={correction_section_3} onChange={() => setCorrection_section_3(!correction_section_3)} /> Photo Mismatch *
                                 </p>
                             </div>
                         </div>
                         <div>
                             <div>
                                 <p style={{ display: 'flex', alignItems: 'center' }}>
-                                    <input onBlur={handleBlur} type="checkbox" name='correction_section_4' value={correction_section_4} onChange={() => setCorrection_section_4(!correction_section_4)} /> Signature Mismatch *
+                                    <input onBlur={handleBlur} type="checkbox" name='correction_section_4' checked={correction_section_4} onChange={() => setCorrection_section_4(!correction_section_4)} /> Signature Mismatch *
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </div> : null}
 
-                    <div className="individualPerson_2">
+                    {!formEdit ? <div className="individualPerson_2">
                         <h2>Address for Communication(If you want to selected Office Address then Required Office Address Proof)</h2>
                         <div>
                             <div>
@@ -480,9 +713,9 @@ export const UpdatePancardForm = () => {
                                 </select>
                             </div>
                         </div>
-                    </div>
+                    </div> : null}
 
-                    <div className="individualPerson_2">
+                    {!formEdit ? <div className="individualPerson_2">
                         <div>
                             <div>
                                 <p>Telephone ISD Code<i>*</i></p>
@@ -500,13 +733,13 @@ export const UpdatePancardForm = () => {
                                 <input type="email" placeholder='Email ID' required name='email' value={formData.email} onChange={handleChange} />
                             </div>
                         </div>
-                    </div>
+                    </div> : null}
 
-                    <div className="individualPerson_2">
+                    {!formEdit ? <div className="individualPerson_2">
                         <div>
                             <div>
                                 <p style={{ display: 'flex', alignItems: 'center' }}>
-                                    <input onBlur={handleBlur} type="checkbox" name='correction_section_5' value={correction_section_5} onChange={() => setCorrection_section_5(!correction_section_5)} />
+                                    <input onBlur={handleBlur} type="checkbox" name='correction_section_5' checked={correction_section_5} onChange={() => setCorrection_section_5(!correction_section_5)} />
                                 </p>
                             </div>
                         </div>
@@ -520,9 +753,9 @@ export const UpdatePancardForm = () => {
                                 <input type="text" placeholder={'Name as per AADHAAR'} disabled name='aadhaarName' value={formData.aadhaarName} onChange={handleChange} />
                             </div>
                         </div>
-                    </div>
+                    </div> : null}
 
-                    {residenceIndividual ? <div className="individualPerson_2">
+                    {!formEdit && residenceIndividual ? <div className="individualPerson_2">
                         <h1>Representative Assessee</h1>
                         <div>
                             <div>
@@ -634,7 +867,7 @@ export const UpdatePancardForm = () => {
                         </div>
                     </div> : null}
 
-                    <div className="individualPerson_2">
+                    {!formEdit ? <div className="individualPerson_2">
                         <p>Verification <i>*</i></p>
                         <div>
                             <div>
@@ -671,9 +904,9 @@ export const UpdatePancardForm = () => {
                                 <p>(Number of documents) in support of proposed changes/corrections.</p>
                             </div>
                         </div>
-                    </div>
+                    </div> : null}
 
-                    <div className="individualPerson_2">
+                    {!formEdit ? <div className="individualPerson_2">
                         <div>
                             <div>
                                 <p>Which of these documents are you submitting as an Identity Proof<i>*</i></p>
@@ -710,9 +943,9 @@ export const UpdatePancardForm = () => {
                                 </select>
                             </div>
                         </div>
-                    </div>
+                    </div> : null}
 
-                    <div className="individualPerson_2">
+                    {!formEdit ? <div className="individualPerson_2">
                         <div>
                             <div>
                                 <p>Verifier Place<i>*</i></p>
@@ -723,16 +956,16 @@ export const UpdatePancardForm = () => {
                                 <input type="text" placeholder={currentDate} disabled name='verificationDate' value={formData.verificationDate} onChange={handleChange} />
                             </div>
                         </div>
-                    </div>
+                    </div> : null}
 
 
                     {/* all */}
-                    <div className="individualPerson_2">
+                    {!formEdit ? <div className="editpan_2">
                         <h2>Note : Physical PAN card will be delivered to applicant's address. e-PAN will be sent to applicant's e-mail.</h2>
                         <div>
                             <div>
                                 <p>Select the required option<i>*</i></p>
-                                <select required name='requiredOption' value={formData.requiredOption} onChange={handleChange}>
+                                <select disabled={formEdit} required name='requiredOption' value={formData.requiredOption} onChange={handleChange} >
                                     <option value="Both Physical PAN Card and e-PAN">Both Physical PAN Card and e-PAN</option>
                                 </select>
                             </div>
@@ -741,20 +974,19 @@ export const UpdatePancardForm = () => {
                                 <input type="number" placeholder='₹ 107' disabled />
                             </div>
                         </div>
+                    </div> : null}
+
+
+                    <div className='editpan_3'>
+                        <p style={{ backgroundColor: formEdit ? '#00aeff' : null, color: 'rgb(59, 59, 59)', cursor: 'pointer' }} onClick={handleEdit}>{formEdit ? 'EDIT' : 'SAVE'}</p>
+                        {formEdit ? <button type='submit'>SUBMIT</button> : null}
                     </div>
-
-                    <button className='individualPerson_3' type='submit'>NEXT</button>
                 </form>
-            </div>
-
-            <div className='dashboard_1'>
-                <p>आपका वॉलेट बैलेंस कम है. Balance : Rs. 0. पैन कार्ड अप्लाई करने के लिए कम से कम वॉलेट में Rs.107/- होना अनिवार्य है</p>
-            </div>
-            <div className='dashboard_1'>
-                <p>हम आपसे अनुरोध करते हैं कि डिजिटल इंडिया पोर्टल द्वारा प्रदान की जा रही अन्य सुविधाएं जैसे बिजली बिल का भुगतान, मोबाइल रिचार्ज, डीटीएच रिचार्ज, GST रजिस्ट्रेशन, ITR फाइलिंग जैसी अन्य सुविधाओं का भी आप लाभ उठाएं और हम आपको भरोसा दिलाते हैं कि भविष्य में डिजिटल इंडिया पोर्टल आपको और भी सुविधाएं प्रदान करेगा डिजिटल इंडिया पोर्टल के साथ जुड़े रहने के लिए धन्यवाद</p>
             </div>
 
             <div><Footer /></div>
         </div>
     )
 }
+
+
