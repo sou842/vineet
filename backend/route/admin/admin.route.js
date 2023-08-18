@@ -105,7 +105,8 @@ adminRoute.get("/individual-pan/:id", async (req, res) => {
 
   try {
     const pans = await NewPanModel.findOne({ _id: id })
-    res.send(pans)
+    const docs=await panDocsModel.findOne({panid:id})
+    res.json({pans:pans,docs:docs})
   } catch (error) {
     res.send(error.messege)
   }
@@ -232,6 +233,16 @@ adminRoute.get('/pan-update-single/:id',async(req,res)=>{
       
   } catch (error) {
       res.send(error)
+  }
+})
+
+adminRoute.get('/user-documents/:id',async(req,res)=>{
+  try {
+    const docs=await panDocsModel.findOne({panid:id})
+    res.send(docs)
+    
+  } catch (error) {
+    res.send(error)
   }
 })
 
