@@ -72,9 +72,11 @@ adminRoute.get("/all-login-user", async (req, res) => {
 //find all pan
 //adminRoute.use(adminAuth)
 adminRoute.get("/all-pan", async (req, res) => {
+  const { page } = req.query;
   try {
-    const pans = await NewPanModel.find();
-    res.send(pans)
+    const count= await NewPanModel.count()
+    const pans = await NewPanModel.find().sort({ _id: -1 }).skip(10*(page-1)).limit(10);
+    res.json({data:pans,count:count})
   } catch (error) {
     res.send(error.messege)
   }
@@ -82,16 +84,17 @@ adminRoute.get("/all-pan", async (req, res) => {
 
 
 adminRoute.get("/category-pan", async (req, res) => {
-  const { category } = req.query
+  const { category,page } = req.query
   try {
     if (category) {
-
-      const pans = await NewPanModel.find({ category });
-      res.send(pans)
+      const count= await NewPanModel.count({ category })
+      const pans = await NewPanModel.find({ category }).sort({ _id: -1 }).skip(10*(page-1)).limit(10);
+      res.json({data:pans,count:count})
     }
     else {
-      const pans = await NewPanModel.find();
-      res.send(pans)
+      const count= await NewPanModel.count()
+      const pans = await NewPanModel.find().sort({ _id: -1 }).skip(10*(page-1)).limit(10);
+      res.json({data:pans,count:count})
     }
   } catch (error) {
     res.send(error.messege)

@@ -14,11 +14,14 @@ export const AdminPanCard = () => {
     const [pan, setPan] = useState([]);
     const [filterData, setFilterData] = useState({ CATEGORY: '', SEARCH: '' })
     const [loading, setLoading] = useState()
+    const [page, setPage] = useState(1)
+    const [count, setCount] = useState(0)
     const { side, setSide } = useContext(AuthorContext)
     const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)");
     const [isSmallerThan600] = useMediaQuery("(max-width: 600px)");
 
     const handleChange = (event) => {
+        setPage(1)
         const { name, value } = event.target;
         setFilterData((prevData) => ({ ...prevData, [name]: value }));
     }
@@ -26,18 +29,19 @@ export const AdminPanCard = () => {
 
     useEffect(() => {
         setLoading(true)
-        axios.get(`http://localhost:8080/admin/category-pan?category=${filterData.CATEGORY}`, {
+        axios.get(`http://localhost:8080/admin/category-pan?category=${filterData.CATEGORY}&page=${page}`, {
             headers: { "Authorization": portalData.token }
         })
             .then((res) => {
-                console.log(res.data)
-                setPan(res.data);
+                // console.log(res.data)
+                setPan(res.data.data);
+                setCount(res.data.count);
                 setLoading(false)
             })
             .catch((err) => {
                 console.log(err);
             })
-    }, [filterData])
+    }, [filterData,page])
 
 
     return (
@@ -117,7 +121,16 @@ export const AdminPanCard = () => {
                             </TableContainer>
                         }
                         </Box>}
+                        <Box>
+                            
+                            
+                        <Button onClick={(e)=>setPage(page-1)} isDisabled={page==1} mr={'5px'} colorScheme={'red'}>Pre</Button>
+                <Button mr={'5px'}>{page}</Button>
+                <Button colorScheme='green' onClick={(e)=>setPage(page+1)} isDisabled={page==(Math.ceil(count/10))|| count==0}>Next</Button>
+                                 
+                </Box>
                 </div>
+                
             </div>
         </div>
     )
