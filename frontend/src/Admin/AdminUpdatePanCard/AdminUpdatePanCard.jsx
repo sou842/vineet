@@ -1,5 +1,5 @@
 import { Avatar, Box, Button, Grid, Menu, MenuButton, MenuItem, MenuList, Spinner, Text, Wrap, WrapItem, useMediaQuery, useToast, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer, Input } from '@chakra-ui/react';
-import './AdminPanCard.css'
+import './AdminUpdatePanCard.css'
 import { useEffect, useState, useContext } from "react";
 import axios from 'axios'
 import { AdminSlider } from "../AdminSlider/AdminSlider";
@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthorContext } from '../../Components/AllContext/AllContext';
 
 
-export const AdminPanCard = () => {
+export const AdminUpdatePanCard = () => {
     const navigate = useNavigate();
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
     const [pan, setPan] = useState([]);
@@ -26,7 +26,7 @@ export const AdminPanCard = () => {
 
     useEffect(() => {
         setLoading(true)
-        axios.get(`http://localhost:8080/admin/category-pan?category=${filterData.CATEGORY}`, {
+        axios.get(`http://localhost:8080/admin/update-pan`, {
             headers: { "Authorization": portalData.token }
         })
             .then((res) => {
@@ -46,28 +46,14 @@ export const AdminPanCard = () => {
             <div style={{ position: 'fixed', zIndex: '100', width: '100%', backgroundColor: 'white' }}> <AdminNavbar value={'adminpancard'} /></div>
             <div className='AdminDash_0'>
                 {!isSmallerThan1000 ?
-                    <div style={{ width: side ? '24%' : '0px', backgroundColor: '#34495E', paddingTop: '1.4cm' }}>{side ? <div><AdminSlider slidevalue={'AdminPanCard'} /></div> : null}</div>
+                    <div style={{ width: side ? '24%' : '0px', backgroundColor: '#34495E', paddingTop: '1.4cm' }}>{side ? <div><AdminSlider slidevalue={'AdminUpdatePanCard'} /></div> : null}</div>
                     :
-                    <div>{side ? <div style={{ width: !isSmallerThan600 ? '37%' : '65%', position: 'fixed', zIndex: '10', top: '0', backgroundColor: '#061621eb', paddingTop: '1.4cm', height: '100vh' }}>{side ? <div><AdminSlider slidevalue={'AdminPanCard'} /></div> : null}</div> : null}
+                    <div>{side ? <div style={{ width: !isSmallerThan600 ? '37%' : '65%', position: 'fixed', zIndex: '10', top: '0', backgroundColor: '#061621eb', paddingTop: '1.4cm', height: '100vh' }}>{side ? <div><AdminSlider slidevalue={'AdminUpdatePanCard'} /></div> : null}</div> : null}
                     </div>
                 }
 
                 <div style={{ width: side && !isSmallerThan1000 ? '75%' : '96%', margin: '1.2cm auto' }}>
-                    <Box display={'flex'} justifyContent={'space-between'} mt={'1cm'} p={'3px'}>
-                        <Box w={['30%', '35%', '40%']}>
-                            <select style={{ padding: '10px', border: '0', fontSize: '14px' }} name="CATEGORY" value={filterData.CATEGORY} onChange={handleChange}>
-                                <option value="">CATEGORY</option>
-                                <option value="Individual">Individual</option>
-                                <option value="Artificial Judicial Person">Artificial Judicial Person</option>
-                                <option value="Association of Person">Association of Person</option>
-                                <option value="Trust">Trust</option>
-                                <option value="Body of Individual">Body of Individual</option>
-                                <option value="Firm">Firm</option>
-                                <option value="Government">Government</option>
-                                <option value="Limited Liability Partnership">Limited Liability Partnership</option>
-                                <option value="Local Authority">Local Authority</option>
-                            </select>
-                        </Box>
+                    <Box display={'flex'} justifyContent={'space-between'} flexDirection={'row-reverse'} mt={'1cm'} p={'3px'} mb={'0.5cm'}>
                         <Box w={['60%', '55%', '45%']} display={'flex'}>
                             <Input border={'1px solid grey'} borderRadius={'20px'} borderEndRadius={0} type="text" placeholder='Search...' />
                             <Button fontSize={'14px'} bg={'blue.500'} color={'whiteAlpha.900'} borderRadius={'10px'} borderStartRadius={0}>Search</Button>
@@ -100,7 +86,6 @@ export const AdminPanCard = () => {
                                                     :
                                                     <Td>{ele.organization}</Td>
                                                 }
-                                                {/* <Td>{ele.tokenNumber}</Td> */}
                                                 <Td>{ele.date}</Td>
                                                 {ele.isDoneFromUser ?
                                                     <Td w={'60px'} fontWeight={'bold'} color={'green'} fontSize={'15px'} textAlign={'center'}>✓</Td>

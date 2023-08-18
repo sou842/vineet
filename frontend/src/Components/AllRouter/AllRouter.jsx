@@ -30,6 +30,7 @@ import { PanCardCompleted } from '../../Pages/PanCard/PanCardCompleted/PanCardCo
 import { UpdatePancard } from '../../Pages/UpdatePancard/UpdatePancard/UpdatePancard';
 import { UpdatePancardForm } from '../../Pages/UpdatePancard/UpdatePancardForm/UpdatePancardForm';
 import { UpdatePanEdit } from '../../Pages/UpdatePancard/UpdatePanEdit/UpdatePanEdit';
+import { AdminUpdatePanCard } from '../../Admin/AdminUpdatePanCard/AdminUpdatePanCard';
 
 
 
@@ -72,6 +73,7 @@ return (
         <Route path={'/UpdatePancard'} element={portalData?<UpdatePancard/>:<Navigate to={'/Signin'}/>}></Route>
         <Route path={'/UpdatePancardForm/:catagory'} element={portalData?<UpdatePancardForm/>:<Navigate to={'/Signin'}/>}></Route>
         <Route path={'/UpdatePanEdit'} element={portalData?<UpdatePanEdit/>:<Navigate to={'/Signin'}/>}></Route>
+        <Route path={'/AdminUpdatePanCard'} element={portalData?<AdminUpdatePanCard/>:<Navigate to={'/Signin'}/>}></Route>
     </Routes>
 )
 }

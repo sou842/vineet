@@ -1,6 +1,6 @@
-import { Box, Button, Grid, Heading, Spinner, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
+import { Box, Button, Grid, Heading, Spinner, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
+import { ChevronDownIcon } from "@chakra-ui/icons";
 import React, { useEffect, useState } from 'react'
-import ContactUs from '../contact us with time/ContactUs'
 import axios from 'axios'
 import { PanCardNav } from '../../Components/PanCardNav/PanCardNav'
 import { useNavigate } from 'react-router-dom'
@@ -9,16 +9,17 @@ import { Footer } from '../../Components/Footer/Footer'
 
 const Upload = () => {
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null;
+    const [category, setCategory] = useState('newPancard');
     const navigate = useNavigate()
     const [pans, setPans] = useState([])
     const [loading, setLoading] = useState(false)
 
 
-
-
+    // updatePancard
+    // newPancard
     useEffect(() => {
         setLoading(true)
-        axios.get("http://localhost:8080/user/all-pan-card-deatils/newPancard", {
+        axios.get(`http://localhost:8080/user/all-pan-card-deatils/${category}`, {
             headers: { "Authorization": portalData.token }
 
         }).then((res) => {
@@ -29,7 +30,7 @@ const Upload = () => {
             setLoading(false)
             console.log(err);
         })
-    }, [])
+    }, [category])
 
     // console.log(pans)
 
@@ -37,16 +38,25 @@ const Upload = () => {
         <Box>
             <Box><PanCardNav /></Box>
             {/* <Box mt={'20px'}><ContactUs /></Box> */}
+            <Box w={'85%'} m={'0.5cm auto 0 auto'}>
+                <Box w={'230px'}>
+                    <select onChange={(e) => setCategory(e.target.value)} style={{ borderRadius: '20px', padding: '7px', color: 'grey' }}>
+                        <option value="newPancard">NEW PANCARD</option>
+                        <option value="updatePancard">UPDATE PANCARD</option>
+                    </select>
+                </Box>
+            </Box>
 
             <Box w={'100%'} minH={'60vh'} m={'auto'} bg={'white'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
+
                 {loading ? <Box display={'flex'} justifyContent={'center'} alignItems={'center'} ><Spinner color='#00aeff' /></Box> :
                     <Box w={'90%'}>
                         {pans.length == 0 ? <Box textAlign={'center'}>NO DATA FOUND</Box> : null}
 
-                        <Grid templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} gap={['10px', '15px']} w={'95%'} m={'1cm auto'}>
+                        <Grid templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} gap={['10px', '15px']} w={'95%'} m={'0 auto 1cm auto'}>
                             {pans.map((el, i) => {
                                 return (
-                                    <Box key={i} border={'2px solid #00aeff'} pt={'20px'} pb={'5px'} borderRadius={'15px'}>
+                                    <Box key={i} border={'2px solid #00aeff'} pt={'10px'} pb={'5px'} borderRadius={'15px'}>
                                         <Box textAlign={'center'} fontWeight={'bold'} p={'7px'} color={'whiteAlpha.900'} bg={'#00aeff'} w={'100%'} m={'auto'} mt={'10px'} mb={'15px'}>{el.category.toUpperCase()}</Box>
                                         <Box w={'90%'} m={'auto'}>
                                             {el.category == 'Individual' ?

@@ -51,13 +51,13 @@ export const AdminDash = () => {
             <div style={{ position: 'fixed', zIndex: '100', width: '100%', backgroundColor: 'white' }}> <AdminNavbar value={'admindash'} /></div>
             <div className='AdminDash_0'>
                 {!isSmallerThan1000 ?
-                    <div style={{ width: side ? '24%' : '0px', backgroundColor: '#061621eb', paddingTop: '1.4cm' }}>{side ? <div><AdminSlider slidevalue={'AdminDash'} /></div> : null}</div>
+                    <div style={{ width: side ? '24%' : '0px', backgroundColor: '#34495E', paddingTop: '1.4cm' }}>{side ? <div><AdminSlider slidevalue={'AdminDash'} /></div> : null}</div>
                     :
                     <div>{side ? <div style={{ width: !isSmallerThan600 ? '37%' : '65%', position: 'fixed', zIndex: '10', top: '0', backgroundColor: '#061621eb', paddingTop: '1.4cm', height: '100vh' }}>{side ? <div><AdminSlider slidevalue={'AdminDash'} /></div> : null}</div> : null}
                     </div>
                 }
 
-                <div style={{ width: side && !isSmallerThan1000 ? '75%' : '96%', margin: '1.5cm auto' }}>
+                <div style={{ width: side && !isSmallerThan1000 ? '75%' : '96%', margin: '1.5cm auto 0.5cm auto' }}>
                     <Box display={'flex'} flexDirection={['column', 'column', 'row']} gap={'10px'} justifyContent={'space-between'} mt={'15px'} mb={'15px'}>
                         <Box w={['100%', '100%', '70%']} boxShadow={'rgba(0, 0, 0, 0.24) 0px 3px 8px'} display={'flex'} justifyContent={'center'}>
                             <Box>
