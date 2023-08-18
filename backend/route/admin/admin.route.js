@@ -6,6 +6,7 @@ const { NewPanModel } = require("../../model/newPan.model");
 const { adminAuth } = require("../../middleware/adminAuth.middleware");
 const { UserModel } = require("../../model/user.model");
 const { panDocsModel } = require("../../model/panDocs.model");
+const { UpdatePanModel } = require("../../model/updatePan/updatePan.model");
 const adminRoute = express.Router()
 
 
@@ -211,6 +212,14 @@ adminRoute.get("/user",async(req,res)=>{
   
 })
 
+adminRoute.get("/update-pan",async(req,res)=>{
+  try {
+    const pan=await UpdatePanModel.find()
+    res.send(pan)
+  } catch (error) {
+    res.send(error)
+  }
+})
 
 
 module.exports = { adminRoute }

@@ -213,7 +213,7 @@ export const UpdatePanEdit = () => {
                 console.log(err);
             })
 
-            // navigate('/user/upload')
+            navigate('/user/upload')
         }
 
     }

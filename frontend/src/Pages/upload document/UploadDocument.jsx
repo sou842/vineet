@@ -35,13 +35,13 @@ const UploadDocument = () => {
   const [year, setYear] = useState("");
   const [upladDone, setUploadDone] = useState(false);
   const [image, setImage] = useState({
-    form49Front: null,
-    form49Back: null,
-    aadharDoc: null,
-    parentAadharDoc: null
+    form49Front: "",
+    form49Back: "",
+    aadharDoc: "",
+    parentAadharDoc: ""
     
   });
-  const [formData, setFormdata] = useState(null);
+  
 
 
 
