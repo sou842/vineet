@@ -35,24 +35,27 @@ const UploadDocument = () => {
   const [year, setYear] = useState("");
   const [upladDone, setUploadDone] = useState(false);
   const [image, setImage] = useState({
-    form49Front: "",
-    form49Back: "",
-    aadharDoc: "",
-    parentAadharDoc: "",
-    isUpload: false,
-    userid: "",
-    receiptPdf:""
+    form49Front: null,
+    form49Back: null,
+    aadharDoc: null,
+    parentAadharDoc: null
+    
   });
+  const [formData, setFormdata] = useState(null);
+
+
 
   const handleUpload = (e) => {
-    console.log(e.target.files[0].size);
     if (e.target.files[0]) {
-      let reader = new FileReader();
-      reader.readAsDataURL(e.target.files[0]);
-      reader.onload = () => {
-        setImage({ ...image, [e.target.name]: reader.result });
-        // console.log(reader.result);
-      };
+
+      setImage({ ...image, [e.target.name]:e.target.files[0]});
+
+      // let reader = new FileReader();
+      // reader.readAsDataURL(e.target.files[0]);
+      // reader.onload = () => {
+      //   console.log(reader.result);
+
+      // };
     }
     
   };
@@ -76,7 +79,27 @@ const UploadDocument = () => {
     }
   };
 
+// const handelUploadTemp=()=>{
+//   const imageData = new FormData();
+//   for (const fieldName in image) {
+//     if (image[fieldName]) {
+//       // console.log(fieldName);
+//       imageData.append(fieldName, image[fieldName]);
+//     }
+// }
+// imageData.append('panid',id)
+// imageData.append('receiptPdf',"")
+// // console.log(imageData,"93");
+// setFormdata(imageData)
+// }
+
+
+
+
+
   //handelConfirmUpload
+  
+  
   const handelConfirmUpload = () => {
     if (year != pans.yearOfBirth || year == "") {
       toast({
@@ -88,10 +111,30 @@ const UploadDocument = () => {
       });
     } else {
       setLoading(true);
+      const formData = new FormData();
+      for (const fieldName in image) {
+        if (image[fieldName]) {
+          // console.log(fieldName);
+          formData.append(fieldName, image[fieldName]);
+        }
+    }
+    formData.append('panid',id)
+    formData.append('receiptPdf',"")
+    formData.append('vendorID',pans.vendorID)
+    // console.log(imageData,"93");
+    
+
+
+
+
+
+
+
+      
       axios
         .post(
           "http://localhost:8080/user/upload-pandocs",
-          { ...image, isUpload: true, userid: id },
+          formData,
           {
             headers: {
               Authorization: portalData.token,
@@ -99,22 +142,8 @@ const UploadDocument = () => {
           }
         )
         .then((res) => {
-          axios
-            .patch(
-              `http://localhost:8080/user/apply-confirm-from/${id}`,
-              {},
-              {
-                headers: {
-                  Authorization: portalData.token,
-                },
-              }
-            )
-            .then((res) => {})
-            .catch((er) => {
-              console.log(er);
-            });
-
           setLoading(false);
+
           toast({
             title: res.data,
             status: "success",
@@ -126,6 +155,12 @@ const UploadDocument = () => {
         })
         .catch((err) => {
           setLoading(false);
+          toast({
+            title: "Please Try Again",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+          });
           console.log(err);
         });
     }
@@ -439,6 +474,7 @@ const UploadDocument = () => {
           NEXT
         </Button>
       </form>
+      {/* <button onClick={handelUploadTemp}>upload</button> */}
 
       {/* dateof birth confirmation */}
       <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
