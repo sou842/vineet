@@ -4,8 +4,8 @@
 }
 .AdminSlider_0{
     width: 100%;
-    height: 100%;
-    background-color:#34495E;
+    min-height: 100vh;
+    /* background-color:#34495E; */
     padding: 10px;
     
 }

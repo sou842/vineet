@@ -21,22 +21,22 @@ export const AdminNavbar = ({ value }) => {
   const adminData = JSON.parse(localStorage.getItem("VDPadmin")) || null;
   const { side, setSide } = useContext(AuthorContext);
   const navigate = useNavigate();
-  const toast=useToast()
+  const toast = useToast()
 
-const handelAdminLogout=()=>{
+  const handelAdminLogout = () => {
     //########################################
-  const baseurl=process.env.REACT_APP_BASE_URL
-  //########################################
+    const baseurl = process.env.REACT_APP_BASE_URL
+    //########################################
     localStorage.removeItem("VDPadmin")
     toast({
-        title: 'Logout Succesfull',
-        status: 'success',
-        duration: 3000,
-        isClosable: true,
-        position:"top-left"
-          })
-    window.location="/"
-}
+      title: 'Logout Succesfull',
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+      position: "top-left"
+    })
+    window.location = "/"
+  }
 
   return (
     <div>
@@ -53,50 +53,17 @@ const handelAdminLogout=()=>{
         boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
       >
         <Box display={"flex"} alignItems={"end"} >
-          {value && (
-            <Image
-              onClick={() => setSide(!side)}
-              cursor={"pointer"}
-              w={"30px"}
-              h={"30px"}
-              src={"https://cdn-icons-png.flaticon.com/128/1828/1828859.png"}
-            />
-          )}
-          <Text
-            fontSize={"20px"}
-            fontWeight={"bold"}
-            ml={"10px"}
-            color={"blue.400"}
-            onClick={() => navigate("/AdminDash")}
-            cursor={"pointer"}
-          >
-            Hi,{adminData.adminName}
-          </Text>
+          {value && (<Image onClick={() => setSide(!side)} cursor={"pointer"} w={"30px"} h={"30px"} src={"https://cdn-icons-png.flaticon.com/128/1828/1828859.png"} />)}
+          <Text fontSize={"20px"} fontWeight={"bold"} ml={"10px"} color={"blue.400"} onClick={() => navigate("/AdminDash")} cursor={"pointer"} >Hi,{adminData.adminName}</Text>
         </Box>
         <Box display={"flex"} gap={"10px"}>
-          <img
-            width={"30px"}
-            height={"30px"}
-            src="https://cdn-icons-png.flaticon.com/128/646/646094.png"
-            alt=""
-          />
+          <img width={"30px"} height={"30px"} src="https://cdn-icons-png.flaticon.com/128/646/646094.png" alt="" />
           <Menu>
             <MenuButton>
-              <Avatar
-                color={"black"}
-                bg="#00aeff"
-                size={["sm"]}
-                name={
-                  portalData &&
-                  portalData.username.match(/\b\w/g).join("").toUpperCase()
-                }
-                src={portalData && portalData.avatar}
-              />
-            </MenuButton>
+              <Avatar color={"black"} bg="#00aeff" size={["sm"]} name={portalData && portalData.username.match(/\b\w/g).join("").toUpperCase()} src={portalData && portalData.avatar} /></MenuButton>
             <MenuList>
               <MenuItem fontWeight={'bold'}>Hello,{adminData.adminName.toUpperCase()}</MenuItem>
               <MenuItem color={'red'} onClick={handelAdminLogout}>Logout</MenuItem>
-             
             </MenuList>
           </Menu>
         </Box>
