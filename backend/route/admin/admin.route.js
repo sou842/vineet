@@ -214,13 +214,24 @@ adminRoute.get("/user",async(req,res)=>{
   }
   
 })
-
+//update pans get
 adminRoute.get("/update-pan",async(req,res)=>{
   try {
     const pan=await UpdatePanModel.find()
     res.send(pan)
   } catch (error) {
     res.send(error)
+  }
+})
+
+//singles update pans data
+adminRoute.get('/pan-update-single/:id',async(req,res)=>{
+  try {
+      const pan= await UpdatePanModel.findOne({_id:id})
+      res.send(pan)
+      
+  } catch (error) {
+      res.send(error)
   }
 })
 
