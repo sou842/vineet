@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { PanCardNav } from "../../Components/PanCardNav/PanCardNav"
 import { useNavigate, useParams } from "react-router-dom"
-import axios from "axios"
-import { city, city_data } from '../../city.js'
+import axios from "axios";
+import { city, city_data } from '../../city.js';
 import { array1To31, monthsArray, yearsArray } from '../../FromElement.js'
 import { useToast } from "@chakra-ui/react"
 
@@ -18,6 +18,9 @@ export const PanUploadEdit = () => {
     const { id } = useParams()
     const catagory = 'Individual';
 
+
+    // for patch
+// bseurl/user//pan-update/:id
 
     const handleBlur = () => {
         if (formData.middleName) {
@@ -35,7 +38,7 @@ export const PanUploadEdit = () => {
         event.preventDefault();
         toast({ title: 'UPLOADING...', status: 'success', duration: 4000, isClosable: true, position: 'top' })
 
-        axios.patch(`http://localhost:8080/user/pan-edit/${id.split('$')[1]}`, formData, {
+        axios.patch(`http://localhost:8080/user/pan-edit/${id}`, formData, {
             headers: { "Authorization": portalData.token }
         }).then((data) => {
             // console.log(data.data)
@@ -70,7 +73,7 @@ export const PanUploadEdit = () => {
 
     useEffect(() => {
 
-        axios.get(`http://localhost:8080/user/upload-pan-card/${id.split('$')[1]}`, {
+        axios.get(`http://localhost:8080/user/upload-pan-card/${id}`, {
             headers: { "Authorization": portalData.token }
         }).then((data) => {
             // console.log(data.data)
@@ -88,7 +91,7 @@ export const PanUploadEdit = () => {
             <div><PanCardNav /></div>
 
             <div>
-                {formData && id.split('$')[0]=='newPancard' ?<form onSubmit={handleSubmit}>
+                {formData &&<form onSubmit={handleSubmit}>
                     {/* all */}
                     <div className="individualPerson_2">
                         <div>
@@ -973,7 +976,7 @@ export const PanUploadEdit = () => {
                     </div>
 
                     <button className='individualPerson_3' type='submit'>SUBMIT</button>
-                </form>:null}
+                </form>}
             </div>
         </div>
     )

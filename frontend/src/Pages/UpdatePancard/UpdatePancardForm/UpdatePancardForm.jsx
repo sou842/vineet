@@ -18,7 +18,6 @@ export const UpdatePancardForm = () => {
     const [correction_section_3, setCorrection_section_3] = useState(false);
     const [correction_section_4, setCorrection_section_4] = useState(false);
     const [correction_section_5, setCorrection_section_5] = useState(false);
-    const [residenceIndividual, setResidenceIndividual] = useState(false);
 
     const { catagory } = useParams();
     const now = new Date();
@@ -71,18 +70,6 @@ export const UpdatePancardForm = () => {
 
         isUpload: false,
         // new added  
-        representativetitle: '',
-        representativelastName: '',
-        representativefirstName: '',
-        representativemiddleName: '',
-        representativeflatNumber: '',
-        representativepremisesName: '',
-        representativeroadName: '',
-        representativearea: '',
-        representativecityDistrict: '',
-        representativestate: '',
-        representativezipCode: '',
-        representativecountry: '',
         ageOfTheUser: '',
         slipGenerateDate: "",
         acknowledgement: "",
@@ -164,7 +151,7 @@ export const UpdatePancardForm = () => {
             localStorage.setItem("VDP_form_data", JSON.stringify(formData))
             navigate('/UpdatePanEdit')
         }
-        else if (catagory == 'Individual' && formData.aadhaarNumber.length != 12) {
+        else if (formData.aadhaarNumber.length != 12) {
             toast({
                 title: 'Aadhaar Number',
                 description: "Aadhaar Number should have 12 Charecter",
@@ -199,13 +186,6 @@ export const UpdatePancardForm = () => {
         setFormData((prevData) => ({ ...prevData, ['addressProof']: 'AADHAR Card issued by UIDAL (In Copy)' }))
         setFormData((prevData) => ({ ...prevData, ['dobProof']: 'AADHAR Card issued by UIDAL (In Copy)' }))
 
-        if (age < 18) {
-            setResidenceIndividual(true)
-            toast({ title: 'you are below 18 year', description: "Fill the Representative Assessee", status: 'info', duration: 5000, isClosable: true, position: 'top-center', })
-        }
-        else if (age >= 18) {
-            setResidenceIndividual(false)
-        }
 
     }, [age])
 
@@ -245,7 +225,7 @@ export const UpdatePancardForm = () => {
                         <div>
                             <div>
                                 <p>
-                                    <input type="checkbox" name='correction_section_1' onBlur={handleBlur} value={correction_section_1} onChange={() => setCorrection_section_1(!correction_section_1)} /> Full Name* (Full extended name, address, dob to be mentioned as appearing in proof of identity /address/ dob documents. Initials are not allowed)
+                                    <input type="checkbox" name='correction_section_1' onBlur={handleBlur} checked={correction_section_1} onChange={() => setCorrection_section_1(!correction_section_1)} /> Full Name* (Full extended name, address, dob to be mentioned as appearing in proof of identity /address/ dob documents. Initials are not allowed)
                                 </p>
                             </div>
                         </div>
@@ -284,7 +264,7 @@ export const UpdatePancardForm = () => {
                         <div>
                             <div>
                                 <p style={{ display: 'flex', alignItems: 'center' }}>
-                                    <input type="checkbox" name='correction_section_2' onBlur={handleBlur} value={correction_section_2} onChange={() => setCorrection_section_2(!correction_section_2)} />Details of Date of Birth
+                                    <input type="checkbox" name='correction_section_2' onBlur={handleBlur} checked={correction_section_2} onChange={() => setCorrection_section_2(!correction_section_2)} />Details of Date of Birth
                                 </p>
                             </div>
                         </div>
@@ -373,14 +353,14 @@ export const UpdatePancardForm = () => {
                         <div>
                             <div>
                                 <p style={{ display: 'flex', alignItems: 'center' }}>
-                                    <input onBlur={handleBlur} type="checkbox" name='correction_section_3' value={correction_section_3} onChange={() => setCorrection_section_3(!correction_section_3)} /> Photo Mismatch *
+                                    <input onBlur={handleBlur} type="checkbox" name='correction_section_3' checked={correction_section_3} onChange={() => setCorrection_section_3(!correction_section_3)} /> Photo Mismatch *
                                 </p>
                             </div>
                         </div>
                         <div>
                             <div>
                                 <p style={{ display: 'flex', alignItems: 'center' }}>
-                                    <input onBlur={handleBlur} type="checkbox" name='correction_section_4' value={correction_section_4} onChange={() => setCorrection_section_4(!correction_section_4)} /> Signature Mismatch *
+                                    <input onBlur={handleBlur} type="checkbox" name='correction_section_4' checked={correction_section_4} onChange={() => setCorrection_section_4(!correction_section_4)} /> Signature Mismatch *
                                 </p>
                             </div>
                         </div>
@@ -506,7 +486,7 @@ export const UpdatePancardForm = () => {
                         <div>
                             <div>
                                 <p style={{ display: 'flex', alignItems: 'center' }}>
-                                    <input onBlur={handleBlur} type="checkbox" name='correction_section_5' value={correction_section_5} onChange={() => setCorrection_section_5(!correction_section_5)} />
+                                    <input onBlur={handleBlur} type="checkbox" name='correction_section_5' checked={correction_section_5} onChange={() => setCorrection_section_5(!correction_section_5)} />
                                 </p>
                             </div>
                         </div>
@@ -521,118 +501,6 @@ export const UpdatePancardForm = () => {
                             </div>
                         </div>
                     </div>
-
-                    {residenceIndividual ? <div className="individualPerson_2">
-                        <h1>Representative Assessee</h1>
-                        <div>
-                            <div>
-                                <p>Title<i>*</i></p>
-                                <select required name='representativetitle' value={formData.representativetitle} onChange={handleChange} >
-                                    <option value="" disabled>Title</option>
-                                    <option value="Shri">Shri</option>
-                                    <option value="Smt">Smt</option>
-                                    <option value="Kumari">Kumari</option>
-                                </select>
-                            </div>
-                            <div>
-                                <p>Last Name<i>*</i></p>
-                                <input type="text" placeholder='Last Name' onBlur={handleBlur} required name='representativelastName' value={formData.representativelastName} onChange={handleChange} />
-                            </div>
-                            <div>
-                                <p>Middle Name</p>
-                                <input type="text" placeholder='Middle Name' onBlur={handleBlur} name='representativemiddleName' value={formData.representativemiddleName} onChange={handleChange} />
-                            </div>
-                            <div>
-                                <p>First name</p>
-                                <input type="text" placeholder='First Name' onBlur={handleBlur} name='representativefirstName' value={formData.representativefirstName} onChange={handleChange} />
-                            </div>
-                        </div>
-                        <div>
-                        </div>
-
-                        <div>
-                            <div>
-                                <p>Flat/Door/Block Number<i>*</i></p>
-                                <input type="text" placeholder='Flat/Door/Block Number' required name='representativeflatNumber' value={formData.representativeflatNumber} onChange={handleChange} />
-                            </div>
-                            <div>
-                                <p>Name of Premises/Building/Village<i>*</i></p>
-                                <input type="text" placeholder='Name of Premises/Building/Village' required name='representativepremisesName' value={formData.representativepremisesName} onChange={handleChange} />
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <p>Road/Street/Lane/Post Office<i>*</i></p>
-                                <input type="text" placeholder='Road/Street/Lane/Post Office' required name='representativeroadName' value={formData.representativeroadName} onChange={handleChange} />
-                            </div>
-                            <div>
-                                <p>Area/Locality/Taluka/Sub-Division<i>*</i></p>
-                                <input type="text" placeholder='Area/Locality/Taluka/Sub-Division' required name='representativearea' value={formData.representativearea} onChange={handleChange} />
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <p>Town/City/District<i>*</i></p>
-                                <input type="text" placeholder='Town/City/District' required name='representativecityDistrict' value={formData.representativecityDistrict} onChange={handleChange} />
-                            </div>
-                            <div>
-                                <p>State/Union Territory<i>*</i></p>
-                                <select required name='representativestate' value={formData.representativestate} onChange={handleChange}>
-                                    <option value="" disabled>State/Union Territory</option>
-                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
-                                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                                    <option value="Assam">Assam</option>
-                                    <option value="Bihar">Bihar</option>
-                                    <option value="Chhattisgarh">Chhattisgarh</option>
-                                    <option value="Goa">Goa</option>
-                                    <option value="Gujarat">Gujarat</option>
-                                    <option value="Haryana">Haryana</option>
-                                    <option value="Himachal Pradesh">Himachal Pradesh</option>
-                                    <option value="Jharkhand">Jharkhand</option>
-                                    <option value="Karnataka">Karnataka</option>
-                                    <option value="Kerala">Kerala</option>
-                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
-                                    <option value="Maharashtra">Maharashtra</option>
-                                    <option value="Manipur">Manipur</option>
-                                    <option value="Meghalaya">Meghalaya</option>
-                                    <option value="Mizoram">Mizoram</option>
-                                    <option value="Nagaland">Nagaland</option>
-                                    <option value="Odisha">Odisha</option>
-                                    <option value="Punjab">Punjab</option>
-                                    <option value="Rajasthan">Rajasthan</option>
-                                    <option value="Sikkim">Sikkim</option>
-                                    <option value="Tamil Nadu">Tamil Nadu</option>
-                                    <option value="Telangana">Telangana</option>
-                                    <option value="Tripura">Tripura</option>
-                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
-                                    <option value="Uttarakhand">Uttarakhand</option>
-                                    <option value="West Bengal">West Bengal</option>
-                                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                                    <option value="Chandigarh">Chandigarh</option>
-                                    <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
-                                    <option value="Daman and Diu">Daman and Diu</option>
-                                    <option value="Delhi">Delhi</option>
-                                    <option value="Lakshadweep">Lakshadweep</option>
-                                    <option value="Puducherry">Puducherry</option>
-                                    <option value="Ladakh">Ladakh</option>
-                                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <p>Zip Code<i>*</i></p>
-                                <input type="number" placeholder='Zip Code' required name='representativezipCode' value={formData.representativezipCode} onChange={handleChange} />
-                            </div>
-                            <div>
-                                <p>Country<i>*</i></p>
-                                <select required name='representativecountry' value={formData.representativecountry} onChange={handleChange}>
-                                    <option value="" disabled>Country</option>
-                                    <option value="India">India</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div> : null}
 
                     <div className="individualPerson_2">
                         <p>Verification <i>*</i></p>
