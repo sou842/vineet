@@ -32,19 +32,19 @@ export const PanUploadEdit = () => {
 
 
     const handleSubmit = (event) => {
-    event.preventDefault();
-    toast({ title: 'UPLOADING...', status: 'success', duration: 4000, isClosable: true, position: 'top' })
+        event.preventDefault();
+        toast({ title: 'UPLOADING...', status: 'success', duration: 4000, isClosable: true, position: 'top' })
 
-    axios.patch(`http://localhost:8080/user/pan-edit/${id}`,formData, {
-        headers: { "Authorization": portalData.token }
-    }).then((data) => {
-        // console.log(data.data)
-        navigate('/user/upload')
-    })
-    .catch((err) => {
-        console.log(err)
-        toast({ title: 'Try Again, Something Wrong!!!', status: 'error', duration: 4000, isClosable: true, position: 'top' })
-    })
+        axios.patch(`http://localhost:8080/user/pan-edit/${id.split('$')[1]}`, formData, {
+            headers: { "Authorization": portalData.token }
+        }).then((data) => {
+            // console.log(data.data)
+            navigate('/user/upload')
+        })
+            .catch((err) => {
+                console.log(err)
+                toast({ title: 'Try Again, Something Wrong!!!', status: 'error', duration: 4000, isClosable: true, position: 'top' })
+            })
 
     }
 
@@ -52,33 +52,33 @@ export const PanUploadEdit = () => {
         const { name, value } = event.target;
 
         if (name == 'title' && value == 'Shri' && value != '') {
-          setFormData((prevData) => ({ ...prevData, ['gender']: 'Male' }));
+            setFormData((prevData) => ({ ...prevData, ['gender']: 'Male' }));
         }
         if (name == 'title' && value == 'Smt' && value != '') {
-          setFormData((prevData) => ({ ...prevData, ['gender']: 'Female' }));
+            setFormData((prevData) => ({ ...prevData, ['gender']: 'Female' }));
         }
         if (name == 'title' && value == 'Kumari' && value != '') {
-          setFormData((prevData) => ({ ...prevData, ['gender']: 'Female' }));
+            setFormData((prevData) => ({ ...prevData, ['gender']: 'Female' }));
         }
 
         if (name == 'firstName' || name == 'middleName' || name == 'lastName' || name == 'father_FName' || name == 'father_MName' || name == 'father_LName') {
-          setFormData((prevData) => ({ ...prevData, [name]: value.charAt(0).toUpperCase() + value.slice(1) }));
+            setFormData((prevData) => ({ ...prevData, [name]: value.charAt(0).toUpperCase() + value.slice(1) }));
         } else {
-        setFormData((prevData) => ({ ...prevData, [name]: value }));
-    }
+            setFormData((prevData) => ({ ...prevData, [name]: value }));
+        }
     }
 
     useEffect(() => {
 
-        axios.get(`http://localhost:8080/user/upload-pan-card/${id}`, {
+        axios.get(`http://localhost:8080/user/upload-pan-card/${id.split('$')[1]}`, {
             headers: { "Authorization": portalData.token }
         }).then((data) => {
             // console.log(data.data)
             setFormData(data.data)
         })
-        .catch((err) => {
-            console.log(err)
-        })
+            .catch((err) => {
+                console.log(err)
+            })
 
     }, [])
 
@@ -88,7 +88,7 @@ export const PanUploadEdit = () => {
             <div><PanCardNav /></div>
 
             <div>
-                {formData && <form onSubmit={handleSubmit}>
+                {formData && id.split('$')[0]=='newPancard' ?<form onSubmit={handleSubmit}>
                     {/* all */}
                     <div className="individualPerson_2">
                         <div>
@@ -973,8 +973,7 @@ export const PanUploadEdit = () => {
                     </div>
 
                     <button className='individualPerson_3' type='submit'>SUBMIT</button>
-                </form>
-                }
+                </form>:null}
             </div>
         </div>
     )

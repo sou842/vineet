@@ -9,7 +9,7 @@ import { Footer } from '../../Components/Footer/Footer'
 
 const Upload = () => {
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null;
-    const [category, setCategory] = useState('newPancard');
+    const [cat, setCat] = useState('newPancard');
     const navigate = useNavigate()
     const [pans, setPans] = useState([])
     const [loading, setLoading] = useState(false)
@@ -19,7 +19,7 @@ const Upload = () => {
     // newPancard
     useEffect(() => {
         setLoading(true)
-        axios.get(`http://localhost:8080/user/all-pan-card-deatils/${category}`, {
+        axios.get(`http://localhost:8080/user/all-pan-card-deatils/${cat}`, {
             headers: { "Authorization": portalData.token }
 
         }).then((res) => {
@@ -30,7 +30,7 @@ const Upload = () => {
             setLoading(false)
             console.log(err);
         })
-    }, [category])
+    }, [cat])
 
     // console.log(pans)
 
@@ -40,7 +40,7 @@ const Upload = () => {
             {/* <Box mt={'20px'}><ContactUs /></Box> */}
             <Box w={'85%'} m={'0.5cm auto 0 auto'}>
                 <Box w={'230px'}>
-                    <select onChange={(e) => setCategory(e.target.value)} style={{ borderRadius: '20px', padding: '7px', color: 'grey' }}>
+                    <select onChange={(e) => setCat(e.target.value)} style={{ borderRadius: '20px', padding: '7px', color: 'grey' }}>
                         <option value="newPancard">NEW PANCARD</option>
                         <option value="updatePancard">UPDATE PANCARD</option>
                     </select>
@@ -69,7 +69,7 @@ const Upload = () => {
                                             <Text mt={'7px'} mb={'7px'} display={'flex'} fontWeight={'bold'}>Mobile:<Text fontWeight={'normal'} ml={'10px'}>{el.telephoneNumber || "NA"}</Text></Text>
                                         </Box>
                                         <Box m={'auto'} mt={'15px'} w={'95%'}>
-                                            <Button w={'100%'} h={'40px'} mb={'10px'} size={'xs'} onClick={() => navigate(`/user/upload/PanUploadEdit/${el._id}`)}>EDIT</Button>
+                                            <Button w={'100%'} h={'40px'} mb={'10px'} size={'xs'} onClick={() => navigate(`/user/upload/PanUploadEdit/${cat+'$' +el._id}`)}>EDIT</Button>
                                             <Button w={'100%'} h={'40px'} mb={'10px'} size={'xs'} bg={'grey'} color={'white'} onClick={() => navigate(`/user/upload-document/${el._id}`)}>UPLOAD</Button>
                                         </Box>
                                     </Box>
