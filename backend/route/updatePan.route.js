@@ -18,6 +18,7 @@ updatePanRoute.post("/pan-update",async(req,res)=>{
 
 //patch
 updatePanRoute.patch("/pan-update/:id",async(req,res)=>{
+    const {id} = req.params;
     try {
         await UpdatePanModel.findByIdAndUpdate({_id:id},req.body)
         res.send("Save successfully.")
@@ -30,6 +31,7 @@ updatePanRoute.patch("/pan-update/:id",async(req,res)=>{
 //get perticular id data
 
 updatePanRoute.get('/pan-update-single/:id',async(req,res)=>{
+    const {id} = req.params;
     try {
         const pan= await UpdatePanModel.findOne({_id:id})
         res.send(pan)
