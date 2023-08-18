@@ -122,12 +122,13 @@ export const AdminPanCard = () => {
                         }
                         </Box>}
                         <Box>
-                            
-                            
-                        <Button onClick={(e)=>setPage(page-1)} isDisabled={page==1} mr={'5px'} colorScheme={'red'}>Pre</Button>
-                <Button mr={'5px'}>{page}</Button>
-                <Button colorScheme='green' onClick={(e)=>setPage(page+1)} isDisabled={page==(Math.ceil(count/10))|| count==0}>Next</Button>
-                                 
+                            {
+
+                                count!=0?<Box><Button size={'sm'} onClick={(e)=>setPage(page-1)} isDisabled={page==1} mr={'5px'} colorScheme={'red'}>⟨</Button>
+                                <Button size={'sm'} mr={'5px'}>{page}</Button>
+                                <Button size={'sm'} colorScheme='green' onClick={(e)=>setPage(page+1)} isDisabled={page==(Math.ceil(count/10))|| count==0}>⟩</Button></Box>:null
+
+                            }         
                 </Box>
                 </div>
                 
