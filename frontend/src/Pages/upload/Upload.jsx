@@ -18,7 +18,7 @@ const Upload = () => {
 
     useEffect(() => {
         setLoading(true)
-        axios.get("http://localhost:8080/user/all-pan-card-deatils", {
+        axios.get("http://localhost:8080/user/all-pan-card-deatils/newPancard", {
             headers: { "Authorization": portalData.token }
 
         }).then((res) => {

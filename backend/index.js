@@ -25,7 +25,7 @@ app.use('/user',newPanRoute)
 app.use('/admin',adminRoute)
 app.use('/user',updatePanRoute)
 
-
+app.use(express.static('documents'))
 
 
 app.listen(process.env.PORT,async()=>{

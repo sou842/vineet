@@ -138,30 +138,22 @@ export const UpdatePancardForm = () => {
 
     const handleBlur = () => {
 
-        if (catagory == "Individual") {
-
-            if (formData.middleName) {
-                setFormData((prevData) => ({ ...prevData, ['aadhaarName']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
-                setFormData((prevData) => ({ ...prevData, ['NameOnCard']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
-                setFormData((prevData) => ({ ...prevData, ['verifierName']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
-            } else {
-                setFormData((prevData) => ({ ...prevData, ['aadhaarName']: formData.firstName + ' ' + formData.lastName }))
-                setFormData((prevData) => ({ ...prevData, ['NameOnCard']: formData.firstName + ' ' + formData.lastName }));
-                setFormData((prevData) => ({ ...prevData, ['verifierName']: formData.firstName + ' ' + formData.lastName }));
-                setFormData((prevData) => ({ ...prevData, ['correction_section_1']: correction_section_1 }));
-                setFormData((prevData) => ({ ...prevData, ['correction_section_2']: correction_section_2 }));
-                setFormData((prevData) => ({ ...prevData, ['correction_section_3']: correction_section_3 }));
-                setFormData((prevData) => ({ ...prevData, ['correction_section_4']: correction_section_4 }));
-                setFormData((prevData) => ({ ...prevData, ['correction_section_5']: correction_section_5 }));
-            }
+        if (formData.middleName) {
+            setFormData((prevData) => ({ ...prevData, ['aadhaarName']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
+            setFormData((prevData) => ({ ...prevData, ['NameOnCard']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
+            setFormData((prevData) => ({ ...prevData, ['verifierName']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
         } else {
-
-            if (formData.representativemiddleName) {
-                setFormData((prevData) => ({ ...prevData, ['verifierName']: formData.representativefirstName + ' ' + formData.representativemiddleName + ' ' + formData.representativelastName }))
-            } else {
-                setFormData((prevData) => ({ ...prevData, ['verifierName']: formData.representativefirstName + ' ' + formData.representativelastName }));
-            }
+            setFormData((prevData) => ({ ...prevData, ['aadhaarName']: formData.firstName + ' ' + formData.lastName }))
+            setFormData((prevData) => ({ ...prevData, ['NameOnCard']: formData.firstName + ' ' + formData.lastName }));
+            setFormData((prevData) => ({ ...prevData, ['verifierName']: formData.firstName + ' ' + formData.lastName }));
         }
+        setFormData((prevData) => ({ ...prevData, ['correction_section_1']: correction_section_1 }));
+        setFormData((prevData) => ({ ...prevData, ['correction_section_2']: correction_section_2 }));
+        setFormData((prevData) => ({ ...prevData, ['correction_section_3']: correction_section_3 }));
+        setFormData((prevData) => ({ ...prevData, ['correction_section_4']: correction_section_4 }));
+        setFormData((prevData) => ({ ...prevData, ['correction_section_5']: correction_section_5 }));
+
+        console.log('trigered')
 
     }
 
@@ -170,7 +162,7 @@ export const UpdatePancardForm = () => {
 
         if (formData.aadhaarNumber.length == 0 || formData.zipCode.length == 0) {
             localStorage.setItem("VDP_form_data", JSON.stringify(formData))
-            navigate('/user/pan-edit')
+            navigate('/UpdatePanEdit')
         }
         else if (catagory == 'Individual' && formData.aadhaarNumber.length != 12) {
             toast({
@@ -193,7 +185,7 @@ export const UpdatePancardForm = () => {
             })
         } else {
             localStorage.setItem("VDP_form_data", JSON.stringify(formData))
-            navigate('/user/pan-edit')
+            navigate('/UpdatePanEdit')
         }
 
     }
@@ -201,16 +193,12 @@ export const UpdatePancardForm = () => {
 
 
     useEffect(() => {
-        if (catagory != "Individual") {
-            setFormData((prevData) => ({ ...prevData, ['officetitle']: 'M/S' }))
-            setFormData((prevData) => ({ ...prevData, ['Address']: 'OFFICE' }))
-        }
-        if (catagory == 'Individual') {
-            setFormData((prevData) => ({ ...prevData, ['Address']: 'RESIDENCE ADDRESS' }))
-            setFormData((prevData) => ({ ...prevData, ['identityProof']: 'AADHAR Card issued by UIDAL (In Copy)' }))
-            setFormData((prevData) => ({ ...prevData, ['addressProof']: 'AADHAR Card issued by UIDAL (In Copy)' }))
-            setFormData((prevData) => ({ ...prevData, ['dobProof']: 'AADHAR Card issued by UIDAL (In Copy)' }))
-        }
+
+        setFormData((prevData) => ({ ...prevData, ['Address']: 'RESIDENCE ADDRESS' }))
+        setFormData((prevData) => ({ ...prevData, ['identityProof']: 'AADHAR Card issued by UIDAL (In Copy)' }))
+        setFormData((prevData) => ({ ...prevData, ['addressProof']: 'AADHAR Card issued by UIDAL (In Copy)' }))
+        setFormData((prevData) => ({ ...prevData, ['dobProof']: 'AADHAR Card issued by UIDAL (In Copy)' }))
+
         if (age < 18) {
             setResidenceIndividual(true)
             toast({ title: 'you are below 18 year', description: "Fill the Representative Assessee", status: 'info', duration: 5000, isClosable: true, position: 'top-center', })
@@ -222,7 +210,7 @@ export const UpdatePancardForm = () => {
     }, [age])
 
     console.log(formData)
-    
+
     return (
         <div style={{ backgroundColor: 'rgba(201, 201, 201, 0.249)' }}>
             <div><PanCardNav /></div>
@@ -512,19 +500,13 @@ export const UpdatePancardForm = () => {
                                 <input type="email" placeholder='Email ID' required name='email' value={formData.email} onChange={handleChange} />
                             </div>
                         </div>
-                        {catagory == "Artificial" ? <div>
-                            <div>
-                                <p>Registration Number</p>
-                                <input type="number" placeholder='Registration Number' name='registrationNumber' value={formData.registrationNumber} onChange={handleChange} />
-                            </div>
-                        </div> : null}
                     </div>
 
                     <div className="individualPerson_2">
                         <div>
                             <div>
                                 <p style={{ display: 'flex', alignItems: 'center' }}>
-                                    <input onBlur={handleBlur} type="checkbox" name='correction_section_5' value={correction_section_5} onChange={() => setCorrection_section_5(!correction_section_5)} /> 
+                                    <input onBlur={handleBlur} type="checkbox" name='correction_section_5' value={correction_section_5} onChange={() => setCorrection_section_5(!correction_section_5)} />
                                 </p>
                             </div>
                         </div>
@@ -652,7 +634,7 @@ export const UpdatePancardForm = () => {
                         </div>
                     </div> : null}
 
-                     <div className="individualPerson_2">
+                    <div className="individualPerson_2">
                         <p>Verification <i>*</i></p>
                         <div>
                             <div>

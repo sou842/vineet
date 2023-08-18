@@ -1,4 +1,4 @@
-const express=require("express")
+
 const jwt=require("jsonwebtoken")
 
 const auth=(req,res,next)=>{
@@ -10,17 +10,17 @@ if(token){
             req.body.username=decoded.username
             req.body.userID=decoded.userID
             req.body.vendorID=decoded.vendorID
-            // console.log(decoded.vendorID);
+          
         next()
        }
 
         
     } catch (error) {
-        res.send(error)
+        res.send(error.message)
     }
 }
 else{
-    res.send("Please Login!")
+    res.status(500).send("Please Login!")
 }
 
 }

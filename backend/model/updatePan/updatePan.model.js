@@ -64,7 +64,9 @@ const userSchema =mongoose.Schema({
     correction_section_3: String,
     correction_section_4: String,
     correction_section_5: String,
-    madeFor: String
+    madeFor: String,
+    vendorID: String,
+    userID: String,
 });
 
 const UpdatePanModel = mongoose.model('updatePan', userSchema);

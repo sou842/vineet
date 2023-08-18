@@ -4,7 +4,8 @@ const fs = require('fs')
 const multer = require('multer')
 const path = require('path');
 const { auth } = require("../middleware/auth.middleware")
-const { NewPanModel } = require("../model/newPan.model")
+const { NewPanModel } = require("../model/newPan.model");
+const { UpdatePanModel } = require("../model/updatePan/updatePan.model");
 const newPanRoute = express.Router()
 
 
@@ -26,12 +27,20 @@ newPanRoute.post("/new-pan-card", async (req, res) => {
 
 //get all pan deatails under login user 
 newPanRoute.use(auth)
-newPanRoute.get("/all-pan-card-deatils", async (req, res) => {
+newPanRoute.get("/all-pan-card-deatils/:category", async (req, res) => {
     const { vendorID, userID } = req.body;
+    const {category}=req.params
 
     try {
-        const pans = await NewPanModel.find({ $and: [{ vendorID: vendorID }, { isUpload: false }] })
-        res.send(pans)
+        if(category=="newPancard"){
+
+            const pans = await NewPanModel.find({ $and: [{ vendorID: vendorID }, { isUpload: false }] })
+            res.send(pans)
+        }
+        else if(category=="updatePancard"){
+            const pans = await UpdatePanModel.find({ $and: [{ vendorID: vendorID }, { isUpload: false }] })
+            res.send(pans)
+        }
 
 
 
