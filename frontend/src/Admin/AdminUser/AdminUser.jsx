@@ -5,8 +5,14 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { AdminNavbar } from "../AdminNavbar/AdminNavbar";
 
 export const AdminUser = () => {
+    // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+        const baseURL=process.env.REACT_APP_BASE_URL
+    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null
     const [userData, setUserData] = useState([])
+    const [page, setPage] = useState(1)
+    const [count, setCount] = useState(0)
     const [type, setType] = useState("")
     const [search, setSearch] = useState("")
     const [loading, setLoading] = useState(false)
@@ -15,7 +21,7 @@ export const AdminUser = () => {
 
     const handelSearch=()=>{
         setLoading(true)
-        axios.get(`http://localhost:8080/admin/user?${type}=${search}`, {
+        axios.get(`${baseURL}/admin/user?${type}=${search}`, {
             headers: { "Authorization": portalData.token }
         })
             .then((res) => {
@@ -46,12 +52,13 @@ useMemo(()=>{
     useEffect(() => {
         setSearchParams()
         setLoading(true)
-        axios.get(`http://localhost:8080/admin/user`, {
+        axios.get(`${baseURL}/admin/all-login-user?page=${page}`, {
             headers: { "Authorization": portalData.token }
         })
             .then((res) => {
                 setLoading(false)
-                setUserData(res.data)
+                setUserData(res.data.user)
+                setCount(res.data.count)
                 // console.log(res.data)
             })
             .catch((err) => {
@@ -60,7 +67,7 @@ useMemo(()=>{
             })
            
             
-    }, [])
+    }, [page])
 
     return (
         <div>
@@ -94,6 +101,7 @@ useMemo(()=>{
                                     <Th>Email</Th>
                                     <Th>Aadhar</Th>
                                     <Th>Vendor ID</Th>
+                                    <Th>Joindate</Th>
                                 </Tr>
                             </Thead>
                             <Tbody>
@@ -104,11 +112,21 @@ useMemo(()=>{
                                         <Td>{ele.email}</Td>
                                         <Td>{ele.aadharNumber}</Td>
                                         <Td>{ele.vendorID}</Td>
+                                        <Td>{ele.joindate}</Td>
                                     </Tr>
                                 ))}
                             </Tbody>
                         </Table>
                     </TableContainer>
+                </Box>
+                <Box mt={'15px'} textAlign={'right'}>
+                            {
+
+                                count!=0?<Box><Button size={'sm'} onClick={(e)=>setPage(page-1)} isDisabled={page==1} mr={'5px'} colorScheme={'red'}>⟨</Button>
+                                <Button size={'sm'} mr={'5px'}>{page}</Button>
+                                <Button size={'sm'} colorScheme='green' onClick={(e)=>setPage(page+1)} isDisabled={page==(Math.ceil(count/10))|| count==0}>⟩</Button></Box>:null
+
+                            }         
                 </Box>
             </Box>
         </div>

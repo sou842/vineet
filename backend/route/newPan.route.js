@@ -2,6 +2,7 @@ const express = require("express")
 const prandom = require("prandom");
 const fs = require('fs')
 const multer = require('multer')
+const date = require("date-and-time");
 const path = require('path');
 const { auth } = require("../middleware/auth.middleware")
 const { NewPanModel } = require("../model/newPan.model");

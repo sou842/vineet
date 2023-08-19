@@ -8,6 +8,9 @@ import UploadDocument from '../upload document/UploadDocument'
 import { Footer } from '../../Components/Footer/Footer'
 
 const Upload = () => {
+        // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+        const baseURL=process.env.REACT_APP_BASE_URL
+    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null;
     const [cat, setCat] = useState('newPancard');
     const navigate = useNavigate()
@@ -19,7 +22,7 @@ const Upload = () => {
     // newPancard
     useEffect(() => {
         setLoading(true)
-        axios.get(`http://localhost:8080/user/all-pan-card-deatils/${cat}`, {
+        axios.get(`${baseURL}/user/all-pan-card-deatils/${cat}`, {
             headers: { "Authorization": portalData.token }
 
         }).then((res) => {

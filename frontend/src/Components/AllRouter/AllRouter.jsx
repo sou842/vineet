@@ -32,6 +32,7 @@ import { UpdatePancardForm } from '../../Pages/UpdatePancard/UpdatePancardForm/U
 import { UpdatePanEdit } from '../../Pages/UpdatePancard/UpdatePanEdit/UpdatePanEdit';
 import { AdminUpdatePanCard } from '../../Admin/AdminUpdatePanCard/AdminUpdatePanCard';
 import { PanUpdateUploadEdit } from '../../Pages/PanUpdateUploadEdit/PanUpdateUploadEdit';
+import NotFoundPage from '../../Pages/NotFoundPage/NotFoundPage';
 
 
 
@@ -61,7 +62,7 @@ export const AllRouter = () => {
             <Route path={'/user/applied-success'} element={portalData ? <PanApplySuccess /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/user/pan-receipt'} element={portalData ? <Receipt /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/user/pan-edit'} element={portalData ? <EditPan /> : <Navigate to={'/Signin'} />}></Route>
-            <Route path={'*'} element={<h1>404 Page Not Found</h1>}></Route>
+            <Route path={'*'} element={<NotFoundPage/>}></Route>
             <Route path={'/PanCardForm/:catagory'} element={portalData ? <PanCardForm /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/user/upload/PanUploadEdit/:id'} element={portalData ? <PanUploadEdit /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/AdminDash'} element={adminData ? <AdminDash /> : <Navigate to={'/admin/login'} />}></Route>
