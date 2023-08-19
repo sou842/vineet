@@ -5,6 +5,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const UploadDocument = () => {
+   //  ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+   const baseURL=process.env.REACT_APP_BASE_URL
+   //  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
   const { id } = useParams();
   const toast = useToast();
   const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
@@ -47,6 +50,7 @@ const UploadDocument = () => {
   };
 
   const handelConfirmUpload = () => {
+     
     if (year != pans.yearOfBirth || year == "") {
       toast({ title: "You Are Enter wrong year of birth", status: "error", duration: 3000, isClosable: true, position: "top", });
     } else {
@@ -64,7 +68,7 @@ const UploadDocument = () => {
       // console.log(imageData,"93");
 
 
-      axios.post("http://localhost:8080/user/upload-pandocs", formData, {
+      axios.post(`${baseURL}/user/upload-pandocs`, formData, {
         headers: { Authorization: portalData.token },
       })
         .then((res) => {
@@ -83,7 +87,7 @@ const UploadDocument = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/user/upload-pan-card/${id}`, {
+      .get(`${baseURL}/user/upload-pan-card/${id}`, {
         headers: {
           Authorization: portalData.token,
         },

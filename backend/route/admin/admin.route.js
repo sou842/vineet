@@ -62,9 +62,11 @@ adminRoute.post("/login", async (req, res) => {
 //find all user
 //adminRoute.use(adminAuth)
 adminRoute.get("/all-login-user", async (req, res) => {
+  const { page } = req.query
   try {
-    const user = await UserModel.find();
-    res.send(user)
+    const count= await UserModel.count()
+    const user = await UserModel.find().sort({ _id: -1 }).skip(10*(page-1)).limit(10);
+    res.json({user:user,count:count})
   } catch (error) {
     res.send(error.messege)
   }
@@ -123,7 +125,7 @@ adminRoute.get('/current-user', async (req, res) => {
 })
 adminRoute.get('/top3-letest-user', async (req, res) => {
   try {
-    const top3_latest_user = await UserModel.find().limit(3)
+    const top3_latest_user = await UserModel.find().sort({_id:-1}).limit(3)
     res.send(top3_latest_user)
 
   } catch (error) {

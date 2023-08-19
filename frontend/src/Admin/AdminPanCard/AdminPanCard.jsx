@@ -9,6 +9,9 @@ import { AuthorContext } from '../../Components/AllContext/AllContext';
 
 
 export const AdminPanCard = () => {
+        // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+        const baseURL=process.env.REACT_APP_BASE_URL
+    //  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     const navigate = useNavigate();
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
     const [pan, setPan] = useState([]);
@@ -29,7 +32,7 @@ export const AdminPanCard = () => {
 
     useEffect(() => {
         setLoading(true)
-        axios.get(`http://localhost:8080/admin/category-pan?category=${filterData.CATEGORY}&page=${page}`, {
+        axios.get(`${baseURL}/admin/category-pan?category=${filterData.CATEGORY}&page=${page}`, {
             headers: { "Authorization": portalData.token }
         })
             .then((res) => {
@@ -121,7 +124,7 @@ export const AdminPanCard = () => {
                             </TableContainer>
                         }
                         </Box>}
-                        <Box>
+                        <Box textAlign={'right'}>
                             {
 
                                 count!=0?<Box><Button size={'sm'} onClick={(e)=>setPage(page-1)} isDisabled={page==1} mr={'5px'} colorScheme={'red'}>⟨</Button>
