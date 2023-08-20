@@ -58,8 +58,8 @@ export const DashboardNav = () => {
                 console.log(response);
                 axios.post("http://localhost:8080/payment/verify", { response })
                     .then((res) => {
-                        console.log(res.data, "55");
-                        axios.patch("http://localhost:8080/api/add-balance", { ...response, amount, date: new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true }).format(new Date()) }, {
+                        // console.log(res.data, "55");
+                        axios.post("http://localhost:8080/payment/user/credit-oredr-details", { ...response, amount }, {
                             headers: {
                                 "Authorization": portalData.token
                             }
