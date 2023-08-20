@@ -22,7 +22,7 @@ const Upload = () => {
     // newPancard
     useEffect(() => {
         setLoading(true)
-        axios.get(`${baseURL}/user/all-pan-card-deatils/${cat}`, {
+        axios.get(`${baseURL}/user/all-pan-card-deatils?category=${cat}`, {
             headers: { "Authorization": portalData.token }
 
         }).then((res) => {
