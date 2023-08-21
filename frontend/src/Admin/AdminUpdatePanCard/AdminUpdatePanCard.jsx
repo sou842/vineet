@@ -9,6 +9,9 @@ import { AuthorContext } from '../../Components/AllContext/AllContext';
 
 
 export const AdminUpdatePanCard = () => {
+        // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+         const baseURL=process.env.REACT_APP_BASE_URL
+    //  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     const navigate = useNavigate();
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
     const [pan, setPan] = useState([]);
@@ -18,6 +21,12 @@ export const AdminUpdatePanCard = () => {
     const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)");
     const [isSmallerThan600] = useMediaQuery("(max-width: 600px)");
 
+    const [page, setPage] = useState(1)
+    const [count, setCount] = useState(0)
+    const [status, setStatus] = useState("")
+    const [isDone, setIsdone] = useState("")
+    const [category, setCategory] = useState("")
+
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFilterData((prevData) => ({ ...prevData, [name]: value }));
@@ -26,7 +35,7 @@ export const AdminUpdatePanCard = () => {
 
     useEffect(() => {
         setLoading(true)
-        axios.get(`http://localhost:8080/admin/update-pan`, {
+        axios.get(`${baseURL}/admin/update-pan`, {
             headers: { "Authorization": portalData.token }
         })
             .then((res) => {
@@ -54,6 +63,46 @@ export const AdminUpdatePanCard = () => {
 
                 <div style={{ width: side && !isSmallerThan1000 ? '75%' : '96%', margin: '1.2cm auto' }}>
                     <Box display={'flex'} justifyContent={'space-between'} flexDirection={'row-reverse'} mt={'1cm'} p={'3px'} mb={'0.5cm'}>
+
+
+                    <Box w={['10%', '25%', '30%']} display={'flex'} gap={'10px'}>
+                            <select style={{ padding: '10px', border: '1px solid', borderRadius:'5px', fontSize: '14px', }} name="CATEGORY"  onChange={(e)=>setCategory(e.target.value)}>
+                                <option value="">CATEGORY</option>
+                                <option value="Individual">Individual</option>
+                                <option value="Artificial Judicial Person">Artificial Judicial Person</option>
+                                <option value="Association of Person">Association of Person</option>
+                                <option value="Trust">Trust</option>
+                                <option value="Body of Individual">Body of Individual</option>
+                                <option value="Firm">Firm</option>
+                                <option value="Government">Government</option>
+                                <option value="Limited Liability Partnership">Limited Liability Partnership</option>
+                                <option value="Local Authority">Local Authority</option>
+                            </select>
+
+
+                            <select style={{ padding: '10px', border: '1px solid', borderRadius:'5px', fontSize: '14px' }} name="status"  onChange={(e)=>setStatus(e.target.value)}>
+                                <option value="">STATUS</option>
+                                <option value="pending">Pending</option>
+                                <option value="completed">Completed</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+
+
+                            <select style={{ padding: '10px', border: '1px solid', borderRadius:'5px', fontSize: '14px' }} name="isUserDone"  onChange={(e)=>setIsdone(e.target.value)}>
+                                <option value="">IS USER DONE</option>
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                        </Box>
+
+
+
+
+
+
+
+
+
                         <Box w={['60%', '55%', '45%']} display={'flex'}>
                             <Input border={'1px solid grey'} borderRadius={'20px'} borderEndRadius={0} type="text" placeholder='Search...' />
                             <Button fontSize={'14px'} bg={'blue.500'} color={'whiteAlpha.900'} borderRadius={'10px'} borderStartRadius={0}>Search</Button>
