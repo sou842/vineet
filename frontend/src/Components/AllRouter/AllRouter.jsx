@@ -33,6 +33,7 @@ import { UpdatePanEdit } from '../../Pages/UpdatePancard/UpdatePanEdit/UpdatePan
 import { AdminUpdatePanCard } from '../../Admin/AdminUpdatePanCard/AdminUpdatePanCard';
 import { PanUpdateUploadEdit } from '../../Pages/PanUpdateUploadEdit/PanUpdateUploadEdit';
 import NotFoundPage from '../../Pages/NotFoundPage/NotFoundPage';
+import { PayDetails } from '../../Pages/PayDetails/PayDetails';
 
 
 
@@ -77,6 +78,7 @@ export const AllRouter = () => {
             <Route path={'/UpdatePanEdit'} element={portalData ? <UpdatePanEdit /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/AdminUpdatePanCard'} element={portalData ? <AdminUpdatePanCard /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/user/upload/PanUpdateUploadEdit/:id'} element={portalData ? <PanUpdateUploadEdit /> : <Navigate to={'/Signin'} />}></Route>
+            <Route path={'/PayDetails'} element={portalData ? <PayDetails /> : <Navigate to={'/Signin'} />}></Route>
         </Routes>
     )
 }

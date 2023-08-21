@@ -7,10 +7,7 @@ import { useEffect, useState } from 'react';
 import menu from '../../assets/menu.png';
 
 export const DashboardNav = () => {
-    // const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)");
-        // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-        const baseURL=process.env.REACT_APP_BASE_URL
-//    ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+    const baseURL = process.env.REACT_APP_BASE_URL
     const isSmallerThan1000 = window.matchMedia("(max-width:1000px)").matches;
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -38,7 +35,7 @@ export const DashboardNav = () => {
 
     const showBalance = () => {
 
-        axios.get("http://localhost:8080/api", {
+        axios.get(`${baseURL}/api`, {
             headers: { "Authorization": portalData.token }
         })
             .then((res) => {
@@ -58,35 +55,21 @@ export const DashboardNav = () => {
             order_id: data.id,
             name: "Vineet Digital Portal",
             handler: (response) => {
-                console.log(response);
+                // console.log(response);
                 axios.post(`${baseURL}/payment/verify`, { response })
                     .then((res) => {
-                        // console.log(res.data, "55");
                         axios.post(`${baseURL}/payment/user/credit-oredr-details`, { ...response, amount }, {
-                            headers: {
-                                "Authorization": portalData.token
-                            }
+                            headers: { "Authorization": portalData.token }
+                        }).then((res) => {
+                            setAmount(null)
+                            toast({ title: res.data, status: 'success', duration: 3000, isClosable: true, position: 'top' })
+                        }).catch((err) => {
+                            console.log(err);
                         })
-                            .then((res) => {
-                                // profileAvater()
-                                setAmount(null)
-                                toast({
-                                    title: res.data,
-                                    status: 'success',
-                                    duration: 3000,
-                                    isClosable: true,
-                                    position: 'top'
-                                })
-                            })
-                            .catch((err) => {
-                                console.log(err);
-                            })
                     })
                     .catch((err) => {
                         console.log(err);
                     })
-
-
             }
 
 
@@ -134,18 +117,18 @@ export const DashboardNav = () => {
 
 
         axios.get(`${baseURL}/api/profile-detail`, {
-      headers: {
-        "Authorization": portalData.token
-      }
-    })
-      .then((res) => {
-       
-        setProfileData(res.data)
-      })
-      .catch((err) => {
-       
-        console.log(err);
-      })
+            headers: {
+                "Authorization": portalData.token
+            }
+        })
+            .then((res) => {
+
+                setProfileData(res.data)
+            })
+            .catch((err) => {
+
+                console.log(err);
+            })
 
     }, [amount])
 
@@ -167,7 +150,7 @@ export const DashboardNav = () => {
                     <a href="/profile">
                         <Wrap>
                             <WrapItem>
-                                <Avatar color={'black'} bg='#00aeff' size={['md', 'md', 'lg']} name={portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData.avatar} />
+                                <Avatar color={'black'} bg='#00aeff' size={['md', 'md', 'lg']} name={portalData&&portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData.avatar&&portalData.avatar} />
                             </WrapItem>
                         </Wrap>
                     </a>
@@ -231,10 +214,10 @@ export const DashboardNav = () => {
                         <div><a href="#"><p>Traning Manual</p></a></div>
                         <div><a href="#"><p>Downloads</p></a></div>
                         <div><a href="#"><p>Ledger</p></a></div>
-                        <div><Button border={'1.4px solid #00aeff'} _hover={{bg:'#00aeff',color:'black'}} onClick={onOpen} ml={'5px'} size={'sm'} colorScheme='blue.100'>Add money</Button></div>
+                        <div><Button border={'1.4px solid #00aeff'} _hover={{ bg: '#00aeff', color: 'black' }} onClick={onOpen} ml={'5px'} size={'sm'} colorScheme='blue.100'>Add money</Button></div>
                     </div>}
                 <div>
-                    <div><a href="#"><p>Balance: ₹ {balance} </p></a>
+                    <div><a href="/PayDetails"><p>Balance: ₹ {balance} </p></a>
                     </div>
                     <div>
                         <Menu >
