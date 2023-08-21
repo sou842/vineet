@@ -1,6 +1,6 @@
 import { Avatar, Box, Button, Grid, Menu, MenuButton, MenuItem, MenuList, Spinner, Text, Wrap, WrapItem, useMediaQuery, useToast, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer, Input } from '@chakra-ui/react';
 import './AdminPanCard.css'
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import axios from 'axios'
 import { AdminSlider } from "../AdminSlider/AdminSlider";
 import { AdminNavbar } from '../AdminNavbar/AdminNavbar';
@@ -19,20 +19,35 @@ export const AdminPanCard = () => {
     const [loading, setLoading] = useState()
     const [page, setPage] = useState(1)
     const [count, setCount] = useState(0)
+    const [status, setStatus] = useState("")
+    const [isDone, setIsdone] = useState("")
     const { side, setSide } = useContext(AuthorContext)
     const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)");
     const [isSmallerThan600] = useMediaQuery("(max-width: 600px)");
+ 
+
+
+
+
+
+
+
 
     const handleChange = (event) => {
         setPage(1)
         const { name, value } = event.target;
         setFilterData((prevData) => ({ ...prevData, [name]: value }));
     }
-
+    const handleStatusChange=(e)=>{
+        setStatus(e.target.value)
+    }
+    const handelIsDoneChange=(e)=>{
+        setIsdone(e.target.value)
+    }
 
     useEffect(() => {
         setLoading(true)
-        axios.get(`${baseURL}/admin/category-pan?category=${filterData.CATEGORY}&page=${page}`, {
+        axios.get(`${baseURL}/admin/category-pan?category=${filterData.CATEGORY}&page=${page}&status=${status}&isDone=${isDone}`, {
             headers: { "Authorization": portalData.token }
         })
             .then((res) => {
@@ -44,7 +59,7 @@ export const AdminPanCard = () => {
             .catch((err) => {
                 console.log(err);
             })
-    }, [filterData,page])
+    }, [filterData,page,status,isDone])
 
 
     return (
@@ -61,8 +76,8 @@ export const AdminPanCard = () => {
 
                 <div style={{ width: side && !isSmallerThan1000 ? '75%' : '96%', margin: '1.2cm auto' }}>
                     <Box display={'flex'} justifyContent={'space-between'} mt={'1cm'} p={'3px'}>
-                        <Box w={['30%', '35%', '40%']}>
-                            <select style={{ padding: '10px', border: '0', fontSize: '14px' }} name="CATEGORY" value={filterData.CATEGORY} onChange={handleChange}>
+                        <Box w={['10%', '25%', '30%']} display={'flex'} gap={'10px'}>
+                            <select style={{ padding: '10px', border: '1px solid', borderRadius:'5px', fontSize: '14px', }} name="CATEGORY" value={filterData.CATEGORY} onChange={handleChange}>
                                 <option value="">CATEGORY</option>
                                 <option value="Individual">Individual</option>
                                 <option value="Artificial Judicial Person">Artificial Judicial Person</option>
@@ -74,9 +89,24 @@ export const AdminPanCard = () => {
                                 <option value="Limited Liability Partnership">Limited Liability Partnership</option>
                                 <option value="Local Authority">Local Authority</option>
                             </select>
+
+
+                            <select style={{ padding: '10px', border: '1px solid', borderRadius:'5px', fontSize: '14px' }} name="status"  onChange={handleStatusChange}>
+                                <option value="">STATUS</option>
+                                <option value="pending">Pending</option>
+                                <option value="completed">Completed</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+
+
+                            <select style={{ padding: '10px', border: '1px solid', borderRadius:'5px', fontSize: '14px' }} name="isUserDone"  onChange={handelIsDoneChange}>
+                                <option value="">IS USER DONE</option>
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
                         </Box>
                         <Box w={['60%', '55%', '45%']} display={'flex'}>
-                            <Input border={'1px solid grey'} borderRadius={'20px'} borderEndRadius={0} type="text" placeholder='Search...' />
+                            <Input border={'1px solid grey'}   borderRadius={'20px'} borderEndRadius={0} type="text"  placeholder='Search...' />
                             <Button fontSize={'14px'} bg={'blue.500'} color={'whiteAlpha.900'} borderRadius={'10px'} borderStartRadius={0}>Search</Button>
                         </Box>
                     </Box>
