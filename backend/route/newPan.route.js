@@ -7,19 +7,34 @@ const path = require('path');
 const { auth } = require("../middleware/auth.middleware")
 const { NewPanModel } = require("../model/newPan.model");
 const { UpdatePanModel } = require("../model/updatePan/updatePan.model");
+const { AllPaymentDetailsModel } = require("../model/allPaymentDetails.model");
+const { UserModel } = require("../model/user.model");
 const newPanRoute = express.Router()
 
 
 //post new pan
 newPanRoute.use(auth)
 newPanRoute.post("/new-pan-card", async (req, res) => {
+    const {userID,vendorID}=req.body
     try {
+        const user=await UserModel.findOne({_id:userID})
+        if(user.balance<107){
+            res.send("Wallet balance is low please add balance!")
+        }
+        else{
+            const now = new Date();
+            req.body.dateAndTime= date.format(now, "YYYY/MM/DD HH:mm:ss")
+            const tran=new AllPaymentDetailsModel({vendorID,userID,debit:107,dateAndTime:req.body.dateAndTime})
+            await tran.save()
+            // console.log(tran);
+            await UserModel.findByIdAndUpdate({ _id: userID },{balance:Number(user.balance)-107});
 
-        const tokenNumber = prandom.number(8);
-        req.body.tokenNumber = tokenNumber
-        const newPan = new NewPanModel(req.body)
-        await newPan.save()
-        res.send("Apply successful for new pan card")
+            const tokenNumber = prandom.number(8);
+            req.body.tokenNumber = tokenNumber
+            const newPan = new NewPanModel(req.body)
+            await newPan.save()
+            res.send("Apply successful for new pan card")
+        } 
 
     } catch (error) {
         res.send(error)

@@ -65,6 +65,21 @@ paymentRoute.post('/user/credit-oredr-details',async(req,res)=>{
 })
 
 
+// singel user transaction details
+paymentRoute.use(auth)
+paymentRoute.get("/user/all-transaction",async(req,res)=>{
+    const {userID,vendorID}=req.body
+    try {
+        const allTrans=await AllPaymentDetailsModel.find({_id:userID})
+        res.send(allTrans)
+        
+    } catch (error) {
+        res.send(error)
+    }
+})
+
+
+
 
 
 module.exports={
