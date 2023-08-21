@@ -45,15 +45,14 @@ newPanRoute.post("/new-pan-card", async (req, res) => {
 newPanRoute.use(auth)
 newPanRoute.get("/all-pan-card-deatils", async (req, res) => {
     const { vendorID, userID } = req.body;
-    const {category}=req.query
+    const { category } = req.query
 
     try {
-        if(category=="newPancard"){
-
+        if (category == "newPancard") {
             const pans = await NewPanModel.find({ $and: [{ vendorID: vendorID }, { isUpload: false }] })
             res.send(pans)
         }
-        else if(category=="updatePancard"){
+        else if (category == "updatePancard") {
             const pans = await UpdatePanModel.find({ $and: [{ vendorID: vendorID }, { isUpload: false }] })
             res.send(pans)
         }
@@ -67,18 +66,18 @@ newPanRoute.get("/all-pan-card-deatils", async (req, res) => {
 
 newPanRoute.get("/all-uploaded-pan-card", async (req, res) => {
     const { vendorID } = req.body;
-    const {category}=req.query
+    const { category } = req.query
 
     try {
-        // const pans = await NewPanModel.find({ $and: [{ vendorID: vendorID }, { isUpload: true },{category}] })
-        // res.send(pans)
-        if(category=="newPancard"){
 
-            const pans = await NewPanModel.find({ $and: [{ vendorID: vendorID }, { isUpload: true }] })
+        if (category == "newPancard") {
+
+            const pans = await NewPanModel.find({ $and: [{ vendorID: vendorID }] })
             res.send(pans)
         }
-        else if(category=="updatePancard"){
-            const pans = await UpdatePanModel.find({ $and: [{ vendorID: vendorID }, { isUpload: true }] })
+        else if (category == "updatePancard") {
+            const pans = await UpdatePanModel.find({ $and: [{ vendorID: vendorID }] })
+
             res.send(pans)
         }
 
@@ -88,8 +87,7 @@ newPanRoute.get("/all-uploaded-pan-card", async (req, res) => {
 })
 
 //get one pan deatails under login user 
-newPanRoute.use(auth)
-newPanRoute.get("/upload-pan-card/:id", async (req, res) => {
+newPanRoute.get("/upload-pan-card/:id",auth, async (req, res) => {
     const { id } = req.params
 
     try {
@@ -121,8 +119,7 @@ newPanRoute.get("/upload-pan-card/:id", async (req, res) => {
 
 
 //upload image data base
-newPanRoute.use(auth)
-newPanRoute.patch('/upload-pan-document/:id', async (req, res) => {
+newPanRoute.patch('/upload-pan-document/:id',auth, async (req, res) => {
     const { id } = req.params
     const { aadharCardDocs, frontForm, backForm } = req.body
     try {
@@ -136,8 +133,7 @@ newPanRoute.patch('/upload-pan-document/:id', async (req, res) => {
 })
 
 // final confirm stem api
-newPanRoute.use(auth)
-newPanRoute.get('/final-confirm-apply/:id', async (req, res) => {
+newPanRoute.get('/final-confirm-apply/:id',auth, async (req, res) => {
     const { id } = req.params
     try {
 
@@ -149,8 +145,7 @@ newPanRoute.get('/final-confirm-apply/:id', async (req, res) => {
     }
 })
 
-newPanRoute.use(auth)
-newPanRoute.patch('/apply-confirm-from/:id', async (req, res) => {
+newPanRoute.patch('/apply-confirm-from/:id',auth, async (req, res) => {
     const { id } = req.params
     try {
 
@@ -163,8 +158,7 @@ newPanRoute.patch('/apply-confirm-from/:id', async (req, res) => {
 })
 
 //before upload pan edit api
-newPanRoute.use(auth)
-newPanRoute.patch("/pan-edit/:id", async (req, res) => {
+newPanRoute.patch("/pan-edit/:id",auth, async (req, res) => {
     const { id } = req.params
     try {
         await NewPanModel.findByIdAndUpdate({ _id: id }, req.body)
@@ -174,18 +168,17 @@ newPanRoute.patch("/pan-edit/:id", async (req, res) => {
     }
 })
 // only complete panstatus send
-newPanRoute.use(auth)
-newPanRoute.get('/status-completed', async (req, res) => {
-    const {category} =req.query
+
+newPanRoute.get('/status-completed',auth, async (req, res) => {
+    const { category } = req.query
     try {
-        // let pans = await NewPanModel.find({ panStatus: "completed", vendorID: req.body.vendorID })
-        // res.send(pans)
-        if(category=="newPancard"){
+
+        if (category == "newPancard") {
 
             const pans = await NewPanModel.find({ panStatus: "completed", vendorID: req.body.vendorID })
             res.send(pans)
         }
-        else if(category=="updatePancard"){
+        else if (category == "updatePancard") {
             const pans = await UpdatePanModel.find({ panStatus: "completed", vendorID: req.body.vendorID })
             res.send(pans)
         }

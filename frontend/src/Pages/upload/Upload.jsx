@@ -8,9 +8,7 @@ import UploadDocument from '../upload document/UploadDocument'
 import { Footer } from '../../Components/Footer/Footer'
 
 const Upload = () => {
-        // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-        const baseURL=process.env.REACT_APP_BASE_URL
-    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+    const baseURL = process.env.REACT_APP_BASE_URL
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null;
     const [cat, setCat] = useState('newPancard');
     const navigate = useNavigate()
@@ -18,8 +16,6 @@ const Upload = () => {
     const [loading, setLoading] = useState(false)
 
 
-    // updatePancard
-    // newPancard
     useEffect(() => {
         setLoading(true)
         axios.get(`${baseURL}/user/all-pan-card-deatils?category=${cat}`, {
@@ -35,12 +31,10 @@ const Upload = () => {
         })
     }, [cat])
 
-    // console.log(pans)
 
     return (
         <Box>
             <Box><PanCardNav /></Box>
-            {/* <Box mt={'20px'}><ContactUs /></Box> */}
             <Box w={'85%'} m={'0.5cm auto 0 auto'}>
                 <Box w={'230px'}>
                     <select onChange={(e) => setCat(e.target.value)} style={{ borderRadius: '20px', padding: '7px', color: 'grey' }}>
