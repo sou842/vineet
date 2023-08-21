@@ -147,20 +147,40 @@ export const EditPan = () => {
       axios.post("http://localhost:8080/user/new-pan-card", formData, {
         headers: { "Authorization": portalData.token }
       }).then((res) => {
-        toast({
-          title: 'SUBMITED',
-          description: "PAN CARD FORM SUBMITTED SUCCESSFULLY",
-          status: 'success',
-          duration: 5000,
-          isClosable: true,
-          position: 'top-center',
-        })
+        // console.log(res);
+        if(res.data=="Apply successful for new pan card"){
+
+          toast({
+            title: "Apply successful for new pan card",
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+            position: 'top-center',
+          })
+          navigate('/user/upload')
+        }
+        else{
+          toast({
+            title: res.data,
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+            position: 'top-center',
+          })
+        }
 
       }).catch((err) => {
         console.log(err);
+        toast({
+          title:"Somthing went wrong Please try again!",
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+          position: 'top-center',
+        })
+       
       })
 
-      navigate('/user/upload')
     }
     else if (catagory == 'Individual' && formData.aadhaarNumber.length != 12) {
       toast({
@@ -178,7 +198,7 @@ export const EditPan = () => {
         status: 'error',
         duration: 5000,
         isClosable: true,
-        position: 'top-center',
+        position: 'top',
       })
     } else {
       // localStorage.setItem("VDP_form_data", JSON.stringify(formData))
@@ -186,21 +206,38 @@ export const EditPan = () => {
       axios.post("http://localhost:8080/user/new-pan-card", formData, {
         headers: { "Authorization": portalData.token }
       }).then((res) => {
-        console.log(res.data);
-        toast({
-          title: 'SUBMITED',
-          description: "PAN CARD FORM SUBMITTED SUCCESSFULLY",
-          status: 'success',
-          duration: 5000,
-          isClosable: true,
-          position: 'top-center',
-        })
+        console.log(res);
+        if(res.data=="Apply successful for new pan card"){
+          toast({
+            title: "Apply successful for new pan card",
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+            position: 'top',
+          })
+          navigate('/user/upload')
+        }
+        else{
+          toast({
+            title: res.data,
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+            position: 'top',
+          })
+        }
 
       }).catch((err) => {
         console.log(err);
+        toast({
+          title:"Somthing went wrong Please try again!",
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+          position: 'top',
+        })
       })
 
-      navigate('/user/upload')
     }
 
   }

@@ -8,10 +8,13 @@ import menu from '../../assets/menu.png';
 
 export const DashboardNav = () => {
     // const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)");
+        // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+        const baseURL=process.env.REACT_APP_BASE_URL
+//    ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     const isSmallerThan1000 = window.matchMedia("(max-width:1000px)").matches;
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const [profile, setProfile] = useState()
+    const [profileData, setProfileData] = useState(null)
     const [amount, setAmount] = useState(null)
     const [balance, setBalance] = useState(0)
     const navigate = useNavigate()
@@ -56,10 +59,10 @@ export const DashboardNav = () => {
             name: "Vineet Digital Portal",
             handler: (response) => {
                 console.log(response);
-                axios.post("http://localhost:8080/payment/verify", { response })
+                axios.post(`${baseURL}/payment/verify`, { response })
                     .then((res) => {
                         // console.log(res.data, "55");
-                        axios.post("http://localhost:8080/payment/user/credit-oredr-details", { ...response, amount }, {
+                        axios.post(`${baseURL}/payment/user/credit-oredr-details`, { ...response, amount }, {
                             headers: {
                                 "Authorization": portalData.token
                             }
@@ -111,7 +114,7 @@ export const DashboardNav = () => {
     useEffect(() => {
         showBalance();
         if (portalData.avatar == '') {
-            axios.get("http://localhost:8080/profile/profile-pictire", {
+            axios.get(`${baseURL}/profile/profile-pictire`, {
                 headers: { "Authorization": portalData.token }
             })
                 .then((res) => {
@@ -127,6 +130,23 @@ export const DashboardNav = () => {
                     console.log(err);
                 })
         }
+
+
+
+        axios.get(`${baseURL}/api/profile-detail`, {
+      headers: {
+        "Authorization": portalData.token
+      }
+    })
+      .then((res) => {
+       
+        setProfileData(res.data)
+      })
+      .catch((err) => {
+       
+        console.log(err);
+      })
+
     }, [amount])
 
 

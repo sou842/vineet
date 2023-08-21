@@ -209,11 +209,11 @@ export const UpdatePanEdit = () => {
                     position: 'top-center',
                 })
 
+                navigate('/user/upload')
             }).catch((err) => {
                 console.log(err);
             })
 
-            navigate('/user/upload')
         }
 
     }

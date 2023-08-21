@@ -7,6 +7,7 @@ const { adminAuth } = require("../../middleware/adminAuth.middleware");
 const { UserModel } = require("../../model/user.model");
 const { panDocsModel } = require("../../model/panDocs.model");
 const { UpdatePanModel } = require("../../model/updatePan/updatePan.model");
+const { AllPaymentDetailsModel } = require("../../model/allPaymentDetails.model");
 const adminRoute = express.Router()
 
 
@@ -242,6 +243,17 @@ adminRoute.get('/user-documents/:id',async(req,res)=>{
   try {
     const docs=await panDocsModel.findOne({panid:id})
     res.send(docs)
+    
+  } catch (error) {
+    res.send(error)
+  }
+})
+
+
+adminRoute.get("/user/all-transaction",async(req,res)=>{
+  try {
+    const trans=await AllPaymentDetailsModel.find()
+    res.send(trans)
     
   } catch (error) {
     res.send(error)
