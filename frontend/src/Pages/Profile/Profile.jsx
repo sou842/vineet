@@ -9,8 +9,17 @@ import edit from '../../assets/edit.png'
 
 
 export const Profile = () => {
+  const [profileData, setProfileData] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [picture, setPicture] = useState("")
+  const [userDP, setUserDP] = useState("")
+  const [uploadDpLoad, setUploadDpLoad] = useState(false)
+  const [editdata, setEditdata] = useState({ email: "", shopeName: "", mobileNumber: "" })
   const { isOpen: editIsOpen, onOpen: editOnOpen, onClose: editOnClose } = useDisclosure()
   const { isOpen: profileIsOpen, onOpen: profileOnOpen, onClose: profileOnClose } = useDisclosure()
+  const { isOpen: DeleteIsOpen, onOpen: DeleteOnOpen, onClose: DeleteOnClose } = useDisclosure()
+  const baseURL = process.env.REACT_APP_BASE_URL
+
   const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
   const navigate = useNavigate()
   const toast = useToast()
@@ -19,16 +28,7 @@ export const Profile = () => {
     const selectedValue = event.target.value;
     navigate(selectedValue)
   };
-  const [profileData, setProfileData] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [picture, setPicture] = useState("")
-  const [userDP, setUserDP] = useState("")
-  const [uploadDpLoad, setUploadDpLoad] = useState(false)
-  const [editdata, setEditdata] = useState({
-    email: "",
-    shopeName: "",
-    mobileNumber: ""
-  })
+
 
 
   useEffect(() => {
@@ -139,6 +139,28 @@ export const Profile = () => {
       })
   }
 
+  const handlePhotoDelete = () => {
+
+    axios.delete(`${baseURL}/profile/remove-profile-pictire`, {
+      headers: { "Authorization": portalData.token }
+    })
+      .then((res) => {
+        // console.log(res.data)
+        if (res.data == 'Profile picture removed') {
+          toast({ title: 'Profile Photo Deleted', status: 'success', duration: 4000, isClosable: true, position: 'top' })
+          portalData.avatar = 'null';
+          localStorage.setItem("digitalPortal", JSON.stringify(portalData))
+          window.location = '/Dashboard'
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast({ title: 'Try Again, Something Wrong!!!', status: 'error', duration: 4000, isClosable: true, position: 'top' })
+      })
+
+    DeleteOnClose()
+  }
+  console.log(portalData.avatar)
 
   return (
     <div>
@@ -159,9 +181,9 @@ export const Profile = () => {
                   <Box position="absolute" top="10px" right="10px" borderRadius="full" bg="whiteAlpha.700" boxShadow="md" p={1} cursor={'pointer'}  >
                     <Img onClick={profileOnOpen} position={'relative'} w={'25px'} src={edit} m={'6px'} />
                     <Text border={'1px solid #00aeff'}></Text>
-                    <Img position={'relative'} w={'25px'} src={deletee} m={'6px'} />
+                    <Img onClick={DeleteOnOpen} position={'relative'} w={'25px'} src={deletee} m={'6px'} />
                   </Box>
-                  {portalData.avatar == '' ?
+                  {portalData.avatar == 'null' ?
                     <Text mt={'-30px'} color={'#00aeff'} fontSize={'50px'} display={'flex'} justifyContent={'center'} alignItems={'center'} w={'100%'} h={'100%'} m={'auto'} borderRadius={'15px'} bg={'white'}>{portalData.username.match(/\b\w/g).join('').toUpperCase()}</Text>
                     :
                     <Image display={'block'} w={'100%'} m={'auto'} h={'100%'} objectFit={'cover'} objectPosition={'cover'} borderRadius={'15px'} src={portalData.avatar} alt="" />
@@ -175,6 +197,7 @@ export const Profile = () => {
                 <Box mt={'20px'}>
                   <Heading size={'sm'} p={'15px'} display={'flex'} alignItems={'center'}><Image width={'25px'} mr={'15px'} src='https://cdn-icons-png.flaticon.com/128/1077/1077063.png' /><Text fontWeight={'bold'} as={'span'} fontSize={['15px', '14px', '15px']}>{el.name.toUpperCase()}</Text> </Heading>
                   <Heading size={'sm'} p={'15px'} display={'flex'} alignItems={'center'}><Image width={'25px'} mr={'15px'} src='https://cdn-icons-png.flaticon.com/128/646/646094.png' /> <Text fontWeight={'bold'} as={'span'} fontSize={['15px', '14px', '15px']}>{el.email}</Text> </Heading>
+                  <Heading size={'sm'} p={'15px'} display={'flex'} alignItems={'center'}><Image width={'25px'} mr={'15px'} src='https://cdn-icons-png.flaticon.com/128/1052/1052897.png' /> <Text borderBottom={'1px solid black'} onClick={()=>navigate('/PayDetails')} cursor={'pointer'} fontWeight={'bold'} as={'span'} fontSize={['15px', '14px', '15px']}>VIEW TRANSACTION</Text> </Heading>
                 </Box>
               </Box>
 
@@ -244,6 +267,23 @@ export const Profile = () => {
           <ModalFooter bg={'white'}>
             <Button p={'15px'} fontFamily={'sans-serif'} variant='ghost' mr={3} onClick={profileOnClose} size={'sm'}> Close</Button>
             <Button p={'15px'} fontFamily={'sans-serif'} bg={'#00aeff'} color={'whiteAlpha.900'} isDisabled={uploadDpLoad} size={'xs'} onClick={handelPhotoUpdate}  >{uploadDpLoad ? "Loading..." : "Update"}</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
+      {/* DELETE */}
+      <Modal isOpen={DeleteIsOpen} onClose={DeleteOnClose}>
+        <ModalOverlay />
+        <ModalContent w={'95%'}>
+          <ModalHeader>Are You Sure?</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            You Are About Delete This Song
+          </ModalBody>
+
+          <ModalFooter bg={'white'}>
+            <Button p={'15px'} fontFamily={'sans-serif'} variant='ghost' mr={3} onClick={DeleteOnClose} size={'sm'}> Close</Button>
+            <Button p={'15px'} fontFamily={'sans-serif'} bg={'#00aeff'} color={'whiteAlpha.900'} isDisabled={uploadDpLoad} size={'xs'} onClick={handlePhotoDelete}  >{uploadDpLoad ? "Loading..." : "Delete"}</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

@@ -73,7 +73,7 @@ export const PanCardNav = () => {
                     <a href="/profile">
                         <Wrap>
                             <WrapItem>
-                                <Avatar color={'black'} bg='#00aeff' size={['md', 'md', 'lg']} name={portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData.avatar} />
+                                <Avatar color={'black'} bg='#00aeff' size={['md', 'md', 'lg']} name={portalData&&portalData.username.match(/\b\w/g).join('').toUpperCase()} src={portalData.avatar&&portalData.avatar} />
                             </WrapItem>
                         </Wrap>
                     </a>
@@ -166,7 +166,7 @@ export const PanCardNav = () => {
                     </div>
                 }
                 <div>
-                    <div><a href="#"><p>Balance: ₹ {balance} </p></a></div>
+                    <div><a href="/PayDetails"><p>Balance: ₹ {balance} </p></a></div>
                     <div>
                     <div>
                         <Menu >
