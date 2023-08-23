@@ -23,28 +23,34 @@ export const AdminUpdatePanCard = () => {
     const [count, setCount] = useState(0)
     const [status, setStatus] = useState("")
     const [isDone, setIsdone] = useState("")
-    const [category, setCategory] = useState("")
+    const [nameSearch, setNameSearch] = useState('');
+    
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFilterData((prevData) => ({ ...prevData, [name]: value }));
-    }
+const handelSearch=()=>{
+forFiltering()
+}
+
+const forFiltering=()=>{
+    setLoading(true)
+    axios.get(`${baseURL}/admin/update-pan?page=${page}&status=${status}&isDone=${isDone}&name=${nameSearch}`, {
+        headers: { "Authorization": portalData.token }
+    })
+        .then((res) => {
+            // console.log(res.data)
+            setPan(res.data.data);
+            setCount(res.data.count);
+            setLoading(false)
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}
+
 
 
     useEffect(() => {
-        setLoading(true)
-        axios.get(`${baseURL}/admin/update-pan`, {
-            headers: { "Authorization": portalData.token }
-        })
-            .then((res) => {
-                console.log(res.data)
-                setPan(res.data);
-                setLoading(false)
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }, [filterData])
+        forFiltering()
+    }, [filterData,status,page,isDone])
 
 
     return (
@@ -63,22 +69,22 @@ export const AdminUpdatePanCard = () => {
                     <Box display={'flex'} flexDirection={['column-reverse', 'column-reverse', 'row', 'row']} justifyContent={'space-between'} mt={'1cm'} p={'3px'}>
                         <Box w={['100%', '100%', '50%', '40%']} display={'flex'} gap={['5px', '10px']} margin={['10px 0', '10px 0', '0', '0']}>
 
-                            <select style={{ padding: '10px', border: '1px solid grey', borderRadius: '5px', fontSize: '14px' }} name="status" onChange={handleChange}>
+                            <select style={{ padding: '10px', border: '1px solid grey', borderRadius: '5px', fontSize: '14px' }} name="status" onChange={(e)=>setStatus(e.target.value)}>
                                 <option value="">STATUS</option>
                                 <option value="pending">Pending</option>
                                 <option value="completed">Completed</option>
                                 <option value="rejected">Rejected</option>
                             </select>
 
-                            <select style={{ padding: '10px', border: '1px solid grey', borderRadius: '5px', fontSize: '14px' }} name="isUserDone" onChange={handleChange}>
+                            <select style={{ padding: '10px', border: '1px solid grey', borderRadius: '5px', fontSize: '14px' }} name="isUserDone" onChange={(e)=>setIsdone(e.target.value)}>
                                 <option value="">IS USER DONE</option>
                                 <option value="true">Yes</option>
                                 <option value="false">No</option>
                             </select>
                         </Box>
                         <Box w={['100%', '100%', '45%', '45%']} display={'flex'}>
-                            <Input border={'1px solid grey'} borderRadius={'7px'} type="text" placeholder='Search...' />
-                            <Button fontSize={'14px'} ml={'7px'} bg={'blue.500'} color={'whiteAlpha.900'} borderRadius={'7px'} >Search</Button>
+                            <Input border={'1px solid grey'} borderRadius={'7px'} type="text" placeholder='Search...'  onChange={(e)=>setNameSearch(e.target.value)}/>
+                            <Button fontSize={'14px'} ml={'7px'} bg={'blue.500'} color={'whiteAlpha.900'} borderRadius={'7px'} onClick={handelSearch} >Search</Button>
                         </Box>
                     </Box>
 
@@ -123,6 +129,14 @@ export const AdminUpdatePanCard = () => {
                                 </Table>
                             </TableContainer>
                         }
+                         <Box textAlign={'right'} m={'10px'}>
+                    
+                            <Box><Button size={'sm'} onClick={(e) => setPage(page - 1)} isDisabled={page == 1} mr={'5px'} colorScheme={'red'}>⟨</Button>
+                                <Button size={'sm'} mr={'5px'} >{page}</Button>
+                                <Button size={'sm'} colorScheme='blue' onClick={(e) => setPage(page + 1)} isDisabled={page == (Math.ceil(count / 10)) || count == 0}>⟩</Button>
+                            </Box>
+                        
+                    </Box>
                         </Box>}
                 </div>
             </div>

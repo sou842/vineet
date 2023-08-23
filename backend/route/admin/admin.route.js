@@ -256,9 +256,34 @@ adminRoute.get("/user",async(req,res)=>{
 })
 //update pans get
 adminRoute.get("/update-pan",async(req,res)=>{
+  const {status,page,isDone,name } = req.query
   try {
-    const pan=await UpdatePanModel.find()
-    res.send(pan)
+     if(status && isDone){
+      const count= await UpdatePanModel.count({  panStatus:status,isDoneFromUser:isDone  })
+      const pans = await UpdatePanModel.find({ panStatus:status,isDoneFromUser:isDone }).sort({ _id: -1 }).skip(10*(page-1)).limit(10);
+      res.json({data:pans,count:count})
+    }
+    else if(status){
+      const count= await UpdatePanModel.count({ panStatus:status })
+      const pans = await UpdatePanModel.find({ panStatus:status }).sort({ _id: -1 }).skip(10*(page-1)).limit(10);
+      res.json({data:pans,count:count})
+    }
+    else if(isDone){
+      const count= await UpdatePanModel.count({ isDoneFromUser:isDone })
+      const pans = await UpdatePanModel.find({ isDoneFromUser:isDone }).sort({ _id: -1 }).skip(10*(page-1)).limit(10);
+      res.json({data:pans,count:count})
+    }
+    else if(name){
+      const count=await UpdatePanModel.count({ NameOnCard: { $regex: name } })
+      const pans=await UpdatePanModel.find({ NameOnCard: { $regex: name } }).skip(10*(page-1)).limit(10);
+      res.json({data:pans,count:count})
+    }
+    else {
+      const count= await UpdatePanModel.count()
+      const pans = await UpdatePanModel.find().sort({ _id: -1 }).skip(10*(page-1)).limit(10);
+      res.json({data:pans,count:count})
+    }
+
   } catch (error) {
     res.send(error)
   }
