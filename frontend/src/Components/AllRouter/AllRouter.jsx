@@ -34,8 +34,9 @@ import { AdminUpdatePanCard } from '../../Admin/AdminUpdatePanCard/AdminUpdatePa
 import { PanUpdateUploadEdit } from '../../Pages/PanUpdateUploadEdit/PanUpdateUploadEdit';
 import NotFoundPage from '../../Pages/NotFoundPage/NotFoundPage';
 import { PayDetails } from '../../Pages/PayDetails/PayDetails';
-import { AdminPayData } from '../../Admin/AdminPayData/AdminPayData';
-
+import {AdminPayData} from '../../Admin/AdminPayData/AdminPayData.jsx'
+import { MobileRecharge } from '../../Pages/MobileRecharge/MobileRecharge';
+import { DTHRecharge } from '../../Pages/DTHRecharge/DTHRecharge';
 
 
 
@@ -81,6 +82,9 @@ export const AllRouter = () => {
             <Route path={'/user/upload/PanUpdateUploadEdit/:id'} element={portalData ? <PanUpdateUploadEdit /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/PayDetails'} element={portalData ? <PayDetails /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/AdminPayData'} element={portalData ? <AdminPayData /> : <Navigate to={'/Signin'} />}></Route>
+            <Route path={'/MobileRecharge'} element={portalData ? <MobileRecharge /> : <Navigate to={'/Signin'} />}></Route>
+            <Route path={'/DTHRecharge'} element={portalData ? <DTHRecharge /> : <Navigate to={'/Signin'} />}></Route>
+
         </Routes>
     )
 }
