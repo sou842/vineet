@@ -17,4 +17,10 @@ export const yearsArray = [
     "1927", "1926", "1925", "1924", "1923", "1922", "1921", "1920", "1919", "1918", "1917", "1916",
     "1915", "1914", "1913", "1912", "1911", "1910", "1909", "1908", "1907", "1906", "1905", "1904",
     "1903", "1902", "1901", "1900", "1899", "1898", "1897", "1896", "1895", "1894"
-  ]  
+]
+
+export const states = ["Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "J&K", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal", "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu", "Lakshadweep", "Delhi", "Ladakh", "Puducherry", "Lakshadweep"]
+
+export const mobile_operator = ['Idea','Jio','Airtel','MTNL Mumbai','MTNL Delhi','Vodafone']
+
+export const DTH = ['Airtel TV DTH','RELIANCE BIG TV','Dish TV','Sun Direct TV','Sun Dirct TV (With Validation)','Tata Sky','Videocon D2H']

@@ -175,8 +175,8 @@ export const DashboardNav = () => {
                                     <MenuList>
                                         <MenuItem onClick={() => navigate('/PanCard')}>Pan Card</MenuItem>
                                         <MenuItem onClick={() => navigate('/ChangePassword')}>Electricity</MenuItem>
-                                        <MenuItem onClick={() => navigate('/profile')}>Mobile Recharge</MenuItem>
-                                        <MenuItem onClick={() => navigate('/profile')}>DTH Recharge</MenuItem>
+                                        <MenuItem onClick={() => navigate('/MobileRecharge')}>Mobile Recharge</MenuItem>
+                                        <MenuItem onClick={() => navigate('/DTHRecharge')}>DTH Recharge</MenuItem>
                                         <MenuItem onClick={() => navigate('/profile')}>Online Job Portal</MenuItem>
                                     </MenuList>
                                 </Menu>
@@ -202,8 +202,8 @@ export const DashboardNav = () => {
                                 <MenuList color={"black"} >
                                     <MenuItem onClick={() => navigate('/PanCard')}>Pan Card</MenuItem>
                                     <MenuItem onClick={() => navigate('/ChangePassword')}>Electricity</MenuItem>
-                                    <MenuItem onClick={() => navigate('/profile')}>Mobile Recharge</MenuItem>
-                                    <MenuItem onClick={() => navigate('/profile')}>DTH Recharge</MenuItem>
+                                    <MenuItem onClick={() => navigate('/MobileRecharge')}>Mobile Recharge</MenuItem>
+                                    <MenuItem onClick={() => navigate('/DTHRecharge')}>DTH Recharge</MenuItem>
                                     <MenuItem onClick={() => navigate('/profile')}>ITR</MenuItem>
                                     <MenuItem onClick={() => navigate('/profile')}>GST</MenuItem>
                                     <MenuItem onClick={() => navigate('/profile')}>Online Job Portal</MenuItem>

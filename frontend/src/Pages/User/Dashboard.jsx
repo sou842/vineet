@@ -24,8 +24,8 @@ export const Dashboard = () => {
         <div className='dashboard_2'>
           <div><a href="/PanCard"><p>Pan Card</p></a></div>
           <div><a href="#"><p>Electricity</p></a></div>
-          <div><a href="#"><p>Mobile Recharge</p></a></div>
-          <div><a href="#"><p>DTH Recharge</p></a></div>
+          <div><a href="/MobileRecharge"><p>Mobile Recharge</p></a></div>
+          <div><a href="/DTHRecharge"><p>DTH Recharge</p></a></div>
           <div><a href="#"><p>Income Tax Return</p></a></div>
           <div><a href="#"><p>GST</p></a></div>
           <div><a href="#"><p>Digital Job Portal</p></a></div>
