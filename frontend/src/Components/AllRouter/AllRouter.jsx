@@ -34,6 +34,7 @@ import { AdminUpdatePanCard } from '../../Admin/AdminUpdatePanCard/AdminUpdatePa
 import { PanUpdateUploadEdit } from '../../Pages/PanUpdateUploadEdit/PanUpdateUploadEdit';
 import NotFoundPage from '../../Pages/NotFoundPage/NotFoundPage';
 import { PayDetails } from '../../Pages/PayDetails/PayDetails';
+import { AdminPayData } from '../../Admin/AdminPayData/AdminPayData';
 
 
 
@@ -79,6 +80,7 @@ export const AllRouter = () => {
             <Route path={'/AdminUpdatePanCard'} element={portalData ? <AdminUpdatePanCard /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/user/upload/PanUpdateUploadEdit/:id'} element={portalData ? <PanUpdateUploadEdit /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/PayDetails'} element={portalData ? <PayDetails /> : <Navigate to={'/Signin'} />}></Route>
+            <Route path={'/AdminPayData'} element={portalData ? <AdminPayData /> : <Navigate to={'/Signin'} />}></Route>
         </Routes>
     )
 }
