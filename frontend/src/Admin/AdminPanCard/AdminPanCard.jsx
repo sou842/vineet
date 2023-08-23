@@ -155,7 +155,7 @@ export const AdminPanCard = () => {
                                     </Tbody>
                                 </Table>
                             </TableContainer>
-                        }
+                        } 
                         </Box>}
                     <Box textAlign={'right'} m={'10px'}>
                         {count != 0 ?
