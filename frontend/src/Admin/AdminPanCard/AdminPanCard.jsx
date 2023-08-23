@@ -44,7 +44,7 @@ export const AdminPanCard = () => {
             })
     }
 
-    console.log(nameSearch)
+   
 
     const handleChange = (event) => {
         setPage(1)
