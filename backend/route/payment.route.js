@@ -71,7 +71,6 @@ paymentRoute.get("/user/all-transaction", async (req, res) => {
     const { userID } = req.body
     try {
         const allTrans = await AllPaymentDetailsModel.find({ userID })
-        console.log(allTrans, 'yess')
         res.send(allTrans)
 
     } catch (error) {
