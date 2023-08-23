@@ -9,9 +9,7 @@ import { AuthorContext } from '../../Components/AllContext/AllContext';
 
 
 export const AdminUpdatePanCard = () => {
-        // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-         const baseURL=process.env.REACT_APP_BASE_URL
-    //  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+    const baseURL = process.env.REACT_APP_BASE_URL
     const navigate = useNavigate();
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
     const [pan, setPan] = useState([]);
@@ -62,50 +60,25 @@ export const AdminUpdatePanCard = () => {
                 }
 
                 <div style={{ width: side && !isSmallerThan1000 ? '75%' : '96%', margin: '1.2cm auto' }}>
-                    <Box display={'flex'} justifyContent={'space-between'} flexDirection={'row-reverse'} mt={'1cm'} p={'3px'} mb={'0.5cm'}>
+                    <Box display={'flex'} flexDirection={['column-reverse', 'column-reverse', 'row', 'row']} justifyContent={'space-between'} mt={'1cm'} p={'3px'}>
+                        <Box w={['100%', '100%', '50%', '40%']} display={'flex'} gap={['5px', '10px']} margin={['10px 0', '10px 0', '0', '0']}>
 
-
-                    <Box w={['10%', '25%', '30%']} display={'flex'} gap={'10px'}>
-                            <select style={{ padding: '10px', border: '1px solid', borderRadius:'5px', fontSize: '14px', }} name="CATEGORY"  onChange={(e)=>setCategory(e.target.value)}>
-                                <option value="">CATEGORY</option>
-                                <option value="Individual">Individual</option>
-                                <option value="Artificial Judicial Person">Artificial Judicial Person</option>
-                                <option value="Association of Person">Association of Person</option>
-                                <option value="Trust">Trust</option>
-                                <option value="Body of Individual">Body of Individual</option>
-                                <option value="Firm">Firm</option>
-                                <option value="Government">Government</option>
-                                <option value="Limited Liability Partnership">Limited Liability Partnership</option>
-                                <option value="Local Authority">Local Authority</option>
-                            </select>
-
-
-                            <select style={{ padding: '10px', border: '1px solid', borderRadius:'5px', fontSize: '14px' }} name="status"  onChange={(e)=>setStatus(e.target.value)}>
+                            <select style={{ padding: '10px', border: '1px solid grey', borderRadius: '5px', fontSize: '14px' }} name="status" onChange={handleChange}>
                                 <option value="">STATUS</option>
                                 <option value="pending">Pending</option>
                                 <option value="completed">Completed</option>
                                 <option value="rejected">Rejected</option>
                             </select>
 
-
-                            <select style={{ padding: '10px', border: '1px solid', borderRadius:'5px', fontSize: '14px' }} name="isUserDone"  onChange={(e)=>setIsdone(e.target.value)}>
+                            <select style={{ padding: '10px', border: '1px solid grey', borderRadius: '5px', fontSize: '14px' }} name="isUserDone" onChange={handleChange}>
                                 <option value="">IS USER DONE</option>
                                 <option value="true">Yes</option>
                                 <option value="false">No</option>
                             </select>
                         </Box>
-
-
-
-
-
-
-
-
-
-                        <Box w={['60%', '55%', '45%']} display={'flex'}>
-                            <Input border={'1px solid grey'} borderRadius={'20px'} borderEndRadius={0} type="text" placeholder='Search...' />
-                            <Button fontSize={'14px'} bg={'blue.500'} color={'whiteAlpha.900'} borderRadius={'10px'} borderStartRadius={0}>Search</Button>
+                        <Box w={['100%', '100%', '45%', '45%']} display={'flex'}>
+                            <Input border={'1px solid grey'} borderRadius={'7px'} type="text" placeholder='Search...' />
+                            <Button fontSize={'14px'} ml={'7px'} bg={'blue.500'} color={'whiteAlpha.900'} borderRadius={'7px'} >Search</Button>
                         </Box>
                     </Box>
 
@@ -141,9 +114,9 @@ export const AdminUpdatePanCard = () => {
                                                     :
                                                     <Td w={'60px'} fontWeight={'bold'} color={'red'} fontSize={'15px'} textAlign={'center'}>✕</Td>
                                                 }
-                                                {ele.panStatus=='pending'?<Td color={'blue.600'}>{ele.panStatus.toUpperCase()}</Td>:null }
-                                                {ele.panStatus=='completed'?<Td color={'green'}>{ele.panStatus.toUpperCase()}</Td>:null }
-                                                {ele.panStatus=='rejected'?<Td color={'red'}>{ele.panStatus.toUpperCase()}</Td>:null }
+                                                {ele.panStatus == 'pending' ? <Td color={'blue.600'}>{ele.panStatus.toUpperCase()}</Td> : null}
+                                                {ele.panStatus == 'completed' ? <Td color={'green'}>{ele.panStatus.toUpperCase()}</Td> : null}
+                                                {ele.panStatus == 'rejected' ? <Td color={'red'}>{ele.panStatus.toUpperCase()}</Td> : null}
                                             </Tr>
                                         ))}
                                     </Tbody>

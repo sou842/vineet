@@ -31,10 +31,11 @@ export const AdminDash = () => {
     const navigate = useNavigate();
     const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)");
     const [isSmallerThan600] = useMediaQuery("(max-width: 600px)");
+    const baseURL=process.env.REACT_APP_BASE_URL
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/admin/top3-letest-user`, {
+        axios.get(`${baseURL}/admin/top3-letest-user`, {
             headers: { "Authorization": portalData.token }
         })
             .then((res) => {
@@ -82,6 +83,11 @@ export const AdminDash = () => {
                     </Box>
 
                     <Box mt={'20px'} >
+                        <Box display={'flex'} mb={'15px'} justifyContent={'space-between'} alignItems={'center'} p={'5px'} pl={'15px'} pr={'15px'} boxShadow={'rgba(0, 0, 0, 0.24) 0px 3px 8px'}>
+                            <Text color={'grey'} fontWeight={'bold'}>Payment</Text>
+                            <Button onClick={() => navigate(`/AdminPayData`)} w={'100px'} bg={'blue.400'} color={'whiteAlpha.900'}>Details</Button>
+                        </Box>
+
                         <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'} p={'5px'} pl={'15px'} pr={'15px'} boxShadow={'rgba(0, 0, 0, 0.24) 0px 3px 8px'}>
                             <Text color={'grey'} fontWeight={'bold'}>ALL USER</Text>
                             <Button onClick={() => navigate(`/AdminUser`)} w={'100px'} bg={'blue.400'} color={'whiteAlpha.900'}>Show</Button>
