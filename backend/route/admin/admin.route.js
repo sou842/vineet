@@ -87,7 +87,7 @@ adminRoute.get("/all-pan", async (req, res) => {
 
 
 adminRoute.get("/category-pan", async (req, res) => {
-  const { category,status,page,isDone } = req.query
+  const { category,status,page,isDone,name } = req.query
   try {
     if(category && status && isDone){
       const count= await NewPanModel.count({ category, panStatus:status,isDoneFromUser:isDone })
@@ -123,6 +123,11 @@ adminRoute.get("/category-pan", async (req, res) => {
     else if(isDone){
       const count= await NewPanModel.count({ isDoneFromUser:isDone })
       const pans = await NewPanModel.find({ isDoneFromUser:isDone }).sort({ _id: -1 }).skip(10*(page-1)).limit(10);
+      res.json({data:pans,count:count})
+    }
+    else if(name){
+      const count=await NewPanModel.count({ NameOnCard: { $regex: name } })
+      const pans=await NewPanModel.find({ NameOnCard: { $regex: name } }).skip(10*(page-1)).limit(10);
       res.json({data:pans,count:count})
     }
     else {

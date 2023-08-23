@@ -9,9 +9,7 @@ import { AuthorContext } from '../../Components/AllContext/AllContext';
 
 
 export const AdminPanCard = () => {
-        // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-        const baseURL=process.env.REACT_APP_BASE_URL
-    //  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+    const baseURL = process.env.REACT_APP_BASE_URL
     const navigate = useNavigate();
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
     const [pan, setPan] = useState([]);
@@ -24,34 +22,19 @@ export const AdminPanCard = () => {
     const { side, setSide } = useContext(AuthorContext)
     const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)");
     const [isSmallerThan600] = useMediaQuery("(max-width: 600px)");
- 
+    const [nameSearch, setNameSearch] = useState('');
 
 
 
 
 
-
-
-
-    const handleChange = (event) => {
-        setPage(1)
-        const { name, value } = event.target;
-        setFilterData((prevData) => ({ ...prevData, [name]: value }));
-    }
-    const handleStatusChange=(e)=>{
-        setStatus(e.target.value)
-    }
-    const handelIsDoneChange=(e)=>{
-        setIsdone(e.target.value)
-    }
-
-    useEffect(() => {
+    const data = () => {
         setLoading(true)
-        axios.get(`${baseURL}/admin/category-pan?category=${filterData.CATEGORY}&page=${page}&status=${status}&isDone=${isDone}`, {
+        axios.get(`${baseURL}/admin/category-pan?category=${filterData.CATEGORY}&page=${page}&status=${status}&isDone=${isDone}&name=${nameSearch}`, {
             headers: { "Authorization": portalData.token }
         })
             .then((res) => {
-                // console.log(res.data)
+                console.log(res.data)
                 setPan(res.data.data);
                 setCount(res.data.count);
                 setLoading(false)
@@ -59,7 +42,30 @@ export const AdminPanCard = () => {
             .catch((err) => {
                 console.log(err);
             })
-    }, [filterData,page,status,isDone])
+    }
+
+    console.log(nameSearch)
+
+    const handleChange = (event) => {
+        setPage(1)
+        const { name, value } = event.target;
+        setFilterData((prevData) => ({ ...prevData, [name]: value }));
+    }
+    const handleStatusChange = (e) => {
+        setStatus(e.target.value)
+    }
+    const handelIsDoneChange = (e) => {
+        setIsdone(e.target.value)
+    }
+
+
+    const handleSearch = () => {
+        data()
+    }
+
+    useEffect(() => {
+        data()
+    }, [filterData, page, status, isDone])
 
 
     return (
@@ -75,9 +81,9 @@ export const AdminPanCard = () => {
                 }
 
                 <div style={{ width: side && !isSmallerThan1000 ? '75%' : '96%', margin: '1.2cm auto' }}>
-                    <Box display={'flex'} justifyContent={'space-between'} mt={'1cm'} p={'3px'}>
-                        <Box w={['10%', '25%', '30%']} display={'flex'} gap={'10px'}>
-                            <select style={{ padding: '10px', border: '1px solid', borderRadius:'5px', fontSize: '14px', }} name="CATEGORY" value={filterData.CATEGORY} onChange={handleChange}>
+                    <Box display={'flex'} flexDirection={['column-reverse', 'column-reverse', 'row', 'row']} justifyContent={'space-between'} mt={'1cm'} p={'3px'}>
+                        <Box w={['100%', '100%', '50%', '45%']} display={'flex'} gap={['5px', '10px']} margin={['10px 0', '10px 0', '0', '0']}>
+                            <select style={{ padding: '10px', border: '1px solid grey', borderRadius: '5px', fontSize: '14px', }} name="CATEGORY" value={filterData.CATEGORY} onChange={handleChange}>
                                 <option value="">CATEGORY</option>
                                 <option value="Individual">Individual</option>
                                 <option value="Artificial Judicial Person">Artificial Judicial Person</option>
@@ -90,33 +96,30 @@ export const AdminPanCard = () => {
                                 <option value="Local Authority">Local Authority</option>
                             </select>
 
-
-                            <select style={{ padding: '10px', border: '1px solid', borderRadius:'5px', fontSize: '14px' }} name="status"  onChange={handleStatusChange}>
+                            <select style={{ padding: '10px', border: '1px solid grey', borderRadius: '5px', fontSize: '14px' }} name="status" onChange={handleStatusChange}>
                                 <option value="">STATUS</option>
                                 <option value="pending">Pending</option>
                                 <option value="completed">Completed</option>
                                 <option value="rejected">Rejected</option>
                             </select>
 
-
-                            <select style={{ padding: '10px', border: '1px solid', borderRadius:'5px', fontSize: '14px' }} name="isUserDone"  onChange={handelIsDoneChange}>
+                            <select style={{ padding: '10px', border: '1px solid grey', borderRadius: '5px', fontSize: '14px' }} name="isUserDone" onChange={handelIsDoneChange}>
                                 <option value="">IS USER DONE</option>
                                 <option value="true">Yes</option>
                                 <option value="false">No</option>
                             </select>
                         </Box>
-                        <Box w={['60%', '55%', '45%']} display={'flex'}>
-                            <Input border={'1px solid grey'}   borderRadius={'20px'} borderEndRadius={0} type="text"  placeholder='Search...' />
-                            <Button fontSize={'14px'} bg={'blue.500'} color={'whiteAlpha.900'} borderRadius={'10px'} borderStartRadius={0}>Search</Button>
+                        <Box w={['100%', '100%', '45%', '45%']} display={'flex'}>
+                            <Input onChange={(e) => setNameSearch(e.target.value)} border={'1px solid grey'} borderRadius={'7px'} type="text" placeholder='Search...' />
+                            <Button onClick={handleSearch} fontSize={'14px'} ml={'7px'} bg={'blue.500'} color={'whiteAlpha.900'} borderRadius={'7px'} >Search</Button>
                         </Box>
                     </Box>
 
                     {loading ? <Box display={'flex'} justifyContent={'center'} mt={'2cm'} mb={'2cm'}><Spinner color='#00aeff' /></Box> :
 
-                        <Box>{pan.length == 0 ? <Box minH={'60vh'} display={'flex'} justifyContent={'center'} alignItems={'center'} maxH={'100vh'} overflow={'scroll'} scrollBehavior={'smooth'}>NO DATA FOUND</Box> :
+                        <Box minH={'60vh'}>{pan.length == 0 ? <Box minH={'60vh'} display={'flex'} justifyContent={'center'} alignItems={'center'} maxH={'100vh'} overflow={'scroll'} scrollBehavior={'smooth'}>NO DATA FOUND</Box> :
                             <TableContainer>
                                 <Table variant='striped' colorScheme='teal'>
-                                    <TableCaption>Imperial to metric conversion factors</TableCaption>
                                     <Thead>
                                         <Tr>
                                             <Th w={'4%'}>No.</Th>
@@ -144,9 +147,9 @@ export const AdminPanCard = () => {
                                                     :
                                                     <Td w={'60px'} fontWeight={'bold'} color={'red'} fontSize={'15px'} textAlign={'center'}>✕</Td>
                                                 }
-                                                {ele.panStatus=='pending'?<Td color={'blue.600'}>{ele.panStatus.toUpperCase()}</Td>:null }
-                                                {ele.panStatus=='completed'?<Td color={'green'}>{ele.panStatus.toUpperCase()}</Td>:null }
-                                                {ele.panStatus=='rejected'?<Td color={'red'}>{ele.panStatus.toUpperCase()}</Td>:null }
+                                                {ele.panStatus == 'pending' ? <Td color={'blue.600'}>{ele.panStatus.toUpperCase()}</Td> : null}
+                                                {ele.panStatus == 'completed' ? <Td color={'green'}>{ele.panStatus.toUpperCase()}</Td> : null}
+                                                {ele.panStatus == 'rejected' ? <Td color={'red'}>{ele.panStatus.toUpperCase()}</Td> : null}
                                             </Tr>
                                         ))}
                                     </Tbody>
@@ -154,17 +157,16 @@ export const AdminPanCard = () => {
                             </TableContainer>
                         }
                         </Box>}
-                        <Box textAlign={'right'}>
-                            {
-
-                                count!=0?<Box><Button size={'sm'} onClick={(e)=>setPage(page-1)} isDisabled={page==1} mr={'5px'} colorScheme={'red'}>⟨</Button>
+                    <Box textAlign={'right'} m={'10px'}>
+                        {count != 0 ?
+                            <Box><Button size={'sm'} onClick={(e) => setPage(page - 1)} isDisabled={page == 1} mr={'5px'} colorScheme={'blue'}>⟨</Button>
                                 <Button size={'sm'} mr={'5px'}>{page}</Button>
-                                <Button size={'sm'} colorScheme='green' onClick={(e)=>setPage(page+1)} isDisabled={page==(Math.ceil(count/10))|| count==0}>⟩</Button></Box>:null
-
-                            }         
-                </Box>
+                                <Button size={'sm'} colorScheme='blue' onClick={(e) => setPage(page + 1)} isDisabled={page == (Math.ceil(count / 10)) || count == 0}>⟩</Button>
+                            </Box> : null
+                        }
+                    </Box>
                 </div>
-                
+
             </div>
         </div>
     )
