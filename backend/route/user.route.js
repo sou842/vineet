@@ -8,6 +8,7 @@ const { UserModel } = require("../model/user.model");
 const bcrypt = require("bcrypt");
 const Mailgen = require("mailgen");
 const { auth } = require("../middleware/auth.middleware");
+const { FeedbackModel } = require("../model/feedback.model");
 const userRoute = express.Router();
 
 const now = new Date();
@@ -258,6 +259,110 @@ userRoute.get("/allUserData",async(req,res)=>{
     const user= await UserModel.find();
     res.send(user)
     
+  } catch (error) {
+    res.send(error)
+  }
+})
+userRoute.use(auth)
+userRoute.post('/feedback',async(req,res)=>{
+ 
+  try {
+    const feedback=new FeedbackModel(req.body)
+    await feedback.save()
+
+    //auto email send to admin feedback from user
+
+    // let config = {
+    //   service: "gmail",
+    //   auth: {
+    //     user: "animeshghoroi2000@gmail.com",
+    //     pass: "ktnjaukrkuouhrwh",
+    //   },
+    // };
+
+    // let transporter = nodemailer.createTransport(config);
+
+
+
+    // let message = {
+    //   from: req.body.email,
+    //   to: "animeshghoroi2000@gmail.com",
+    //   subject: "Customar Feedback",
+    //   html: `<!DOCTYPE html>
+    //   <html>
+      
+    //   <head>
+    //     <meta charset="utf-8">
+    //     <meta name="viewport" content="width=device-width">
+    //     <title>replit</title>
+    //     <link href="style.css" rel="stylesheet" type="text/css" />
+    //   </head>
+    //     <style>
+    //   table, th, td {
+    //     border: 1px solid black;
+    //     border-collapse: collapse;
+    //   }
+    //   th, td {
+    //     padding: 5px;
+    //     text-align: left;
+    //   }
+    //   </style>
+      
+    //   <body>
+    //     <div>
+    //       <table style="width:100%">
+    //          <caption>${req.body.name.toUpperCase()}</caption>
+    //           <tr>
+    //             <th>Customer Name</th>
+    //             <td>${req.body.name.toUpperCase()}</td>
+               
+               
+                 
+    //           </tr>
+           
+           
+    //           <tr>
+    //               <th>Customer Phone Number</th>
+    //             <td>${req.body.phoneNumber}</td>
+    //           </tr>
+    //          <tr>
+    //                 <th>Customer Email-id</th>
+    //             <td>${req.body.email}</td>
+    //           </tr>
+    //          <tr>
+    //                  <th>Feedback Message</th>
+    //             <td>${req.body.message}</td>
+    //           </tr>
+            
+    //       </table>
+    //     </div>
+
+      
+        
+        
+    //   </body>
+      
+    //   </html>`,
+    // };
+
+
+    // transporter
+    //     .sendMail(message)
+    //     .then((re) => {
+    //       res.send("Thank You 🙏 for you valuable feedback😊")
+
+    //     })
+    //     .catch((err) => {
+    //       res.send(err);
+    //     });
+
+    res.send("Thank You 🙏 for you valuable feedback😊")
+
+
+
+
+
+
   } catch (error) {
     res.send(error)
   }

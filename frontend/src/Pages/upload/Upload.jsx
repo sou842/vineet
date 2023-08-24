@@ -14,22 +14,25 @@ const Upload = () => {
     const navigate = useNavigate()
     const [pans, setPans] = useState([])
     const [loading, setLoading] = useState(false)
+    const [page, setPage] = useState(1)
+    const [count, setCount] = useState(0)
 
 
     useEffect(() => {
         setLoading(true)
-        axios.get(`${baseURL}/user/all-pan-card-deatils?category=${cat}`, {
+        axios.get(`${baseURL}/user/all-pan-card-deatils?category=${cat}&page=${page}`, {
             headers: { "Authorization": portalData.token }
 
         }).then((res) => {
             setLoading(false)
-            setPans(res.data.reverse())
+            setPans(res.data.data)
+            setCount(res.data.count)
             //console.log(res.data);
         }).catch((err) => {
             setLoading(false)
             console.log(err);
         })
-    }, [cat])
+    }, [cat,page])
 
 
     return (
@@ -37,7 +40,7 @@ const Upload = () => {
             <Box><PanCardNav /></Box>
             <Box w={'85%'} m={'0.5cm auto 0 auto'}>
                 <Box w={'230px'}>
-                    <select onChange={(e) => setCat(e.target.value)} style={{ borderRadius: '20px', padding: '7px', color: 'grey' }}>
+                    <select onChange={(e) => {setCat(e.target.value);setPage(1)}} style={{ borderRadius: '20px', padding: '7px', color: 'grey' }}>
                         <option value="newPancard">NEW PANCARD</option>
                         <option value="updatePancard">UPDATE PANCARD</option>
                     </select>
@@ -77,7 +80,16 @@ const Upload = () => {
                         </Grid>
                     </Box>
                 }
+            
             </Box>
+            <Box textAlign={'right'} m={'10px'}>
+                        {count != 0 ?
+                            <Box><Button size={'sm'} onClick={(e) => setPage(page - 1)} isDisabled={page == 1} mr={'5px'} colorScheme={'blue'}>⟨</Button>
+                                <Button size={'sm'} mr={'5px'}>{page}</Button>
+                                <Button size={'sm'} colorScheme='blue' onClick={(e) => setPage(page + 1)} isDisabled={page == (Math.ceil(count / 10)) || count == 0}>⟩</Button>
+                            </Box> : null
+                        }
+                    </Box>
             <Box><Footer /></Box>
         </Box>
     )

@@ -45,16 +45,18 @@ newPanRoute.post("/new-pan-card", async (req, res) => {
 newPanRoute.use(auth)
 newPanRoute.get("/all-pan-card-deatils", async (req, res) => {
     const { vendorID, userID } = req.body;
-    const { category } = req.query
+    const { category ,page} = req.query
 
     try {
         if (category == "newPancard") {
-            const pans = await NewPanModel.find({ $and: [{ vendorID: vendorID }, { isUpload: false }] })
-            res.send(pans)
+            const count= await NewPanModel.count({ $and: [{ vendorID: vendorID }, { isUpload: false }] })
+            const pans = await NewPanModel.find({ $and: [{ vendorID: vendorID }, { isUpload: false }] }).sort({ _id: -1 }).skip(10*(page-1)).limit(10);
+            res.json({data:pans,count:count})
         }
         else if (category == "updatePancard") {
-            const pans = await UpdatePanModel.find({ $and: [{ vendorID: vendorID }, { isUpload: false }] })
-            res.send(pans)
+            const count= await UpdatePanModel.count({ $and: [{ vendorID: vendorID }, { isUpload: false }] })
+            const pans = await UpdatePanModel.find({ $and: [{ vendorID: vendorID }, { isUpload: false }] }).sort({ _id: -1 }).skip(10*(page-1)).limit(10);
+            res.json({data:pans,count:count})
         }
 
 
@@ -66,19 +68,20 @@ newPanRoute.get("/all-pan-card-deatils", async (req, res) => {
 
 newPanRoute.get("/all-uploaded-pan-card", async (req, res) => {
     const { vendorID } = req.body;
-    const { category } = req.query
+    const { category,page } = req.query
 
     try {
 
         if (category == "newPancard") {
-
-            const pans = await NewPanModel.find({ $and: [{ vendorID: vendorID }] })
-            res.send(pans)
+            const count= await NewPanModel.count({ $and: [{ vendorID: vendorID }] })
+            const pans = await NewPanModel.find({ $and: [{ vendorID: vendorID }] }).sort({ _id: -1 }).skip(10*(page-1)).limit(10);
+            res.json({data:pans,count:count})
         }
         else if (category == "updatePancard") {
-            const pans = await UpdatePanModel.find({ $and: [{ vendorID: vendorID }] })
+            const count= await UpdatePanModel.count({ $and: [{ vendorID: vendorID }] })
+            const pans = await UpdatePanModel.find({ $and: [{ vendorID: vendorID }] }).sort({ _id: -1 }).skip(10*(page-1)).limit(10);
 
-            res.send(pans)
+            res.json({data:pans,count:count})
         }
 
     } catch (error) {
