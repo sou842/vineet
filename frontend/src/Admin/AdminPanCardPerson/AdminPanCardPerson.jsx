@@ -18,12 +18,23 @@ export const AdminPanCardPerson = () => {
   const [pdf, setPdf] = useState("")
  
   const [isComplete,setIscomplete]=useState(false)
+  const [receipt,setReceipt]=useState("")
 
   const navigate = useNavigate()
 const toast=useToast()
   const handelSubmit=(e)=>{
     e.preventDefault()
-    axios.patch(`${baseurl}/admin/user/status-change/${id}`,{...formData,receiptPdf:pdf} ,{
+
+    const receiptData=new FormData()
+    receiptData.append('receiptPdf',receipt)
+    receiptData.append('panStatus',formData.panStatus)
+    receiptData.append('acknowledgement',formData.acknowledgement)
+    receiptData.append('slipGenerateDate',formData.slipGenerateDate)
+
+
+
+console.log();
+    axios.patch(`${baseurl}/admin/user/status-change/${id}`,receiptData ,{
       headers: { "Authorization": portalData.token }
     })
       .then((res) => {
@@ -51,18 +62,18 @@ const toast=useToast()
   }
 
   const handelChange=(e)=>{
-    if (e.target.name=="receiptPdf" && e.target.files[0]) {
-      let reader = new FileReader();
-      reader.readAsDataURL(e.target.files[0]);
-      reader.onload = () => {
-        setPdf(reader.result);
-        // console.log(reader.result);
-      }
-    }
-    else{
+    // if (e.target.name=="receiptPdf" && e.target.files[0]) {
+    //   let reader = new FileReader();
+    //   reader.readAsDataURL(e.target.files[0]);
+    //   reader.onload = () => {
+    //     setPdf(reader.result);
+    //     // console.log(reader.result);
+    //   }
+    // }
+    // else{
 
       setFormData({...formData,[e.target.name]:e.target.value})
-    }
+    //}
 
   }
 
@@ -697,7 +708,7 @@ const toast=useToast()
           <p>Slip Generate Date</p>
           <input type='date'   value={formData&& formData.slipGenerateDate} name='slipGenerateDate' onChange={handelChange}/>
           <p>Receipt</p>
-          <input type="file"  name='receiptPdf' onChange={handelChange}/>
+          <input type="file"  name='receipt' onChange={(e)=>setReceipt(e.target.files[0])}/>
           <Button type='submit' isDisabled={isComplete || formData&& !formData.isDoneFromUser}  >SUBMIT</Button>
         </form>
           

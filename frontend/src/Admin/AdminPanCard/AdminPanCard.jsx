@@ -117,7 +117,7 @@ export const AdminPanCard = () => {
 
                     {loading ? <Box display={'flex'} justifyContent={'center'} mt={'2cm'} mb={'2cm'}><Spinner color='#00aeff' /></Box> :
 
-                        <Box minH={'60vh'}>{pan.length == 0 ? <Box minH={'60vh'} display={'flex'} justifyContent={'center'} alignItems={'center'} maxH={'100vh'} overflow={'scroll'} scrollBehavior={'smooth'}>NO DATA FOUND</Box> :
+                        <Box minH={'60vh'}>{pan && pan.length == 0 ? <Box minH={'60vh'} display={'flex'} justifyContent={'center'} alignItems={'center'} maxH={'100vh'} overflow={'scroll'} scrollBehavior={'smooth'}>NO DATA FOUND</Box> :
                             <TableContainer>
                                 <Table variant='striped' colorScheme='teal'>
                                     <Thead>

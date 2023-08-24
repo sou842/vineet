@@ -8,6 +8,7 @@ const { UserModel } = require("../../model/user.model");
 const { panDocsModel } = require("../../model/panDocs.model");
 const { UpdatePanModel } = require("../../model/updatePan/updatePan.model");
 const { AllPaymentDetailsModel } = require("../../model/allPaymentDetails.model");
+const { upload } = require("../../middleware/uploadDocs.middleware");
 const adminRoute = express.Router()
 
 
@@ -206,19 +207,25 @@ adminRoute.get("/user/pandocs",async(req,res)=>{
     res.send(error)
   }
 })
+
+
 // update status change and slip generate of pan card 
-adminRoute.patch("/user/status-change/:id",async(req,res)=>{
-  const {slipGenerateDate,acknowledgement,panStatus,receiptPdf}=req.body
+adminRoute.patch("/user/status-change/:id",upload.single('receiptPdf'), async(req,res)=>{
+  const {slipGenerateDate,acknowledgement,panStatus}=req.body
   const {id}=req.params
   try {
     await NewPanModel.findByIdAndUpdate({_id:id},{slipGenerateDate,acknowledgement,panStatus})
-    await panDocsModel.findOneAndUpdate({userid:id},{receiptPdf})
+    await panDocsModel.findOneAndUpdate({panid:id},{receiptPdf:req.file.filename})
     res.send("Update Succesfull")
     
   } catch (error) {
     res.send(error)
   }
 })
+
+
+
+
 
 // search user by defferent type
 adminRoute.get("/user",async(req,res)=>{
@@ -291,6 +298,7 @@ adminRoute.get("/update-pan",async(req,res)=>{
 
 //singles update pans data
 adminRoute.get('/pan-update-single/:id',async(req,res)=>{
+  const {id}=req.params
   try {
       const pan= await UpdatePanModel.findOne({_id:id})
       res.send(pan)

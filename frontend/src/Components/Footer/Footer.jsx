@@ -1,7 +1,50 @@
+import { useState } from 'react'
 import './Footer.css'
-
+import axios from 'axios'
+import { useToast } from '@chakra-ui/react'
 
 export const Footer = () =>{
+    //    ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+        const baseURL=process.env.REACT_APP_BASE_URL
+    //  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+    const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
+const [data,setData]=useState({
+    name:"",
+    email:"",
+    phoneNumber:"",
+    message:""
+    
+})
+const toast=useToast()
+const handelChange=(e)=>{
+     setData({...data,[e.target.name]:e.target.value})
+}
+const handelSubmit=(e)=>{
+    e.preventDefault()
+   axios.post(`${baseURL}/user/feedback`,data,{
+    headers: {
+        Authorization: portalData.token,
+      },
+   })
+   .then((res)=>{
+    toast({
+        title: res.data,
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
+   })
+   .catch((err)=>{
+    toast({
+        title: "Please try agian",
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      })
+      console.log(err);
+   })
+}
+
 
 
 return (
@@ -17,12 +60,11 @@ return (
                 </div>
             </div>
             <div>
-                <form >
-                <input type="text" placeholder='Name' />
-                <input type="text" placeholder='Email' />
-                <input type="text" placeholder='Number'/>
-                {/* <input type="text" placeholder='Massage'/> */}
-                <textarea placeholder='Massage'></textarea>
+                <form onSubmit={handelSubmit}>
+                <input type="text" placeholder='Name' required name='name'  onChange={handelChange} />
+                <input type="email" placeholder='Email'required name='email' onChange={handelChange} />
+                <input type="number" placeholder='Phone Number' required name='phoneNumber' onChange={handelChange}/>
+                <textarea placeholder='Massage' required name='message' onChange={handelChange}></textarea>
                 <button type='sibmit'>SEND</button>
                 </form>
             </div>
