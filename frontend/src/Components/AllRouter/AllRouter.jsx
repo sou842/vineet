@@ -37,6 +37,7 @@ import { PayDetails } from '../../Pages/PayDetails/PayDetails';
 import {AdminPayData} from '../../Admin/AdminPayData/AdminPayData.jsx'
 import { MobileRecharge } from '../../Pages/MobileRecharge/MobileRecharge';
 import { DTHRecharge } from '../../Pages/DTHRecharge/DTHRecharge';
+import { MobileRechargeTransaction } from '../../Pages/MobileRechargeTransaction/MobileRechargeTransaction';
 
 
 
@@ -84,6 +85,7 @@ export const AllRouter = () => {
             <Route path={'/AdminPayData'} element={portalData ? <AdminPayData /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/MobileRecharge'} element={portalData ? <MobileRecharge /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/DTHRecharge'} element={portalData ? <DTHRecharge /> : <Navigate to={'/Signin'} />}></Route>
+            <Route path={'/MobileRechargeTransaction'} element={portalData ? <MobileRechargeTransaction /> : <Navigate to={'/Signin'} />}></Route>
 
         </Routes>
     )
