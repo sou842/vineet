@@ -16,17 +16,27 @@ export const AdminPayData = () => {
     const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)");
     const [isSmallerThan600] = useMediaQuery("(max-width: 600px)");
     const [pay, setPay] = useState([]);
+    const [idSearch, setIdSearch] = useState("");
+
+const filtering=()=>{
+    axios.get(`${baseURL}/admin/user/all-transaction?vendorID=${idSearch}`, {
+        headers: { "Authorization": portalData.token }
+    })
+        .then((data) => {
+            setPay(data.data)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+
+const handelSearch=()=>{
+    filtering()
+}
+
 
     useEffect(() => {
-        axios.get(`${baseURL}/admin/user/all-transaction`, {
-            headers: { "Authorization": portalData.token }
-        })
-            .then((data) => {
-                setPay(data.data)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+        filtering()
 
     }, [])
 
@@ -46,8 +56,8 @@ export const AdminPayData = () => {
                 <div style={{ width: side && !isSmallerThan1000 ? '75%' : '96%', margin: '1.5cm auto 0.5cm auto' }}>
                     <Box>
                         <Box w={'95%'} display={'flex'} m={'0.5cm auto'}>
-                            <input style={{border:'1px solid grey',padding:'10px',borderRadius:'7px',width:'100%'}} type="text" placeholder="Search" />
-                            <Button w={'100px'} h={'45px'} ml={'10px'} bg={'blue.400'}>Search</Button>
+                            <input style={{border:'1px solid grey',padding:'10px',borderRadius:'7px',width:'100%'}} type="text" placeholder="Search" onChange={(e)=>setIdSearch(e.target.value)}/>
+                            <Button w={'100px'} h={'45px'} ml={'10px'} bg={'blue.400'} onClick={handelSearch}>Search</Button>
                         </Box>
                         <TableContainer>
                             <Table variant='striped' colorScheme='blue'>

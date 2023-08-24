@@ -126,8 +126,8 @@ adminRoute.get("/category-pan", async (req, res) => {
       res.json({data:pans,count:count})
     }
     else if(name){
-      const count=await NewPanModel.count({ NameOnCard: { $regex: name } })
-      const pans=await NewPanModel.find({ NameOnCard: { $regex: name } }).skip(10*(page-1)).limit(10);
+      const count=await NewPanModel.count({ NameOnCard: { $regex: name,$options: 'i' } })
+      const pans=await NewPanModel.find({ NameOnCard: { $regex: name,$options: 'i' } }).skip(10*(page-1)).limit(10);
       res.json({data:pans,count:count})
     }
     else {
@@ -274,8 +274,8 @@ adminRoute.get("/update-pan",async(req,res)=>{
       res.json({data:pans,count:count})
     }
     else if(name){
-      const count=await UpdatePanModel.count({ NameOnCard: { $regex: name } })
-      const pans=await UpdatePanModel.find({ NameOnCard: { $regex: name } }).skip(10*(page-1)).limit(10);
+      const count=await UpdatePanModel.count({ NameOnCard: { $regex: name,$options: 'i' } })
+      const pans=await UpdatePanModel.find({ NameOnCard: { $regex: name,$options: 'i' } }).skip(10*(page-1)).limit(10);
       res.json({data:pans,count:count})
     }
     else {
@@ -312,14 +312,38 @@ adminRoute.get('/user-documents/:id',async(req,res)=>{
 
 
 adminRoute.get("/user/all-transaction",async(req,res)=>{
+  const {vendorID}=req.query
   try {
-    const trans=await AllPaymentDetailsModel.find()
-    res.send(trans)
+    if(vendorID){
+      const trans=await AllPaymentDetailsModel.find({ vendorID: { $regex: vendorID,$options: 'i' } })
+      res.send(trans)
+
+    }
+    else{
+
+      const trans=await AllPaymentDetailsModel.find()
+      res.send(trans)
+    }
     
   } catch (error) {
     res.send(error)
   }
 })
+
+
+// adminRoute.get('/total-payment',async(req,res)=>{
+//   try {
+//     const totalCredit=await AllPaymentDetailsModel.aggregate([
+//       {
+//         $group: { _id: null, totalCredit: { $sum: "$credit" } }
+//      }
+//     ]).toArray()
+//     res.send(totalCredit)
+    
+//   } catch (error) {
+    
+//   }
+// })
 
 
 module.exports = { adminRoute }
