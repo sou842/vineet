@@ -53,22 +53,7 @@ export const MobileRechargeTransaction = () => {
                                             <Text mt={'7px'} mb={'7px'} display={'flex'} fontWeight={'bold'}>Time:<Text fontWeight={'normal'} ml={'10px'}>{el.time}</Text></Text>
                                             <Text mt={'7px'} mb={'7px'} display={'flex'} fontWeight={'bold'}>Amount:<Text fontWeight={'normal'} ml={'10px'}>₹ {el.amount}</Text></Text>
                                         </Box>
-                                        {/* <Box display={'flex'} w={'90%'} m={'auto'} justifyContent={'space-between'}>
-                                            <Text  fontWeight={'bold'}>Number :</Text>
-                                            <Text>{el.phone}</Text>
-                                        </Box>
-                                        <Box display={'flex'} w={'90%'} m={'auto'} justifyContent={'space-between'}>
-                                            <Text  fontWeight={'bold'}>Date :</Text>
-                                            <Text>{el.date}</Text>
-                                        </Box>
-                                        <Box display={'flex'} w={'90%'} m={'auto'} justifyContent={'space-between'}>
-                                            <Text  fontWeight={'bold'}>Time :</Text>
-                                            <Text>{el.time}</Text>
-                                        </Box>
-                                        <Box display={'flex'} w={'90%'} m={'auto'} justifyContent={'space-between'}>
-                                            <Text  fontWeight={'bold'}>Price :</Text>
-                                            <Text>₹ {el.amount}</Text>
-                                        </Box> */}
+                                       
                                     </Box>
                                 )
                             })}
