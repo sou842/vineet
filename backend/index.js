@@ -9,6 +9,7 @@ const { profileRouter } = require("./route/profilePicture.route");
 const { panDocsRoute } = require("./route/panDocs.route");
 const { adminRoute } = require("./route/admin/admin.route");
 const { updatePanRoute } = require("./route/updatePan.route");
+const { mobileRechargeRouter } = require("./route/mobileRechargeRouter/mobileRechargeRouter");
 
 
 require('dotenv').config();
@@ -24,6 +25,9 @@ app.use('/api',userRoute)
 app.use('/user',newPanRoute)
 app.use('/admin',adminRoute)
 app.use('/user',updatePanRoute)
+app.use('/mobileRecharge',mobileRechargeRouter)
+// app.use('/DTHRecharge',mobileRechargeRouter)
+
 
 app.use(express.static('documents'))
 

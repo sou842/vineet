@@ -9,6 +9,7 @@ import edit from '../../assets/edit.png'
 
 
 export const Profile = () => {
+  const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
   const [profileData, setProfileData] = useState([])
   const [loading, setLoading] = useState(false)
   const [picture, setPicture] = useState("")
@@ -20,7 +21,6 @@ export const Profile = () => {
   const { isOpen: DeleteIsOpen, onOpen: DeleteOnOpen, onClose: DeleteOnClose } = useDisclosure()
   const baseURL = process.env.REACT_APP_BASE_URL
 
-  const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
   const navigate = useNavigate()
   const toast = useToast()
 

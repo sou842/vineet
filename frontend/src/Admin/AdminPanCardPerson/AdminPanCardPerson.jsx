@@ -3,27 +3,25 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { AdminNavbar } from '../AdminNavbar/AdminNavbar'
-import { Box, Image, useMediaQuery,useToast,Button } from '@chakra-ui/react'
+import { Box, Image, useMediaQuery, useToast, Button } from '@chakra-ui/react'
 
 
 export const AdminPanCardPerson = () => {
-  //########################################
-  const baseurl=process.env.REACT_APP_BASE_URL
-  //########################################
+  const baseurl = process.env.REACT_APP_BASE_URL
   const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)")
   const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
   const { id } = useParams()
   const [formData, setFormData] = useState();
   const [document, setDocument] = useState(null);
   const [pdf, setPdf] = useState("")
- 
-  const [isComplete,setIscomplete]=useState(false)
+
+  const [isComplete, setIscomplete] = useState(false)
 
   const navigate = useNavigate()
-const toast=useToast()
-  const handelSubmit=(e)=>{
+  const toast = useToast()
+  const handelSubmit = (e) => {
     e.preventDefault()
-    axios.patch(`${baseurl}/admin/user/status-change/${id}`,{...formData,receiptPdf:pdf} ,{
+    axios.patch(`${baseurl}/admin/user/status-change/${id}`, { ...formData, receiptPdf: pdf }, {
       headers: { "Authorization": portalData.token }
     })
       .then((res) => {
@@ -47,11 +45,11 @@ const toast=useToast()
         })
         console.log(err);
       })
-   
+
   }
 
-  const handelChange=(e)=>{
-    if (e.target.name=="receiptPdf" && e.target.files[0]) {
+  const handelChange = (e) => {
+    if (e.target.name == "receiptPdf" && e.target.files[0]) {
       let reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       reader.onload = () => {
@@ -59,9 +57,9 @@ const toast=useToast()
         // console.log(reader.result);
       }
     }
-    else{
+    else {
 
-      setFormData({...formData,[e.target.name]:e.target.value})
+      setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
   }
@@ -76,7 +74,7 @@ const toast=useToast()
         // console.log(res.data)
         setFormData(res.data.pans);
         setDocument(res.data.docs)
-        setIscomplete(res.data.panStatus=="completed")
+        setIscomplete(res.data.panStatus == "completed")
       })
       .catch((err) => {
         console.log(err);
@@ -90,7 +88,7 @@ const toast=useToast()
       <AdminNavbar />
       <div className='AdminPanCardPerson_0'>
         <div style={isSmallerThan1000 ? null : { maxHeight: '100vh' }}>
-          {formData != undefined && formData.category == 'Individual' ?
+          {formData != undefined ?
             <table >
               <thead>
                 <tr>
@@ -382,38 +380,38 @@ const toast=useToast()
                   <td>56.</td>
                   <td>Aadhaar Docs</td>
                   <td>
-                  <Button size={'sm'} colorScheme='green' isDisabled={document==null} onClick={(e)=>window.open(`${baseurl}/${document.aadharDoc}`,"_blank")}>View</Button>
+                    <Button size={'sm'} colorScheme='green' isDisabled={document == null} onClick={(e) => window.open(`${baseurl}/${document.aadharDoc}`, "_blank")}>View</Button>
                   </td>
                 </tr>
                 <tr>
                   <td>57.</td>
                   <td>FormFront Docs</td>
                   <td>
-                  <Button size={'sm'}  colorScheme='green' isDisabled={document==null} onClick={(e)=>window.open(`${baseurl}/${document.form49Front}`,"_blank")}>View</Button>
+                    <Button size={'sm'} colorScheme='green' isDisabled={document == null} onClick={(e) => window.open(`${baseurl}/${document.form49Front}`, "_blank")}>View</Button>
                   </td>
                 </tr>
                 <tr>
                   <td>58.</td>
                   <td>FormBack Docs</td>
                   <td>
-                  <Button size={'sm'} colorScheme='green' isDisabled={document==null} onClick={(e)=>window.open(`${baseurl}/${document.form49Back}`,"_blank")}>View</Button>
+                    <Button size={'sm'} colorScheme='green' isDisabled={document == null} onClick={(e) => window.open(`${baseurl}/${document.form49Back}`, "_blank")}>View</Button>
                   </td>
                 </tr>
                 {
-                 document && document.parentAadharDoc?  <tr>
-                  <td>59.</td>
-                  <td>ParentAadhaar Docs</td>
-                  <td>
-                  <Button size={'sm'} colorScheme='green' isDisabled={document==null} onClick={(e)=>window.open(`${baseurl}/${document.parentAadharDoc}`,"_blank")}>View</Button>
-                  </td>
-                </tr>:null
+                  document && document.parentAadharDoc ? <tr>
+                    <td>59.</td>
+                    <td>ParentAadhaar Docs</td>
+                    <td>
+                      <Button size={'sm'} colorScheme='green' isDisabled={document == null} onClick={(e) => window.open(`${baseurl}/${document.parentAadharDoc}`, "_blank")}>View</Button>
+                    </td>
+                  </tr> : null
                 }
-              
+
               </tbody>
 
             </table> : null}
 
-          {formData != undefined && formData.category != 'Individual' ?
+          {/* {formData != undefined && formData.category != 'Individual' ?
             <table >
               <thead>
                 <tr>
@@ -678,53 +676,34 @@ const toast=useToast()
                   </td>
                 </tr>
               </tbody>
-            </table> : null}
+            </table> : null} */}
 
         </div>
 
         <div>
           <form onSubmit={handelSubmit}>
-          <h1>CONFIRMMATION</h1>
-          <p>Status</p>
-          {/* <input type="text" placeholder='Update Acknowledgement' /> */}
-          <select  required value={formData && formData.panStatus}  name='panStatus' onChange={handelChange}>
-            <option value="pending">Pending</option>
-            <option value="rejected">Rejected</option>
-            <option value="completed">Completed</option>
-          </select>
-          <p>Acknowledgement</p>
-          <input type="number" placeholder='Acknowledgement Number' required value={formData && formData.acknowledgement}  name='acknowledgement' onChange={handelChange}/>
-          <p>Slip Generate Date</p>
-          <input type='date'   value={formData&& formData.slipGenerateDate} name='slipGenerateDate' onChange={handelChange}/>
-          <p>Receipt</p>
-          <input type="file"  name='receiptPdf' onChange={handelChange}/>
-          <Button type='submit' isDisabled={isComplete || formData&& !formData.isDoneFromUser}  >SUBMIT</Button>
-        </form>
-          
-         
+            <h1>CONFIRMMATION</h1>
+            <p>Status</p>
+            {/* <input type="text" placeholder='Update Acknowledgement' /> */}
+            <select required value={formData && formData.panStatus} name='panStatus' onChange={handelChange}>
+              <option value="pending">Pending</option>
+              <option value="rejected">Rejected</option>
+              <option value="completed">Completed</option>
+            </select>
+            <p>Acknowledgement</p>
+            <input type="number" placeholder='Acknowledgement Number' required value={formData && formData.acknowledgement} name='acknowledgement' onChange={handelChange} />
+            <p>Slip Generate Date</p>
+            <input type='date' value={formData && formData.slipGenerateDate} name='slipGenerateDate' onChange={handelChange} />
+            <p>Receipt</p>
+            <input type="file" name='receiptPdf' onChange={handelChange} />
+            <Button type='submit' isDisabled={isComplete || formData && !formData.isDoneFromUser}  >SUBMIT</Button>
+          </form>
+
+
           <p onClick={() => navigate('/AdminPanCard')} style={{ textAlign: 'center', margin: '10px', fontSize: '18px', cursor: 'pointer' }}>← BACK</p>
         </div>
       </div>
-      {/* <Box  w={'90%'} display={'flex'} flexDirection={['column', 'column', 'row',]} justifyContent={'space-between'} gap={'10px'} m={'auto'} mt={['0.5cm','0.5cm','1cm']} mb={'1cm'}>
-        <Box w={['100%', '100%', '30%']} m={'auto'} border={'1px solid grey'} h={'350px'} display={'flex'} justifyContent={'center'} alignItems={'center'} position="relative">
-          <Image src='https://cdn-icons-png.flaticon.com/128/7188/7188242.png' />
-          <Box position="absolute" top="10px" right="10px" borderRadius="full" bg="whiteAlpha.700" boxShadow="md" p={1} cursor={'pointer'}  >
-            <Image position={'relative'} w={'25px'} src={'https://cdn-icons-png.flaticon.com/128/4208/4208397.png'} m={'6px'} />
-          </Box>
-        </Box>
-        <Box w={['100%', '100%', '30%']} m={'auto'} border={'1px solid grey'} h={'350px'} display={'flex'} justifyContent={'center'} alignItems={'center'} position="relative">
-          <Image src='https://cdn-icons-png.flaticon.com/128/7188/7188242.png' />
-          <Box position="absolute" top="10px" right="10px" borderRadius="full" bg="whiteAlpha.700" boxShadow="md" p={1} cursor={'pointer'}  >
-            <Image position={'relative'} w={'25px'} src={'https://cdn-icons-png.flaticon.com/128/4208/4208397.png'} m={'6px'} />
-          </Box>
-        </Box>
-        <Box w={['100%', '100%', '30%']} m={'auto'} border={'1px solid grey'} h={'350px'} display={'flex'} justifyContent={'center'} alignItems={'center'} position="relative">
-          <Image src='https://cdn-icons-png.flaticon.com/128/7188/7188242.png' />
-          <Box position="absolute" top="10px" right="10px" borderRadius="full" bg="whiteAlpha.700" boxShadow="md" p={1} cursor={'pointer'}  >
-            <Image position={'relative'} w={'25px'} src={'https://cdn-icons-png.flaticon.com/128/4208/4208397.png'} m={'6px'} />
-          </Box>
-        </Box>
-      </Box> */}
+
     </div>
   )
 }

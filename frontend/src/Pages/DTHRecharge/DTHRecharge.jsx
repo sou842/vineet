@@ -2,11 +2,23 @@ import { Box, Button, Heading, Text } from '@chakra-ui/react'
 import { DashboardNav } from '../../Components/DashboradNav/DashboardNav'
 import { states, DTH } from '../../FromElement.js'
 import { useState } from 'react'
+import axios from 'axios'
+import date from 'date-and-time';
+import { useNavigate } from 'react-router-dom'
 import './DTHRecharge'
+import { useToast } from 'native-base'
+
+
 
 export const DTHRecharge = () => {
+    const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
+    const baseURL = process.env.REACT_APP_BASE_URL
+    let currentDate = date.format(new Date(), 'YYYY-MMM-DD');
+    let currentTime = date.format(new Date(), 'hh:mm A', true);
+    const [formData, setFormData] = useState({ operator: '', state: '', phone: '', amount: '', date: currentDate, time: currentTime })
+    const toast = useToast()
+    const navigate = useNavigate()
 
-    const [formData, setFormData] = useState({ operator: '', state: '', phone: '', amount: '' })
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -19,6 +31,22 @@ export const DTHRecharge = () => {
         }
     }
 
+    const handleRecharge = (event) => {
+        event.preventDefault();
+
+        axios.post(`${baseURL}/mobileRecharge/new_Recharge`, formData, {
+            headers: { "Authorization": portalData.token }
+        })
+            .then((data) => {
+                toast({ title: data.data.msg, status: 'success', duration: 4000, isClosable: true, position: 'top' })
+                navigate('/Dashboard')
+                // console.log(data.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
     console.log(formData)
 
     return (
@@ -27,7 +55,7 @@ export const DTHRecharge = () => {
             <Box>
                 <Heading textAlign={'center'} mt={'20px'}>DTH Recharge</Heading>
                 <Box w={['95%', '80%', '60%']} m={'15px auto 1cm auto'}>
-                    <form>
+                    <form onSubmit={handleRecharge}>
                         <Box mt={'7px'}>
                             <Text color={'grey'} m={'7px 10px'}>DTH Company</Text>
                             <select name='operator' value={formData.operator} onChange={handleChange} required style={{ border: '1px solid grey', width: '100%', padding: '10px', marginBottom: '0' }}>
