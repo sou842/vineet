@@ -51,7 +51,7 @@ const Upload = () => {
                         {pans.length == 0 ? <Box textAlign={'center'}>NO DATA FOUND</Box> : null}
 
                         <Grid templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(3, 1fr)']} gap={['10px', '15px']} w={'95%'} m={'0 auto 1cm auto'}>
-                            {pans.map((el, i) => {
+                            {pans.length!=0&&pans.map((el, i) => {
                                 return (
                                     <Box key={i} border={'2px solid #00aeff'} pt={'10px'} pb={'5px'} borderRadius={'15px'}>
                                         <Box textAlign={'center'} fontWeight={'bold'} p={'7px'} color={'whiteAlpha.900'} bg={'#00aeff'} w={'100%'} m={'auto'} mt={'10px'} mb={'15px'}>{el.category.toUpperCase()}</Box>
