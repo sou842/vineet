@@ -265,7 +265,7 @@ userRoute.get("/allUserData",async(req,res)=>{
 })
 userRoute.use(auth)
 userRoute.post('/feedback',async(req,res)=>{
- 
+
   try {
     const feedback=new FeedbackModel(req.body)
     await feedback.save()

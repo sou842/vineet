@@ -70,7 +70,7 @@ paymentRoute.use(auth)
 paymentRoute.get("/user/all-transaction", async (req, res) => {
     const { userID } = req.body
     try {
-        const allTrans = await AllPaymentDetailsModel.find({ userID })
+        const allTrans = await AllPaymentDetailsModel.find({ userID }).sort({ _id: -1 })
         res.send(allTrans)
 
     } catch (error) {

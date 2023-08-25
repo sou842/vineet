@@ -30,7 +30,7 @@ export const MobileRecharge = () => {
         }
     }
 
-
+// console.log(formData);
     const handleRecharge = (event) => {
         event.preventDefault();
 
@@ -38,8 +38,14 @@ export const MobileRecharge = () => {
             headers: { "Authorization": portalData.token }
         })
             .then((data) => {
-                toast({ title: data.data.msg, status: 'success', duration: 4000, isClosable: true, position: 'top' })
-                navigate('/Dashboard')
+                if(data.data.msg=="Recharge completed"){
+
+                    toast({ title: data.data.msg, status: 'success', duration: 4000, isClosable: true, position: 'top' })
+                    navigate('/Dashboard')
+                }
+                else{
+                    toast({ title: data.data, status: 'error', duration: 4000, isClosable: true, position: 'top' })
+                }
                 // console.log(data.data)
             })
             .catch((err) => {
