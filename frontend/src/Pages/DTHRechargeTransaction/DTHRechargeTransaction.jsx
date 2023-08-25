@@ -1,12 +1,12 @@
 import { Box, Button, Grid, Heading, Spinner, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, Menu, MenuButton, MenuItem, MenuList, useToast } from '@chakra-ui/react'
-import './MobileRechargeTransaction.css'
+import './DTHRechargeTransaction.css'
 import { DashboardNav } from '../../Components/DashboradNav/DashboardNav'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { Footer } from '../../Components/Footer/Footer'
 
-export const MobileRechargeTransaction = () => {
+export const DTHRechargeTransaction = () => {
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
     const baseURL = process.env.REACT_APP_BASE_URL
     const navigate = useNavigate()
@@ -15,11 +15,11 @@ export const MobileRechargeTransaction = () => {
 
     useEffect(() => {
         setLoading(true)
-        axios.get(`${baseURL}/mobileRecharge/recharge_data/`, {
+        axios.get(`${baseURL}/DTHRecharge/recharge_data`, {
             headers: { "Authorization": portalData.token }
         })
             .then((data) => {
-                setRechargeData(data.data.mobileRecharge)
+                setRechargeData(data.data.DTHRecharge)
                 setLoading(false)
 
             })
@@ -33,7 +33,7 @@ export const MobileRechargeTransaction = () => {
 
     return (
         <Box>
-            <DashboardNav vall={'MobileRecharge'} />
+            <DashboardNav vall={'DTHRecharge'} />
 
             <Box minH={'60vh'}>
                 {loading ? <Box display={'flex'} minH={'60vh'} justifyContent={'center'} alignItems={'center'} ><Spinner color='#00aeff' /></Box> :

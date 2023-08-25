@@ -5,12 +5,11 @@ const { DTHRechargeModel } = require('../../model/DTHRechargeModel/DTHRechargeMo
 const DTHRechargeRouter = express.Router()
 
 
-DTHRechargeRouter.get('/recharge_data/:id', async (req, res) => {
-    const {id} = req.params;
+DTHRechargeRouter.get('/recharge_data', auth, async (req, res) => {
 
     try {
-        const mobileRecharge = await DTHRechargeModel.find({userID:id})
-        res.status(200).json({ msg: 'all recharged data', mobileRecharge })
+        const DTHRecharge = await DTHRechargeModel.find({ userID: req.body.userID })
+        res.status(200).json({ msg: 'all recharged data', DTHRecharge })
     } catch (err) {
         res.status(400).json({ error: err.massage })
     }
@@ -19,9 +18,9 @@ DTHRechargeRouter.get('/recharge_data/:id', async (req, res) => {
 DTHRechargeRouter.post('/new_Recharge', auth, async (req, res) => {
 
     try {
-        const mobileRecharge = new DTHRechargeModel(req.body)
-        await mobileRecharge.save()
-        res.status(200).json({ msg: 'Recharge completed', mobileRecharge })
+        const DTHRecharge = new DTHRechargeModel(req.body)
+        await DTHRecharge.save()
+        res.status(200).json({ msg: 'Recharge completed', DTHRecharge })
     } catch (err) {
         res.status(400).json({ error: err.massage })
     }

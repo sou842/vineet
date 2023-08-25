@@ -10,7 +10,7 @@ const { UpdatePanModel } = require("../../model/updatePan/updatePan.model");
 const { AllPaymentDetailsModel } = require("../../model/allPaymentDetails.model");
 const { upload } = require("../../middleware/uploadDocs.middleware");
 const adminRoute = express.Router()
-
+const {mobileRechargeModel} = require('../../model/mobileRechargeModel/mobileRechargeModel.js')
 
 
 //admin register
@@ -352,6 +352,16 @@ adminRoute.get("/user/all-transaction",async(req,res)=>{
     
 //   }
 // })
+
+adminRoute.get('/admin_mobile_recharge',async(req,res)=>{
+    
+  try{
+    const mobile = await mobileRechargeModel.find().sort({ _id: -1 })
+    res.status(200).json({msg:'all mobile recharge data',mobile})
+  } catch(err){
+    res.status(400).json({error:err.massage})
+  }
+})
 
 
 module.exports = { adminRoute }

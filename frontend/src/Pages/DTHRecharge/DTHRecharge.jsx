@@ -48,7 +48,7 @@ export const DTHRecharge = () => {
 
     return (
         <Box>
-            <DashboardNav />
+            <DashboardNav vall={'DTHRecharge'}/>
             <Box>
                 <Heading textAlign={'center'} mt={'20px'}>DTH Recharge</Heading>
                 <Box w={['95%', '80%', '60%']} m={'15px auto 1cm auto'}>
