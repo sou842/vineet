@@ -15,7 +15,7 @@ export const MobileRecharge = () => {
     const baseURL = process.env.REACT_APP_BASE_URL
     let currentDate = date.format(new Date(), 'YYYY-MMM-DD');
     let currentTime = date.format(new Date(), 'hh:mm:ss A');
-    const [formData, setFormData] = useState({ operator: '', state: '', phone: '', amount: '', date: currentDate, time: currentTime })
+    const [formData, setFormData] = useState({ operator: '', state: '', phone: '', amount: '', date: currentDate, time: currentTime, status:false })
     const toast = useToast()
     const navigate = useNavigate()
 
@@ -39,7 +39,7 @@ export const MobileRecharge = () => {
         })
             .then((data) => {
                 toast({ title: data.data.msg, status: 'success', duration: 4000, isClosable: true, position: 'top' })
-                navigate('/Dashboard')
+                navigate('/MobileRechargeTransaction')
                 // console.log(data.data)
             })
             .catch((err) => {

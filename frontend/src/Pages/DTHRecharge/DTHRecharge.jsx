@@ -12,11 +12,10 @@ export const DTHRecharge = () => {
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
     const baseURL = process.env.REACT_APP_BASE_URL
     let currentDate = date.format(new Date(), 'YYYY-MMM-DD');
-    let currentTime = date.format(new Date(), 'hh:mm A', true);
-    const [formData, setFormData] = useState({ operator: '', state: '', phone: '', amount: '', date: currentDate, time: currentTime })
+    let currentTime = date.format(new Date(), 'hh:mm:ss A');
+    const [formData, setFormData] = useState({ operator: '', state: '', phone: '', amount: '', date: currentDate, time: currentTime, status: false })
     const toast = useToast()
     const navigate = useNavigate()
-
 
 
     const handleChange = (event) => {
@@ -38,7 +37,7 @@ export const DTHRecharge = () => {
         })
             .then((data) => {
                 toast({ title: data.data.msg, status: 'success', duration: 4000, isClosable: true, position: 'top' })
-                navigate('/Dashboard')
+                navigate('/DTHRechargeTransaction')
             })
             .catch((err) => {
                 console.log(err)
@@ -48,7 +47,7 @@ export const DTHRecharge = () => {
 
     return (
         <Box>
-            <DashboardNav vall={'DTHRecharge'}/>
+            <DashboardNav vall={'DTHRecharge'} />
             <Box>
                 <Heading textAlign={'center'} mt={'20px'}>DTH Recharge</Heading>
                 <Box w={['95%', '80%', '60%']} m={'15px auto 1cm auto'}>
