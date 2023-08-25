@@ -329,7 +329,7 @@ adminRoute.get("/user/all-transaction",async(req,res)=>{
     }
     else{
 
-      const trans=await AllPaymentDetailsModel.find()
+      const trans=await AllPaymentDetailsModel.find().sort({ _id: -1 })
       res.send(trans)
     }
     

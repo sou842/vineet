@@ -17,7 +17,14 @@ DTHRechargeRouter.get('/recharge_data', auth, async (req, res) => {
 
 DTHRechargeRouter.post('/new_Recharge', auth, async (req, res) => {
 
+    const {amount,userID,vendorID}=req.body
     try {
+
+
+
+
+
+
         const DTHRecharge = new DTHRechargeModel(req.body)
         await DTHRecharge.save()
         res.status(200).json({ msg: 'Recharge completed', DTHRecharge })

@@ -68,6 +68,7 @@ const handelSearch=()=>{
                                         <Th textAlign={'center'}>Date</Th>
                                         <Th textAlign={'center'}>Time</Th>
                                         <Th textAlign={'center'}>Value</Th>
+                                        <Th textAlign={'center'}>Reason</Th>
                                     </Tr>
                                 </Thead>
                                 <Tbody>
@@ -82,7 +83,9 @@ const handelSearch=()=>{
                                                 :
                                                 <Td textAlign={'center'} color={'red'} fontWeight={'bold'}>-{ele.debit && ele.debit}</Td>
                                             }
+                                             <Td textAlign={'center'} fontSize={['14px','15px','16px']}>{ele.reason||"Not Found"}</Td>
                                         </Tr>
+
                                     ))}
                                 </Tbody>
                             </Table>

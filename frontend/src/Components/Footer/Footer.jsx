@@ -21,7 +21,7 @@ const handelChange=(e)=>{
 }
 const handelSubmit=(e)=>{
     e.preventDefault()
-   axios.post(`${baseURL}/user/feedback`,data,{
+   axios.post(`${baseURL}/api/feedback`,data,{
     headers: {
         Authorization: portalData.token,
       },

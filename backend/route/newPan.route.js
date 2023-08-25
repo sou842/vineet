@@ -24,7 +24,7 @@ newPanRoute.post("/new-pan-card", async (req, res) => {
         else{
             const now = new Date();
             req.body.dateAndTime= date.format(now, "YYYY/MM/DD HH:mm:ss")
-            const tran=new AllPaymentDetailsModel({vendorID,userID,debit:107,dateAndTime:req.body.dateAndTime})
+            const tran=new AllPaymentDetailsModel({vendorID,userID,reason:"New panCard",debit:107,dateAndTime:req.body.dateAndTime})
             await tran.save()
             // console.log(tran);
             await UserModel.findByIdAndUpdate({ _id: userID },{balance:Number(user.balance)-107});
