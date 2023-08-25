@@ -31,7 +31,7 @@ export const AdminDash = () => {
     const navigate = useNavigate();
     const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)");
     const [isSmallerThan600] = useMediaQuery("(max-width: 600px)");
-    const baseURL=process.env.REACT_APP_BASE_URL
+    const baseURL = process.env.REACT_APP_BASE_URL
 
 
     useEffect(() => {

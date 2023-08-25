@@ -14,11 +14,10 @@ export const MobileRecharge = () => {
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
     const baseURL = process.env.REACT_APP_BASE_URL
     let currentDate = date.format(new Date(), 'YYYY-MMM-DD');
-    let currentTime = date.format(new Date(), 'hh:mm A', true);
+    let currentTime = date.format(new Date(), 'hh:mm:ss A');
     const [formData, setFormData] = useState({ operator: '', state: '', phone: '', amount: '', date: currentDate, time: currentTime })
     const toast = useToast()
     const navigate = useNavigate()
-
 
     const handleChange = (event) => {
         const { name, value } = event.target;

@@ -162,10 +162,12 @@ export const DashboardNav = ({ vall }) => {
                             <MenuList color={"black"}>
                                 <MenuItem onClick={() => navigate('/Dashboard')}>Dashboard</MenuItem>
                                 {vall == 'MobileRecharge' && <MenuItem onClick={() => navigate('/MobileRechargeTransaction')}>Transaction</MenuItem>}
-                                {vall != 'MobileRecharge' && <MenuItem onClick={() => navigate('#')}>Traning Manual</MenuItem>}
-                                {vall != 'MobileRecharge' && <MenuItem onClick={() => navigate('#')}>Downloads</MenuItem>}
-                                {vall != 'MobileRecharge' && <MenuItem onClick={() => navigate('/profile')}>Ledger</MenuItem>}
-                                {vall != 'MobileRecharge' && <MenuItem onClick={() => navigate('/profile')}>Add Money</MenuItem>}
+                                {vall == 'DTHRecharge' && <MenuItem onClick={() => navigate('/DTHRechargeTransaction')}>Transaction</MenuItem>}
+
+                                {vall != 'MobileRecharge' && vall != 'DTHRecharge' && <MenuItem onClick={() => navigate('#')}>Traning Manual</MenuItem>}
+                                {vall != 'MobileRecharge' && vall != 'DTHRecharge' && <MenuItem onClick={() => navigate('#')}>Downloads</MenuItem>}
+                                {vall != 'MobileRecharge' && vall != 'DTHRecharge' && <MenuItem onClick={() => navigate('/profile')}>Ledger</MenuItem>}
+                                {vall != 'MobileRecharge' && vall != 'DTHRecharge' && <MenuItem onClick={() => navigate('/profile')}>Add Money</MenuItem>}
                                 <Menu placement="right-start">
                                     <MenuButton colorScheme='white' color={'black'} fontSize={['15.5px', '15px', '15px']} as={Button} rightIcon={<ChevronDownIcon />} bg={'white'} margin={0}>Services</MenuButton>
                                     <MenuList>
@@ -208,10 +210,11 @@ export const DashboardNav = ({ vall }) => {
                             </Menu>
                         </div>
                         {vall == 'MobileRecharge' && <div><a href="/MobileRechargeTransaction"><p>Transaction</p></a></div>}
-                        {vall != 'MobileRecharge' && <div><a href="#"><p>Traning Manual</p></a></div>}
-                        {vall != 'MobileRecharge' && <div><a href="#"><p>Downloads</p></a></div>}
-                        {vall != 'MobileRecharge' && <div><a href="#"><p>Ledger</p></a></div>}
-                        {vall != 'MobileRecharge' && <div><Button border={'1.4px solid #00aeff'} _hover={{ bg: '#00aeff', color: 'black' }} onClick={onOpen} ml={'5px'} size={'sm'} colorScheme='blue.100'>Add money</Button></div>}
+                        {vall == 'DTHRecharge' && <div><a href="/DTHRechargeTransaction"><p>Transaction</p></a></div>}
+                        {vall != 'MobileRecharge' && vall != 'DTHRecharge' && <div><a href="#"><p>Traning Manual</p></a></div>}
+                        {vall != 'MobileRecharge' && vall != 'DTHRecharge' && <div><a href="#"><p>Downloads</p></a></div>}
+                        {vall != 'MobileRecharge' && vall != 'DTHRecharge' && <div><a href="#"><p>Ledger</p></a></div>}
+                        {vall != 'MobileRecharge' && vall != 'DTHRecharge' && <div><Button border={'1.4px solid #00aeff'} _hover={{ bg: '#00aeff', color: 'black' }} onClick={onOpen} ml={'5px'} size={'sm'} colorScheme='blue.100'>Add money</Button></div>}
                     </div>}
                 <div>
                     <div><a href="/PayDetails"><p>Balance: ₹ {balance} </p></a>
