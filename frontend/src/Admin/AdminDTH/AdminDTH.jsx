@@ -4,31 +4,30 @@ import { AdminNavbar } from "../AdminNavbar/AdminNavbar"
 import { useNavigate } from "react-router-dom"
 import { useContext, useEffect, useState } from "react"
 import { AuthorContext } from "../../Components/AllContext/AllContext"
-import './AdminMobile.css'
+import './AdminDTH.css'
 import axios from "axios"
 
 
-export const AdminMobile = () => {
+export const AdminDTH = () => {
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null
     const { side, setSide } = useContext(AuthorContext)
     const navigate = useNavigate();
     const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)");
     const [isSmallerThan600] = useMediaQuery("(max-width: 600px)");
     const baseURL = process.env.REACT_APP_BASE_URL
-    const [mobileData, setMobileData] = useState([])
+    const [DTHData, setDTHData] = useState([])            
     const [loading, setLoading] = useState()
 
 
 
     useEffect(() => {
         setLoading(true)
-        axios.get(`${baseURL}/admin/admin_mobile_recharge`, {
+        axios.get(`${baseURL}/admin/admin_DTH_recharge`, {
             headers: { "Authorization": portalData.token }
         })
             .then((res) => {
                 setLoading(false)
-                setMobileData(res.data.mobile)
-                console.log(res.data.mobile)
+                setDTHData(res.data.DTH)
             })
             .catch((err) => {
                 setLoading(false)
@@ -57,7 +56,7 @@ export const AdminMobile = () => {
                         </Box>
 
                         {loading ? <Box display={'flex'} justifyContent={'center'} mt={'2cm'} mb={'2cm'}><Spinner color='#00aeff' /></Box> :
-                            <Box>{mobileData.length == 0 ? <Box minH={'60vh'} display={'flex'} justifyContent={'center'} alignItems={'center'} maxH={'100vh'} overflow={'scroll'} scrollBehavior={'smooth'}>NO DATA FOUND</Box> :
+                            <Box>{DTHData.length == 0 ? <Box minH={'60vh'} display={'flex'} justifyContent={'center'} alignItems={'center'} maxH={'100vh'} overflow={'scroll'} scrollBehavior={'smooth'}>NO DATA FOUND</Box> :
                                 <TableContainer>
                                     <Table variant='striped' colorScheme='teal'>
                                         <Thead>
@@ -72,7 +71,7 @@ export const AdminMobile = () => {
                                             </Tr>
                                         </Thead>
                                         <Tbody>
-                                            {mobileData.length != 0 && mobileData?.map((ele, index) => (
+                                            {DTHData.length != 0 && DTHData?.map((ele, index) => (
                                                 <Tr key={index} fontSize={'14px'}>
                                                     <Td textAlign={'center'}>{index + 1}</Td>
                                                     <Td textAlign={'center'}>{ele.operator}</Td>

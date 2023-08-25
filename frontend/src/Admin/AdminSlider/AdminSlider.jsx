@@ -22,7 +22,7 @@ export const AdminSlider = ({ slidevalue }) => {
                     <div style={{ backgroundColor: slidevalue == 'AdminPanCard' ? '#1ABC9C' : null, color: slidevalue == 'AdminPanCard' ? 'white' : null, cursor: 'pointer' }} onClick={() => navigate('/AdminPanCard')}><p>PANCARD</p></div>
                     <div style={{ backgroundColor: slidevalue === 'MOBILE' ? '#1ABC9C' : null, color: slidevalue === 'MOBILE' ? 'white' : null, cursor: 'pointer' }} onClick={() => navigate('/AdminMobile')}><p>MOBILE</p></div>
                     <div style={{ backgroundColor: slidevalue === 'ELECTRICITY' ? '#1ABC9C' : null, color: slidevalue === 'ELECTRICITY' ? 'white' : null, cursor: 'pointer' }}><p>ELECTRICITY</p></div>
-                    <div style={{ backgroundColor: slidevalue === 'DTH' ? '#1ABC9C' : null, color: slidevalue === 'DTH' ? 'white' : null, cursor: 'pointer' }}><p>DTH</p></div>
+                    <div style={{ backgroundColor: slidevalue === 'DTH' ? '#1ABC9C' : null, color: slidevalue === 'DTH' ? 'white' : null, cursor: 'pointer' }} onClick={() => navigate('/AdminDTH')}><p>DTH</p></div>
                     <div style={{ backgroundColor: slidevalue === 'INCOME TAX' ? '#1ABC9C' : null, color: slidevalue === 'INCOME TAX' ? 'white' : null, cursor: 'pointer' }}><p>INCOME TAX</p></div>
                     <div style={{ backgroundColor: slidevalue === 'GST' ? '#1ABC9C' : null, color: slidevalue === 'GST' ? 'white' : null, cursor: 'pointer' }}><p>GST</p></div>
                     <div style={{ backgroundColor: slidevalue === 'JOB PORTAL' ? '#1ABC9C' : null, color: slidevalue === 'JOB PORTAL' ? 'white' : null, cursor: 'pointer' }}><p>JOB PORTAL</p></div>

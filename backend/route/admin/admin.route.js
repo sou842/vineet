@@ -11,7 +11,7 @@ const { AllPaymentDetailsModel } = require("../../model/allPaymentDetails.model"
 const { upload } = require("../../middleware/uploadDocs.middleware");
 const adminRoute = express.Router()
 const {mobileRechargeModel} = require('../../model/mobileRechargeModel/mobileRechargeModel.js')
-
+const {DTHRechargeModel} = require('../../model/DTHRechargeModel/DTHRechargeModel.js')
 
 //admin register
 adminRoute.post("/register", async (req, res) => {
@@ -357,7 +357,17 @@ adminRoute.get('/admin_mobile_recharge',async(req,res)=>{
     
   try{
     const mobile = await mobileRechargeModel.find().sort({ _id: -1 })
-    res.status(200).json({msg:'all mobile recharge data',mobile})
+    res.status(200).json({msg:'All Mobile Recharge Data',mobile})
+  } catch(err){
+    res.status(400).json({error:err.massage})
+  }
+})
+
+adminRoute.get('/admin_DTH_recharge',async(req,res)=>{
+    
+  try{
+    const DTH = await DTHRechargeModel.find().sort({ _id: -1 })
+    res.status(200).json({msg:'All DTH Recharge Data',DTH})
   } catch(err){
     res.status(400).json({error:err.massage})
   }
