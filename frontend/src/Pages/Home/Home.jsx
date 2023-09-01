@@ -5,7 +5,7 @@ import { Footer } from '../../Components/Footer/Footer'
 
 export const Home = () =>{
 
-return (
+return (  
     <div>
         <div><Navbar /></div>
         <div className='home_0'>
