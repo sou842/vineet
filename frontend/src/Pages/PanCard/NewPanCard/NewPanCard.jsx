@@ -4,6 +4,8 @@ import { DashboardFooter } from "../../../Components/DashboradFooter/DashboradFo
 import {PanCardNav} from '../../../Components/PanCardNav/PanCardNav.jsx'
 import { useNavigate } from "react-router-dom";
 import { Footer } from "../../../Components/Footer/Footer";
+import ContactUs from "../../contact us with time/ContactUs";
+import { Box } from "@chakra-ui/react";
 
 
 export const NewPanCard = () => {
@@ -15,12 +17,15 @@ export const NewPanCard = () => {
       <div>
         <PanCardNav/>
       </div>
+      <Box m={'1cm auto'}>
 
-      <div className="pancard_1">
+      <ContactUs/>
+      </Box>
+      {/* <div className="pancard_1">
         <p> Email:- helpdigitalindiaportal@gmail.com</p>
-        <p> Phones:- 9368372889</p>
+        <p> Phones:- 9838968537,7355121493</p>
         <p> Time:- (10am to 5pm रविवार अवकाश/Lunch Time:- 2:00PM TO 2:30PM)</p>
-      </div>
+      </div> */}
 
       <div className="newpancard_2">
         <div><a href="/NewPanCardAllState"><p>New Pan Card With Aadhaar <br /> <i>(All States)</i></p></a></div>

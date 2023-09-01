@@ -10,6 +10,9 @@ import { useToast, Box } from "@chakra-ui/react";
 import { array1To31, monthsArray, yearsArray } from '../../../FromElement.js'
 
 export const UpdatePanEdit = () => {
+    //   ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+         const baseURL=process.env.REACT_APP_BASE_URL
+//     ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     const VDP_form_data = JSON.parse(localStorage.getItem('VDP_form_data')) || null
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
     const [residenceIndividual, setResidenceIndividual] = useState(false);
@@ -157,7 +160,7 @@ export const UpdatePanEdit = () => {
         event.preventDefault();
 
         if (formData.aadhaarNumber.length == 0 || formData.zipCode.length == 0) {
-            axios.post("http://localhost:8080/user/pan-update", formData, {
+            axios.post(`${baseURL}/user/pan-update`, formData, {
                 headers: { "Authorization": portalData.token }
             }).then((res) => {
                 toast({
@@ -196,7 +199,7 @@ export const UpdatePanEdit = () => {
         } else {
             // localStorage.setItem("VDP_form_data", JSON.stringify(formData))
 
-            axios.post("http://localhost:8080/user/pan-update", formData, {
+            axios.post(`${baseURL}/user/pan-update`, formData, {
                 headers: { "Authorization": portalData.token }
             }).then((res) => {
                 console.log(res.data);

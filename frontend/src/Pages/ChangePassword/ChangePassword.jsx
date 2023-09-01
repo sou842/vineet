@@ -3,6 +3,9 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 const ChangePassword = () => {
+      //  ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+         const baseURL=process.env.REACT_APP_BASE_URL
+//     ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     const toast=useToast()
     const portalData=JSON.parse(localStorage.getItem('digitalPortal'))||null
     const [changePassword,setChangePassword]=useState({
@@ -14,7 +17,7 @@ const ChangePassword = () => {
     }
     const handlepasswordSubmit=(e)=>{
         e.preventDefault()
-        axios.patch("http://localhost:8080/api/user/change-password",changePassword,{
+        axios.patch(`${baseURL}/api/user/change-password`,changePassword,{
             headers: {
                 "Authorization": portalData.token
               }

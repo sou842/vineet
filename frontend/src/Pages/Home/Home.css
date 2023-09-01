@@ -11,6 +11,12 @@
     padding: 0.7cm;
     border-radius: 20px;
 }
+marquee{
+    font-size: large;
+    font-weight: bold;
+    color: red;
+    margin-top:  0.5cm; ;
+}
 .home_01 > h1{
     margin: 0 auto 1cm auto;
     font-weight: bold;

@@ -9,6 +9,9 @@ import edit from '../../assets/edit.png'
 
 
 export const Profile = () => {
+  //   ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+         const baseURL=process.env.REACT_APP_BASE_URL
+//     ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
   const [profileData, setProfileData] = useState([])
   const [loading, setLoading] = useState(false)
   const [picture, setPicture] = useState("")
@@ -18,7 +21,7 @@ export const Profile = () => {
   const { isOpen: editIsOpen, onOpen: editOnOpen, onClose: editOnClose } = useDisclosure()
   const { isOpen: profileIsOpen, onOpen: profileOnOpen, onClose: profileOnClose } = useDisclosure()
   const { isOpen: DeleteIsOpen, onOpen: DeleteOnOpen, onClose: DeleteOnClose } = useDisclosure()
-  const baseURL = process.env.REACT_APP_BASE_URL
+ 
 
   const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
   const navigate = useNavigate()
@@ -33,7 +36,7 @@ export const Profile = () => {
 
   useEffect(() => {
     setLoading(true)
-    axios.get("http://localhost:8080/api/profile-detail", {
+    axios.get(`${baseURL}/api/profile-detail`, {
       headers: {
         "Authorization": portalData.token
       }
@@ -47,7 +50,7 @@ export const Profile = () => {
         console.log(err);
       })
     if (portalData.avatar == '') {
-      axios.get("http://localhost:8080/profile/profile-pictire", {
+      axios.get(`${baseURL}/profile/profile-pictire`, {
         headers: {
           "Authorization": portalData.token
         }
@@ -107,7 +110,7 @@ export const Profile = () => {
     profileOnClose()
 
     setUploadDpLoad(true)
-    axios.patch("http://localhost:8080/profile/update-profile-pictire", { avatar: picture }, {
+    axios.patch(`${baseURL}/profile/update-profile-pictire`, { avatar: picture }, {
       headers: { "Authorization": portalData.token }
     })
       .then((res) => {
@@ -123,7 +126,7 @@ export const Profile = () => {
   const handleUpdate = () => {
     editOnClose()
 
-    axios.patch("http://localhost:8080/api/profile-update", editdata, {
+    axios.patch(`${baseURL}/api/profile-update`, editdata, {
       headers: {
         "Authorization": portalData.token
       }

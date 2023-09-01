@@ -79,7 +79,7 @@ export const DashboardNav = ({ vall }) => {
 
     //handelPay
     const handelPay = () => {
-        axios.post('http://localhost:8080/payment/order', { amount: amount })
+        axios.post(`${baseURL}/payment/order`, { amount: amount })
             .then((res) => {
                 console.log(res.data);
                 onClose()
@@ -138,8 +138,11 @@ export const DashboardNav = ({ vall }) => {
                         <img src="https://digitalindiaportal.co.in/images/logo.png" alt="logo_1" />
                     </a>
                 </div>
-                <div>
-                    VINEET DIGITAL PORTAL
+                <div >
+                   <span>SMART </span>
+                   <span>DIGITAL </span>
+                   <span>SERVICE </span>
+                 
                 </div>
                 <div>
                     <a href="/profile">

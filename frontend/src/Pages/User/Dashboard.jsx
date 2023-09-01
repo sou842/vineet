@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './Dashboard.css'
 import { DashboardNav } from '../../Components/DashboradNav/DashboardNav'
 import { Footer } from '../../Components/Footer/Footer';
+import { Box } from '@chakra-ui/react';
+import ContactUs from '../contact us with time/ContactUs';
 
 
 export const Dashboard = () => {
@@ -12,14 +14,16 @@ export const Dashboard = () => {
       <div>
         <DashboardNav />
       </div>
-
+<Box m={'1cm auto'}>
+  <ContactUs/>
+</Box>
 
       <div>
-        <div className='dashboard_1'>
+        {/* <div className='dashboard_1'>
           <p> Email:- helpdigitalindiaportal@gmail.com</p>
           <p> Phones:- 9368372889</p>
           <p> Time:- (10am to 5pm रविवार अवकाश/Lunch Time:- 2:00PM TO 2:30PM)</p>
-        </div>
+        </div> */}
 
         <div className='dashboard_2'>
           <div><a href="/PanCard"><p>Pan Card</p></a></div>
