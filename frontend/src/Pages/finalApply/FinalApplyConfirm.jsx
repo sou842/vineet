@@ -4,6 +4,9 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 
 const FinalApplyConfirm = () => {
+     //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+         const baseURL=process.env.REACT_APP_BASE_URL
+   // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
   const { id } = useParams();
   const toast=useToast()
@@ -21,7 +24,7 @@ const handeConfirm=()=>{
           })
     }
     else{
-        axios.patch(`http://localhost:8080/user/apply-confirm-from/${id}`,{},{
+        axios.patch(`${baseURL}/user/apply-confirm-from/${id}`,{},{
             headers: {
                 Authorization: portalData.token,
               },
@@ -56,7 +59,7 @@ const handeConfirm=()=>{
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/user/final-confirm-apply/${id}`, {
+      .get(`${baseURL}/user/final-confirm-apply/${id}`, {
         headers: {
           Authorization: portalData.token,
         },

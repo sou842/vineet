@@ -20,7 +20,10 @@ export const Navbar = () => {
                         </a>
                     </div>
                     <div>
-                        VINEET DIGITAL PORTAL
+                    <span>SMART </span>
+                   <span>DIGITAL </span>
+                   <span>SERVICE </span>
+                 
                     </div>
                     <div>
                         <Wrap>

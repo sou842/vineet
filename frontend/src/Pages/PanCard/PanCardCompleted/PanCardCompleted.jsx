@@ -7,6 +7,9 @@ import { Footer } from '../../../Components/Footer/Footer.jsx'
 
 
 export const PanCardCompleted = () => {
+    //    ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+         const baseURL=process.env.REACT_APP_BASE_URL
+//     ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
     const [pans, setPans] = useState([])
     const [loading, setLoading] = useState()
@@ -14,7 +17,7 @@ export const PanCardCompleted = () => {
 
     
     const handelDownloadRecipt = (id) => {
-        axios.get(`http://localhost:8080/user/recipt-download/${id}`, {
+        axios.get(`${baseURL}/user/recipt-download/${id}`, {
             headers: {
                 "Authorization": portalData.token
             }
@@ -34,7 +37,7 @@ export const PanCardCompleted = () => {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/user/status-completed?category=${cat}`, {
+        axios.get(`${baseURL}/user/status-completed?category=${cat}`, {
             headers: {
                 "Authorization": portalData.token
             }

@@ -7,6 +7,9 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 export const PanCardNav = () => {
+    //    ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+         const baseURL=process.env.REACT_APP_BASE_URL
+//   ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
     const [balance, setBalance] = useState(0);
     // const [isSmallerThan1150] = useMediaQuery("(max-width: 1150px)")
@@ -28,7 +31,7 @@ export const PanCardNav = () => {
     }
 
     const profileAvater = () => {
-        axios.get('http://localhost:8080/api/profile-detail', {
+        axios.get(`${baseURL}/api/profile-detail`, {
             headers: { "Authorization": portalData.token }
         })
             .then((res) => {
@@ -42,7 +45,7 @@ export const PanCardNav = () => {
 
     const showBalance = () => {
 
-        axios.get("http://localhost:8080/api", {
+        axios.get(`${baseURL}/api`, {
             headers: { "Authorization": portalData.token }
         })
             .then((res) => {
@@ -67,7 +70,10 @@ export const PanCardNav = () => {
                     </a>
                 </div>
                 <div>
-                    VINEET DIGITAL PORTAL
+                <span>SMART </span>
+                   <span>DIGITAL </span>
+                   <span>SERVICE </span>
+                 
                 </div>
                 <div>
                     <a href="/profile">

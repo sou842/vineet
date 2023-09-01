@@ -7,6 +7,9 @@ import { AdminNavbar } from "../AdminNavbar/AdminNavbar";
 
 
 export const AminPerson = () => {
+        // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+         const baseURL=process.env.REACT_APP_BASE_URL
+    //  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
     const [users, setUsers] = useState();
     const [pan, setPan] = useState();
@@ -23,7 +26,7 @@ export const AminPerson = () => {
         if (value == 'pancard') {
             setPandata(true)
 
-            axios.get(`http://localhost:8080/admin/user/pancards/${users&&users.vendorID}`, {
+            axios.get(`${baseURL}/admin/user/pancards/${users&&users.vendorID}`, {
                 headers: { "Authorization": portalData.token }
             })
                 .then((res) => {
@@ -38,7 +41,7 @@ export const AminPerson = () => {
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/admin/user-profile-data/${id}`, {
+        axios.get(`${baseURL}/admin/user-profile-data/${id}`, {
             headers: { "Authorization": portalData.token }
         })
             .then((res) => {

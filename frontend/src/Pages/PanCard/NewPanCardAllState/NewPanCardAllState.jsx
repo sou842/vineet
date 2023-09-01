@@ -1,8 +1,9 @@
 import './NewPanCardAllState.css';
 import { useNavigate } from "react-router-dom"
 import { PanCardNav } from '../../../Components/PanCardNav/PanCardNav';
-import { useToast } from '@chakra-ui/react';
+import { Box, useToast } from '@chakra-ui/react';
 import { Footer } from '../../../Components/Footer/Footer';
+import ContactUs from '../../contact us with time/ContactUs';
 
 
 export const NewPanCardAllState = () => {
@@ -26,13 +27,12 @@ export const NewPanCardAllState = () => {
             <div>
                 <PanCardNav/>
             </div>
+            <Box m={'1cm auto'}>
+            <ContactUs/>
+            </Box>
             
             <div>
-                <div className='newPanCardAllState_1'>
-                    <p> Email:- helpdigitalindiaportal@gmail.com</p>
-                    <p> Phones:- 9368372889</p>
-                    <p> Time:- (10am to 5pm रविवार अवकाश/Lunch Time:- 2:00PM TO 2:30PM)</p>
-                </div>
+                
 
                 <h1 className='newPanCardAllState_head'>NEW PANCARD</h1>
 

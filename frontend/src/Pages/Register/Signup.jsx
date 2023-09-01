@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Signup = () => {
+  //    ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+        const baseURL=process.env.REACT_APP_BASE_URL
+//     ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
   const navigate = useNavigate();
   const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -31,9 +34,9 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     toast({ title: 'Account createing....', status: 'success', position: 'top', duration: 5000, isClosable: true, })
-    axios.post("http://localhost:8080/api/register", regData)
+    axios.post(`${baseURL}/api/register`, regData)
       .then((res) => {
-        axios.post("http://localhost:8080/profile/profile-pictire", { avatar: "", vendorID: res.data.vendorID }).then((res) => console.log(res.data))
+        axios.post(`${baseURL}/profile/profile-pictire`, { avatar: "", vendorID: res.data.vendorID }).then((res) => console.log(res.data))
       .catch((err) => console.log(err))
         toast({ title: 'Account created successfully.', status: 'success', position: 'top', duration: 5000, isClosable: true, })
         navigate("/signin")

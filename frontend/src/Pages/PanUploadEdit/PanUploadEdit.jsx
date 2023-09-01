@@ -9,6 +9,9 @@ import { useToast } from "@chakra-ui/react"
 
 
 export const PanUploadEdit = () => {
+    //    ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+         const baseURL=process.env.REACT_APP_BASE_URL
+//    ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null;
     const [residenceIndividual, setResidenceIndividual] = useState(true);
     const [sourceIncome, setSourceIncome] = useState(false);
@@ -38,7 +41,7 @@ export const PanUploadEdit = () => {
         event.preventDefault();
         toast({ title: 'UPLOADING...', status: 'success', duration: 4000, isClosable: true, position: 'top' })
 
-        axios.patch(`http://localhost:8080/user/pan-edit/${id}`, formData, {
+        axios.patch(`${baseURL}/user/pan-edit/${id}`, formData, {
             headers: { "Authorization": portalData.token }
         }).then((data) => {
             // console.log(data.data)
@@ -73,7 +76,7 @@ export const PanUploadEdit = () => {
 
     useEffect(() => {
 
-        axios.get(`http://localhost:8080/user/upload-pan-card/${id}`, {
+        axios.get(`${baseURL}/user/upload-pan-card/${id}`, {
             headers: { "Authorization": portalData.token }
         }).then((data) => {
             // console.log(data.data)

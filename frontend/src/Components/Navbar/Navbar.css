@@ -12,7 +12,46 @@
 .navbar_1 > div{
     /* border: 1px solid red; */
     font-size: 30px;
+    font-weight: bold;
 }
+
+.navbar_1 > div>:nth-child(1){
+    color:teal;
+    text-shadow: 
+      1px 0px 1px #ccc, 0px 1px 1px #eee, 
+      2px 1px 1px #ccc, 1px 2px 1px #eee,
+      3px 2px 1px #ccc, 2px 3px 1px #eee,
+      4px 3px 1px #ccc, 3px 4px 1px #eee,
+      5px 4px 1px #ccc, 4px 5px 1px #eee,
+      6px 5px 1px #ccc, 5px 6px 1px #eee,
+      7px 6px 1px #ccc;
+    
+}
+.navbar_1 > div>:nth-child(2){
+    color: teal;
+    text-shadow: 
+      1px 0px 1px #ccc, 0px 1px 1px #eee, 
+      2px 1px 1px #ccc, 1px 2px 1px #eee,
+      3px 2px 1px #ccc, 2px 3px 1px #eee,
+      4px 3px 1px #ccc, 3px 4px 1px #eee,
+      5px 4px 1px #ccc, 4px 5px 1px #eee,
+      6px 5px 1px #ccc, 5px 6px 1px #eee,
+      7px 6px 1px #ccc;
+    
+}
+.navbar_1 > div>:nth-child(3){
+    color:teal;
+  text-shadow: 
+    1px 0px 1px #ccc, 0px 1px 1px #eee, 
+    2px 1px 1px #ccc, 1px 2px 1px #eee,
+    3px 2px 1px #ccc, 2px 3px 1px #eee,
+    4px 3px 1px #ccc, 3px 4px 1px #eee,
+    5px 4px 1px #ccc, 4px 5px 1px #eee,
+    6px 5px 1px #ccc, 5px 6px 1px #eee,
+    7px 6px 1px #ccc;
+    
+}
+
 .navbar_1 > div >a> img{
     width: 70px;
 }

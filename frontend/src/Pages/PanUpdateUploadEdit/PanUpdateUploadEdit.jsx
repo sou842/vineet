@@ -10,6 +10,9 @@ import { differenceInYears } from 'date-fns';
 
 
 export const PanUpdateUploadEdit = () => {
+    //   ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+        const baseURL=process.env.REACT_APP_BASE_URL
+//     ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null;
     const navigate = useNavigate()
     const toast = useToast()
@@ -80,7 +83,7 @@ export const PanUpdateUploadEdit = () => {
         event.preventDefault();
         toast({ title: 'UPLOADING...', status: 'success', duration: 4000, isClosable: true, position: 'top' })
 
-        axios.patch(`http://localhost:8080/user/pan-update/${id}`, formData, {
+        axios.patch(`${baseURL}/user/pan-update/${id}`, formData, {
             headers: { "Authorization": portalData.token }
         }).then((data) => {
             // console.log(data.data)
@@ -96,7 +99,7 @@ export const PanUpdateUploadEdit = () => {
 
     useEffect(() => {
 
-        axios.get(`http://localhost:8080/user/pan-update-single/${id}`, {
+        axios.get(`${baseURL}/user/pan-update-single/${id}`, {
             headers: { "Authorization": portalData.token }
         }).then((data) => {
             setFormData(data.data)

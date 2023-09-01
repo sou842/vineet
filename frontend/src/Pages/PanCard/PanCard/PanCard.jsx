@@ -7,12 +7,13 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton, useDisclosure, Button, Heading
+  ModalCloseButton, useDisclosure, Button, Heading, Box
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 import axios from "axios";
 import { Footer } from "../../../Components/Footer/Footer";
 import form49A from '../../../assets/Form49A.pdf'
+import ContactUs from "../../contact us with time/ContactUs";
 
 export const PanCard = () => {
   const navigate = useNavigate();
@@ -34,13 +35,15 @@ export const PanCard = () => {
       <div>
         <PanCardNav />
       </div>
+<Box m={'1cm auto'}>
+  <ContactUs/>
+</Box>
 
-
-      <div className="pancard_1">
+      {/* <div className="pancard_1">
         <p> Email:- helpdigitalindiaportal@gmail.com</p>
         <p> Phones:- 9368372889</p>
         <p> Time:- (10am to 5pm रविवार अवकाश/Lunch Time:- 2:00PM TO 2:30PM)</p>
-      </div>
+      </div> */}
 
       <div className="pancard_2">
         <div><a target='_blank' onClick={handleForm49A} href={form49A} download="form49A" ><p>New Pan Form Download</p></a></div>

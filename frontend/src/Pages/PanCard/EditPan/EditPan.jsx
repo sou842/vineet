@@ -11,6 +11,9 @@ import { useToast, Box } from "@chakra-ui/react";
 import { array1To31, monthsArray, yearsArray } from '../../../FromElement.js'
 
 export const EditPan = () => {
+  //    ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+         const baseURL=process.env.REACT_APP_BASE_URL
+//     ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
   const VDP_form_data = JSON.parse(localStorage.getItem('VDP_form_data')) || null
   const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
   const [sourceIncome, setSourceIncome] = useState(false);
@@ -144,7 +147,7 @@ export const EditPan = () => {
     event.preventDefault();
 
     if (formData.aadhaarNumber.length == 0 || formData.zipCode.length == 0) {
-      axios.post("http://localhost:8080/user/new-pan-card", formData, {
+      axios.post(`${baseURL}/user/new-pan-card`, formData, {
         headers: { "Authorization": portalData.token }
       }).then((res) => {
         // console.log(res);
@@ -203,7 +206,7 @@ export const EditPan = () => {
     } else {
       // localStorage.setItem("VDP_form_data", JSON.stringify(formData))
 
-      axios.post("http://localhost:8080/user/new-pan-card", formData, {
+      axios.post(`${baseURL}/user/new-pan-card`, formData, {
         headers: { "Authorization": portalData.token }
       }).then((res) => {
         console.log(res);
