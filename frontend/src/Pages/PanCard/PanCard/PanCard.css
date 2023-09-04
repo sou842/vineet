@@ -7,7 +7,7 @@
 .pancard_1{
     /* background-color: rgba(48, 162, 255, 0.447); */
     border: 1.5px solid #00aeff;
-    width: 80%;
+    width: 65%;
     margin: 1cm auto;
     padding: 20px;
     text-align: center;
@@ -17,7 +17,7 @@
     margin: 5px 0;
 }
 .pancard_2{
-    width: 80%;
+    width: 65%;
     display: grid;
     grid-template-columns: repeat(2,1fr);
     gap: 10px;

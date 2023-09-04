@@ -7,7 +7,7 @@
 .dashboard_1{
     /* background-color: rgba(48, 162, 255, 0.447); */
     border: 1.5px solid #00aeff;
-    width: 85%;
+    width: 65%;
     margin: 1cm auto;
     padding: 20px 20px;
     text-align: center;
@@ -21,7 +21,7 @@
 
 .dashboard_2{
     display: grid;
-    width: 85%;
+    width: 65%;
     margin: auto;
     grid-template-columns: repeat(3,1fr);
     gap: 15px;
