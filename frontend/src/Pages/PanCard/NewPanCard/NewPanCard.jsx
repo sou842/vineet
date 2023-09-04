@@ -1,7 +1,7 @@
 import "./NewPanCard.css";
 import { DashboardNav } from "../../../Components/DashboradNav/DashboardNav.jsx";
 import { DashboardFooter } from "../../../Components/DashboradFooter/DashboradFooter.jsx";
-import {PanCardNav} from '../../../Components/PanCardNav/PanCardNav.jsx'
+import { PanCardNav } from '../../../Components/PanCardNav/PanCardNav.jsx'
 import { useNavigate } from "react-router-dom";
 import { Footer } from "../../../Components/Footer/Footer";
 import ContactUs from "../../contact us with time/ContactUs";
@@ -15,22 +15,17 @@ export const NewPanCard = () => {
   return (
     <div>
       <div>
-        <PanCardNav/>
+        <PanCardNav />
       </div>
-      <Box m={'1cm auto'}>
-
-      <ContactUs/>
+      <Box w={['90%', '80%', '65%']} m={'1cm auto'}>
+        <ContactUs />
       </Box>
-      {/* <div className="pancard_1">
-        <p> Email:- helpdigitalindiaportal@gmail.com</p>
-        <p> Phones:- 9838968537,7355121493</p>
-        <p> Time:- (10am to 5pm रविवार अवकाश/Lunch Time:- 2:00PM TO 2:30PM)</p>
-      </div> */}
 
-      <div className="newpancard_2">
-        <div><a href="/NewPanCardAllState"><p>New Pan Card With Aadhaar <br /> <i>(All States)</i></p></a></div>
-        <div><a href="#"><p>New Pan Card Without Aadhaar <br /><i>(Only ASSAM, JAMMU AND KASHMIR, MEGHALAYA)</i></p></a></div>
-      </div>
+
+      <Box w={['90%','80%','65%']} m={'1cm auto'}>
+        <Box bg={'blue.400'} fontWeight={'bold'} m={'10px'} textAlign={'center'} color={'whiteAlpha.900'} p={'10px'} borderRadius={'15px'}><a href="/NewPanCardAllState"><p>New Pan Card With Aadhaar <br /> <i style={{color:'#424242',fontWeight:'lighter'}}>(All States)</i></p></a></Box>
+        <Box bg={'blue.400'} fontWeight={'bold'} m={'10px'} textAlign={'center'} color={'whiteAlpha.900'} p={'10px'} borderRadius={'15px'}><a href="#"><p>New Pan Card Without Aadhaar <br /><i style={{color:'#424242',fontWeight:'lighter'}}>(Only ASSAM, JAMMU AND KASHMIR, MEGHALAYA)</i></p></a></Box>
+      </Box>
 
       <div className="pancard_1">
         <p>

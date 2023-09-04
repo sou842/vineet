@@ -30,7 +30,7 @@
 .individualPerson_2{
     background-color: white;
     border-radius: 10px;
-    width: 80%;
+    width: 70%;
     margin: 1cm auto;
     /* border: 1px solid red; */
     padding: 20px 20px;
@@ -77,7 +77,7 @@
 }
 .individualPerson_3{
     display: block;
-    width: 40%;
+    width: 15%;
     margin: 1cm auto;
     background-color: #00aeff;
     border: 1.5px solid #00aeff;

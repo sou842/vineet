@@ -5,6 +5,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import menu from '../../assets/menu.png';
+import site_logo from '../../assets/site_logo.jpg'
 
 export const DashboardNav = ({ vall }) => {
     const baseURL = process.env.REACT_APP_BASE_URL
@@ -135,7 +136,7 @@ export const DashboardNav = ({ vall }) => {
             <div className='dashboardNav_100'>
                 <div>
                     <a href="/">
-                        <img src="https://digitalindiaportal.co.in/images/logo.png" alt="logo_1" />
+                        <img src={site_logo} alt="logo_1" />
                     </a>
                 </div>
                 <div >

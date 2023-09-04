@@ -5,7 +5,7 @@
 /* form_details_1 */
 .form_details_1{
     border: 1px solid red;
-    width: 80%;
+    width: 70%;
     margin: 1cm auto;
 }
 .form_details_1 table {
@@ -82,13 +82,13 @@
     font-size: 25px;
 }
 .editpan_3{
-    width: 80%;
+    width: 100%;
     margin: 1cm auto;
 }
 .editpan_3 > button{
     display: block;
     margin: 10px auto;
-    width: 60%;
+    width: 15%;
     background-color: rgb(50, 50, 50);
     padding: 15px 10px;
     color: white;
@@ -99,7 +99,7 @@
 .editpan_3 > p{
     text-align: center;
     margin: 10px auto;
-    width: 60%;
+    width: 15%;
     padding: 15px 10px;
     color: rgb(59, 59, 59);
     border: 1.5px solid #00aeff;
@@ -121,6 +121,12 @@
 }
 .editpan_2{
     width: 90%;
+}
+.editpan_3 > p{
+    width: 30%;
+}
+.editpan_3 > button{
+    width: 30%;
 }
 }
 

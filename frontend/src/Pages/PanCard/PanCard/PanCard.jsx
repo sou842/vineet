@@ -35,9 +35,9 @@ export const PanCard = () => {
       <div>
         <PanCardNav />
       </div>
-<Box m={'1cm auto'}>
-  <ContactUs/>
-</Box>
+      <Box w={['90%', '80%', '65%']} m={'1cm auto'}>
+        <ContactUs />
+      </Box>
 
       {/* <div className="pancard_1">
         <p> Email:- helpdigitalindiaportal@gmail.com</p>
