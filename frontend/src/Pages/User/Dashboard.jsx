@@ -14,16 +14,11 @@ export const Dashboard = () => {
       <div>
         <DashboardNav />
       </div>
-<Box m={'1cm auto'}>
-  <ContactUs/>
-</Box>
+      <Box w={['90%','80%','65%']} m={'1cm auto'}>
+        <ContactUs />
+      </Box>
 
       <div>
-        {/* <div className='dashboard_1'>
-          <p> Email:- helpdigitalindiaportal@gmail.com</p>
-          <p> Phones:- 9368372889</p>
-          <p> Time:- (10am to 5pm रविवार अवकाश/Lunch Time:- 2:00PM TO 2:30PM)</p>
-        </div> */}
 
         <div className='dashboard_2'>
           <div><a href="/PanCard"><p>Pan Card</p></a></div>

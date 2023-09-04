@@ -3,11 +3,13 @@
     padding: 0;
 }
 .newpancard_2{
-    width: 80%;
+    width: 15%;
+    border: 1px solid blue;
     margin: 1cm auto;
     text-align: center;
 }
 .newpancard_2 > div{
+    width: 100%;
     background-color: #00aeff;
     border: 1.5px solid #00aeff;
     color: rgb(33, 33, 33);
@@ -32,7 +34,7 @@
 
 @media screen and (min-width:0px) and (max-width:700px){
 .newpancard_2{
-    width: 93%;
+    width: 80%;
 }
 }
 @media screen and (min-width:0px) and (max-width:550px){

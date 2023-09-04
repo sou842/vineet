@@ -25,14 +25,14 @@ export const NewPanCardAllState = () => {
     return (
         <div>
             <div>
-                <PanCardNav/>
+                <PanCardNav />
             </div>
-            <Box m={'1cm auto'}>
-            <ContactUs/>
+            <Box w={['90%', '80%', '65%']} m={'1cm auto'}>
+                <ContactUs />
             </Box>
-            
+
             <div>
-                
+
 
                 <h1 className='newPanCardAllState_head'>NEW PANCARD</h1>
 

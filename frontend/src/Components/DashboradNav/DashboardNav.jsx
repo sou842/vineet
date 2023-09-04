@@ -5,6 +5,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import menu from '../../assets/menu.png';
+import site_logo from '../../assets/site_logo.jpg'
 
 export const DashboardNav = ({ vall }) => {
     const baseURL = process.env.REACT_APP_BASE_URL
@@ -135,7 +136,9 @@ export const DashboardNav = ({ vall }) => {
             <div className='dashboardNav_100'>
                 <div>
                     <a href="/">
-                        <img src="https://i.ibb.co/3fyjy5f/Whats-App-Image-2023-09-04-at-10-31-51-PM.jpg" alt="logo_1" />
+
+                        <img src={site_logo} alt="logo_1" />
+
                     </a>
                 </div>
                 <div >
@@ -228,7 +231,7 @@ export const DashboardNav = ({ vall }) => {
                                 as={Button}
                                 rightIcon={<ChevronDownIcon />}
                                 colorScheme="#0a9cf8"
-                                fontSize={['10px', '15px', '15px']}
+                                fontSize={['13px', '15px', '15px']}
                             >
                                 {portalData && portalData.username.trim().split(' ')[0].toUpperCase()}
                             </MenuButton>

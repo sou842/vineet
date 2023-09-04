@@ -5,7 +5,7 @@
 .newPanCardAllState_1{
     /* background-color: rgba(48, 162, 255, 0.447); */
     border: 1.5px solid #00aeff;
-    width: 85%;
+    width: 65%;
     margin: 1cm auto;
     padding: 20px 15px;
     text-align: center;
@@ -17,7 +17,7 @@
 /* dashboard_2 */
 .newPanCardAllState_head{
     text-align: center;
-    width: 50%;
+    width: 30%;
     background-color: #505050;
     margin: 1cm auto;
     color: white;
@@ -26,7 +26,7 @@
 }
 .newPanCardAllState_2{
     display: grid;
-    width: 85%;
+    width: 65%;
     margin: auto;
     grid-template-columns: repeat(3,1fr);
     gap: 10px;
@@ -50,6 +50,9 @@
 @media screen and (min-width:0px) and (max-width:1000px){
 .newPanCardAllState_2 > div > a > p{
     font-size: 14px;
+}
+.newPanCardAllState_head{
+    width: 60%;
 }
 }
 @media screen and (min-width:0px) and (max-width:1000px){

@@ -10,6 +10,7 @@ const DTHRechargeSchema = mongoose.Schema({
     vendorID: { type: String },
     date: { type: String },
     time: { type: String },
+    status: {type:Boolean}
 
 })
 
