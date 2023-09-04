@@ -27,7 +27,7 @@ export default function Signin() {
         password: ""
 
     })
-    const [validate,setValidate]=useState(false)
+    const [validate, setValidate] = useState(false)
     const handleChange = (e) => {
         setLoginData({ ...loginData, [e.target.name]: e.target.value })
     }
@@ -50,20 +50,10 @@ export default function Signin() {
     function onChangeCaptcha(value) {
         // console.log("Captcha value:", value);
         setValidate(true)
-      }
+    }
 
     return (
         <Box bg={'gray.200'} pt={'1.3cm'} pb={'1cm'}>
-            {/* conatct us */}
-            {/* <Box textAlign={'center'} w={'90%'} m={'auto'} p={'15px'} border={'1px solid'} fontWeight={'black'} bg={'red.100'}>
-                <Text> Email:- helpdigitalindiaportal@gmail.com</Text>
-                <Text> Phones:- 9368372889, 9368398663, 9368546898, 9149154754, 7017784029, 7668034958, 7668039141, 9149132382</Text>
-                <Text>  Time:- (10am to 5pm रविवार अवकाश/Lunch Time:- 2:00PM TO 2:30PM)</Text>
-                <Text color={'red'}>Note:- "Dear User & Visitors, please be informed that this portal is totally free of cost, No cost is asked for its registration. If anyone asks any money for the same, Please don't do so and kindly reach out to given Numbers and Email."</Text>
-            </Box> */}
-
-
-
 
             <Box w={['90%', '90%', '50%']} m={'auto'} shadow={'md'} p={['15px', '20px', '40px']} borderRadius={'10px'} bg={'white'}>
                 <Heading display={'flex'}>Logi<Text color={'#43ef6e'}>n</Text></Heading>
@@ -79,30 +69,23 @@ export default function Signin() {
                             <FormLabel display={'flex'} ml={'10px'}>Password<Text color={'red'}>*</Text></FormLabel>
                             <Input required border={'1.3px solid grey'} type='password' placeholder='Passowrd' name='password' onChange={handleChange} />
                         </FormControl>
-                      
-                        <ReCAPTCHA
-                            sitekey={process.env.REACT_APP_CAPTCHA_KEY}
-                            onChange={onChangeCaptcha}
-                           
-                            />
-                        
-                    
-                        <Box mt={'0.7cm'} textAlign={'center'}>
+
+                        <ReCAPTCHA sitekey={process.env.REACT_APP_CAPTCHA_KEY} onChange={onChangeCaptcha} />
+
+
+                        <Box m={'auto'} mt={'0.7cm'} w={'80%'} textAlign={'center'}>
                             <Text m={'10px'} display={'flex'}>Forget Your Password?<Text onClick={() => navigate("/user/change-password")} ml={'10px'} cursor={'pointer'} borderBottom={'1.4px solid #43ef6e'}>Click Here</Text> </Text>
-                            <Button w={'100%'} h={'45px'} bg={'#43ef6e'} type='submit'isDisabled={!validate} >SIGNIN</Button>
+                            <Button w={'100%'} h={'45px'} bg={'#43ef6e'} type='submit' isDisabled={!validate} >SIGNIN</Button>
                         </Box>
 
                     </Box>
                 </form>
-                <Box mt={'20px'} borderTop={'1.3px solid black'}>
-                    <Text onClick={() => navigate("/signup")} _hover={{ color: '#43ef6e' }} transition={'0.3s ease'} fontSize={'17px'} mt={'15px'} cursor={'pointer'} display={'flex'} justifyContent={'center'}>Create Account</Text>
-                    {/* <Button onClick={handleHome} size={'sm'} m={'10px'} colorScheme={'orange'}>HOME</Button> */}
-                    {/* <Button onClick={handleRegister} size={'sm'} colorScheme={'green'}>REGISTER</Button> */}
+                <Box mt={'20px'} borderTop={'1.3px solid black'} >
+                    <Box>
+                        <Text textAlign={'center'}>Don't have an account?</Text>
+                        <Text textAlign={'center'} onClick={() => navigate("/signup")} _hover={{ color: '#43ef6e' }}>Create Account</Text>
+                    </Box>
                 </Box>
-                {/* <Box textAlign={'center'}>
-                    <Button size={'xs'} colorScheme={'yellow'} onClick={() => navigate("/user/change-password")}>FORGET PASSWORD</Button>
-                </Box> */}
-
 
             </Box>
 

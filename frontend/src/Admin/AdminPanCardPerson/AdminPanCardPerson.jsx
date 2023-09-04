@@ -3,12 +3,12 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { AdminNavbar } from '../AdminNavbar/AdminNavbar'
-import { Box, Image, useMediaQuery,useToast,Button } from '@chakra-ui/react'
+import { Box, Image, useMediaQuery, useToast, Button } from '@chakra-ui/react'
 
 
 export const AdminPanCardPerson = () => {
   //########################################
-  const baseurl=process.env.REACT_APP_BASE_URL
+  const baseurl = process.env.REACT_APP_BASE_URL
   //########################################
   const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)")
   const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
@@ -16,25 +16,25 @@ export const AdminPanCardPerson = () => {
   const [formData, setFormData] = useState();
   const [document, setDocument] = useState(null);
   const [pdf, setPdf] = useState("")
- 
-  const [isComplete,setIscomplete]=useState(false)
-  const [receipt,setReceipt]=useState("")
+
+  const [isComplete, setIscomplete] = useState(false)
+  const [receipt, setReceipt] = useState("")
 
   const navigate = useNavigate()
-const toast=useToast()
-  const handelSubmit=(e)=>{
+  const toast = useToast()
+  const handelSubmit = (e) => {
     e.preventDefault()
 
-    const receiptData=new FormData()
-    receiptData.append('receiptPdf',receipt)
-    receiptData.append('panStatus',formData.panStatus)
-    receiptData.append('acknowledgement',formData.acknowledgement)
-    receiptData.append('slipGenerateDate',formData.slipGenerateDate)
+    const receiptData = new FormData()
+    receiptData.append('receiptPdf', receipt)
+    receiptData.append('panStatus', formData.panStatus)
+    receiptData.append('acknowledgement', formData.acknowledgement)
+    receiptData.append('slipGenerateDate', formData.slipGenerateDate)
 
 
 
-console.log();
-    axios.patch(`${baseurl}/admin/user/status-change/${id}`,receiptData ,{
+    console.log();
+    axios.patch(`${baseurl}/admin/user/status-change/${id}`, receiptData, {
       headers: { "Authorization": portalData.token }
     })
       .then((res) => {
@@ -58,22 +58,11 @@ console.log();
         })
         console.log(err);
       })
-   
+
   }
 
-  const handelChange=(e)=>{
-    // if (e.target.name=="receiptPdf" && e.target.files[0]) {
-    //   let reader = new FileReader();
-    //   reader.readAsDataURL(e.target.files[0]);
-    //   reader.onload = () => {
-    //     setPdf(reader.result);
-    //     // console.log(reader.result);
-    //   }
-    // }
-    // else{
-
-      setFormData({...formData,[e.target.name]:e.target.value})
-    //}
+  const handelChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
 
   }
 
@@ -87,7 +76,7 @@ console.log();
         // console.log(res.data)
         setFormData(res.data.pans);
         setDocument(res.data.docs)
-        setIscomplete(res.data.panStatus=="completed")
+        setIscomplete(res.data.panStatus == "completed")
       })
       .catch((err) => {
         console.log(err);
@@ -393,33 +382,33 @@ console.log();
                   <td>56.</td>
                   <td>Aadhaar Docs</td>
                   <td>
-                  <Button size={'sm'} colorScheme='green' isDisabled={document==null} onClick={(e)=>window.open(`${baseurl}/${document.aadharDoc}`,"_blank")}>View</Button>
+                    <Button w={'40%'} size={'sm'} colorScheme='green' isDisabled={document == null} onClick={(e) => window.open(`${baseurl}/${document.aadharDoc}`, "_blank")}>View</Button>
                   </td>
                 </tr>
                 <tr>
                   <td>57.</td>
                   <td>FormFront Docs</td>
                   <td>
-                  <Button size={'sm'}  colorScheme='green' isDisabled={document==null} onClick={(e)=>window.open(`${baseurl}/${document.form49Front}`,"_blank")}>View</Button>
+                    <Button w={'40%'} size={'sm'} colorScheme='green' isDisabled={document == null} onClick={(e) => window.open(`${baseurl}/${document.form49Front}`, "_blank")}>View</Button>
                   </td>
                 </tr>
                 <tr>
                   <td>58.</td>
                   <td>FormBack Docs</td>
                   <td>
-                  <Button size={'sm'} colorScheme='green' isDisabled={document==null} onClick={(e)=>window.open(`${baseurl}/${document.form49Back}`,"_blank")}>View</Button>
+                    <Button w={'40%'} size={'sm'} colorScheme='green' isDisabled={document == null} onClick={(e) => window.open(`${baseurl}/${document.form49Back}`, "_blank")}>View</Button>
                   </td>
                 </tr>
                 {
-                 document && document.parentAadharDoc?  <tr>
-                  <td>59.</td>
-                  <td>ParentAadhaar Docs</td>
-                  <td>
-                  <Button size={'sm'} colorScheme='green' isDisabled={document==null} onClick={(e)=>window.open(`${baseurl}/${document.parentAadharDoc}`,"_blank")}>View</Button>
-                  </td>
-                </tr>:null
+                  document && document.parentAadharDoc ? <tr>
+                    <td>59.</td>
+                    <td>ParentAadhaar Docs</td>
+                    <td>
+                      <Button w={'40%'} size={'sm'} colorScheme='green' isDisabled={document == null} onClick={(e) => window.open(`${baseurl}/${document.parentAadharDoc}`, "_blank")}>View</Button>
+                    </td>
+                  </tr> : null
                 }
-              
+
               </tbody>
 
             </table> : null}
@@ -668,24 +657,24 @@ console.log();
                   <td>56.</td>
                   <td>Aadhaar Docs</td>
                   <td>
-                  <Button size={'sm'} colorScheme='green' isDisabled={document==null} onClick={(e)=>window.open(`${baseurl}/${document.aadharDoc}`,"_blank")}>View</Button>
+                    <Button w={'40%'} size={'sm'} colorScheme='green' isDisabled={document == null} onClick={(e) => window.open(`${baseurl}/${document.aadharDoc}`, "_blank")}>View</Button>
                   </td>
                 </tr>
                 <tr>
                   <td>57.</td>
                   <td>FormFront Docs</td>
                   <td>
-                   
-                      <Button size={'sm'} colorScheme='green'isDisabled={document==null} onClick={(e)=>window.open(`${baseurl}/${document.form49Front}`,"_blank")}>View</Button>
-                    
+
+                    <Button w={'40%'} size={'sm'} colorScheme='green' isDisabled={document == null} onClick={(e) => window.open(`${baseurl}/${document.form49Front}`, "_blank")}>View</Button>
+
                   </td>
                 </tr>
                 <tr>
                   <td>58.</td>
                   <td>FormBack Docs</td>
                   <td>
-                  <Button size={'sm'} colorScheme='green' isDisabled={document==null} onClick={(e)=>window.open(`${baseurl}/${document.form49Back}`,"_blank")}>View</Button>
-                  
+                    <Button w={'40%'} size={'sm'} colorScheme='green' isDisabled={document == null} onClick={(e) => window.open(`${baseurl}/${document.form49Back}`, "_blank")}>View</Button>
+
                   </td>
                 </tr>
               </tbody>
@@ -695,24 +684,24 @@ console.log();
 
         <div>
           <form onSubmit={handelSubmit}>
-          <h1>CONFIRMMATION</h1>
-          <p>Status</p>
-          {/* <input type="text" placeholder='Update Acknowledgement' /> */}
-          <select  required value={formData && formData.panStatus}  name='panStatus' onChange={handelChange}>
-            <option value="pending">Pending</option>
-            <option value="rejected">Rejected</option>
-            <option value="completed">Completed</option>
-          </select>
-          <p>Acknowledgement</p>
-          <input type="number" placeholder='Acknowledgement Number' required value={formData && formData.acknowledgement}  name='acknowledgement' onChange={handelChange}/>
-          <p>Slip Generate Date</p>
-          <input type='date'   value={formData&& formData.slipGenerateDate} name='slipGenerateDate' onChange={handelChange}/>
-          <p>Receipt</p>
-          <input type="file"  name='receipt' onChange={(e)=>setReceipt(e.target.files[0])}/>
-          <Button type='submit' isDisabled={isComplete || formData&& !formData.isDoneFromUser}  >SUBMIT</Button>
-        </form>
-          
-         
+            <h1>CONFIRMMATION</h1>
+            <p>Status</p>
+            {/* <input type="text" placeholder='Update Acknowledgement' /> */}
+            <select required value={formData && formData.panStatus} name='panStatus' onChange={handelChange}>
+              <option value="pending">Pending</option>
+              <option value="rejected">Rejected</option>
+              <option value="completed">Completed</option>
+            </select>
+            <p>Acknowledgement</p>
+            <input type="number" placeholder='Acknowledgement Number' required value={formData && formData.acknowledgement} name='acknowledgement' onChange={handelChange} />
+            <p>Slip Generate Date</p>
+            <input type='date' value={formData && formData.slipGenerateDate} name='slipGenerateDate' onChange={handelChange} />
+            <p>Receipt</p>
+            <input type="file" name='receipt' onChange={(e) => setReceipt(e.target.files[0])} />
+            <Button w={'40%'} type='submit' isDisabled={isComplete || formData && !formData.isDoneFromUser}  >SUBMIT</Button>
+          </form>
+
+
           <p onClick={() => navigate('/AdminPanCard')} style={{ textAlign: 'center', margin: '10px', fontSize: '18px', cursor: 'pointer' }}>← BACK</p>
         </div>
       </div>

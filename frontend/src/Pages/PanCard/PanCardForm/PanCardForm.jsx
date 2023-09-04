@@ -80,7 +80,7 @@ export const PanCardForm = () => {
     officestate: '',
     officezipCode: '',
     officecountry: 'India',
-    isUpload:false,
+    isUpload: false,
     // new added  
     representativetitle: '',
     representativelastName: '',
@@ -94,19 +94,23 @@ export const PanCardForm = () => {
     representativestate: '',
     representativezipCode: '',
     representativecountry: '',
-    ageOfTheUser:'',
-    slipGenerateDate:"",
-    acknowledgement:"",
-    panStatus:"pending"
+    ageOfTheUser: '',
+    slipGenerateDate: "",
+    acknowledgement: "",
+    panStatus: "pending"
   })
 
   const age_month = { "January": "1", "February": "2", "March": "3", "April": "4", "May": "5", "June": "6", "July": "7", "August": "8", "September": "9", "October": "10", "November": "11", "December": "12" }
   const birthdate = new Date(`${formData.yearOfBirth}-${age_month[formData.monthOfBirth]}-${formData.dateOfBirth}`)
   const age = differenceInYears(new Date(), birthdate);
-  console.log(age);
+  // console.log(age);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+
+    if (event.key === 'Backspace') {
+      console.log('Backspace key pressed');
+    }
 
     if (name == 'city' && value != '') {
       setFormData((prevData) => ({ ...prevData, ['areaCode']: city_data[value]['Area Code'] }))
@@ -126,85 +130,68 @@ export const PanCardForm = () => {
 
     if (name == 'firstName' || name == 'middleName' || name == 'lastName' || name == 'father_FName' || name == 'father_MName' || name == 'father_LName') {
       setFormData((prevData) => ({ ...prevData, [name]: value.charAt(0).toUpperCase() + value.slice(1) }));
-    } else {
+    }
+    else if (name == 'zipCode') {
+      if (isNaN(value) == false) setFormData((prevData) => ({ ...prevData, ['zipCode']: value }))
+
+    }
+    else if (name == 'aadhaarNumber') {
+      if (isNaN(value) == false) setFormData((prevData) => ({ ...prevData, ['aadhaarNumber']: value }))
+    }
+    else if (name == 'telephoneNumber') {
+      if (isNaN(value) == false) setFormData((prevData) => ({ ...prevData, ['telephoneNumber']: value }))
+    }
+    else {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
       setFormData((prevData) => ({ ...prevData, ['ageOfTheUser']: age }));
     }
 
-     
   }
 
   const handleBlur = () => {
 
-    if(catagory == "Individual"){
+    if (catagory == "Individual") {
 
-    if (formData.middleName) {
-      setFormData((prevData) => ({ ...prevData, ['aadhaarName']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
-      setFormData((prevData) => ({ ...prevData, ['NameOnCard']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
-      setFormData((prevData) => ({ ...prevData, ['verifierName']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
+      if (formData.middleName) {
+        setFormData((prevData) => ({ ...prevData, ['aadhaarName']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
+        setFormData((prevData) => ({ ...prevData, ['NameOnCard']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
+        setFormData((prevData) => ({ ...prevData, ['verifierName']: formData.firstName + ' ' + formData.middleName + ' ' + formData.lastName }))
+      } else {
+        setFormData((prevData) => ({ ...prevData, ['aadhaarName']: formData.firstName + ' ' + formData.lastName }))
+        setFormData((prevData) => ({ ...prevData, ['NameOnCard']: formData.firstName + ' ' + formData.lastName }));
+        setFormData((prevData) => ({ ...prevData, ['verifierName']: formData.firstName + ' ' + formData.lastName }));
+      }
     } else {
-      setFormData((prevData) => ({ ...prevData, ['aadhaarName']: formData.firstName + ' ' + formData.lastName }))
-      setFormData((prevData) => ({ ...prevData, ['NameOnCard']: formData.firstName + ' ' + formData.lastName }));
-      setFormData((prevData) => ({ ...prevData, ['verifierName']: formData.firstName + ' ' + formData.lastName }));
-    }
-  } else{
 
-    if(formData.representativemiddleName){
-      setFormData((prevData) => ({ ...prevData, ['verifierName']: formData.representativefirstName + ' ' + formData.representativemiddleName + ' ' + formData.representativelastName }))
-    } else{
-      setFormData((prevData) => ({ ...prevData, ['verifierName']: formData.representativefirstName + ' ' + formData.representativelastName }));
+      if (formData.representativemiddleName) {
+        setFormData((prevData) => ({ ...prevData, ['verifierName']: formData.representativefirstName + ' ' + formData.representativemiddleName + ' ' + formData.representativelastName }))
+      } else {
+        setFormData((prevData) => ({ ...prevData, ['verifierName']: formData.representativefirstName + ' ' + formData.representativelastName }));
+      }
     }
-  }
 
-    
-    console.log('false')
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if(formData.aadhaarNumber.length == 0 ||formData.zipCode.length==0){
+    if (formData.aadhaarNumber.length == 0 || formData.zipCode.length == 0) {
       localStorage.setItem("VDP_form_data", JSON.stringify(formData))
       navigate('/user/pan-edit')
     }
     else if (catagory == 'Individual' && formData.aadhaarNumber.length != 12) {
-      toast({
-        title: 'Aadhaar Number',
-        description: "Aadhaar Number should have 12 Charecter",
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-        position: 'top-center',
-      })
-    } else if (formData.zipCode.length != 6||formData.zipCode.length==0) {
+      toast({ title: 'Aadhaar Number', description: "Aadhaar Number should have 12 Charecter", status: 'error', duration: 5000, isClosable: true, position: 'top-center', })
+    } else if (formData.zipCode.length != 6 || formData.zipCode.length == 0) {
 
-      toast({
-        title: 'Zip Code',
-        description: "PIN Code Number should have 6 Charecter",
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-        position: 'top-center',
-      })
+      toast({ title: 'Zip Code', description: "PIN Code Number should have 6 Charecter", status: 'error', duration: 5000, isClosable: true, position: 'top-center', })
     } else {
       localStorage.setItem("VDP_form_data", JSON.stringify(formData))
       navigate('/user/pan-edit')
     }
 
-
-    // // dispatch(PAN_INDIVIDUAL(formData))
-
-    // axios.post("http://localhost:8080/user/new-pan-card", formData, {
-    // headers: { "Authorization": portalData.token }
-    // }).then((res) => {
-    //     console.log(res.data);
-    // }) .catch((err) => {
-    //     console.log(err);
-    // })
   }
 
 
-  // console.log(age, 'age--->')
 
   useEffect(() => {
     if (catagory != "Individual") {
@@ -220,7 +207,7 @@ export const PanCardForm = () => {
     if (age < 18) {
       setResidenceIndividual(true)
       toast({ title: 'you are below 18 year', description: "Fill the Representative Assessee", status: 'info', duration: 5000, isClosable: true, position: 'top-center', })
-    } 
+    }
     else if (age >= 18) {
       setResidenceIndividual(false)
     }
@@ -228,7 +215,7 @@ export const PanCardForm = () => {
   }, [age])
 
   // console.log(age,residenceIndividual,'age--->')
-  console.log(formData)
+  // console.log(formData)
 
   return (
     <div style={{ backgroundColor: 'rgba(201, 201, 201, 0.249)' }}>
@@ -476,7 +463,7 @@ export const PanCardForm = () => {
             <div>
               <div>
                 <p>Zip Code<i>*</i></p>
-                <input type="number" placeholder='Zip Code' required name='zipCode' value={formData.zipCode} onChange={handleChange} />
+                <input type="text" maxLength={6} placeholder='Zip Code' required name='zipCode' value={formData.zipCode} onChange={handleChange} />
               </div>
               <div>
                 <p>Country<i>*</i></p>
@@ -499,7 +486,7 @@ export const PanCardForm = () => {
               </div>
               <div>
                 <p>Telephone/Mobile number<i>*</i></p>
-                <input type="number" placeholder='Telephone/Mobile number' required name='telephoneNumber' value={formData.telephoneNumber} onChange={handleChange} />
+                <input type="text" maxLength={10} placeholder='Telephone/Mobile number' required name='telephoneNumber' value={formData.telephoneNumber} onChange={handleChange} />
               </div>
               <div>
                 <p>Email Id<i>*</i></p>
@@ -518,7 +505,7 @@ export const PanCardForm = () => {
             <div>
               <div>
                 <p>AADHAAR Number<i>*</i></p>
-                <input type="number" placeholder='AADHAAR Number' required name='aadhaarNumber' value={formData.aadhaarNumber} onChange={handleChange} />
+                <input type="text" placeholder='AADHAAR Number' maxLength={12} required name='aadhaarNumber' value={formData.aadhaarNumber} onChange={handleChange} />
               </div>
               <div>
                 <p>Name as per AADHAAR</p>

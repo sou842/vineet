@@ -95,6 +95,7 @@
     font-size: 13.5px;
 }
 .dashboardNav_100{
+    font-size: 27px;
     padding: 10px;
 }
 .dashboardNav_100 > div{
@@ -107,8 +108,12 @@
 }
 
 @media screen and (min-width:0px) and (max-width:600px){
+.dashboardNav_100{
+    font-size: 17px;
+    padding: 10px;
+}
 .dashboard_0 > div > div > a > p{
-    font-size: 12px;
+    font-size: 14px;
 }
 .dashboard_0 > div{
     display: flex;

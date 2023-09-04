@@ -4,7 +4,7 @@ export const city = ['Kanpur','Lucknow']
 export const city_data = {
     'Kanpur':{
         'Area Code': 'CHE',
-        'AO Type': 'W',
+        'AO Type': 'WX',
         'Range Code': 191,
         'AO Number': 91
     },
@@ -15,3 +15,4 @@ export const city_data = {
         'AO Number': 1
     }
 }
+

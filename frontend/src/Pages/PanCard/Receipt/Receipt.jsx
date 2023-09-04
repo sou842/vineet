@@ -20,9 +20,9 @@ import { Footer } from "../../../Components/Footer/Footer.jsx";
 import { Navigate } from "react-router-dom";
 
 const Receipt = () => {
-    //     ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-        const baseURL=process.env.REACT_APP_BASE_URL
-    // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+  //     ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+  const baseURL = process.env.REACT_APP_BASE_URL
+  // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
   const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
   const [pdfData, setPdfData] = useState({ PDF: "", panID: "" });
   const [cat, setCat] = useState("newPancard");
@@ -33,39 +33,25 @@ const Receipt = () => {
   const [count, setCount] = useState(0);
 
   const handelOpenRecipt = (id) => {
-   
 
-    axios
-      .get(`${baseURL}/user/recipt-download/${id}`, {
+
+    axios.get(`${baseURL}/user/recipt-download/${id}`, {
         headers: { Authorization: portalData.token },
       })
       .then((res) => {
-       
-       window.open(`${baseURL}/${res.data||"receiptPdf_1692902532435List.pdf"}`,"_blank")
-        
+        window.open(`${baseURL}/${res.data || "receiptPdf_1692902532435List.pdf"}`, "_blank")
+
       })
       .catch((err) => {
-        toast({
-          title: "Try Again, Something Wrong!!!",
-          status: "error",
-          duration: 4000,
-          isClosable: true,
-          position: "top",
-        });
+        toast({ title: "Try Again, Something Wrong!!!", status: "error", duration: 4000, isClosable: true, position: "top", });
         console.log(err);
       });
-  };
+  }
 
   useEffect(() => {
-    axios
-      .get(
-        `${baseURL}/user/all-uploaded-pan-card?category=${cat}&page=${page}`,
-        {
-          headers: {
-            Authorization: portalData.token,
-          },
-        }
-      )
+    axios.get(`${baseURL}/user/all-uploaded-pan-card?category=${cat}&page=${page}`, {
+      headers: { Authorization: portalData.token, },
+    })
       .then((res) => {
         setLoading(false);
         // console.log(res.data);
@@ -212,7 +198,7 @@ const Receipt = () => {
                         {ele.acknowledgement ? ele.acknowledgement : "null"}
                       </Text>
                     </Text>
-                    
+
                     <Text
                       mb={"7px"}
                       mt={"7px"}
@@ -237,20 +223,20 @@ const Receipt = () => {
                     </Text>
                   </Box>
                   <Box>{
-                    ele.panStatus=="completed"||ele.panStatus=="rejected"?
-                    <Box textAlign={'center'}>
-                    <Button w={'95%'} colorScheme={ele.panStatus=="completed"?"green":"red"} size={'sm'} onClick={(e)=>handelOpenRecipt(ele._id)}>Download</Button>
-                    </Box>
-                    :null
-                    
-                    
-                    }</Box>
+                    ele.panStatus == "completed" || ele.panStatus == "rejected" ?
+                      <Box textAlign={'center'}>
+                        <Button w={'95%'} colorScheme={ele.panStatus == "completed" ? "green" : "red"} size={'sm'} onClick={(e) => handelOpenRecipt(ele._id)}>Download</Button>
+                      </Box>
+                      : null
+                  }</Box>
                 </Box>
               ))}
             </Grid>
           </Box>
         )}
       </Box>
+
+
       <Box textAlign={"right"} m={"10px"}>
         {count != 0 ? (
           <Box>
@@ -263,15 +249,8 @@ const Receipt = () => {
             >
               ⟨
             </Button>
-            <Button size={"sm"} mr={"5px"}>
-              {page}
-            </Button>
-            <Button
-              size={"sm"}
-              colorScheme="blue"
-              onClick={(e) => setPage(page + 1)}
-              isDisabled={page == Math.ceil(count / 10) || count == 0}
-            >
+            <Button size={"sm"} mr={"5px"}>{page}</Button>
+            <Button size={"sm"} colorScheme="blue" onClick={(e) => setPage(page + 1)} isDisabled={page == Math.ceil(count / 10) || count == 0}>
               ⟩
             </Button>
           </Box>
