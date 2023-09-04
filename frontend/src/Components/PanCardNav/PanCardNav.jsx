@@ -66,7 +66,7 @@ export const PanCardNav = () => {
             <div className='pancardnav_0'>
                 <div>
                     <a href="/">
-                        <img src="https://digitalindiaportal.co.in/images/logo.png" alt="logo_1" />
+                        <img src="https://i.ibb.co/3fyjy5f/Whats-App-Image-2023-09-04-at-10-31-51-PM.jpg" alt="logo_1" />
                     </a>
                 </div>
                 <div>

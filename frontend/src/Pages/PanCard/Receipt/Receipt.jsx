@@ -40,8 +40,10 @@ const Receipt = () => {
         headers: { Authorization: portalData.token },
       })
       .then((res) => {
-       
-       window.open(`${baseURL}/${res.data||"receiptPdf_1692902532435List.pdf"}`,"_blank")
+      
+
+       window.open(`${baseURL}/${res.data||"receiptPdf_1692902532435List.pdf"}`,"_blank",)
+      
         
       })
       .catch((err) => {
@@ -239,7 +241,9 @@ const Receipt = () => {
                   <Box>{
                     ele.panStatus=="completed"||ele.panStatus=="rejected"?
                     <Box textAlign={'center'}>
+                    
                     <Button w={'95%'} colorScheme={ele.panStatus=="completed"?"green":"red"} size={'sm'} onClick={(e)=>handelOpenRecipt(ele._id)}>Download</Button>
+                   
                     </Box>
                     :null
                     
