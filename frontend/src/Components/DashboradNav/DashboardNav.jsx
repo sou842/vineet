@@ -136,7 +136,9 @@ export const DashboardNav = ({ vall }) => {
             <div className='dashboardNav_100'>
                 <div>
                     <a href="/">
+
                         <img src={site_logo} alt="logo_1" />
+
                     </a>
                 </div>
                 <div >
@@ -171,7 +173,7 @@ export const DashboardNav = ({ vall }) => {
                                 {vall != 'MobileRecharge' && vall != 'DTHRecharge' && <MenuItem onClick={() => navigate('#')}>Traning Manual</MenuItem>}
                                 {vall != 'MobileRecharge' && vall != 'DTHRecharge' && <MenuItem onClick={() => navigate('#')}>Downloads</MenuItem>}
                                 {vall != 'MobileRecharge' && vall != 'DTHRecharge' && <MenuItem onClick={() => navigate('/profile')}>Ledger</MenuItem>}
-                                {vall != 'MobileRecharge' && vall != 'DTHRecharge' && <MenuItem onClick={() => navigate('/profile')}>Add Money</MenuItem>}
+                                {vall != 'MobileRecharge' && vall != 'DTHRecharge' && <MenuItem onClick={onOpen}>Add Money</MenuItem>}
                                 <Menu placement="right-start">
                                     <MenuButton colorScheme='white' color={'black'} fontSize={['15.5px', '15px', '15px']} as={Button} rightIcon={<ChevronDownIcon />} bg={'white'} margin={0}>Services</MenuButton>
                                     <MenuList>
