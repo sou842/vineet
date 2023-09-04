@@ -228,7 +228,7 @@ export const DashboardNav = ({ vall }) => {
                                 as={Button}
                                 rightIcon={<ChevronDownIcon />}
                                 colorScheme="#0a9cf8"
-                                fontSize={['10px', '15px', '15px']}
+                                fontSize={['13px', '15px', '15px']}
                             >
                                 {portalData && portalData.username.trim().split(' ')[0].toUpperCase()}
                             </MenuButton>

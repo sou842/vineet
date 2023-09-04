@@ -96,7 +96,7 @@
     padding: 10px;
 }
 .pancardnav_0 > div{
-    font-size: 16px;
+    font-size: 27px;
     font-weight: bold;
 }
 .pancardnav_0 > div > a > img{
@@ -105,11 +105,16 @@
 }
 
 @media screen and (min-width:0px) and (max-width:600px){
+.pancardnav_0 > div{
+    font-size: 17px;
+    font-weight: bold;
+}
 .pancardnav_1 > div > div > a > p{
-    font-size: 12px;
+    font-size: 14px;
 }
 .pancardnav_1 > div{
     display: flex;
     margin: 0 5px;
 }
+
 }

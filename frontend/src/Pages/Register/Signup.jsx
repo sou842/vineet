@@ -7,8 +7,8 @@ import axios from "axios";
 
 const Signup = () => {
   //    ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-        const baseURL=process.env.REACT_APP_BASE_URL
-//     ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+  const baseURL = process.env.REACT_APP_BASE_URL
+  //     ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
   const navigate = useNavigate();
   const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -37,7 +37,7 @@ const Signup = () => {
     axios.post(`${baseURL}/api/register`, regData)
       .then((res) => {
         axios.post(`${baseURL}/profile/profile-pictire`, { avatar: "", vendorID: res.data.vendorID }).then((res) => console.log(res.data))
-      .catch((err) => console.log(err))
+          .catch((err) => console.log(err))
         toast({ title: 'Account created successfully.', status: 'success', position: 'top', duration: 5000, isClosable: true, })
         navigate("/signin")
       })
@@ -65,7 +65,7 @@ const Signup = () => {
   return (
     <Box bg={'gray.100'} pt={'2cm'} pb={'1cm'}>
 
-      <Box w={['90%', '80%', "70%"]} m={"auto"} shadow={'md'} p={['15px', '20px', '50px']} borderRadius={'10px'} bg={'white'} >
+      <Box w={['90%', '80%', "60%"]} m={"auto"} shadow={'md'} p={['15px', '20px', '50px']} borderRadius={'10px'} bg={'white'} >
         <Heading display={'flex'}>Registratio<Text color={'#43ef6e'}>n</Text></Heading>
         <Box w={'80px'} border={'1.5px solid #43ef6e'} mt={'3px'} mb={'1cm'}></Box>
         <Box w={'100%'}>
@@ -112,7 +112,7 @@ const Signup = () => {
               </Box>
               <Box w={['100%', '100%', '45%']}>
                 <FormControl color={'grey'}>
-                  <FormLabel ml={'10px'}display={'flex'} >Pin Code<Text color={'red'}>*</Text></FormLabel>
+                  <FormLabel ml={'10px'} display={'flex'} >Pin Code<Text color={'red'}>*</Text></FormLabel>
                   <Input border={'1.3px solid grey'} type="number" placeholder="Enter your pin code" name="pincode" onChange={handleChange} required />
                 </FormControl>
               </Box>
@@ -163,9 +163,10 @@ const Signup = () => {
               </Box>
             </Box>
 
-
-            <Button w={'100%'} h={'45px'} mt={'1cm'} mb={'10px'} letterSpacing={'3px'} type="submit" size={'lg'} bg={'#43ef6e'}>CREATE</Button>
-            <Box w={'100%'} display={'flex'} borderRadius={'7px'} alignItems={'center'} justifyContent={'center'} h={'45px'} letterSpacing={'1px'} cursor={'pointer'} type="submit" size={'sm'} bg={'white'} border={'1.4px solid #43ef6e'} onClick={()=>navigate('/Signin')}>LOGIN</Box>
+            <Box w={'80%'} m={'auto'}>
+              <Button w={'100%'} h={'45px'} mt={'1cm'} mb={'10px'} letterSpacing={'3px'} type="submit" size={'lg'} bg={'#43ef6e'}>CREATE</Button>
+              <Box w={'100%'} display={'flex'} borderRadius={'7px'} alignItems={'center'} justifyContent={'center'} h={'45px'} letterSpacing={'1px'} cursor={'pointer'} type="submit" size={'sm'} bg={'white'} border={'1.4px solid #43ef6e'} onClick={() => navigate('/Signin')}>LOGIN</Box>
+            </Box>
           </form>
         </Box>
         <Text textAlign={'center'} mt={'20px'}>Need Assistance With This Form Call + 91-9368372889, 9368398663, 9368546898</Text>

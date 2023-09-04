@@ -7,19 +7,19 @@ import date from 'date-and-time';
 import axios from 'axios';
 import { city, city_data } from '../../../city.js'
 import { Footer } from '../../../Components/Footer/Footer';
-import { useToast, Box } from "@chakra-ui/react";
+import { useToast, Box, Button } from "@chakra-ui/react";
 import { array1To31, monthsArray, yearsArray } from '../../../FromElement.js'
 
 export const EditPan = () => {
   //    ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-         const baseURL=process.env.REACT_APP_BASE_URL
-//     ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+  const baseURL = process.env.REACT_APP_BASE_URL
+  //     ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
   const VDP_form_data = JSON.parse(localStorage.getItem('VDP_form_data')) || null
   const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null
   const [sourceIncome, setSourceIncome] = useState(false);
   const [formEdit, setFormEdit] = useState(true);
 
-  const catagory = VDP_form_data.category
+  const catagory = VDP_form_data&&VDP_form_data.category
   const now = new Date();
   let currentDate = date.format(now, 'YYYY-MMM-DD');
   const navigate = useNavigate()
@@ -27,7 +27,7 @@ export const EditPan = () => {
 
 
   const [formData, setFormData] = useState({
-    category: catagory.replace(/-/g, ' '),
+    category: catagory&&catagory.replace(/-/g, ' '),
     date: currentDate,
     city: '',
     areaCode: '',
@@ -88,9 +88,9 @@ export const EditPan = () => {
     officestate: '',
     officezipCode: '',
     officecountry: 'India',
-    slipGenerateDate:"",
-    acknowledgement:"",
-    panStatus:"pending"
+    slipGenerateDate: "",
+    acknowledgement: "",
+    panStatus: "pending"
 
   })
 
@@ -150,59 +150,27 @@ export const EditPan = () => {
       axios.post(`${baseURL}/user/new-pan-card`, formData, {
         headers: { "Authorization": portalData.token }
       }).then((res) => {
-        // console.log(res);
-        if(res.data=="Apply successful for new pan card"){
 
-          toast({
-            title: "Apply successful for new pan card",
-            status: 'success',
-            duration: 5000,
-            isClosable: true,
-            position: 'top-center',
-          })
+        if (res.data == "Apply successful for new pan card") {
+          localStorage.removeItem('VDP_form_data')
+          toast({ title: "Apply successful for new pan card", status: 'success', duration: 5000, isClosable: true, position: 'top-center', })
           navigate('/user/upload')
         }
-        else{
-          toast({
-            title: res.data,
-            status: 'error',
-            duration: 5000,
-            isClosable: true,
-            position: 'top-center',
-          })
+        else {
+          toast({ title: res.data, status: 'error', duration: 5000, isClosable: true, position: 'top-center', })
         }
 
       }).catch((err) => {
         console.log(err);
-        toast({
-          title:"Somthing went wrong Please try again!",
-          status: 'error',
-          duration: 3000,
-          isClosable: true,
-          position: 'top-center',
-        })
-       
+        toast({ title: "Somthing went wrong Please try again!", status: 'error', duration: 3000, isClosable: true, position: 'top-center', })
+
       })
 
     }
     else if (catagory == 'Individual' && formData.aadhaarNumber.length != 12) {
-      toast({
-        title: 'Aadhaar Number',
-        description: "Aadhaar Number should have 12 Charecter",
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-        position: 'top-center',
-      })
+      toast({ title: 'Aadhaar Number', description: "Aadhaar Number should have 12 Charecter", status: 'error', duration: 5000, isClosable: true, position: 'top-center', })
     } else if (formData.zipCode.length != 6) {
-      toast({
-        title: 'Zip Code',
-        description: "PIN Code Number should have 6 Charecter",
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-        position: 'top',
-      })
+      toast({ title: 'Zip Code', description: "PIN Code Number should have 6 Charecter", status: 'error', duration: 5000, isClosable: true, position: 'top', })
     } else {
       // localStorage.setItem("VDP_form_data", JSON.stringify(formData))
 
@@ -210,35 +178,19 @@ export const EditPan = () => {
         headers: { "Authorization": portalData.token }
       }).then((res) => {
         console.log(res);
-        if(res.data=="Apply successful for new pan card"){
-          toast({
-            title: "Apply successful for new pan card",
-            status: 'success',
-            duration: 5000,
-            isClosable: true,
-            position: 'top',
-          })
+        if (res.data == "Apply successful for new pan card") {
+          localStorage.removeItem('VDP_form_data')
+          toast({ title: "Apply successful for new pan card", status: 'success', duration: 5000, isClosable: true, position: 'top', })
           navigate('/user/upload')
+
         }
-        else{
-          toast({
-            title: res.data,
-            status: 'error',
-            duration: 5000,
-            isClosable: true,
-            position: 'top',
-          })
+        else {
+          toast({ title: res.data, status: 'error', duration: 5000, isClosable: true, position: 'top', })
         }
 
       }).catch((err) => {
         console.log(err);
-        toast({
-          title:"Somthing went wrong Please try again!",
-          status: 'error',
-          duration: 3000,
-          isClosable: true,
-          position: 'top',
-        })
+        toast({ title: "Somthing went wrong Please try again!", status: 'error', duration: 3000, isClosable: true, position: 'top', })
       })
 
     }
@@ -261,7 +213,7 @@ export const EditPan = () => {
 
         <h1 className='editpan_head'>PANCARD REVIEW</h1>
 
-        <form onSubmit={handleSubmit}>
+        {VDP_form_data?<form onSubmit={handleSubmit}>
           {/* all */}
           {!formEdit ? <div className="editpan_2">
             <div>
@@ -1580,7 +1532,7 @@ export const EditPan = () => {
             <p style={{ backgroundColor: formEdit ? '#00aeff' : null, color: 'rgb(59, 59, 59)', cursor: 'pointer' }} onClick={handleEdit}>{formEdit ? 'EDIT' : 'SAVE'}</p>
             {formEdit ? <button type='submit'>SUBMIT</button> : null}
           </div>
-        </form>
+        </form>:<Button onClick={()=>navigate('/Dashboard')} h={'50px'} display={'block'} bg={'blue.300'} w={['80%','60%','40%']} m={'auto'}>DashBoard</Button>}
       </div>
 
       <div><Footer /></div>
