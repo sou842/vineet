@@ -13,7 +13,7 @@ return (
         <div className="home_01">
             <h1>WELCOME TO SMART DIGITAL SERVICE</h1>
             <div>
-                <p><b>Email:-</b> helpdigitalindiaportal@gmail.com</p>
+                <p><b>Email:-</b> help.smartdigitalservice@gmail.com</p>
                 <p>"Dear User & Visitors, please be informed that this portal is totally free of cost, no cost is asked for its registration.If anyone asks any money for the same, Please don't do so and kindly reach out to given Numbers and Email"</p>
             </div>
         </div>

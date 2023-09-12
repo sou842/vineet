@@ -80,7 +80,7 @@ const UploadDocument = () => {
         .catch((err) => {
           setLoading(false);
           toast({ title: "Please Try Again", status: "error", duration: 3000, isClosable: true, })
-          console.log(err);
+          console.log(err.message);
         });
     }
   };
