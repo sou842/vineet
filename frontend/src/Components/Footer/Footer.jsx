@@ -53,10 +53,10 @@ return (
             <div>
                 <h1>ADDRESS</h1>
                 <div>
-                <p>Number: +91 9903149299</p>
-                <p>Number: +91 8963031521</p>
-                <p> Email: helpVineetIndiaportal@gmail.com</p>
-                <p>DIGITAL INDIA CENTRE,Pooja Market, Near Petrol Pump,Daurala, Meerut, Uttar Pradesh - 250221</p>
+                <p>Number: +91 9838968537</p>
+                <p>Number: +91 7355121493</p>
+                <p> Email: help.smartdigitalservice@gmail.com</p>
+                <p>SMART DIGITAL SERVICE,Dilwal, Near Bank, Sikandra, Uttar Pradesh, 209310 </p>
                 </div>
             </div>
             <div>
