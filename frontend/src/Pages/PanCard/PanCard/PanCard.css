@@ -27,7 +27,8 @@
     background-color: #00aeff;
     text-align: center;
     padding: 15px 10px;
-    color: rgb(23, 23, 23);
+    color: whitesmoke;
+    font-weight: bold;
     border: 1.5px solid #00aeff;
     border-radius: 7px;
     transition: 0.4s ease;
@@ -37,6 +38,7 @@
 }
 .pancard_2 > div:hover{
     background-color: white;
+    color: grey;
 }
 
 @media screen and (min-width:0px) and (max-width:700px){

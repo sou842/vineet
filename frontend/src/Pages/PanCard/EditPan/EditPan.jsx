@@ -19,7 +19,7 @@ export const EditPan = () => {
   const [sourceIncome, setSourceIncome] = useState(false);
   const [formEdit, setFormEdit] = useState(true);
 
-  const catagory = VDP_form_data&&VDP_form_data.category
+  const catagory = VDP_form_data && VDP_form_data.category
   const now = new Date();
   let currentDate = date.format(now, 'YYYY-MMM-DD');
   const navigate = useNavigate()
@@ -27,7 +27,7 @@ export const EditPan = () => {
 
 
   const [formData, setFormData] = useState({
-    category: catagory&&catagory.replace(/-/g, ' '),
+    category: catagory && catagory.replace(/-/g, ' '),
     date: currentDate,
     city: '',
     areaCode: '',
@@ -115,7 +115,23 @@ export const EditPan = () => {
 
     if (name == 'firstName' || name == 'middleName' || name == 'lastName' || name == 'father_FName' || name == 'father_MName' || name == 'father_LName') {
       setFormData((prevData) => ({ ...prevData, [name]: value.charAt(0).toUpperCase() + value.slice(1) }));
-    } else {
+    }
+    else if (name == 'zipCode') {
+      if (isNaN(value) == false) setFormData((prevData) => ({ ...prevData, ['zipCode']: value }))
+    }
+    else if (name == 'representativezipCode') {
+      if (isNaN(value) == false) setFormData((prevData) => ({ ...prevData, ['representativezipCode']: value }))
+    }
+    else if (name == 'officezipCode') {
+      if (isNaN(value) == false) setFormData((prevData) => ({ ...prevData, ['officezipCode']: value }))
+    }
+    else if (name == 'aadhaarNumber') {
+      if (isNaN(value) == false) setFormData((prevData) => ({ ...prevData, ['aadhaarNumber']: value }))
+    }
+    else if (name == 'telephoneNumber') {
+      if (isNaN(value) == false) setFormData((prevData) => ({ ...prevData, ['telephoneNumber']: value }))
+    }
+    else {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
     }
   }
@@ -213,7 +229,7 @@ export const EditPan = () => {
 
         <h1 className='editpan_head'>PANCARD REVIEW</h1>
 
-        {VDP_form_data?<form onSubmit={handleSubmit}>
+        {VDP_form_data ? <form onSubmit={handleSubmit}>
           {/* all */}
           {!formEdit ? <div className="editpan_2">
             <div>
@@ -452,16 +468,16 @@ export const EditPan = () => {
                   </select>
                 </div>
                 <div>
-                  <p>First name<i>*</i></p>
-                  <input type="text" disabled={formEdit} placeholder='First Name' onBlur={handleBlur} required name='firstName' value={formData.firstName} onChange={handleChange} />
+                  <p>Last Name<i>*</i></p>
+                  <input type="text" disabled={formEdit} placeholder='Last Name' onBlur={handleBlur} required name='lastName' value={formData.lastName} onChange={handleChange} />
                 </div>
                 <div>
                   <p>Middle Name</p>
                   <input type="text" disabled={formEdit} placeholder='Middle Name' onBlur={handleBlur} name='middleName' value={formData.middleName} onChange={handleChange} />
                 </div>
                 <div>
-                  <p>Last Name<i>*</i></p>
-                  <input type="text" disabled={formEdit} placeholder='Last Name' onBlur={handleBlur} required name='lastName' value={formData.lastName} onChange={handleChange} />
+                  <p>First name</p>
+                  <input type="text" disabled={formEdit} placeholder='First Name' onBlur={handleBlur} name='firstName' value={formData.firstName} onChange={handleChange} />
                 </div>
               </div>
               <div>
@@ -538,16 +554,16 @@ export const EditPan = () => {
                   </select>
                 </div>
                 <div>
-                  <p>Father's First Name<i>*</i></p>
-                  <input type="text" disabled={formEdit} required placeholder='first Name' name='father_FName' value={formData.father_FName} onChange={handleChange} />
+                  <p>Father's Last Name<i>*</i></p>
+                  <input type="text" disabled={formEdit} required placeholder='last Name' name='father_LName' value={formData.father_LName} onChange={handleChange} />
                 </div>
                 <div>
                   <p>Father's Middle Name</p>
                   <input type="text" disabled={formEdit} placeholder='middle Name' name='father_MName' value={formData.father_MName} onChange={handleChange} />
                 </div>
                 <div>
-                  <p>Father's Last Name<i>*</i></p>
-                  <input type="text" disabled={formEdit} required placeholder='last Name' name='father_LName' value={formData.father_LName} onChange={handleChange} />
+                  <p>Father's First Name</p>
+                  <input type="text" disabled={formEdit} placeholder='first Name' name='father_FName' value={formData.father_FName} onChange={handleChange} />
                 </div>
               </div>
             </div>
@@ -638,7 +654,7 @@ export const EditPan = () => {
               <div>
                 <div>
                   <p>Zip Code<i>*</i></p>
-                  <input disabled={formEdit} type="number" placeholder='Zip Code' required name='zipCode' value={formData.zipCode} onChange={handleChange} />
+                  <input disabled={formEdit} type="text" maxLength={6} placeholder='Zip Code' required name='zipCode' value={formData.zipCode} onChange={handleChange} />
                 </div>
                 <div>
                   <p>Country<i>*</i></p>
@@ -663,7 +679,7 @@ export const EditPan = () => {
                 </div>
                 <div>
                   <p>Telephone/Mobile number<i>*</i></p>
-                  <input disabled={formEdit} type="number" placeholder='Telephone/Mobile number' required name='telephoneNumber' value={formData.telephoneNumber} onChange={handleChange} />
+                  <input disabled={formEdit} type="text" maxLength={10} placeholder='Telephone/Mobile number' required name='telephoneNumber' value={formData.telephoneNumber} onChange={handleChange} />
                 </div>
                 <div>
                   <p>Email Id<i>*</i></p>
@@ -686,7 +702,7 @@ export const EditPan = () => {
               <div>
                 <div>
                   <p>AADHAAR Number<i>*</i></p>
-                  <input disabled={formEdit} type="number" placeholder='AADHAAR Number' required name='aadhaarNumber' value={formData.aadhaarNumber} onChange={handleChange} />
+                  <input disabled={formEdit} type="text" maxLength={12} placeholder='AADHAAR Number' required name='aadhaarNumber' value={formData.aadhaarNumber} onChange={handleChange} />
                 </div>
                 <div>
                   <p>Name as per AADHAAR</p>
@@ -1200,7 +1216,8 @@ export const EditPan = () => {
                   <p>Office's Zip Code<i>*</i></p>
                   <input
                     disabled={formEdit}
-                    type="number"
+                    type="text"
+                    maxLength={6}
                     placeholder='Zip Code'
                     required
                     name='officezipCode'
@@ -1245,7 +1262,8 @@ export const EditPan = () => {
                   <p>Telephone/Mobile number<i>*</i></p>
                   <input
                     disabled={formEdit}
-                    type="number"
+                    type="text"
+                    maxLength={10}
                     placeholder='Telephone/Mobile number'
                     required
                     name='telephoneNumber'
@@ -1345,16 +1363,16 @@ export const EditPan = () => {
                   </select>
                 </div>
                 <div>
-                  <p>First name</p>
-                  <input type="text" placeholder='First Name' onBlur={handleBlur} name='representativefirstName' value={formData.representativefirstName} onChange={handleChange} />
+                  <p>Last Name<i>*</i></p>
+                  <input type="text" placeholder='Last Name' onBlur={handleBlur} required name='representativelastName' value={formData.representativelastName} onChange={handleChange} />
                 </div>
                 <div>
                   <p>Middle Name</p>
                   <input type="text" placeholder='Middle Name' onBlur={handleBlur} name='representativemiddleName' value={formData.representativemiddleName} onChange={handleChange} />
                 </div>
                 <div>
-                  <p>Last Name<i>*</i></p>
-                  <input type="text" placeholder='Last Name' onBlur={handleBlur} required name='representativelastName' value={formData.representativelastName} onChange={handleChange} />
+                  <p>First name</p>
+                  <input type="text" placeholder='First Name' onBlur={handleBlur} name='representativefirstName' value={formData.representativefirstName} onChange={handleChange} />
                 </div>
               </div>
               <div>
@@ -1432,7 +1450,7 @@ export const EditPan = () => {
               <div>
                 <div>
                   <p>Zip Code<i>*</i></p>
-                  <input type="number" placeholder='Zip Code' required name='representativezipCode' value={formData.representativezipCode} onChange={handleChange} />
+                  <input type="text" maxLength={6} placeholder='Zip Code' required name='representativezipCode' value={formData.representativezipCode} onChange={handleChange} />
                 </div>
                 <div>
                   <p>Country<i>*</i></p>
@@ -1532,7 +1550,7 @@ export const EditPan = () => {
             <p style={{ backgroundColor: formEdit ? '#00aeff' : null, color: 'rgb(59, 59, 59)', cursor: 'pointer' }} onClick={handleEdit}>{formEdit ? 'EDIT' : 'SAVE'}</p>
             {formEdit ? <button type='submit'>SUBMIT</button> : null}
           </div>
-        </form>:<Button onClick={()=>navigate('/Dashboard')} h={'50px'} display={'block'} bg={'blue.300'} w={['80%','60%','40%']} m={'auto'}>DashBoard</Button>}
+        </form> : <Button onClick={() => navigate('/Dashboard')} h={'50px'} display={'block'} bg={'blue.300'} w={['80%', '60%', '40%']} m={'auto'}>DashBoard</Button>}
       </div>
 
       <div><Footer /></div>

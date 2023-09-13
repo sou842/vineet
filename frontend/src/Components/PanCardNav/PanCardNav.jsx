@@ -7,9 +7,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 export const PanCardNav = () => {
-    //    ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-         const baseURL=process.env.REACT_APP_BASE_URL
-//   ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+    const baseURL=process.env.REACT_APP_BASE_URL
     const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
     const [balance, setBalance] = useState(0);
     // const [isSmallerThan1150] = useMediaQuery("(max-width: 1150px)")
@@ -165,7 +163,7 @@ export const PanCardNav = () => {
                             </a>
                         </div>
                         <div>
-                            <a href="#">
+                            <a href="https://tin.tin.nsdl.com/pantan/StatusTrack.html">
                                 <p>Check Pan Status</p>
                             </a>
                         </div>
