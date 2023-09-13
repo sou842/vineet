@@ -16,6 +16,7 @@ export const AdminUser = () => {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
 
+
     const handelSearch = () => {
         setLoading(true)
         axios.get(`${baseURL}/admin/user?${type}=${search}`, {
@@ -72,7 +73,7 @@ export const AdminUser = () => {
 
                 <Box w={'100%'} display={'flex'} flexDirection={['column', 'row', 'row']} justifyContent={'space-between'} mt={'15px'}>
                     <Box w={['100%', '40%', '35%']} >
-                        <select style={{ padding: '12px',height:'45px', border: '1px solid grey', borderRadius: '10px', fontSize: '14px', }} onChange={(e) => { setType(e.target.value) }}>
+                        <select style={{ padding: '12px', height: '45px', border: '1px solid grey', borderRadius: '10px', fontSize: '14px', }} onChange={(e) => { setType(e.target.value) }}>
                             <option value={""}>Select Option</option>
                             <option value={'aadharNumber'}>By Aadhaar</option>
                             <option value={'email'}>By Email</option>
