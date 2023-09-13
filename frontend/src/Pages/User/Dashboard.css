@@ -29,16 +29,16 @@
 .dashboard_2 > div{
     padding: 15px 10px;
     text-align: center;
-    /* background-color: rgb(10, 156, 248); */
-    /* border: 1.4px solid #0091EA; */
     background-color: #00aeff;
     border: 1.4px solid #00aeff;
-    color: rgb(37, 37, 37);
+    color: whitesmoke;
+    font-weight: bold;
     border-radius: 10px;
     transition: 0.4s ease;
 }
 .dashboard_2 > div:hover{
     background-color:  #ffffffd3;
+    color: grey;
 }
 .dashboard_2 > div > a > p{
     font-size: 16px;

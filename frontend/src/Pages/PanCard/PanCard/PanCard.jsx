@@ -1,14 +1,7 @@
+import { ModalOverlay, Modal, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure, Button, Heading, Box } from "@chakra-ui/react";
 import "./PanCard.css";
 import { useNavigate } from "react-router-dom";
 import { PanCardNav } from "../../../Components/PanCardNav/PanCardNav";
-import {
-  ModalOverlay, Modal,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton, useDisclosure, Button, Heading, Box
-} from "@chakra-ui/react";
 import { useEffect } from "react";
 import axios from "axios";
 import { Footer } from "../../../Components/Footer/Footer";
@@ -24,12 +17,12 @@ export const PanCard = () => {
   }
 
 
-
-
-
   useEffect(() => {
     onOpen()
   }, [])
+
+
+
   return (
     <div>
       <div>

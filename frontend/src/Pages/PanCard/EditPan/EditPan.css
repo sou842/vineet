@@ -5,7 +5,7 @@
 /* form_details_1 */
 .form_details_1{
     border: 1px solid red;
-    width: 70%;
+    width: 60%;
     margin: 1cm auto;
 }
 .form_details_1 table {
@@ -39,9 +39,9 @@
 .editpan_2{
     background-color: rgba(242, 242, 242, 0.847);
     border-radius: 20px;
-    width: 80%;
-    margin: 1cm auto;
-    padding: 20px 20px;
+    width: 60%;
+    margin: 0.5cm auto;
+    padding: 10px 20px;
 }
 .editpan_2 > div{
     display: flex;

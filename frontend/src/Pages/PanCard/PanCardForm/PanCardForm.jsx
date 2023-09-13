@@ -133,7 +133,12 @@ export const PanCardForm = () => {
     }
     else if (name == 'zipCode') {
       if (isNaN(value) == false) setFormData((prevData) => ({ ...prevData, ['zipCode']: value }))
-
+    }
+    else if (name == 'representativezipCode') {
+      if (isNaN(value) == false) setFormData((prevData) => ({ ...prevData, ['representativezipCode']: value }))
+    }
+    else if (name == 'officezipCode') {
+      if (isNaN(value) == false) setFormData((prevData) => ({ ...prevData, ['officezipCode']: value }))
     }
     else if (name == 'aadhaarNumber') {
       if (isNaN(value) == false) setFormData((prevData) => ({ ...prevData, ['aadhaarNumber']: value }))
@@ -280,16 +285,16 @@ export const PanCardForm = () => {
                 </select>
               </div>
               <div>
-                <p>First name<i>*</i></p>
-                <input type="text" placeholder='First Name' onBlur={handleBlur} required name='firstName' value={formData.firstName} onChange={handleChange} />
+                <p>Last Name<i>*</i></p>
+                <input type="text" placeholder='Last Name' onBlur={handleBlur} required name='lastName' value={formData.lastName} onChange={handleChange} />
               </div>
               <div>
                 <p>Middle Name</p>
                 <input type="text" placeholder='Middle Name' onBlur={handleBlur} name='middleName' value={formData.middleName} onChange={handleChange} />
               </div>
               <div>
-                <p>Last Name<i>*</i></p>
-                <input type="text" placeholder='Last Name' onBlur={handleBlur} required name='lastName' value={formData.lastName} onChange={handleChange} />
+                <p>First name</p>
+                <input type="text" placeholder='First Name' onBlur={handleBlur} name='firstName' value={formData.firstName} onChange={handleChange} />
               </div>
             </div>
             <div>
@@ -365,16 +370,16 @@ export const PanCardForm = () => {
                 </select>
               </div>
               <div>
-                <p>Father's First Name<i>*</i></p>
-                <input type="text" required placeholder='first Name' name='father_FName' value={formData.father_FName} onChange={handleChange} />
+                <p>Father's Last Name<i>*</i></p>
+                <input type="text" required placeholder='last Name' name='father_LName' value={formData.father_LName} onChange={handleChange} />
               </div>
               <div>
                 <p>Father's Middle Name</p>
                 <input type="text" placeholder='middle Name' name='father_MName' value={formData.father_MName} onChange={handleChange} />
               </div>
               <div>
-                <p>Father's Last Name<i>*</i></p>
-                <input type="text" required placeholder='last Name' name='father_LName' value={formData.father_LName} onChange={handleChange} />
+                <p>Father's First Name</p>
+                <input type="text" placeholder='first Name' name='father_FName' value={formData.father_FName} onChange={handleChange} />
               </div>
             </div>
           </div> : null}
@@ -632,7 +637,7 @@ export const PanCardForm = () => {
             <div>
               <div>
                 <p>Zip Code<i>*</i></p>
-                <input type="number" placeholder='Zip Code' required name='representativezipCode' value={formData.representativezipCode} onChange={handleChange} />
+                <input type="text" maxLength={6} placeholder='Zip Code' required name='representativezipCode' value={formData.representativezipCode} onChange={handleChange} />
               </div>
               <div>
                 <p>Country<i>*</i></p>
@@ -836,7 +841,7 @@ export const PanCardForm = () => {
             <div>
               <div>
                 <p>Office's Zip Code<i>*</i></p>
-                <input type="number" placeholder='Zip Code' required name='officezipCode' value={formData.officezipCode} onChange={handleChange} />
+                <input type="text" maxLength={6} placeholder='Zip Code' required name='officezipCode' value={formData.officezipCode} onChange={handleChange} />
               </div>
               <div>
                 <p>Office's Country<i>*</i></p>
@@ -859,7 +864,7 @@ export const PanCardForm = () => {
               </div>
               <div>
                 <p>Telephone/Mobile number<i>*</i></p>
-                <input type="number" placeholder='Telephone/Mobile number' required name='telephoneNumber' value={formData.telephoneNumber} onChange={handleChange} />
+                <input type="text" maxLength={10} placeholder='Telephone/Mobile number' required name='telephoneNumber' value={formData.telephoneNumber} onChange={handleChange} />
               </div>
               <div>
                 <p>Email Id<i>*</i></p>
@@ -1018,7 +1023,7 @@ export const PanCardForm = () => {
             <div>
               <div>
                 <p>Zip Code<i>*</i></p>
-                <input type="number" placeholder='Zip Code' required name='representativezipCode' value={formData.representativezipCode} onChange={handleChange} />
+                <input type="text" maxLength={6} placeholder='Zip Code' required name='representativezipCode' value={formData.representativezipCode} onChange={handleChange} />
               </div>
               <div>
                 <p>Country<i>*</i></p>

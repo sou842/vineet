@@ -10,9 +10,7 @@ import { differenceInYears } from 'date-fns';
 
 
 export const PanUpdateUploadEdit = () => {
-    //   ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-        const baseURL=process.env.REACT_APP_BASE_URL
-//     ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+    const baseURL = process.env.REACT_APP_BASE_URL
     const portalData = JSON.parse(localStorage.getItem('digitalPortal')) || null;
     const navigate = useNavigate()
     const toast = useToast()
@@ -25,7 +23,7 @@ export const PanUpdateUploadEdit = () => {
     const [formData, setFormData] = useState();
 
     const age_month = { "January": "1", "February": "2", "March": "3", "April": "4", "May": "5", "June": "6", "July": "7", "August": "8", "September": "9", "October": "10", "November": "11", "December": "12" }
-    const birthdate = new Date(`${formData&&formData.yearOfBirth}-${age_month[formData&&formData.monthOfBirth]}-${formData&&formData.dateOfBirth}`)
+    const birthdate = new Date(`${formData && formData.yearOfBirth}-${age_month[formData && formData.monthOfBirth]}-${formData && formData.dateOfBirth}`)
     const age = differenceInYears(new Date(), birthdate);
 
 
@@ -71,13 +69,29 @@ export const PanUpdateUploadEdit = () => {
         }
         if (name == 'firstName' || name == 'middleName' || name == 'lastName' || name == 'father_FName' || name == 'father_MName' || name == 'father_LName') {
             setFormData((prevData) => ({ ...prevData, [name]: value.charAt(0).toUpperCase() + value.slice(1) }));
-        } else {
+        }
+        else if (name == 'zipCode') {
+            if (isNaN(value) == false) setFormData((prevData) => ({ ...prevData, ['zipCode']: value }))
+        }
+        else if (name == 'representativezipCode') {
+            if (isNaN(value) == false) setFormData((prevData) => ({ ...prevData, ['representativezipCode']: value }))
+        }
+        else if (name == 'officezipCode') {
+            if (isNaN(value) == false) setFormData((prevData) => ({ ...prevData, ['officezipCode']: value }))
+        }
+        else if (name == 'aadhaarNumber') {
+            if (isNaN(value) == false) setFormData((prevData) => ({ ...prevData, ['aadhaarNumber']: value }))
+        }
+        else if (name == 'telephoneNumber') {
+            if (isNaN(value) == false) setFormData((prevData) => ({ ...prevData, ['telephoneNumber']: value }))
+        }
+        else {
             setFormData((prevData) => ({ ...prevData, [name]: value }));
             // setFormData((prevData) => ({ ...prevData, ['ageOfTheUser']: age }));
 
         }
     }
-// /pan-update/
+    // /pan-update/
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -110,9 +124,9 @@ export const PanUpdateUploadEdit = () => {
             setCorrection_section_5(data.data.correction_section_5)
 
         })
-        .catch((err) => {
-            console.log(err)
-        })
+            .catch((err) => {
+                console.log(err)
+            })
 
     }, [age])
 
@@ -164,16 +178,16 @@ export const PanUpdateUploadEdit = () => {
                                     </select>
                                 </div>
                                 <div>
-                                    <p>First name<i>*</i></p>
-                                    <input type="text" placeholder='First Name' onBlur={handleBlur} required name='firstName' value={formData.firstName} onChange={handleChange} />
+                                    <p>Last Name<i>*</i></p>
+                                    <input type="text" placeholder='Last Name' onBlur={handleBlur} required name='lastName' value={formData.lastName} onChange={handleChange} />
                                 </div>
                                 <div>
                                     <p>Middle Name</p>
                                     <input type="text" placeholder='Middle Name' onBlur={handleBlur} name='middleName' value={formData.middleName} onChange={handleChange} />
                                 </div>
                                 <div>
-                                    <p>Last Name<i>*</i></p>
-                                    <input type="text" placeholder='Last Name' onBlur={handleBlur} required name='lastName' value={formData.lastName} onChange={handleChange} />
+                                    <p>First name</p>
+                                    <input type="text" placeholder='First Name' onBlur={handleBlur} name='firstName' value={formData.firstName} onChange={handleChange} />
                                 </div>
                             </div>
                             <div>
@@ -259,16 +273,16 @@ export const PanUpdateUploadEdit = () => {
                                     </select>
                                 </div>
                                 <div>
-                                    <p>Father's First Name<i>*</i></p>
-                                    <input type="text" required placeholder='first Name' name='father_FName' value={formData.father_FName} onChange={handleChange} />
+                                    <p>Father's Last Name<i>*</i></p>
+                                    <input type="text" required placeholder='last Name' name='father_LName' value={formData.father_LName} onChange={handleChange} />
                                 </div>
                                 <div>
                                     <p>Father's Middle Name</p>
                                     <input type="text" placeholder='middle Name' name='father_MName' value={formData.father_MName} onChange={handleChange} />
                                 </div>
                                 <div>
-                                    <p>Father's Last Name<i>*</i></p>
-                                    <input type="text" required placeholder='last Name' name='father_LName' value={formData.father_LName} onChange={handleChange} />
+                                    <p>Father's First Name</p>
+                                    <input type="text" placeholder='first Name' name='father_FName' value={formData.father_FName} onChange={handleChange} />
                                 </div>
                             </div>
                         </div>

@@ -36,7 +36,8 @@
     text-align: center;
     background-color: #00aeff;
     border: 1.4px solid #00aeff;
-    color: rgb(30, 30, 30);
+    color: whitesmoke;
+    font-weight: bold;
     border-radius: 10px;
     transition: 0.4s ease;
 }
@@ -44,7 +45,8 @@
     font-size: 15px;
 }
 .newPanCardAllState_2 > div:hover{
-    background-color: white
+    background-color: white;
+    color: grey;
 }
 
 @media screen and (min-width:0px) and (max-width:1000px){

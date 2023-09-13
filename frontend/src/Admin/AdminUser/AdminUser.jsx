@@ -23,7 +23,7 @@ export const AdminUser = () => {
         })
             .then((res) => {
                 setLoading(false)
-                setSearch("")
+                // setSearch("")
                 setUserData(res.data)
             })
             .catch((err) => {
@@ -70,18 +70,19 @@ export const AdminUser = () => {
             <Box w={['95%', '90%', '90%']} m={'auto'} pt={'10px'} pb={'1cm'}>
 
 
-                <Box mt={'10px'} mb={'15px'} display={'flex'} flexDirection={'row-reverse'}>
-
-                    <Box w={['90%', '60%', '40%']} display={'flex'} alignItems={'center'} border={'1px solid red'}>
-                        <Select onChange={(e) => { setType(e.target.value) }}>
+                <Box w={'100%'} display={'flex'} flexDirection={['column', 'row', 'row']} justifyContent={'space-between'} mt={'15px'}>
+                    <Box w={['100%', '40%', '35%']} >
+                        <select style={{ padding: '12px',height:'45px', border: '1px solid grey', borderRadius: '10px', fontSize: '14px', }} onChange={(e) => { setType(e.target.value) }}>
                             <option value={""}>Select Option</option>
                             <option value={'aadharNumber'}>By Aadhaar</option>
                             <option value={'email'}>By Email</option>
                             <option value={'vendorID'}>By VendorID</option>
                             <option value={'name'}>By User Name</option>
-                        </Select>
-                        <input style={{ width: '100%', border: '1.2px solid grey', borderRadius: '10px', padding: '10px' }} onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Search.." value={search} />
-                        <Button color={'whiteAlpha.900'} bg={'blue.400'} onClick={handelSearch}>Search</Button>
+                        </select>
+                    </Box>
+                    <Box w={['100%', '55%', '40%']} display={"flex"}>
+                        <input style={{ width: '100%', height: '45px', border: '1.2px solid grey', borderRadius: '10px', padding: '10px' }} onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Search.." value={search} />
+                        <Button color={'whiteAlpha.900'} h={'45px'} ml={'7px'} bg={'blue.400'} onClick={handelSearch}>Search</Button>
                     </Box>
                 </Box>
 
