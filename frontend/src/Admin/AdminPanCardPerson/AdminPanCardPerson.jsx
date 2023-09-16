@@ -38,10 +38,7 @@ export const AdminPanCardPerson = () => {
       headers: { "Authorization": portalData.token }
     })
       .then((res) => {
-        toast({
-          title: res.data,
-          status: 'success',
-          duration: 5000,
+        toast({          title: res.data,          status: 'success',          duration: 5000,
           isClosable: true,
           position: 'top-center',
         })
