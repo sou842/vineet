@@ -76,7 +76,7 @@ export const AllRouter = () => {
             <Route path={'/AdminUser'} element={<AdminUser />}></Route>
             <Route path={'/AdminUser/AminPerson/:id'} element={<AminPerson />}></Route>
             <Route path={'/AdminPanCard'} element={<AdminPanCard />}></Route>
-            <Route path={'/AdminPanCard/AdminPanCardPerson/:id'} element={<AdminPanCardPerson />}></Route>
+            <Route path={'/AdminPanCard/AdminPanCardPerson/:props'} element={<AdminPanCardPerson />}></Route>
             <Route path={'/admin/login'} element={<Login />}></Route>
             <Route path={'/user/PanCardCompleted'} element={portalData ? <PanCardCompleted /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/UpdatePancard'} element={portalData ? <UpdatePancard /> : <Navigate to={'/Signin'} />}></Route>

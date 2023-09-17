@@ -132,7 +132,7 @@ export const AdminPanCard = () => {
                                     </Thead>
                                     <Tbody>
                                         {pan?.map((ele, index) => (
-                                            <Tr key={index} fontSize={['12px', '13px', '14px']} onClick={() => navigate(`/AdminPanCard/AdminPanCardPerson/${ele._id}`)} cursor={'pointer'}>
+                                            <Tr key={index} fontSize={['12px', '13px', '14px']} onClick={() => navigate(`/AdminPanCard/AdminPanCardPerson/newpan-${ele._id}`)} cursor={'pointer'}>
                                                 <Td w={'70px'}>{index + 1}</Td>
                                                 <Td>{ele.category}</Td>
                                                 {ele.category == 'Individual' ?

@@ -7,12 +7,13 @@ import { Box, Image, useMediaQuery, useToast, Button } from '@chakra-ui/react'
 
 
 export const AdminPanCardPerson = () => {
-  //########################################
   const baseurl = process.env.REACT_APP_BASE_URL
-  //########################################
   const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)")
   const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
-  const { id } = useParams()
+  const { props } = useParams()
+  const category = props.split('-')[0]
+  const id = props.split('-')[1]
+
   const [formData, setFormData] = useState();
   const [document, setDocument] = useState(null);
   const [pdf, setPdf] = useState("")
@@ -38,9 +39,8 @@ export const AdminPanCardPerson = () => {
       headers: { "Authorization": portalData.token }
     })
       .then((res) => {
-        toast({          title: res.data,          status: 'success',          duration: 5000,
-          isClosable: true,
-          position: 'top-center',
+        toast({
+          title: res.data, status: 'success', duration: 5000, isClosable: true, position: 'top-center',
         })
         toast({ title: res.data, status: 'success', duration: 5000, isClosable: true, position: 'top-center', })
         navigate("/AdminPanCard")
@@ -67,11 +67,11 @@ export const AdminPanCardPerson = () => {
 
 
   useEffect(() => {
-    axios.get(`${baseurl}/admin/individual-pan/${id}`, {
+    axios.get(`${baseurl}/admin/individual-pan?category=${category}&id=${id}`, {
       headers: { "Authorization": portalData.token }
     })
       .then((res) => {
-        // console.log(res.data)
+        console.log(res.data)
         setFormData(res.data.pans);
         setDocument(res.data.docs)
         setIscomplete(res.data.panStatus == "completed")
