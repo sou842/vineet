@@ -41,6 +41,7 @@ import { MobileRechargeTransaction } from '../../Pages/MobileRechargeTransaction
 import { DTHRechargeTransaction } from '../../Pages/DTHRechargeTransaction/DTHRechargeTransaction.jsx';
 import { AdminMobile } from '../../Admin/AdminMobile/AdminMobile';
 import { AdminDTH } from '../../Admin/AdminDTH/AdminDTH';
+import AdminNotifications from '../../Admin/AdminNotifications/AdminNotifications';
 
 
 
@@ -92,6 +93,7 @@ export const AllRouter = () => {
             <Route path={'/DTHRechargeTransaction'} element={portalData ? <DTHRechargeTransaction /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/AdminMobile'} element={portalData ? <AdminMobile /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/AdminDTH'} element={portalData ? <AdminDTH /> : <Navigate to={'/Signin'} />}></Route>
+            <Route path={'/Admin-notifications'} element={portalData ? <AdminNotifications /> : <Navigate to={'/Signin'} />}></Route>
 
 
         </Routes>

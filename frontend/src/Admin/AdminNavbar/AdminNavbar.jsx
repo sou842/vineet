@@ -12,21 +12,23 @@ import {
   useToast
 } from "@chakra-ui/react";
 import { AuthorContext } from "../../Components/AllContext/AllContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./AdminNavbar.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const AdminNavbar = ({ value }) => {
+  //########################################
+  const baseURL=process.env.REACT_APP_BASE_URL
+  //########################################
   const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
   const adminData = JSON.parse(localStorage.getItem("VDPadmin")) || null;
   const { side, setSide } = useContext(AuthorContext);
   const navigate = useNavigate();
   const toast = useToast()
+  const [count,setCount]=useState(0)
 
   const handelAdminLogout = () => {
-    //########################################
-    const baseurl = process.env.REACT_APP_BASE_URL
-    //########################################
     localStorage.removeItem("VDPadmin")
     toast({
       title: 'Logout Succesfull',
@@ -37,6 +39,36 @@ export const AdminNavbar = ({ value }) => {
     })
     window.location = "/"
   }
+
+
+  useEffect(()=>{
+    
+        axios.get(`${baseURL}/admin/notification-count`,{
+            headers: { "Authorization": portalData.token }
+        }).then((res)=>{
+            
+            setCount(res.data.count)
+        })
+        .catch((err)=>{
+           
+            toast({ title: "Please Try Again", status: "error", duration: 3000, isClosable: true, })
+            console.log(err);
+        })
+    
+    },[])
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div>
@@ -56,8 +88,16 @@ export const AdminNavbar = ({ value }) => {
           {value && (<Image onClick={() => setSide(!side)} cursor={"pointer"} w={"30px"} h={"30px"} src={"https://cdn-icons-png.flaticon.com/128/1828/1828859.png"} />)}
           <Text fontSize={"20px"} fontWeight={"bold"} ml={"10px"} color={"blue.400"} onClick={() => navigate("/AdminDash")} cursor={"pointer"} >Hi,{adminData.adminName}</Text>
         </Box>
-        <Box display={"flex"} gap={"10px"}>
+        <Box display={"flex"} gap={"10px"} >
+          <Box>
+
+          <a href="/Admin-notifications" class="notification">
           <img width={"30px"} height={"30px"} src="https://cdn-icons-png.flaticon.com/128/646/646094.png" alt="" />
+
+  <span class="badge">{count}</span>
+</a>
+
+          </Box>
           <Menu>
             <MenuButton>
               <Avatar color={"black"} bg="#00aeff" size={["sm"]} name={portalData && portalData.username.match(/\b\w/g).join("").toUpperCase()} src={portalData && portalData.avatar} /></MenuButton>
