@@ -7,7 +7,9 @@ import { Box, Image, useMediaQuery, useToast, Button } from '@chakra-ui/react'
 
 
 export const AdminPanCardPerson = () => {
+  //########################################
   const baseurl = process.env.REACT_APP_BASE_URL
+  //########################################
   const [isSmallerThan1000] = useMediaQuery("(max-width: 1000px)")
   const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
   const { id } = useParams()
@@ -20,8 +22,6 @@ export const AdminPanCardPerson = () => {
 
   const navigate = useNavigate()
   const toast = useToast()
-
-
   const handelSubmit = (e) => {
     e.preventDefault()
 
@@ -31,31 +31,48 @@ export const AdminPanCardPerson = () => {
     receiptData.append('acknowledgement', formData.acknowledgement)
     receiptData.append('slipGenerateDate', formData.slipGenerateDate)
 
+
+
+    console.log();
     axios.patch(`${baseurl}/admin/user/status-change/${id}`, receiptData, {
       headers: { "Authorization": portalData.token }
     })
       .then((res) => {
+        toast({          title: res.data,          status: 'success',          duration: 5000,
+          isClosable: true,
+          position: 'top-center',
+        })
         toast({ title: res.data, status: 'success', duration: 5000, isClosable: true, position: 'top-center', })
         navigate("/AdminPanCard")
+
       })
       .catch((err) => {
-        toast({ title: "Try again somthing went wrong!", status: 'error', duration: 5000, isClosable: true, position: 'top-center', })
+        toast({
+          title: "Try again somthing went wrong!",
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+          position: 'top-center',
+        })
         console.log(err);
       })
+
   }
 
   const handelChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+
   }
 
 
+
   useEffect(() => {
-    axios.get(`${baseurl}/admin/individual-pan?category=newpancard&id=${id}`, {
+    axios.get(`${baseurl}/admin/individual-pan/${id}`, {
       headers: { "Authorization": portalData.token }
     })
       .then((res) => {
-        console.log(res.data)
-        setFormData(res.data.pans)
+        // console.log(res.data)
+        setFormData(res.data.pans);
         setDocument(res.data.docs)
         setIscomplete(res.data.panStatus == "completed")
       })
