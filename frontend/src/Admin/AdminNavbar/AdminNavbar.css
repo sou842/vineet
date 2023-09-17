@@ -17,3 +17,25 @@
 .AdminNavbar_1 > div >a> img{
     width: 70px;
 }
+
+
+.notification {
+    color: white;
+    text-decoration: none;
+    padding: 7px;
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+   
+  }
+  
+ 
+  .notification .badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 2px 9px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+  }
