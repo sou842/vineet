@@ -17,14 +17,14 @@ const [loading,setLoading]=useState(false)
 
 
 
-const handelClick=(id,isSeen,category)=>{
+const handelClick=(id,isSeen,category,pancardID)=>{
     if(!isSeen){
         setLoading(true)
         axios.patch(`${baseURL}/admin/notification/${id}`,{
         headers: { "Authorization": portalData.token }
     }).then((res)=>{
         setLoading(false)
-       navigate(`/AdminPanCard/AdminPanCardPerson/${category}-${id}`)
+       navigate(`/AdminPanCard/AdminPanCardPerson/${category}-${pancardID}`)
     })
     .catch((err)=>{
         setLoading(false)
@@ -34,7 +34,7 @@ const handelClick=(id,isSeen,category)=>{
 
     }
     else{
-        navigate(`/AdminPanCard/AdminPanCardPerson/${category}-${id}`)
+        navigate(`/AdminPanCard/AdminPanCardPerson/${category}-${pancardID}`)
     }
 
     
@@ -82,7 +82,7 @@ setLoading(true)
            
             {
                 data && data?.map((el,i)=>{
-                        return <Box key={i}  p={'15px'} borderBottom={'1px solid #E0E0E0'} cursor={'pointer'} _hover={{bg:'#F5F5F5'}} onClick={()=>handelClick(el._id,el.isSeen,el.category)}>
+                        return <Box key={i}  p={'15px'} borderBottom={'1px solid #E0E0E0'} cursor={'pointer'} _hover={{bg:'#F5F5F5'}} onClick={()=>handelClick(el._id,el.isSeen,el.category,el.pancardID)}>
                             <Box display={'flex'} justifyContent={'space-between'} >
                                 <Text p={'1px 7px'} bg={el.category=="newpan"?"green.400":"orange.400"} color={'white'} borderRadius={'7px'}  >{el.category}</Text>
                                 <Text color={'gray'}>{el.dateAndTime||"2023-Sep-17 11:34:13 PM"}</Text>
