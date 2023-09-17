@@ -39,14 +39,14 @@ export const PanCard = () => {
       </div> */}
 
       <div className="pancard_2">
-        <div><a target='_blank' onClick={handleForm49A} href={form49A} download="form49A" ><p>New Pan Form Download</p></a></div>
-        <div><a href="#"><p>Update Pan Form Download</p></a></div>
+        <div  style={{backgroundColor:'#38A169', border:'1px solid #38A169'}}><a target='_blank' onClick={handleForm49A} href={form49A} download="form49A" ><p>New Pan Form Download</p></a></div>
+        <div style={{backgroundColor:'#38A169', border:'1px solid #38A169'}}><a href="#"><p>Update Pan Form Download</p></a></div>
         <div><a href="/NewPanCard"><p>New Pan Card</p></a></div>
         <div><a href="/UpdatePancard"><p>Update Pan Card</p></a></div>
         <div><a href="#"><p>Upload Pan Docs</p></a></div>
         <div><a href="#"><p>Cancel Pan Card</p></a></div>
         <div><a href="#"><p>Complete All PanCard</p></a></div>
-        <div><a href="#"><p>Check Pan Status</p></a></div>
+        <div><a href="https://tin.tin.nsdl.com/pantan/StatusTrack.html"><p>Check Pan Status</p></a></div>
         <div><a href="#"><p>Link Aadhar to Pan</p></a></div>
         <div><a href="#"><p>Download E-Pan</p></a></div>
         <div><a href="#"><p>Download Slip By Acknow</p></a></div>

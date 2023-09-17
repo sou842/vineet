@@ -13,10 +13,10 @@ return (
 
         <div>
             <div className="privacy_0">
-                <h1>Privacy Policy for Vineet India Portal</h1>
-                <p>At www.digitalindiaportal.co.in, accessible from www.Vineetindiaportal.co.in, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by www.digitalindiaportal.co.in and how we use it.</p>
+                <h1>Privacy Policy for Smart Digital Service</h1>
+                <p>At www.smartdigitalservice.in/, accessible from www.Vineetindiaportal.co.in, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by www.smartdigitalservice.in/ and how we use it.</p>
                 <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
-                <p>This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in www.digitalindiaportal.co.in. This policy is not applicable to any information collected offline or via channels other than this website.</p>
+                <p>This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in www.smartdigitalservice.in/. This policy is not applicable to any information collected offline or via channels other than this website.</p>
             </div>
 
             <div className="privacy_0">

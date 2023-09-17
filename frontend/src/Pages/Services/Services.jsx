@@ -53,7 +53,7 @@ return (
                 </div>
             </div>
             <div className='services_2'>
-                <p>We request you to also take advantage of other facilities provided by Digital India Portal like Pan Card, Electricity Bill Payment, Mobile Recharge, DTH Recharge, GST Registration, ITR Filing and we assure you that in future Digital India Portal will provide you more facilities Thank you for staying connected with Digital India Portal</p>
+                <p>We request you to also take advantage of other facilities provided by Smart Digital Service like Pan Card, Electricity Bill Payment, Mobile Recharge, DTH Recharge, GST Registration, ITR Filing and we assure you that in future Smart Digital Service will provide you more facilities Thank you for staying connected with Smart Digital Service</p>
             </div>
         </div>
 
