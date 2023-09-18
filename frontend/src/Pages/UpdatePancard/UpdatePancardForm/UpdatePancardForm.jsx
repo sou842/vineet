@@ -21,7 +21,8 @@ export const UpdatePancardForm = () => {
 
     const { catagory } = useParams();
     const now = new Date();
-    let currentDate = date.format(now, 'YYYY-MMM-DD');
+    let currentDate = date.format(new Date(), 'YYYY-MMM-DD');
+    let currentTime = date.format(new Date(), 'hh:mm:ss A');
     const navigate = useNavigate()
     const toast = useToast()
 
@@ -29,7 +30,7 @@ export const UpdatePancardForm = () => {
 
     const [formData, setFormData] = useState({
         category: catagory.split('-')[0],
-        date: currentDate,
+        date: currentDate+' '+currentTime,
 
         firstName: '',
         middleName: '',
@@ -120,7 +121,6 @@ export const UpdatePancardForm = () => {
 
         }
 
-        console.log()
     }
 
     const handleBlur = () => {

@@ -25,15 +25,15 @@ export const UpdatePanEdit = () => {
 
     const catagory = VDP_form_data.category
     const now = new Date();
-    let currentDate = date.format(now, 'YYYY-MMM-DD');
+    let currentDate = date.format(new Date(), 'YYYY-MMM-DD');
+    let currentTime = date.format(new Date(), 'hh:mm:ss A');
     const navigate = useNavigate()
     const toast = useToast()
 
 
     const [formData, setFormData] = useState({
         category: catagory.split('-')[0],
-        date: currentDate,
-
+        date: currentDate+' '+currentTime,
         firstName: '',
         middleName: '',
         lastName: '',
