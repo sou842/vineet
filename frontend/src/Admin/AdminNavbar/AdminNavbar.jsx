@@ -48,7 +48,7 @@ export const AdminNavbar = ({ value }) => {
         <Box display={"flex"} gap={"5px"} >
           <Box display={'flex'} cursor={'pointer'} onClick={() => navigate('/Admin-notifications')}>
             <img width={"30px"} height={"30px"} src="https://cdn-icons-png.flaticon.com/128/646/646094.png" alt="" />
-            <Box h={'80%'} position={'relative'} top={'-7px'} left={'-10px'} bg={'red'} display={'flex'} justifyContent={'flex'} alignItems={'center'} fontSize={'12px'} color={'whiteAlpha.900'} p={'0px 5px'} borderRadius={'50%'}>{count}</Box>
+            <Box h={'80%'} position={'relative'} top={'-7px'} left={'-10px'} bg={'red'} display={'flex'} justifyContent={'flex'} alignItems={'center'} fontSize={'12px'} color={'whiteAlpha.900'} p={'0px 6px'} borderRadius={'50%'}>{count}</Box>
           </Box>
           <Menu>
             <MenuButton>

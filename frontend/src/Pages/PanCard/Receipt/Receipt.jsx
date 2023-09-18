@@ -1,18 +1,4 @@
-import {
-  Box,
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Th,
-  Tr,
-  Thead,
-  Spinner,
-  Text,
-  Button,
-  Grid,
-  useToast,
-} from "@chakra-ui/react";
+import { Box, Table, TableContainer, Tbody, Td, Th, Tr, Thead, Spinner, Text, Button, Grid, useToast, } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { PanCardNav } from "../../../Components/PanCardNav/PanCardNav";
@@ -20,9 +6,7 @@ import { Footer } from "../../../Components/Footer/Footer.jsx";
 import { Navigate } from "react-router-dom";
 
 const Receipt = () => {
-  //     ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
   const baseURL = process.env.REACT_APP_BASE_URL
-  // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
   const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
   const [pdfData, setPdfData] = useState({ PDF: "", panID: "" });
   const [cat, setCat] = useState("newPancard");
@@ -36,8 +20,8 @@ const Receipt = () => {
 
 
     axios.get(`${baseURL}/user/recipt-download/${id}`, {
-        headers: { Authorization: portalData.token },
-      })
+      headers: { Authorization: portalData.token },
+    })
       .then((res) => {
 
         window.open(`${baseURL}/${res.data || "receiptPdf_1692902532435List.pdf"}`, "_blank")
@@ -73,26 +57,14 @@ const Receipt = () => {
 
       <Box w={"85%"} m={"0.5cm auto 0 auto"}>
         <Box w={"230px"}>
-          <select
-            onChange={(e) => {
-              setCat(e.target.value);
-              setPage(1);
-            }}
-            style={{ borderRadius: "20px", padding: "7px", color: "grey" }}
-          >
+          <select onChange={(e) => { setCat(e.target.value); setPage(1); }} style={{ borderRadius: "20px", padding: "7px", color: "grey" }} >
             <option value="newPancard">NEW PANCARD</option>
             <option value="updatePancard">UPDATE PANCARD</option>
           </select>
         </Box>
       </Box>
 
-      <Box
-        w={"100%"}
-        minH={"60vh"}
-        display={"flex"}
-        justifyContent={"center"}
-        alignItems={"center"}
-      >
+      <Box w={"100%"} minH={"60vh"} display={"flex"} justifyContent={"center"} alignItems={"center"}      >
         {loading ? (
           <Box display={"flex"} justifyContent={"center"} mt={"2cm"} mb={"2cm"}>
             <Spinner color="#00aeff" />
@@ -103,18 +75,7 @@ const Receipt = () => {
               <Box textAlign={"center"}>NO DATA FOUND</Box>
             ) : null}
 
-            <Grid
-              templateColumns={[
-                "repeat(1, 1fr)",
-                "repeat(1, 1fr)",
-                "repeat(2, 1fr)",
-                "repeat(3, 1fr)",
-                "repeat(3, 1fr)",
-              ]}
-              gap={["10px", "15px"]}
-              w={"95%"}
-              m={"0 auto 1cm auto"}
-            >
+            <Grid templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)", "repeat(3, 1fr)",]} gap={["10px", "15px"]} w={"95%"} m={"0 auto 1cm auto"}            >
               {pans?.map((ele, index) => (
                 <Box
                   key={index}
@@ -134,7 +95,7 @@ const Receipt = () => {
                     mt={"10px"}
                     mb={"15px"}
                   >
-                    {ele.category.toUpperCase()}
+                    {ele.category&&ele.category.toUpperCase()}
                   </Box>
                   <Box w={"90%"} m={"auto"}>
                     {ele.category == "Individual" ? (
