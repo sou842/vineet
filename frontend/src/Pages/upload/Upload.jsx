@@ -27,7 +27,7 @@ const Upload = () => {
             setLoading(false)
             setPans(res.data.data)
             setCount(res.data.count)
-            //console.log(res.data);
+            console.log(res.data);
         }).catch((err) => {
             setLoading(false)
             console.log(err);
