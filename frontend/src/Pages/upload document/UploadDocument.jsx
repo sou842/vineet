@@ -5,10 +5,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const UploadDocument = () => {
-   //  ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-   const baseURL=process.env.REACT_APP_BASE_URL
-   //  ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-  const { id } = useParams();
+  const baseURL = process.env.REACT_APP_BASE_URL
+  const { props } = useParams();
+  const category = props.split('-')[0]
+  const id = props.split('-')[1]
   const toast = useToast();
   const portalData = JSON.parse(localStorage.getItem("digitalPortal")) || null;
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ const UploadDocument = () => {
   };
 
   const handelConfirmUpload = () => {
-     
+
     if (year != pans.yearOfBirth || year == "") {
       toast({ title: "You Are Enter wrong year of birth", status: "error", duration: 3000, isClosable: true, position: "top", });
     } else {
@@ -74,7 +74,7 @@ const UploadDocument = () => {
         .then((res) => {
           setLoading(false);
           toast({ title: res.data, status: "success", duration: 3000, isClosable: true, });
-          onClose();
+          onClose()
           navigate("/user/applied-success");
         })
         .catch((err) => {
@@ -86,8 +86,7 @@ const UploadDocument = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(`${baseURL}/user/upload-pan-card/${id}`, {
+    axios.get(`${baseURL}/user/upload-pan-card?category=${category}&id=${id}`, {
         headers: {
           Authorization: portalData.token,
         },
@@ -142,14 +141,7 @@ const UploadDocument = () => {
             <FormControl>
               <FormLabel textAlign={"center"}>Front Form 49A</FormLabel>
               <Text textAlign={"center"} fontSize={"14px"} mb={"7px"} color={"grey"}>(Only 200DPI Color JPG)</Text>
-              <Input
-                color={"grey"}
-                p={"3.5px"}
-                type="file"
-                name="form49Front"
-                onChange={handleUpload}
-                accept="image/*"
-              />
+              <Input color={"grey"} p={"3.5px"} type="file" name="form49Front" onChange={handleUpload} accept="image/*" />
             </FormControl>
           </Box>
 
