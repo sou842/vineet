@@ -74,7 +74,7 @@ const UploadDocument = () => {
         .then((res) => {
           setLoading(false);
           toast({ title: res.data, status: "success", duration: 3000, isClosable: true, });
-          onClose();
+          onClose()
           navigate("/user/applied-success");
         })
         .catch((err) => {
