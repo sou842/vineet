@@ -72,7 +72,7 @@ const Upload = () => {
                                             {cat == 'newPancard' && <Button w={'100%'} h={'40px'} mb={'10px'} size={'xs'} onClick={() => navigate(`/user/upload/PanUploadEdit/${el._id}`)}>EDIT</Button>}
                                             {cat == 'updatePancard' && <Button w={'100%'} h={'40px'} mb={'10px'} size={'xs'} onClick={() => navigate(`/user/upload/PanUpdateUploadEdit/${el._id}`)}>EDIT</Button>}
 
-                                            <Button w={'100%'} h={'40px'} mb={'10px'} size={'xs'} bg={'grey'} color={'white'} onClick={() => navigate(`/user/upload-document/${el._id}`)}>UPLOAD</Button>
+                                            <Button w={'100%'} h={'40px'} mb={'10px'} size={'xs'} bg={'grey'} color={'white'} onClick={() => navigate(`/user/upload-document/${cat}-${el._id}`)}>UPLOAD</Button>
                                         </Box>
                                     </Box>
                                 )

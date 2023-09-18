@@ -65,7 +65,7 @@ export const AllRouter = () => {
             <Route path={'/NewPanCardAllState'} element={portalData ? <NewPanCardAllState /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/user/change-password'} element={portalData ? <ChangePassword /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/user/upload'} element={portalData ? <Upload /> : <Navigate to={'/Signin'} />}></Route>
-            <Route path={'/user/upload-document/:id'} element={portalData ? <UploadDocument /> : <Navigate to={'/Signin'} />}></Route>
+            <Route path={'/user/upload-document/:props'} element={portalData ? <UploadDocument /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/user/final-confirm-apply/:id'} element={portalData ? <FinalApplyConfirm /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/user/applied-success'} element={portalData ? <PanApplySuccess /> : <Navigate to={'/Signin'} />}></Route>
             <Route path={'/user/pan-receipt'} element={portalData ? <Receipt /> : <Navigate to={'/Signin'} />}></Route>
