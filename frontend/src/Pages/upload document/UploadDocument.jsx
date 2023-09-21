@@ -70,7 +70,10 @@ const UploadDocument = () => {
 
 
       axios.post(`${baseURL}/user/upload-pandocs`, formData, {
-        headers: { Authorization: portalData.token },
+        headers: {
+          'Access-Control-Allow-Origin': 'https://www.smartdigitalservice.in/',
+          Authorization: portalData.token
+        },
       })
         .then((res) => {
           setLoading(false);
@@ -129,7 +132,7 @@ const UploadDocument = () => {
       </Box>
 
       <form onSubmit={handelFinalUpload}>
-        <Grid w={["85%", "93%", "90%", "80%"]} templateColumns={['repeat(1, 1fr)','repeat(1, 1fr)', 'repeat(2, 1fr)','repeat(2, 1fr)', 'repeat(3, 1fr)']} gap={"10px"} m={"20px  auto"}>
+        <Grid w={["85%", "93%", "90%", "80%"]} templateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(2, 1fr)', 'repeat(3, 1fr)']} gap={"10px"} m={"20px  auto"}>
 
           <Box m={"0.5cm auto"}>
             <FormControl>
